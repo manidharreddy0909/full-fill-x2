@@ -1,0 +1,90 @@
+graph TD
+    subgraph APP["Application Root"]
+        MAIN[main.tsx]
+        QP[QueryClientProvider]
+        TP[ThemeProvider]
+        WP[WebSocketProvider]
+        ROUTER[React Router v6]
+    end
+
+    subgraph LAYOUT["Shell Layout"]
+        SHELL[ShellLayout]
+        SIDEBAR[NavigationSidebar]
+        HEADER[GlobalHeader]
+        STATUSBAR[StatusBar]
+        OUTLET[Screen Outlet]
+    end
+
+    subgraph SCREENS["12 Screen Components"]
+        S1[CommandCenter]
+        S2[WorldModel3D]
+        S3[SignalIntelligence]
+        S4[RiskExplorer]
+        S5[ScenarioLab]
+        S6[AgentWarRoom]
+        S7[PlanComparison]
+        S8[AdversaryAttack]
+        S9[StressTest]
+        S10[DecisionCockpit]
+        S11[Evaluation]
+        S12[SystemStatus]
+    end
+
+    subgraph SHARED["Shared Components"]
+        MC[MetricCard]
+        AC[AgentCard]
+        SB[SignalBadge]
+        PC[PlanCard]
+        RB[RiskBar]
+        WS_IND[WebSocketIndicator]
+        TOAST[ToastSystem]
+        MODAL[ModalSystem]
+        RADAR[RadarChart]
+        SPARKLINE[SparklineChart]
+    end
+
+    subgraph SCENE["3D Scene Components"]
+        CANVAS[R3F Canvas]
+        WORLD_SCENE[WorldScene]
+        NODE_LAYER[NodeLayer]
+        EDGE_LAYER[EdgeLayer]
+        OVERLAY[OverlayLayer]
+        PARTICLES[ParticleSystem]
+        POSTFX[PostProcessing]
+        ORBIT[OrbitControls]
+    end
+
+    subgraph STATE["State Layer"]
+        ZUSTAND_S[Zustand - useWorldStore]
+        TQUERY[TanStack Query - useWorldQuery etc]
+        WS_CTX[WebSocket Context]
+    end
+
+    subgraph HOOKS["Custom Hooks"]
+        UW[useWorld]
+        US[useSignals]
+        UA[useAgents]
+        UP[usePlans]
+        UWS[useWebSocket]
+        U3D[use3DScene]
+    end
+
+    MAIN --> QP --> TP --> WP --> ROUTER
+    ROUTER --> SHELL
+    SHELL --> SIDEBAR & HEADER & STATUSBAR & OUTLET
+    OUTLET --> SCREENS
+
+    S2 --> CANVAS
+    CANVAS --> WORLD_SCENE
+    WORLD_SCENE --> NODE_LAYER & EDGE_LAYER & OVERLAY & PARTICLES & POSTFX & ORBIT
+
+    SCREENS --> HOOKS
+    HOOKS --> ZUSTAND_S
+    HOOKS --> TQUERY
+    HOOKS --> WS_CTX
+
+    WS_CTX --> ZUSTAND_S
+    ZUSTAND_S --> TQUERY
+
+    SCREENS --> SHARED
+    S2 --> SCENE

@@ -1,0 +1,68 @@
+sequenceDiagram
+    participant ORC as Orchestrator
+    participant INV as Inventory Agent
+    participant SUP as Supplier Agent
+    participant TRX as Transportation Agent
+    participant FUL as Fulfillment Agent
+    participant SUS as Sustainability Agent
+    participant RES as Resilience Agent
+    participant COORD as Coordinator Agent
+    participant ADV as Adversary Agent
+    participant AI as AI Provider
+    participant SIM as Simulation Engine
+    participant CONS as Constraint Engine
+
+    Note over ORC: Scenario + World State received
+    ORC->>ORC: Validate inputs
+    ORC->>ORC: asyncio.gather() - parallel dispatch
+
+    par Parallel Execution
+        ORC->>INV: AgentInput(scenario, world, risks)
+        INV->>AI: generate(prompt, InventoryOutputSchema)
+        AI-->>INV: raw proposal
+        INV->>CONS: check_constraints(proposal)
+        CONS-->>INV: feasible=true
+        INV->>SIM: simulate(proposal, world)
+        SIM-->>INV: SimResult(valid=true)
+        INV-->>ORC: AgentProposal(status=PROPOSED)
+    and
+        ORC->>SUP: AgentInput(scenario, world, risks)
+        SUP->>AI: generate(prompt, SupplierOutputSchema)
+        AI-->>SUP: raw proposal
+        SUP->>CONS: check_constraints(proposal)
+        CONS-->>SUP: feasible=true
+        SUP-->>ORC: AgentProposal(status=PROPOSED)
+    and
+        ORC->>TRX: AgentInput(scenario, world, risks)
+        TRX->>AI: generate(prompt, TransportOutputSchema)
+        AI-->>TRX: raw proposal
+        TRX-->>ORC: AgentProposal(status=PROPOSED)
+    and
+        ORC->>FUL: AgentInput(scenario, world, risks)
+        FUL-->>ORC: AgentProposal(status=PROPOSED)
+    and
+        ORC->>SUS: AgentInput(scenario, world, risks)
+        SUS-->>ORC: AgentProposal(status=PROPOSED)
+    and
+        ORC->>RES: AgentInput(scenario, world, risks)
+        RES-->>ORC: AgentProposal(status=PROPOSED)
+    end
+
+    Note over ORC: All 6 proposals collected
+    ORC->>COORD: reconcile(proposals[], world, weights)
+    COORD->>AI: generate(prompt, CoordinatorOutputSchema)
+    AI-->>COORD: ranked_plans_raw
+    COORD->>CONS: validate_plans(ranked_plans)
+    CONS-->>COORD: plans_validated
+    COORD-->>ORC: RankedPlan[] (up to 5)
+
+    loop Each ranked plan
+        ORC->>ADV: attack(plan, world, disruption_library)
+        ADV->>AI: generate(prompt, AdversaryOutputSchema)
+        AI-->>ADV: findings_raw
+        ADV->>ADV: rate_robustness(findings)
+        ADV-->>ORC: AdversaryFinding[] + rating
+    end
+
+    ORC->>ORC: Merge adversary ratings into plans
+    ORC-->>WS: broadcast plan.ranked(RankedPlan[])

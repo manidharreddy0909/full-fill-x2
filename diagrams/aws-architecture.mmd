@@ -1,0 +1,74 @@
+graph TB
+    subgraph INTERNET["Internet"]
+        USER[Browser / Demo Client]
+        GITHUB[GitHub - Source]
+    end
+
+    subgraph AWS_REGION["AWS us-east-1"]
+        subgraph EDGE["Edge Layer"]
+            R53[Route 53 - DNS]
+            ACM[ACM - TLS Certificate]
+            CF[CloudFront - CDN]
+            ALB[Application Load Balancer]
+        end
+
+        subgraph VPC["VPC 10.0.0.0/16"]
+            subgraph PUBLIC["Public Subnets - 2 AZs"]
+                NAT[NAT Gateway]
+            end
+
+            subgraph PRIVATE["Private Subnets - 2 AZs"]
+                subgraph ECS_CLUSTER["ECS Fargate Cluster"]
+                    FE_TASK[Frontend Task - Nginx - port 80]
+                    BE_TASK[Backend Task - Uvicorn - port 8000]
+                end
+
+                RDS[(RDS PostgreSQL 16 - db.t3.medium)]
+                REDIS[(ElastiCache Redis 7 - cache.t3.micro)]
+            end
+        end
+
+        subgraph STORAGE["Storage"]
+            S3[(S3 - Artifacts and Reports)]
+            ECR[(ECR - Container Registry)]
+        end
+
+        subgraph AI_SERVICES["AI Services"]
+            SSM[SSM Parameter Store]
+            BEDROCK[AWS Bedrock - optional]
+        end
+
+        subgraph OPS["Operations"]
+            CW[CloudWatch - Logs and Metrics]
+            GHA[GitHub Actions - CI/CD]
+        end
+    end
+
+    subgraph EXTERNAL["External"]
+        GEMINI[Google Gemini API]
+        OLLAMA[Ollama - optional self-hosted]
+    end
+
+    USER -->|HTTPS 443| R53
+    R53 --> CF
+    ACM --> CF
+    CF -->|Static assets cached| FE_TASK
+    CF -->|API + WS pass-through| ALB
+    ALB -->|HTTP /api/* + WSS /ws| BE_TASK
+
+    BE_TASK -->|asyncpg| RDS
+    BE_TASK -->|aioredis| REDIS
+    BE_TASK -->|boto3| S3
+    BE_TASK -->|GetParameter| SSM
+    BE_TASK -->|optional| BEDROCK
+    BE_TASK -->|httpx| GEMINI
+    BE_TASK -->|httpx optional| OLLAMA
+
+    ECS_CLUSTER --> CW
+    BE_TASK --> NAT
+    NAT -->|egress| GEMINI
+
+    GITHUB --> GHA
+    GHA -->|docker push| ECR
+    GHA -->|ECS deploy| ECS_CLUSTER
+    ECR --> FE_TASK & BE_TASK

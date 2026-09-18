@@ -1,0 +1,61 @@
+graph LR
+    subgraph TRIGGER["Trigger"]
+        PR[GitHub PR / Push to main]
+    end
+
+    subgraph CI["GitHub Actions CI"]
+        CHECKOUT[Checkout Code]
+        LINT_BE[Lint Backend - ruff + mypy]
+        LINT_FE[Lint Frontend - eslint + tsc]
+        TEST_UNIT[Unit Tests - pytest + vitest]
+        TEST_INT[Integration Tests - pytest]
+        TEST_E2E[E2E Tests - playwright]
+        COVERAGE[Coverage Report]
+    end
+
+    subgraph BUILD["Docker Build"]
+        BUILD_BE[Build Backend Image]
+        BUILD_FE[Build Frontend Image]
+        TAG_BE[Tag with SHA + latest]
+        TAG_FE[Tag with SHA + latest]
+    end
+
+    subgraph PUSH["Registry Push"]
+        ECR_BE[Push to ECR - backend]
+        ECR_FE[Push to ECR - frontend]
+    end
+
+    subgraph DEPLOY["ECS Deploy"]
+        REG_TASK_BE[Register Backend Task Def]
+        REG_TASK_FE[Register Frontend Task Def]
+        UPDATE_BE[ECS Update Service - backend]
+        UPDATE_FE[ECS Update Service - frontend]
+        WAIT[Wait for Stable]
+    end
+
+    subgraph VERIFY["Post-Deploy Verification"]
+        SMOKE[Smoke Test - GET /api/system/health]
+        EVAL_RUN[Run Evaluation Suite - mock provider]
+        NOTIFY[Notify Slack / GitHub Status]
+    end
+
+    PR --> CHECKOUT
+    CHECKOUT --> LINT_BE & LINT_FE
+    LINT_BE --> TEST_UNIT
+    LINT_FE --> TEST_UNIT
+    TEST_UNIT --> TEST_INT
+    TEST_INT --> TEST_E2E
+    TEST_E2E --> COVERAGE
+    COVERAGE --> BUILD_BE & BUILD_FE
+    BUILD_BE --> TAG_BE --> ECR_BE
+    BUILD_FE --> TAG_FE --> ECR_FE
+    ECR_BE --> REG_TASK_BE --> UPDATE_BE
+    ECR_FE --> REG_TASK_FE --> UPDATE_FE
+    UPDATE_BE & UPDATE_FE --> WAIT
+    WAIT --> SMOKE
+    SMOKE --> EVAL_RUN
+    EVAL_RUN --> NOTIFY
+
+    style SMOKE fill:#34C77B,color:#fff
+    style EVAL_RUN fill:#34C77B,color:#fff
+    style NOTIFY fill:#3B7FE0,color:#fff

@@ -1,0 +1,66 @@
+sequenceDiagram
+    participant SRC as Signal Source
+    participant ING as Signal Ingestor
+    participant WM as World Model
+    participant RE as Risk Engine
+    participant SC as Scenario Engine
+    participant ORC as Orchestrator
+    participant AGT as Specialist Agents (parallel)
+    participant ADV as Adversary Agent
+    participant CRD as Coordinator Agent
+    participant SIM as Simulation Engine
+    participant DB as PostgreSQL
+    participant WS as WebSocket Hub
+    participant FE as Frontend
+
+    SRC->>ING: Raw signal event
+    ING->>ING: Validate + classify signal
+    ING->>WM: Validated signal
+    WM->>WM: Update affected nodes/edges
+    WM->>DB: Persist world state
+    WM->>WS: world.update event
+    WS-->>FE: world.update
+    WM->>RE: World state snapshot
+    RE->>RE: Compute multi-dimensional risk scores
+    RE->>DB: Persist risk scores
+    RE->>WS: risk.update event
+    WS-->>FE: risk.update
+
+    Note over SC: User triggers scenario creation
+    RE->>SC: Risk-annotated world
+    SC->>SC: Compose compound scenario
+    SC->>DB: Persist scenario
+    SC->>WS: scenario.created event
+    WS-->>FE: scenario.created
+
+    Note over ORC: User triggers agent run
+    ORC->>WS: agent.started (x6)
+    WS-->>FE: agent.started x6
+    ORC->>AGT: dispatch(scenario, world) - asyncio.gather
+    AGT->>AGT: AI generate proposal
+    AGT->>AGT: Pydantic validate
+    AGT->>SIM: Check feasibility
+    SIM-->>AGT: sim result
+    AGT-->>ORC: AgentProposal x6
+    ORC->>WS: agent.proposal x6
+    WS-->>FE: agent.proposal x6
+    ORC->>CRD: reconcile(all proposals)
+    CRD->>CRD: Rank + score plans
+    CRD-->>ORC: RankedPlan[]
+    loop For each plan
+        ORC->>ADV: attack(plan)
+        ADV-->>ORC: AdversaryFinding[]
+    end
+    ORC->>ORC: Merge adversary ratings
+    ORC->>WS: plan.ranked
+    WS-->>FE: plan.ranked
+
+    Note over FE: Director approves plan
+    FE->>ORC: POST /api/plans/id/approve
+    ORC->>SIM: simulate(approved_plan, world)
+    SIM-->>ORC: SimulationResult (valid)
+    ORC->>WM: apply(approved_plan)
+    WM->>DB: Persist updated world state
+    ORC->>DB: Write audit log
+    ORC->>WS: plan.accepted
+    WS-->>FE: plan.accepted + world.update

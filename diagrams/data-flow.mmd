@@ -1,0 +1,88 @@
+flowchart LR
+    subgraph SOURCES["Data Sources"]
+        SIG[External Signals]
+        SEED[Synthetic Seed Data]
+        USER_IN[User Actions]
+    end
+
+    subgraph INGESTION["Ingestion Layer"]
+        ING[Signal Ingestor]
+        SYNTH[Synthetic Generator]
+    end
+
+    subgraph ENGINES["Processing Engines"]
+        WM[World Model Engine]
+        RE[Risk Engine]
+        SC[Scenario Engine]
+        SIM[Simulation Engine]
+        EVAL_ENG[Evaluation Engine]
+    end
+
+    subgraph AGENTS_LAYER["Agent Layer"]
+        ORC[Orchestrator]
+        SPEC[Specialist Agents x6]
+        ADV[Adversary Agent]
+        COORD[Coordinator Agent]
+    end
+
+    subgraph AI_LAYER["AI Provider"]
+        PROV[Provider Abstraction]
+        GEMINI[Gemini]
+        OLLAMA[Ollama]
+        MOCK[Mock]
+    end
+
+    subgraph PERSISTENCE["Persistence"]
+        PG[(PostgreSQL)]
+        REDIS[(Redis)]
+        S3[(S3)]
+    end
+
+    subgraph DELIVERY["Delivery"]
+        REST_API[REST API]
+        WS_HUB[WebSocket Hub]
+    end
+
+    subgraph FRONTEND_LAYER["Frontend"]
+        QUERY_C[TanStack Query Cache]
+        ZUS[Zustand Store]
+        SCREENS[12 Screens]
+        SCENE_3D[3D Scene]
+    end
+
+    SIG --> ING
+    SEED --> SYNTH
+    SYNTH --> WM
+    ING --> WM
+    WM --> RE
+    RE --> SC
+    SC --> SIM
+    USER_IN --> ORC
+    SC --> ORC
+    ORC --> SPEC
+    ORC --> ADV
+    ORC --> COORD
+    SPEC --> PROV
+    ADV --> PROV
+    COORD --> PROV
+    PROV --> GEMINI & OLLAMA & MOCK
+    SPEC --> SIM
+    COORD --> ORC
+    ADV --> ORC
+    WM --> PG
+    RE --> PG
+    SC --> PG
+    ORC --> PG
+    EVAL_ENG --> S3
+    ORC --> REDIS
+    WS_HUB --> REDIS
+    WM --> REST_API
+    RE --> REST_API
+    SC --> REST_API
+    ORC --> REST_API
+    ORC --> WS_HUB
+    REST_API --> QUERY_C
+    WS_HUB --> ZUS
+    QUERY_C --> SCREENS
+    ZUS --> SCREENS
+    ZUS --> SCENE_3D

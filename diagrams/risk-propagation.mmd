@@ -1,0 +1,68 @@
+graph TD
+    subgraph SIGNAL["Signal Origin"]
+        S1[Signal: Typhoon - Port of Osaka]
+        S2[Signal: Factory Fire - Shenzhen]
+    end
+
+    subgraph DIRECT["Direct Impact - Hop 0"]
+        N1[Osaka Warehouse - risk 0.90]
+        N2[Apex Electronics Supplier - risk 0.88]
+    end
+
+    subgraph HOP1["Propagation - Hop 1"]
+        N3[Tokyo Distribution Center - risk 0.68]
+        N4[Seoul Fulfillment Center - risk 0.55]
+        N5[Tier-2 Supplier B - risk 0.45]
+        N6[Sea Route APAC-1 - disrupted]
+    end
+
+    subgraph HOP2["Propagation - Hop 2"]
+        N7[Singapore Hub - risk 0.38]
+        N8[Customer Zone APAC-East - risk 0.32]
+        N9[Alternative Route via Manila - load 0.91]
+    end
+
+    subgraph HOP3["Propagation - Hop 3"]
+        N10[EU Distribution - risk 0.18]
+        N11[US West Coast - risk 0.12]
+    end
+
+    subgraph HEALTHY["No Propagation - Isolated"]
+        N12[South America Hub - risk 0.05]
+        N13[EU Supplier C - risk 0.04]
+    end
+
+    S1 -->|direct disruption| N1
+    S1 -->|route closure| N6
+    S2 -->|direct disruption| N2
+
+    N1 -->|downstream supply| N3
+    N1 -->|downstream supply| N4
+    N2 -->|upstream dependency| N5
+    N6 -->|route unavailable| N3
+    N6 -->|overload| N9
+
+    N3 -->|capacity strain| N7
+    N4 -->|SLA risk| N8
+    N5 -->|supply shortage| N3
+    N9 -->|congestion| N7
+
+    N7 -->|delayed| N10
+    N7 -->|delayed| N11
+
+    N12 -.-|isolated| N7
+    N13 -.-|isolated| N10
+
+    style N1 fill:#E8503A,color:#fff
+    style N2 fill:#E8503A,color:#fff
+    style N6 fill:#E8503A,color:#fff
+    style N3 fill:#E87A30,color:#fff
+    style N4 fill:#F5A623,color:#fff
+    style N5 fill:#F5A623,color:#fff
+    style N9 fill:#F5A623,color:#fff
+    style N7 fill:#7EC84A,color:#fff
+    style N8 fill:#7EC84A,color:#fff
+    style N10 fill:#34C77B,color:#fff
+    style N11 fill:#34C77B,color:#fff
+    style N12 fill:#34C77B,color:#fff
+    style N13 fill:#34C77B,color:#fff

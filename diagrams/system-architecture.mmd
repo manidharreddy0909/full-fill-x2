@@ -1,0 +1,84 @@
+graph TB
+    subgraph CLIENT["Browser Client"]
+        UI[React UI - 12 Screens]
+        THREE[React Three Fiber - 3D World]
+        WS_CLIENT[WebSocket Client]
+        QUERY[TanStack Query]
+        ZUSTAND[Zustand Store]
+    end
+
+    subgraph BACKEND["FastAPI Backend - ECS Fargate"]
+        REST[REST API Router]
+        WS_HUB[WebSocket Hub]
+        WORLD[World Model Engine]
+        RISK[Risk Engine]
+        SCENARIO[Scenario Engine]
+        SIMULATION[Simulation Engine]
+        ORCHESTRATOR[Agent Orchestrator]
+        EVAL[Evaluation Engine]
+        MEMORY[Memory / Audit Store]
+        SIGNAL[Signal Ingestor]
+    end
+
+    subgraph AGENTS["Specialist Agents"]
+        INV[Inventory Agent]
+        SUP[Supplier Agent]
+        TRX[Transportation Agent]
+        FUL[Fulfillment Agent]
+        SUS[Sustainability Agent]
+        RES[Resilience Agent]
+        COORD[Coordinator Agent]
+        ADV[Adversary Agent]
+    end
+
+    subgraph AI["AI Provider Abstraction"]
+        GEMINI[Gemini API]
+        OLLAMA[Ollama Local]
+        BEDROCK[AWS Bedrock]
+        MOCK[Mock Deterministic]
+    end
+
+    subgraph DATA["Data Layer"]
+        PG[(PostgreSQL - RDS)]
+        REDIS[(Redis - ElastiCache)]
+        S3[(S3 Artifacts)]
+    end
+
+    subgraph AWS_EDGE["AWS Edge"]
+        ALB[Application Load Balancer]
+        CF[CloudFront CDN]
+        R53[Route 53]
+    end
+
+    R53 --> CF
+    CF --> ALB
+    ALB --> REST
+    ALB --> WS_HUB
+    UI <-->|HTTPS| ALB
+    WS_CLIENT <-->|WSS| ALB
+    THREE --> QUERY
+    QUERY --> REST
+    ZUSTAND --> WS_CLIENT
+
+    REST --> WORLD
+    REST --> RISK
+    REST --> SCENARIO
+    REST --> ORCHESTRATOR
+    REST --> EVAL
+    REST --> SIGNAL
+
+    WS_HUB --> REDIS
+    REDIS --> WS_HUB
+
+    ORCHESTRATOR --> INV & SUP & TRX & FUL & SUS & RES & COORD & ADV
+    ORCHESTRATOR --> SIMULATION
+    ORCHESTRATOR --> WS_HUB
+
+    INV & SUP & TRX & FUL & SUS & RES & COORD & ADV --> AI
+
+    WORLD --> PG
+    MEMORY --> PG
+    RISK --> PG
+    SCENARIO --> PG
+    EVAL --> S3
+    SIGNAL --> WORLD

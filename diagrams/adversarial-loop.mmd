@@ -1,0 +1,40 @@
+sequenceDiagram
+    participant ORC as Orchestrator
+    participant ADV as Adversary Agent
+    participant AI as AI Provider
+    participant LIB as Disruption Library
+    participant SIM as Simulation Engine
+    participant UI as Frontend
+
+    Note over ORC,ADV: Adversary loop runs once per ranked plan
+
+    ORC->>ADV: attack(plan=PlanA, world_state)
+    ADV->>LIB: get_disruption_templates()
+    LIB-->>ADV: DisruptionTemplate[] (port closure, demand spike, etc.)
+
+    ADV->>AI: generate(system=adversary_prompt, user=plan+world+templates, schema=AdversaryOutputSchema)
+    Note over AI: AI selects most plausible attack vectors
+    AI-->>ADV: raw_findings (JSON)
+    ADV->>ADV: Pydantic validate raw_findings
+
+    loop For each finding (max 5)
+        ADV->>SIM: simulate_disruption(plan=PlanA, disruption=finding.attack_vector)
+        SIM-->>ADV: SimResult(failure_mode, severity, probability)
+        ADV->>ADV: Record finding with sim evidence
+    end
+
+    ADV->>ADV: rate_robustness(findings) → adversary_rating
+    ADV-->>ORC: AdversaryFinding[] + adversary_rating=0.71
+
+    ORC->>ORC: Merge adversary_rating into PlanA
+    ORC->>UI: plan.ranked (plans with adversary ratings)
+
+    Note over UI: User navigates to Adversary Attack screen
+    UI->>ORC: GET /api/plans/PlanA/adversary
+    ORC-->>UI: AdversaryFinding[]
+
+    Note over UI: User re-runs adversary
+    UI->>ORC: POST /api/plans/PlanA/adversary/run
+    ORC->>ADV: attack(plan=PlanA, world_state, force_rerun=true)
+    ADV-->>ORC: new AdversaryFinding[]
+    ORC->>UI: adversary.finding (via WebSocket)
