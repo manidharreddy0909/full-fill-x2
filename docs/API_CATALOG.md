@@ -1,0 +1,521 @@
+# FULFILL-X — API Catalog
+
+## 1. Purpose
+
+Map every UI operation to a backend API. For every endpoint document:
+method, path, purpose, request, response, errors, domain service, and frontend consumer.
+
+**Inconsistency Correction (ADR-013)**: `API_SPEC.md` line 72 returns `"risk_score": 0.72`
+(flat float). This is inconsistent with `DATA_MODEL.md` which defines `NodeRiskScores`
+as a multi-dimensional object. The corrected response uses `NodeRiskScores`.
+
+---
+
+## 2. API Overview
+
+| Group | Count | Base Path |
+|-------|-------|-----------|
+| World Model | 5 | `/api/world` |
+| Signals | 4 | `/api/signals` |
+| Risks | 3 | `/api/risks` |
+| Scenarios | 5 | `/api/scenarios` |
+| Agents | 3 | `/api/agents` |
+| Plans | 5 | `/api/plans` |
+| Evaluation | 3 | `/api/evaluation` |
+| System | 4 | `/api/system` |
+| **Total** | **32** | |
+
+---
+
+## 3. World Model Endpoints
+
+### GET /api/world
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Full world state snapshot |
+| **Auth** | None (Phase 01) |
+| **Domain Service** | `WorldModelEngine.get_snapshot()` |
+| **Frontend** | Command Center KPIs, 3D WorldScene |
+| **Cache** | Redis (60s TTL; invalidated on world.update) |
+
+**Response 200**:
+```json
+{
+  "data": {
+    "snapshot_id": "uuid",
+    "timestamp": "ISO-8601",
+    "network_health_score": 0.58,
+    "nodes": [
+      {
+        "id": "sup-001",
+        "type": "SUPPLIER",
+        "name": "Apex Electronics",
+        "tier": 1,
+        "position": { "x": 1.2, "y": 0.8, "z": -0.3 },
+        "risk_scores": {
+          "composite": 0.88,
+          "financial": 0.72,
+          "sla": 0.80,
+          "operational": 0.90,
+          "sustainability": 0.45
+        },
+        "inventory_level": 0.45,
+        "is_disrupted": true,
+        "disruption_source_ids": ["sig-typhoon-001"],
+        "region": "APAC"
+      }
+    ],
+    "edges": [
+      {
+        "id": "rt-001",
+        "type": "ROUTE",
+        "source_node_id": "sup-001",
+        "target_node_id": "wh-001",
+        "transport_mode": "SEA",
+        "load": 0.91,
+        "delay_hours": 48.0,
+        "is_disrupted": true,
+        "emissions_per_unit": 2.4
+      }
+    ]
+  }
+}
+```
+
+**Error**:
+```json
+{ "error": { "code": "WORLD_UNAVAILABLE", "message": "Database unreachable; serving stale snapshot" } }
+```
+
+---
+
+### GET /api/world/nodes/{node_id}
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Single node detail with full attributes |
+| **Domain Service** | `WorldModelEngine.get_node(node_id)` |
+| **Frontend** | Node Inspector panel (3D screen), Risk Explorer detail |
+
+**Response 200**: Full `WorldNode` object including `inventory_records`, `outgoing_edges`.
+
+**Error 404**: `{ "error": { "code": "NODE_NOT_FOUND" } }`
+
+---
+
+### GET /api/world/edges/{edge_id}
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Single edge detail |
+| **Domain Service** | `WorldModelEngine.get_edge(edge_id)` |
+| **Frontend** | Edge detail panel (3D screen) |
+
+---
+
+### POST /api/world/seed
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Seed the world with synthetic data |
+| **Request** | `{ "preset": "double_punch" \| "healthy" \| "custom", "seed": 42 }` |
+| **Domain Service** | `SyntheticDataGenerator.generate_and_persist()` |
+| **Frontend** | System Status screen (admin action) |
+| **Notes** | Clears all existing world data; use in demo mode only |
+
+---
+
+### POST /api/world/reset
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Reset world to last seeded state |
+| **Frontend** | System Status screen (demo reset) |
+
+---
+
+## 4. Signal Endpoints
+
+### GET /api/signals
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | List all active signals |
+| **Query Params** | `severity`, `type`, `region`, `status`, `limit`, `offset` |
+| **Domain Service** | `SignalIngestor.list_signals()` |
+| **Frontend** | Signal Intelligence screen |
+
+**Response 200**:
+```json
+{
+  "data": {
+    "signals": [
+      {
+        "id": "sig-001",
+        "type": "WEATHER",
+        "severity": "CRITICAL",
+        "confidence": 0.94,
+        "title": "Typhoon Hana — Port of Osaka",
+        "description": "...",
+        "affected_node_ids": ["wh-001", "port-001"],
+        "geographic_scope": { "type": "Point", "coordinates": [135.5, 34.5] },
+        "detected_at": "ISO-8601",
+        "status": "ACTIVE"
+      }
+    ],
+    "total": 7,
+    "active_critical": 2
+  }
+}
+```
+
+---
+
+### GET /api/signals/{signal_id}
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Single signal detail |
+| **Frontend** | Signal detail panel |
+
+---
+
+### POST /api/signals
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Inject a synthetic signal (demo/test only) |
+| **Request** | `Signal` create schema |
+| **Domain Service** | `SignalIngestor.ingest()` |
+| **Frontend** | Admin: Signal Intelligence (not exposed in production) |
+| **Side Effects** | Triggers Risk Engine recompute; broadcasts `signal.detected` |
+
+---
+
+### PATCH /api/signals/{id}/resolve
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Mark signal as resolved |
+| **Domain Service** | `SignalIngestor.resolve(signal_id)` |
+| **Side Effects** | Triggers Risk Engine recompute |
+
+---
+
+## 5. Risk Endpoints
+
+### GET /api/risks
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Full risk score map for all nodes |
+| **Domain Service** | `RiskEngine.get_current_map()` |
+| **Frontend** | Risk Explorer (table + heat map) |
+
+**Response 200**:
+```json
+{
+  "data": {
+    "computed_at": "ISO-8601",
+    "network_health_score": 0.58,
+    "nodes": [
+      {
+        "node_id": "sup-001",
+        "risk_scores": { "composite": 0.88, "financial": 0.72, ... },
+        "explanation": {
+          "contributing_signals": [{ "signal_id": "sig-001", "contribution": 0.72 }],
+          "propagated_from": [],
+          "dominant_dimension": "operational"
+        }
+      }
+    ]
+  }
+}
+```
+
+---
+
+### GET /api/risks/nodes/{node_id}
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Detailed risk for one node including explanation |
+| **Frontend** | Risk Explorer node detail, Decision Cockpit evidence |
+
+---
+
+### GET /api/risks/network
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Network-level summary (health score + top risks) |
+| **Frontend** | Command Center KPIs |
+
+---
+
+## 6. Scenario Endpoints
+
+### GET /api/scenarios
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | List all scenarios |
+| **Frontend** | Scenario Lab dropdown |
+
+---
+
+### POST /api/scenarios
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Create a new scenario |
+| **Request** | `{ name, signal_ids[], relationship, magnitude_multiplier, duration_hours }` |
+| **Response 201** | `ScenarioObject` (status=DRAFT) |
+| **Side Effects** | Broadcasts `scenario.created` |
+
+---
+
+### GET /api/scenarios/{id}
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Full scenario with propagation steps |
+| **Frontend** | Scenario Lab detail |
+
+---
+
+### POST /api/scenarios/{id}/simulate
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Simulate scenario against current world |
+| **Response 200** | `SimulationResult` (propagation_steps, risk_delta) |
+| **Side Effects** | Streams `scenario.propagation_step` events via WebSocket |
+
+---
+
+### POST /api/scenarios/{id}/activate
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Activate scenario and optionally trigger agent run |
+| **Request** | `{ run_agents: bool, provider: str }` |
+| **Response 202** | accepted |
+
+---
+
+## 7. Agent Endpoints
+
+### POST /api/agents/run
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Run full agent pipeline |
+| **Request** | `{ scenario_id: uuid, provider: str, weights: dict }` |
+| **Response 202** | `{ run_id: uuid }` (accepted; updates via WebSocket) |
+| **Domain Service** | `AgentOrchestrator.run_pipeline()` |
+| **Frontend** | Agent War Room |
+| **WebSocket** | Streams: `agent.started`, `agent.proposal`, `coordinator.updated`, `adversary.attack`, `plan.ranked` |
+
+---
+
+### GET /api/agents/run/{run_id}
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Status of a running or completed agent pipeline |
+| **Frontend** | Agent War Room (polling fallback if WebSocket disconnected) |
+
+---
+
+### GET /api/agents/run/{run_id}/proposals
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | All agent proposals from a completed run |
+| **Frontend** | Agent War Room detail |
+
+---
+
+## 8. Plan Endpoints
+
+### GET /api/plans
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | List all ranked plans from last agent run |
+| **Frontend** | Plan Comparison |
+
+**Response 200**:
+```json
+{
+  "data": {
+    "plans": [
+      {
+        "id": "plan-001",
+        "rank": 1,
+        "name": "Best SLA",
+        "composite_score": 0.82,
+        "final_score": 0.81,
+        "sla_preservation": 0.91,
+        "cost_delta": 42000,
+        "emissions_delta_percent": 12,
+        "fragility_delta": -0.20,
+        "adversary_rating": 0.81,
+        "adversary_findings_count": 2,
+        "status": "PROPOSED"
+      }
+    ]
+  }
+}
+```
+
+---
+
+### GET /api/plans/{plan_id}
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Full plan detail including actions and adversary findings |
+| **Frontend** | Plan Comparison detail, Decision Cockpit |
+
+---
+
+### GET /api/plans/{plan_id}/adversary
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Adversary findings for a plan |
+| **Frontend** | Adversary Attack screen |
+
+---
+
+### POST /api/plans/{plan_id}/adversary/run
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Re-run adversary on a specific plan |
+| **Frontend** | Adversary Attack screen (re-run button) |
+| **Response 202** | accepted; updates via WebSocket |
+
+---
+
+### POST /api/plans/{plan_id}/approve
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Approve a plan → apply to world state |
+| **Request** | `{ note: str, approver: str }` |
+| **Response 200** | `{ plan_id, applied_at, world_snapshot_after }` |
+| **Domain Service** | `Orchestrator.approve_plan()` → `SimulationEngine.apply()` → `WorldModelEngine.mutate()` |
+| **Side Effects** | World state mutation, audit log entry, `plan.accepted` + `world.update` events |
+| **Frontend** | Decision Cockpit |
+
+### POST /api/plans/{plan_id}/reject
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Reject a plan |
+| **Request** | `{ reason: str }` |
+
+---
+
+### POST /api/evaluation/stress
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Run stress test on a plan |
+| **Request** | `{ plan_id, stressors: list[str] }` |
+| **Response 202** | accepted; streams `stress-test.progress` events |
+| **Frontend** | Stress Test screen |
+
+---
+
+## 9. Evaluation Endpoints
+
+### GET /api/evaluation/suites
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | List available benchmark suites |
+| **Frontend** | Evaluation screen |
+
+---
+
+### POST /api/evaluation/run
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Run benchmark suite |
+| **Request** | `{ suite_id, provider: "mock", seed: 42 }` |
+| **Response 202** | `{ run_id }` |
+| **Frontend** | Evaluation screen |
+
+---
+
+### GET /api/evaluation/results/{run_id}
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Results of an evaluation run |
+| **Frontend** | Evaluation screen results |
+
+---
+
+## 10. System Endpoints
+
+### GET /api/system/health
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | System health check (used by ALB, smoke tests) |
+| **Response 200** | `{ status: "HEALTHY" \| "DEGRADED", services: {...} }` |
+| **Auth** | None (public) |
+
+---
+
+### GET /api/system/providers
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | AI provider status |
+| **Frontend** | System Status screen |
+
+---
+
+### POST /api/system/providers/switch
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Switch active AI provider |
+| **Request** | `{ provider: "gemini" \| "ollama" \| "bedrock" \| "mock" }` |
+| **Frontend** | System Status screen |
+
+---
+
+### GET /api/system/audit
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Audit log (last 50 entries) |
+| **Frontend** | Decision Cockpit (history panel) |
+
+---
+
+## 11. API→Frontend Mapping Summary
+
+| Screen | Primary APIs |
+|--------|-------------|
+| Command Center | GET /api/world, GET /api/risks/network, GET /api/signals |
+| 3D World Model | GET /api/world |
+| Signal Intelligence | GET /api/signals, GET /api/signals/{id} |
+| Risk Explorer | GET /api/risks, GET /api/risks/nodes/{id} |
+| Scenario Lab | GET/POST /api/scenarios, POST /api/scenarios/{id}/simulate |
+| Agent War Room | POST /api/agents/run, GET /api/agents/run/{id} |
+| Plan Comparison | GET /api/plans, GET /api/plans/{id} |
+| Adversary Attack | GET /api/plans/{id}/adversary, POST .../adversary/run |
+| Stress Test | POST /api/evaluation/stress |
+| Decision Cockpit | GET /api/plans/{id}, POST /api/plans/{id}/approve|reject |
+| Evaluation | GET /api/evaluation/suites, POST /api/evaluation/run |
+| System Status | GET /api/system/health, GET /api/system/providers |

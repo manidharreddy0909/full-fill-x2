@@ -226,4 +226,107 @@ The simulation engine uses seeded random.
 
 ---
 
-*Add new ADRs as decisions are made during implementation phases.*
+## ADR-009: Signal Fusion Engine & Window Duration
+
+**Date**: 2026-09-18
+**Status**: ACCEPTED
+**Phase**: 01
+
+**Context**: Supply chain signals often arrive in bursts from multiple sources (e.g. weather alerts, social media, news). Ingesting them raw creates duplicate risk scoring and noise.
+
+**Decision**: Implement a deterministic `SignalFusionEngine` with a 6-hour fusion window. Co-located signals of the same type within the window are merged using compound probability formulas: `fused_confidence = 1 - ∏(1 - confidence_i)`.
+
+**Rationale**:
+- Eliminates duplicate risk propagation calculations
+- Produces mathematically sound confidence weighting
+- Fixed window simplifies state management for Phase 01 MVP
+
+---
+
+## ADR-010: AI Safety Control Boundary
+
+**Date**: 2026-09-18
+**Status**: ACCEPTED
+**Phase**: 01
+
+**Context**: AI models can hallucinate invalid state mutations, non-existent node IDs, or physically impossible inventory changes.
+
+**Decision**: Strict control boundary: **LLMs propose; deterministic code validates & decides.**
+Every LLM proposal passes through: Pydantic Schema Validation → Constraint Engine check → World Model Simulator → State Mutation. Unvalidated LLM output is never written to PostgreSQL or returned as authoritative state.
+
+**Rationale**:
+- Guaranteed system integrity and safety
+- Prevents corrupt supply chain state mutations
+- High explainability and auditability
+
+---
+
+## ADR-011: Multi-Dimensional Risk Scoring Standard
+
+**Date**: 2026-09-18
+**Status**: ACCEPTED
+**Phase**: 01
+
+**Context**: Inconsistency identified during Phase 01 cross-check: `API_SPEC.md` returned a single float for `risk_score`, while `DATA_MODEL.md` defined `NodeRiskScores` with financial, SLA, operational, and sustainability dimensions.
+
+**Decision**: Standardize all layers (Database, Pydantic, REST API, WebSockets, Frontend, 3D Engine) on `NodeRiskScores` (multi-dimensional object with `composite` score).
+
+**Rationale**:
+- Operators need dimensional breakdown to make trade-offs
+- Single float obscures whether risk is financial vs. SLA
+- 3D node rendering can visualize composite risk while tooltips show full multi-dimensional breakdown
+
+---
+
+## ADR-012: 3D Visualization Spatial Topology
+
+**Date**: 2026-09-18
+**Status**: ACCEPTED
+**Phase**: 01
+
+**Context**: Determining whether the 3D scene should render a geographic 3D globe or a logical network graph topology.
+
+**Decision**: 3D scene uses **Logical Network Topology Layout** with fixed node positions, fixed camera angles, and data-driven visual encoding (color, particle flow, wave rings).
+
+**Rationale**:
+- Avoids visual clutter caused by tight geographic clustering (e.g., East Asia manufacturing hubs)
+- Maximizes readability of supply node interdependencies
+- Dramatically improves 3D performance and frame stability (enables instanced mesh rendering)
+
+---
+
+## ADR-013: WebSocket Event Real-Time Fan-Out Pattern
+
+**Date**: 2026-09-18
+**Status**: ACCEPTED
+**Phase**: 01
+
+**Context**: The 3D scene, Command Center, Agent Console, and Decision Cockpit must update in real time without continuous REST polling.
+
+**Decision**: Dedicated WebSocket event channel emitting typed events (`world.update`, `signal.detected`, `risk.recalculated`, `agent.reasoning`, `adversary.finding`, `plan.ranked`).
+
+**Rationale**:
+- Sub-50ms latency for real-time visual feedback
+- Enables cinematic particle animations and disruption wave propagation
+- Single WebSocket Connection per browser client; Zustand routes events to local UI stores
+
+---
+
+## ADR-014: Phase 01 Intelligence Bible & Traceability Standard
+
+**Date**: 2026-09-18
+**Status**: ACCEPTED
+**Phase**: 01
+
+**Context**: Moving directly to code implementation without full specifications creates fragmented interfaces, missing fields, and communication gaps between backend, AI agents, and 3D UI.
+
+**Decision**: Enforce Phase 01 Complete Product Intelligence mapping before Phase 02 code implementation. All 14 specialized specifications (PRODUCT_BIBLE, WORLD_MODEL_SPEC, RISK_ENGINE_SPEC, SCENARIO_ENGINE_SPEC, AGENT_SYSTEM_SPEC, AI_ARCHITECTURE, API_CATALOG, WEBSOCKET_SPEC, 3D_EXPERIENCE_BIBLE, VISUAL_DESIGN_BIBLE, FRONTEND_EXPERIENCE_BIBLE, GAMIFICATION_SPEC, DEMO_STORYBOARD, OPEN_QUESTIONS) must be synchronized.
+
+**Rationale**:
+- Allows any AI developer or human engineer to implement any module independently with 100% contract stability
+- Guarantees end-to-end traceability from raw signal input to 3D rendering and demo narrative
+
+---
+
+*Last updated: Phase 01 — Architecture Mapping Complete*
+

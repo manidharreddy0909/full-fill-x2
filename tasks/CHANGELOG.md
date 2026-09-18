@@ -5,7 +5,28 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-## [Unreleased]
+## [0.2.0] — 2026-09-18 — Phase 01: Complete Product Intelligence & Architecture Mapping
+
+### Added
+
+**Complete Product Intelligence Specifications (14 files)**
+- `docs/PRODUCT_BIBLE.md` — 43-section master intelligence document detailing vision, domain model, agentic design, UI mapping, and complete system end-to-end flow.
+- `docs/WORLD_MODEL_SPEC.md` — Complete graph entity specs, ER diagrams, Pydantic/SQLAlchemy models, state transitions, and 3D visual mapping.
+- `docs/RISK_ENGINE_SPEC.md` — Deterministic risk propagation math, 6-hour signal fusion engine, multi-dimensional scoring matrix, and direct impact scoring formulas.
+- `docs/SCENARIO_ENGINE_SPEC.md` — Compound scenario simulation pipeline, concurrent/cascading/amplifying relationship models, and propagation step tracking.
+- `docs/AGENT_SYSTEM_SPEC.md` — Detailed contracts for all 8 specialist agents (Inventory, Supplier, Transportation, Fulfillment, Sustainability, Resilience, Coordinator, Adversary), orchestrator lifecycle, prompt engineering rules, and JSON output schemas.
+- `docs/AI_ARCHITECTURE.md` — AI safety control boundary specs ("LLMs propose; deterministic code decides"), provider interface, fallback chain, and mock provider specs.
+- `docs/API_CATALOG.md` — Complete catalog of all 32 REST endpoints with request/response envelopes, domain services, and frontend consumer mapping.
+- `docs/WEBSOCKET_SPEC.md` — Complete catalog of real-time WebSocket events, payloads, triggers, and 3D visual reactions.
+- `docs/FRONTEND_EXPERIENCE_BIBLE.md` — Detailed UI layout, interaction states, data requirements, components, and animations for all 12 frontend screens.
+- `docs/3D_EXPERIENCE_BIBLE.md` — React Three Fiber scene graph specs, shaders, particle flow rules, camera state management, and performance strategy.
+- `docs/VISUAL_DESIGN_BIBLE.md` — Design tokens, typography, HSL color palettes, cards, buttons, micro-animations, glassmorphism specs, and WCAG accessibility targets.
+- `docs/GAMIFICATION_SPEC.md` — Operational Mission narrative design, milestone feedback, progress mechanics, and audience engagement rules.
+- `docs/DEMO_STORYBOARD.md` — 12-minute segment-by-segment presenter script, exact API calls, 3D camera cues, Q&A prep, and fallback protocol.
+- `docs/OPEN_QUESTIONS.md` — 14 unresolved architectural decisions categorized by domain with explicit options, recommendations, and decision deadlines.
+
+**Architecture Decisions**
+- Added ADR-009 through ADR-014 to `docs/DECISION_LOG.md` (Signal Fusion Engine, AI Control Safety Boundary, Multi-Dimensional Risk Standard, 3D Logical Topology Layout, WebSocket Fan-out Pattern, Phase 01 Intelligence Bible Standard).
 
 ---
 

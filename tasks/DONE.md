@@ -55,4 +55,27 @@
 
 ---
 
+## Phase 01 — Complete Product Intelligence & Architecture Mapping
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P01-MAP-001 | Create docs/PRODUCT_BIBLE.md (43 sections) | DONE | File exists (27KB), complete product vision & architecture | TBD |
+| P01-MAP-002 | Create docs/WORLD_MODEL_SPEC.md | DONE | File exists (14KB), entity inventory, ER diagram, state machine | TBD |
+| P01-MAP-003 | Create docs/RISK_ENGINE_SPEC.md | DONE | File exists (8.6KB), signal fusion, direct scoring, propagation math | TBD |
+| P01-MAP-004 | Create docs/SCENARIO_ENGINE_SPEC.md | DONE | File exists (7KB), compound scenario pipeline & simulator | TBD |
+| P01-MAP-005 | Create docs/AGENT_SYSTEM_SPEC.md | DONE | File exists (17.7KB), 8 agents, orchestrator flow, typed schemas | TBD |
+| P01-MAP-006 | Create docs/AI_ARCHITECTURE.md | DONE | File exists (13.6KB), safety boundary, provider interface, factory | TBD |
+| P01-MAP-007 | Create docs/API_CATALOG.md | DONE | File exists (12.8KB), all 32 REST endpoints mapped to UI & backend | TBD |
+| P01-MAP-008 | Create docs/WEBSOCKET_SPEC.md | DONE | File exists (11.1KB), all WebSocket events & 3D reaction mapping | TBD |
+| P01-MAP-009 | Create docs/FRONTEND_EXPERIENCE_BIBLE.md | DONE | File exists (43.5KB), complete specification for all 12 screens | TBD |
+| P01-MAP-010 | Create docs/3D_EXPERIENCE_BIBLE.md | DONE | File exists (11.8KB), R3F scene graph, shaders, 3D interaction specs | TBD |
+| P01-MAP-011 | Create docs/VISUAL_DESIGN_BIBLE.md | DONE | File exists (14.1KB), full token system, typography, components | TBD |
+| P01-MAP-012 | Create docs/GAMIFICATION_SPEC.md | DONE | File exists (5.9KB), operational mission narrative & feedback rules | TBD |
+| P01-MAP-013 | Create docs/DEMO_STORYBOARD.md | DONE | File exists (10.5KB), 12-min script with exact system payloads | TBD |
+| P01-MAP-014 | Create docs/OPEN_QUESTIONS.md | DONE | File exists (9.3KB), 14 open questions with options & recommendations | TBD |
+| P01-MAP-015 | Add ADR-009 to ADR-014 to DECISION_LOG.md | DONE | 6 new architecture decision records committed | TBD |
+
+---
+
 *Commit hashes to be filled in after `git commit` completes.*
+
