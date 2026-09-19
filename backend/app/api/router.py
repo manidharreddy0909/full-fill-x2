@@ -24,12 +24,16 @@ from app.api.ml import router as ml_router
 from app.api.graph import router as graph_router
 from app.api.simulation import router as simulation_router
 from app.api.learning import router as learning_router
+from app.api.resilience_os import router as resilience_os_router
+from app.api.governance import router as governance_router
 from app.core.metrics import metrics_registry
 from app.schemas.world import ApiResponse
 
 api_router = APIRouter()
 api_router.include_router(auth_router)
 api_router.include_router(health_router)
+api_router.include_router(resilience_os_router)
+api_router.include_router(governance_router)
 api_router.include_router(learning_router)
 api_router.include_router(world_router)
 api_router.include_router(signals_router)

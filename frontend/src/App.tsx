@@ -29,6 +29,8 @@ import { PredictiveIntelligence } from './components/ml/PredictiveIntelligence';
 import { GraphIntelligence } from './components/graph/GraphIntelligence';
 import { DigitalTwinWorkspace } from './components/simulation/DigitalTwinWorkspace';
 import { ResilienceAgentsWorkspace } from './components/learning/ResilienceAgentsWorkspace';
+import { ResilienceOSWorkspace } from './components/resilience/ResilienceOSWorkspace';
+import { GovernanceCenter } from './components/governance/GovernanceCenter';
 import { IdentityGateway } from './components/auth/IdentityGateway';
 import { EventToastContainer } from './components/common/EventToastContainer';
 import { useRealtimeStore } from './store/realtimeStore';
@@ -244,6 +246,10 @@ export const App: React.FC = () => {
           <DigitalTwinWorkspace />
         ) : activeTab === 'RESILIENCE_AGENTS' ? (
           <ResilienceAgentsWorkspace />
+        ) : activeTab === 'RESILIENCE_OS' ? (
+          <ResilienceOSWorkspace />
+        ) : activeTab === 'GOVERNANCE' ? (
+          <GovernanceCenter />
         ) : activeTab === 'RESPONSE' ? (
           <div className="max-w-7xl mx-auto p-6">
             <SpecialistWarRoom

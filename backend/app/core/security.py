@@ -68,6 +68,7 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.AGENT_MEMORY_READ, Permission.AGENT_MEMORY_WRITE, Permission.AGENT_DELIBERATE, Permission.AGENT_DEBATE, Permission.AGENT_PERFORMANCE_READ,
         Permission.OUTCOME_READ, Permission.OUTCOME_WRITE, Permission.FEEDBACK_READ, Permission.FEEDBACK_WRITE,
         Permission.LEARNING_READ, Permission.LEARNING_TRAIN, Permission.LEARNING_EVALUATE,
+        Permission.RESILIENCE_OS_READ, Permission.RESILIENCE_OS_RUN, Permission.POLICY_READ, Permission.POLICY_MANAGE, Permission.EXECUTION_READ, Permission.EXECUTION_AUTHORIZE, Permission.GOVERNANCE_READ,
     ],
     SystemRole.ANALYST: [
         Permission.WORLD_READ,

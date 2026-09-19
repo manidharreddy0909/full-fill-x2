@@ -2,7 +2,7 @@ import React from 'react';
 import { Activity, ShieldAlert, RefreshCw, Cpu, Layers, Box, Bot, Sparkles, LayoutDashboard, Database, Shield, Lock, Radio, Brain, GitFork } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 
-export type ProductTab = 'COMMAND' | 'WORLD' | 'INTELLIGENCE' | 'RESPONSE' | 'DECISION' | 'EVALUATION' | 'DEMO' | 'DATA' | 'SECURITY' | 'OBSERVABILITY' | 'PREDICTIVE_ML' | 'GRAPH_INTELLIGENCE' | 'SIMULATION' | 'RESILIENCE_AGENTS';
+export type ProductTab = 'COMMAND' | 'WORLD' | 'INTELLIGENCE' | 'RESPONSE' | 'DECISION' | 'EVALUATION' | 'DEMO' | 'DATA' | 'SECURITY' | 'OBSERVABILITY' | 'PREDICTIVE_ML' | 'GRAPH_INTELLIGENCE' | 'SIMULATION' | 'RESILIENCE_AGENTS' | 'RESILIENCE_OS' | 'GOVERNANCE';
 
 interface NavbarProps {
   activeTab: ProductTab;
@@ -58,6 +58,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     { tab: 'GRAPH_INTELLIGENCE', label: 'Graph GNN', icon: <GitFork size={14} /> },
     { tab: 'SIMULATION', label: 'Monte Carlo Twin', icon: <Layers size={14} /> },
     { tab: 'RESILIENCE_AGENTS', label: 'Resilience Agents', icon: <Bot size={14} /> },
+    { tab: 'RESILIENCE_OS', label: 'Resilience OS', icon: <Cpu size={14} /> },
+    { tab: 'GOVERNANCE', label: 'Governance', icon: <Shield size={14} /> },
   ];
 
   return (

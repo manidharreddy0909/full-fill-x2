@@ -91,6 +91,14 @@ class Permission(str, Enum):
     LEARNING_ACTIVATE = "learning:activate"
     LEARNING_RETIRE = "learning:retire"
     LEARNING_MANAGE = "learning:manage"
+    RESILIENCE_OS_READ = "resilience_os:read"
+    RESILIENCE_OS_RUN = "resilience_os:run"
+    POLICY_READ = "policy:read"
+    POLICY_MANAGE = "policy:manage"
+    EXECUTION_READ = "execution:read"
+    EXECUTION_AUTHORIZE = "execution:authorize"
+    GOVERNANCE_READ = "governance:read"
+    GOVERNANCE_MANAGE = "governance:manage"
     SYSTEM_ADMIN = "system:admin"
 
 
@@ -156,6 +164,8 @@ class SecurityContext(BaseModel):
     display_name: str
     organization_id: str
     organization_name: str
+    workspace_id: str = "ws-default"
+    environment_id: str = "env-production"
     role: SystemRole
     permissions: List[Permission]
     auth_method: str = "local"

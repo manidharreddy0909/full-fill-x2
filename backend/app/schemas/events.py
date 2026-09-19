@@ -135,6 +135,16 @@ class EventType(str, Enum):
     MODEL_PROMOTED = "MODEL_PROMOTED"
     MODEL_ROLLBACK = "MODEL_ROLLBACK"
 
+    # Multi-Tenant Enterprise + Resilience OS (Phase 10)
+    RESILIENCE_CYCLE_STARTED = "RESILIENCE_CYCLE_STARTED"
+    RESILIENCE_CYCLE_COMPLETED = "RESILIENCE_CYCLE_COMPLETED"
+    POLICY_EVALUATED = "POLICY_EVALUATED"
+    EXECUTION_STARTED = "EXECUTION_STARTED"
+    EXECUTION_COMPLETED = "EXECUTION_COMPLETED"
+    EXECUTION_FAILED = "EXECUTION_FAILED"
+    SYSTEM_DEGRADED = "SYSTEM_DEGRADED"
+    SYSTEM_RECOVERED = "SYSTEM_RECOVERED"
+
 
 class EventSeverity(str, Enum):
     INFO = "INFO"
@@ -149,6 +159,8 @@ class EventEnvelope(BaseModel):
     event_type: EventType
     timestamp: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     organization_id: str = Field(default="org-fulfillx-default")
+    workspace_id: Optional[str] = Field(default="ws-default")
+    environment_id: Optional[str] = Field(default="env-production")
     session_id: Optional[str] = None
     stage: Optional[str] = None
     source: str = "system"

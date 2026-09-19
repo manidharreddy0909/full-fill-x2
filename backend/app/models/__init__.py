@@ -19,6 +19,20 @@ from app.models.learning import (
     ChallengerModelRecordModel,
     AgentLessonModel,
 )
+from app.models.enterprise import (
+    Workspace,
+    WorkspaceMembership,
+    PolicyDefinition,
+    PolicyEvaluationModel,
+    ExecutionRecordModel,
+    ResilienceCycleModel,
+    ExecutiveDecisionRecordModel,
+    WorkspaceType,
+    PolicyViolationAction,
+    ExecutionMode,
+    ExecutionStatus,
+    CycleStage,
+)
 
 __all__ = [
     "DigitalTwinRecordModel",
@@ -35,4 +49,16 @@ __all__ = [
     "LearningRunModel",
     "ChallengerModelRecordModel",
     "AgentLessonModel",
+    "Workspace",
+    "WorkspaceMembership",
+    "PolicyDefinition",
+    "PolicyEvaluationModel",
+    "ExecutionRecordModel",
+    "ResilienceCycleModel",
+    "ExecutiveDecisionRecordModel",
+    "WorkspaceType",
+    "PolicyViolationAction",
+    "ExecutionMode",
+    "ExecutionStatus",
+    "CycleStage",
 ]
