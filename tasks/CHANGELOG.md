@@ -5,6 +5,37 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [0.6.0] — 2026-09-19 — Phase 05: Specialist Agent System & Safe Execution Pipeline
+
+### Added
+
+**Backend Specialist Agent System (`backend/app/agents/`, `schemas/`, `services/`, `api/`)**
+- `backend/app/schemas/agent.py` — Strongly-typed Pydantic v2 schemas: `AgentId`, `AgentObjective`, `AgentResultStatus`, `AgentActionType`, `AgentAction`, `AgentProposal`, `AgentResult`, `AgentMetadata`, `AllSpecialistProposalsResponse`.
+- `backend/app/agents/base.py` — `BaseAgent` abstract class with mandatory `safe_execute()` template method enforcing snapshot immutability checks (`snap_id_before == snap_id_after` and `risk_snap_before == risk_snap_after`) and entity validation (`validate_proposal_entities()`).
+- `backend/app/agents/inventory.py` — `InventoryAgent` (`MINIMIZE_STOCKOUT_RISK`, actions `REORDER_STOCK`, `STOCK_TRANSFER`).
+- `backend/app/agents/supplier.py` — `SupplierAgent` (`REDUCE_SUPPLIER_DISRUPTION`, actions `SUPPLIER_SWITCH`, `DUAL_SOURCE_ALLOCATION`).
+- `backend/app/agents/transportation.py` — `TransportationAgent` (`REDUCE_DELAY_AND_COST`, actions `REROUTE_FLOW`, `MODE_SWITCH`).
+- `backend/app/agents/fulfillment.py` — `FulfillmentAgent` (`PROTECT_SERVICE_LEVEL`, actions `ORDER_PRIORITY_CHANGE`, `FC_REALLOCATION`).
+- `backend/app/agents/sustainability.py` — `SustainabilityAgent` (`REDUCE_EMISSIONS`, actions `EMISSIONS_ANNOTATION`).
+- `backend/app/agents/resilience.py` — `ResilienceAgent` (`REDUCE_SYSTEMIC_FRAGILITY`, actions `DIVERSIFY_DEPENDENCY`).
+- `backend/app/agents/registry.py` — `AgentRegistry` singleton managing registration and retrieval of all 6 specialist agents.
+- `backend/app/services/agents.py` — `AgentService` orchestrator supporting single agent execution and parallel `run_all_specialists()` via `asyncio.gather()`.
+- `backend/app/api/agents.py` — FastAPI REST endpoints: `GET /api/agents`, `GET /api/agents/{id}`, `POST /api/agents/{id}/run`, `POST /api/agents/run-all`. Registered in `backend/app/api/router.py`.
+
+**Backend Specialist Agent Test Suite (`backend/tests/test_agents.py`)**
+- Comprehensive test suite: immutability verification, entity validation (rejecting hallucinated node IDs), 6 individual specialist agents, registry, service orchestrator, and REST API endpoints (6/6 agent tests + API tests). Total backend test suite: **51/51 PASS**.
+
+**Frontend Specialist War Room UI (`frontend/src/`)**
+- `frontend/src/types/agent.ts` — TypeScript interfaces matching backend Pydantic agent models.
+- `frontend/src/api/agentApi.ts` — Async API client for fetching agent metadata, running single agent, and running all 6 specialist agents.
+- `frontend/src/components/agents/SpecialistWarRoom.tsx` — Glassmorphic side-drawer UI with "Run All 6 Specialist Agents" trigger, agent filter tabs, 6 brand-colored agent cards (Inventory `#4A90D9`, Supplier `#7BC67E`, Transportation `#E8A24A`, Fulfillment `#9B7FE8`, Sustainability `#52B788`, Resilience `#E8574A`), confidence meters, proposed action tables (cost, delay, parameters), evidence signal badges, and expandable reasoning trace accordions.
+- Updated `Navbar.tsx` & `App.tsx` — Integrated "Specialist War Room" header button and Phase 05 title badge. `npm run build` PASS.
+
+**Architecture Decisions**
+- Added `ADR-018: Specialist Agent System & Non-Authoritative Proposal Architecture` to `docs/DECISION_LOG.md`.
+
+---
+
 ## [0.5.0] — 2026-09-19 — Phase 04: AI Provider Abstraction & Safe Intelligence Layer
 
 ### Added

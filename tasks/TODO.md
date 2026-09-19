@@ -61,24 +61,24 @@
 | P04-009 | Write AI provider & safety tests (`test_ai_provider.py`, `test_ai_service.py`, `test_ai_api.py`) | P04-008 | DONE |
 | P04-010 | Frontend AI Provider Status Integration (`frontend/src/types/ai.ts`, `api/aiApi.ts`, `Navbar.tsx`) | P04-008 | DONE |
 
-## Phase 05 — Specialist Agents
+## Phase 05 — Specialist Agents [COMPLETED]
 
 | ID | Description | Dependencies | Status |
 |----|-------------|-------------|--------|
-| P05-001 | Implement BaseAgent with safe_execute pipeline | P04-006 | PLANNED |
-| P05-002 | Implement ConstraintEngine | P05-001 | PLANNED |
-| P05-003 | Implement SimulationEngine | P05-001 | PLANNED |
-| P05-004 | Implement InventoryAgent | P05-001,P05-002,P05-003 | PLANNED |
-| P05-005 | Implement SupplierAgent | P05-001,P05-002,P05-003 | PLANNED |
-| P05-006 | Implement TransportationAgent | P05-001,P05-002,P05-003 | PLANNED |
-| P05-007 | Implement FulfillmentAgent | P05-001,P05-002,P05-003 | PLANNED |
-| P05-008 | Implement SustainabilityAgent | P05-001,P05-002,P05-003 | PLANNED |
-| P05-009 | Implement ResilienceAgent | P05-001,P05-002,P05-003 | PLANNED |
-| P05-010 | Implement CoordinatorAgent | P05-004–P05-009 | PLANNED |
-| P05-011 | Implement AgentOrchestrator (asyncio.gather) | P05-010 | PLANNED |
-| P05-012 | Write unit tests: test_agents.py | P05-011 | PLANNED |
-| P05-013 | Verify: all 6 specialists + coordinator produce proposals (mock) | P05-012 | PLANNED |
-| P05-014 | Commit P05 | P05-013 | PLANNED |
+| P05-001 | Implement BaseAgent with safe_execute template pipeline & snapshot immutability verification | P04-006 | DONE |
+| P05-002 | Implement InventoryAgent (`MINIMIZE_STOCKOUT_RISK`) | P05-001 | DONE |
+| P05-003 | Implement SupplierAgent (`REDUCE_SUPPLIER_DISRUPTION`) | P05-001 | DONE |
+| P05-004 | Implement TransportationAgent (`REDUCE_DELAY_AND_COST`) | P05-001 | DONE |
+| P05-005 | Implement FulfillmentAgent (`PROTECT_SERVICE_LEVEL`) | P05-001 | DONE |
+| P05-006 | Implement SustainabilityAgent (`REDUCE_EMISSIONS`) | P05-001 | DONE |
+| P05-007 | Implement ResilienceAgent (`REDUCE_SYSTEMIC_FRAGILITY`) | P05-001 | DONE |
+| P05-008 | Implement AgentRegistry singleton managing all 6 specialists | P05-002–P05-007 | DONE |
+| P05-009 | Implement AgentService orchestrator with parallel execution (`asyncio.gather`) | P05-008 | DONE |
+| P05-010 | Implement Agent REST API (`GET /api/agents`, `POST /api/agents/{id}/run`, `POST /api/agents/run-all`) | P05-009 | DONE |
+| P05-011 | Comprehensive unit test suite (`backend/tests/test_agents.py` - 51/51 PASS) | P05-010 | DONE |
+| P05-012 | Frontend TypeScript types & API client (`types/agent.ts`, `api/agentApi.ts`) | P05-010 | DONE |
+| P05-013 | Specialist War Room UI Component (`SpecialistWarRoom.tsx`, `Navbar.tsx`, `App.tsx`) | P05-012 | DONE |
+| P05-014 | Documentation, ADR-018 & Phase 05 Commit | P05-013 | DONE |
 
 ## Phase 06 — Adversary Agent
 

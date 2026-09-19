@@ -398,7 +398,33 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 04 — AI Provider Abstraction Complete*
+## ADR-018: Specialist Agent System & Non-Authoritative Proposal Architecture
+
+**Date**: 2026-09-19
+**Status**: ACCEPTED
+**Phase**: 05
+
+**Context**: FULFILL-X requires domain-specific specialist agents (Inventory, Supplier, Transportation, Fulfillment, Sustainability, Resilience) to analyze multi-tiered risk snapshots and generate actionable mitigation proposals without compromising world state integrity or executing unvalidated operational mutations.
+
+**Decision**:
+1. **6 Domain Specialist Agents**: Implement 6 dedicated specialist agents, each targeting a single operational domain objective (`MINIMIZE_STOCKOUT_RISK`, `REDUCE_SUPPLIER_DISRUPTION`, `REDUCE_DELAY_AND_COST`, `PROTECT_SERVICE_LEVEL`, `REDUCE_EMISSIONS`, `REDUCE_SYSTEMIC_FRAGILITY`).
+2. **Safe Execution Pipeline (`safe_execute`)**: Implemented template pattern in `BaseAgent`. Pre-execution and post-execution snapshot comparison (`snap_id_before == snap_id_after` and `risk_snap_before == risk_snap_after`) guarantees zero state side-effects.
+3. **Strict Entity ID Validation (`validate_proposal_entities`)**: Every proposed action's target node and edge IDs are strictly validated against authoritative `WorldStateSnapshot` node/edge registries to reject LLM-hallucinated entities instantly.
+4. **Coexistence Without Selection**: All 6 specialist agents execute independently (in parallel via `asyncio.gather`), outputting candidate `AgentProposal` objects. Specialist agents do NOT pick winners or arbitrate tradeoffs (reserved for Coordinator / Multi-Agent Consensus in future phases).
+5. **Specialist War Room Frontend**: Interactive UI drawer allowing single or all-specialist execution with confidence indicators, action cost/delay tables, evidence signal links, and reasoning trace step inspection.
+
+**Rationale**:
+- Enforces strict safety boundary: **"LLMs propose; deterministic code validates & decides"**.
+- Prevents invalid supply chain operations from mutating state or polluting risk evaluations.
+- Enables clear, audit-ready operational transparency for human logistics planners.
+
+**Consequences**:
+- Specialist agents produce proposals only; state mutation requires subsequent coordinator approval and deterministic validation.
+
+---
+
+*Last updated: Phase 05 — Specialist Agent System Complete*
+
 
 
 

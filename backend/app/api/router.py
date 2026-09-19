@@ -6,6 +6,7 @@ from app.api.world import router as world_router
 from app.api.signals import router as signals_router
 from app.api.risks import router as risks_router
 from app.api.ai import router as ai_router
+from app.api.agents import router as agents_router
 from app.schemas.world import ApiResponse
 
 api_router = APIRouter()
@@ -13,6 +14,7 @@ api_router.include_router(world_router)
 api_router.include_router(signals_router)
 api_router.include_router(risks_router)
 api_router.include_router(ai_router)
+api_router.include_router(agents_router)
 
 system_router = APIRouter(prefix="/api/system", tags=["System"])
 

@@ -135,6 +135,27 @@
 
 ---
 
+## Phase 05 — Specialist Agent System & Safe Execution Pipeline
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P05-001 | Specialist Agent Schemas (`backend/app/schemas/agent.py`) | DONE | `AgentId`, `AgentObjective`, `AgentAction`, `AgentProposal`, `AgentResult` Pydantic models PASS | TBD |
+| P05-002 | Base Agent Architecture (`backend/app/agents/base.py`) | DONE | `safe_execute()` template method, immutability check, `validate_proposal_entities()` PASS | TBD |
+| P05-003 | Inventory Agent (`backend/app/agents/inventory.py`) | DONE | Objective `MINIMIZE_STOCKOUT_RISK`, actions `REORDER_STOCK`, `STOCK_TRANSFER` PASS | TBD |
+| P05-004 | Supplier Agent (`backend/app/agents/supplier.py`) | DONE | Objective `REDUCE_SUPPLIER_DISRUPTION`, actions `SUPPLIER_SWITCH`, `DUAL_SOURCE_ALLOCATION` PASS | TBD |
+| P05-005 | Transportation Agent (`backend/app/agents/transportation.py`) | DONE | Objective `REDUCE_DELAY_AND_COST`, actions `REROUTE_FLOW`, `MODE_SWITCH` PASS | TBD |
+| P05-006 | Fulfillment Agent (`backend/app/agents/fulfillment.py`) | DONE | Objective `PROTECT_SERVICE_LEVEL`, actions `ORDER_PRIORITY_CHANGE`, `FC_REALLOCATION` PASS | TBD |
+| P05-007 | Sustainability Agent (`backend/app/agents/sustainability.py`) | DONE | Objective `REDUCE_EMISSIONS`, actions `EMISSIONS_ANNOTATION` PASS | TBD |
+| P05-008 | Resilience Agent (`backend/app/agents/resilience.py`) | DONE | Objective `REDUCE_SYSTEMIC_FRAGILITY`, actions `DIVERSIFY_DEPENDENCY` PASS | TBD |
+| P05-009 | Agent Registry & Orchestrator (`backend/app/agents/registry.py`, `services/agents.py`) | DONE | Singleton registry & parallel `asyncio.gather()` orchestration PASS | TBD |
+| P05-010 | Agent REST API (`backend/app/api/agents.py`) | DONE | `GET /api/agents`, `GET /api/agents/{id}`, `POST /api/agents/{id}/run`, `POST /api/agents/run-all` PASS | TBD |
+| P05-011 | Comprehensive Unit & API Tests (`backend/tests/test_agents.py`) | DONE | Immutability, entity validation, 6 individual agents, registry, service, REST API (51/51 PASS) | TBD |
+| P05-012 | Frontend Agent Types & API Client (`frontend/src/types/agent.ts`, `api/agentApi.ts`) | DONE | TypeScript interfaces matching backend models & async fetch methods PASS | TBD |
+| P05-013 | Specialist War Room UI Drawer (`frontend/src/components/agents/SpecialistWarRoom.tsx`) | DONE | 6 Agent brand color cards, proposal summary, confidence meter, action tables, reasoning trace accordion PASS | TBD |
+| P05-014 | Documentation & ADR Updates | DONE | `ADR-018` added to `DECISION_LOG.md`; `TODO.md`, `IN_PROGRESS.md`, `DONE.md`, `CHANGELOG.md` updated PASS | TBD |
+
+---
+
 *Commit hashes to be filled in after `git commit` completes.*
 
 

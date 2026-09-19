@@ -16,6 +16,7 @@ import { World3DView } from './components/world/World3DView';
 import { NodeInspector } from './components/world/NodeInspector';
 import { RiskExplorer } from './components/risk/RiskExplorer';
 import { SignalInjectorModal } from './components/risk/SignalInjectorModal';
+import { SpecialistWarRoom } from './components/agents/SpecialistWarRoom';
 
 export const App: React.FC = () => {
   const [viewMode, setViewMode] = useState<'2D' | '3D'>('2D');
@@ -33,6 +34,7 @@ export const App: React.FC = () => {
   // Modals / Inspector State
   const [isInjectorOpen, setIsInjectorOpen] = useState<boolean>(false);
   const [injectorTargetId, setInjectorTargetId] = useState<string | null>(null);
+  const [isWarRoomOpen, setIsWarRoomOpen] = useState<boolean>(false);
 
   const loadWorldAndRiskData = useCallback(async () => {
     try {
@@ -159,6 +161,7 @@ export const App: React.FC = () => {
         onSeedChange={handleSeedChange}
         onReset={handleReset}
         onOpenInjector={() => handleOpenInjector()}
+        onOpenWarRoom={() => setIsWarRoomOpen(true)}
       />
 
       {/* World Summary Bar */}
@@ -212,6 +215,13 @@ export const App: React.FC = () => {
               nodes={currentNodes}
               initialTargetNodeId={injectorTargetId}
               onInject={handleInjectSignal}
+            />
+
+            {/* Specialist War Room Drawer */}
+            <SpecialistWarRoom
+              isOpen={isWarRoomOpen}
+              onClose={() => setIsWarRoomOpen(false)}
+              selectedNodeId={selectedNodeId}
             />
           </>
         )}
