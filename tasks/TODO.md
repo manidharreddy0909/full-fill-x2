@@ -46,19 +46,20 @@
 | P03-005 | Verify: compound scenario produces correct risk delta | P03-004 | PLANNED |
 | P03-006 | Commit P03 | P03-005 | PLANNED |
 
-## Phase 04 — AI Provider Abstraction
+## Phase 04 — AI Provider Abstraction [COMPLETED]
 
 | ID | Description | Dependencies | Status |
 |----|-------------|-------------|--------|
-| P04-001 | Implement abstract AIProvider base class | P00 complete | PLANNED |
-| P04-002 | Implement MockAIProvider (deterministic, seeded) | P04-001 | PLANNED |
-| P04-003 | Implement GeminiProvider | P04-001 | PLANNED |
-| P04-004 | Implement OllamaProvider | P04-001 | PLANNED |
-| P04-005 | Implement BedrockProvider (optional) | P04-001 | PLANNED |
-| P04-006 | Implement provider factory with fallback chain | P04-002,P04-003,P04-004 | PLANNED |
-| P04-007 | Write unit tests: all providers with mock network | P04-006 | PLANNED |
-| P04-008 | Verify: MockProvider output is deterministic (seed=42) | P04-007 | PLANNED |
-| P04-009 | Commit P04 | P04-008 | PLANNED |
+| P04-001 | Implement abstract AIProvider base class (`backend/app/providers/base.py`) | P00 complete | DONE |
+| P04-002 | Implement MockAIProvider (deterministic, seeded) (`backend/app/providers/mock.py`) | P04-001 | DONE |
+| P04-003 | Implement GeminiProvider adapter (`backend/app/providers/gemini.py`) | P04-001 | DONE |
+| P04-004 | Implement OllamaProvider adapter (`backend/app/providers/ollama.py`) | P04-001 | DONE |
+| P04-005 | Implement BedrockProvider boundary adapter (`backend/app/providers/bedrock.py`) | P04-001 | DONE |
+| P04-006 | Implement ProviderFactory with fallback chain (`backend/app/providers/factory.py`) | P04-002–P04-005 | DONE |
+| P04-007 | Implement AIService & AI Safety Boundary (`backend/app/services/ai.py`) | P04-006 | DONE |
+| P04-008 | Implement AI REST API Router (`backend/app/api/ai.py`) | P04-007 | DONE |
+| P04-009 | Write AI provider & safety tests (`test_ai_provider.py`, `test_ai_service.py`, `test_ai_api.py`) | P04-008 | DONE |
+| P04-010 | Frontend AI Provider Status Integration (`frontend/src/types/ai.ts`, `api/aiApi.ts`, `Navbar.tsx`) | P04-008 | DONE |
 
 ## Phase 05 — Specialist Agents
 

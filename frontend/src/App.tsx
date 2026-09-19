@@ -8,6 +8,7 @@ import {
   injectSignal,
   resetRisk,
 } from './api/riskApi';
+import { fetchAIProviders } from './api/aiApi';
 import { Navbar } from './components/common/Navbar';
 import { WorldSummaryBar } from './components/world/WorldSummaryBar';
 import { World2DView } from './components/world/World2DView';
@@ -21,6 +22,7 @@ export const App: React.FC = () => {
   const [snapshot, setSnapshot] = useState<WorldStateSnapshot | null>(null);
   const [summary, setSummary] = useState<WorldSummary | null>(null);
   const [riskMap, setRiskMap] = useState<RiskScoreMap | null>(null);
+  const [activeAiProvider, setActiveAiProvider] = useState<string>('mock');
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>('sup-001');
   const [nodeRiskDetail, setNodeRiskDetail] = useState<NodeRiskDetail | null>(null);
   const [activePreset, setActivePreset] = useState<string>('healthy');
@@ -35,15 +37,17 @@ export const App: React.FC = () => {
   const loadWorldAndRiskData = useCallback(async () => {
     try {
       setLoading(true);
-      const [snapData, sumData, rMap] = await Promise.all([
+      const [snapData, sumData, rMap, aiSummary] = await Promise.all([
         fetchWorldSnapshot(),
         fetchWorldSummary(),
         fetchRiskMap().catch(() => null),
+        fetchAIProviders().catch(() => null),
       ]);
 
       setSnapshot(snapData);
       setSummary(sumData);
       if (rMap) setRiskMap(rMap);
+      if (aiSummary) setActiveAiProvider(aiSummary.active_provider);
       setIsBackendConnected(true);
     } catch (err) {
       console.warn('Backend connection issue, serving fallback state:', err);
@@ -151,6 +155,7 @@ export const App: React.FC = () => {
         activeSeed={activeSeed}
         healthScore={riskMap?.network_health ?? summary?.network_health_score ?? snapshot?.network_health_score ?? 0.94}
         isBackendConnected={isBackendConnected}
+        activeAiProvider={activeAiProvider}
         onSeedChange={handleSeedChange}
         onReset={handleReset}
         onOpenInjector={() => handleOpenInjector()}

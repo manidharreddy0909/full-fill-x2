@@ -1,5 +1,5 @@
 import React from 'react';
-import { Activity, ShieldAlert, RefreshCw, Cpu, Layers, Box } from 'lucide-react';
+import { Activity, ShieldAlert, RefreshCw, Cpu, Layers, Box, Bot, Sparkles } from 'lucide-react';
 
 interface NavbarProps {
   viewMode: '2D' | '3D';
@@ -8,6 +8,7 @@ interface NavbarProps {
   activeSeed: number;
   healthScore: number;
   isBackendConnected: boolean;
+  activeAiProvider?: string;
   onSeedChange: (preset: string, seed: number) => void;
   onReset: () => void;
   onOpenInjector?: () => void;
@@ -20,6 +21,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   activeSeed,
   healthScore,
   isBackendConnected,
+  activeAiProvider,
   onSeedChange,
   onReset,
   onOpenInjector,
@@ -52,11 +54,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '0.5px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 FULFILL<span style={{ color: 'var(--text-accent)' }}>-X</span>
                 <span className="mono" style={{ fontSize: '10px', background: 'rgba(91, 147, 246, 0.15)', color: 'var(--text-accent)', padding: '2px 6px', borderRadius: '4px', border: '1px solid var(--border-accent)' }}>
-                  PHASE 03
+                  PHASE 04
                 </span>
               </div>
               <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
-                Deterministic Risk Engine & Intelligence Vertical Slice
+                AI Provider Abstraction & Safe Intelligence Layer
               </div>
             </div>
           </div>
@@ -185,6 +187,14 @@ export const Navbar: React.FC<NavbarProps> = ({
               <ShieldAlert size={15} /> Inject Signal
             </button>
           )}
+
+          {/* AI Provider Status Pill */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: 'rgba(139, 92, 246, 0.12)', padding: '6px 12px', borderRadius: '6px', border: '1px solid rgba(139, 92, 246, 0.3)' }}>
+            <Bot size={15} color="#A78BFA" />
+            <span className="mono" style={{ fontSize: '11px', fontWeight: 600, color: '#A78BFA' }}>
+              AI: {(activeAiProvider || 'mock').toUpperCase()} (ACTIVE)
+            </span>
+          </div>
 
           {/* Health Status Pill */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'var(--bg-surface-elevated)', padding: '6px 12px', borderRadius: '6px', border: '1px solid var(--border-default)' }}>

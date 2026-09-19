@@ -373,7 +373,33 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 03 — Risk Engine Implementation & End-to-End Vertical Slice Complete*
+## ADR-017: Vendor-Neutral AI Provider Abstraction & Safe Intelligence Boundary
+
+**Date**: 2026-09-19
+**Status**: ACCEPTED
+**Phase**: 04
+
+**Context**: Future specialist AI agents (Inventory, Supplier, Transportation, Fulfillment, Sustainability, Resilience, Coordinator, Adversary) require reasoning capabilities across multiple AI model vendors (Gemini, Ollama, Bedrock, Mock). However, LLMs must never directly mutate authoritative world state or bypass system constraints.
+
+**Decision**:
+1. **Abstract AIProvider Base Class**: All providers implement `AIProvider` (`generate()`, `health()`, `capabilities()`).
+2. **Deterministic Mock Default**: `MockAIProvider` is the default provider (`FULFILLX_AI_PROVIDER=mock`). Works 100% offline with zero external network or API key dependencies.
+3. **Provider Factory & Fallback**: `ProviderFactory` manages adapters (`mock`, `gemini`, `ollama`, `bedrock`). If a primary provider is unconfigured or unreachable, it falls back gracefully to `mock`.
+4. **AI Safety Control Boundary**: Enforce strict rule: **"LLMs propose; deterministic code validates & decides"**. `AIService` parses and validates model outputs against JSON schemas before returning payloads. `AIService` never mutates `WorldRepository` or `RiskRepository` directly.
+5. **Typed REST APIs & Frontend Status**: Expose `/api/ai/providers`, `/api/ai/health`, `/api/ai/generate` with live provider status indicators in the frontend UI.
+
+**Rationale**:
+- Prevents vendor lock-in; allows switching between cloud Gemini, local Ollama, or AWS Bedrock via environment configuration.
+- Guarantees 100% test reproducibility and offline CI build stability.
+- Protects supply chain world model integrity against LLM hallucinations or invalid state mutations.
+
+**Consequences**:
+- AI reasoning is purely additive; system correctness and risk calculations remain 100% functional even if external AI APIs fail or are offline.
+
+---
+
+*Last updated: Phase 04 — AI Provider Abstraction Complete*
+
 
 
 

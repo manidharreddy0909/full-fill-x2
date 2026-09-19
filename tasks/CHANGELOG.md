@@ -5,6 +5,36 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [0.5.0] — 2026-09-19 — Phase 04: AI Provider Abstraction & Safe Intelligence Layer
+
+### Added
+
+**Backend AI Provider Architecture (`backend/app/providers/`, `schemas/`, `services/`, `api/`)**
+- `backend/app/schemas/ai.py` — Strongly-typed Pydantic v2 schemas: `TaskType`, `AIProviderType`, `AIProviderStatus`, `AIUsage`, `AIError`, `AIRequest`, `AIResponse`, `ProviderInfo`, `AIProvidersSummaryResponse`, `AIHealthResponse`.
+- `backend/app/providers/base.py` — Abstract `AIProvider` base class (`generate`, `health`, `capabilities`).
+- `backend/app/providers/mock.py` — `MockAIProvider` 100% offline, seed-reproducible provider adapter for scenario generation, specialist reasoning, coordinator reasoning, and adversarial analysis.
+- `backend/app/providers/gemini.py` — `GeminiProvider` adapter for Google Gemini API (`gemini-1.5-flash`, `gemini-1.5-pro`) with isolated credentials & async JSON output parsing.
+- `backend/app/providers/ollama.py` — `OllamaProvider` local adapter (`http://localhost:11434`) for offline open-source models with connection fallback.
+- `backend/app/providers/bedrock.py` — `BedrockProvider` AWS Bedrock boundary adapter for Claude 3 / Titan models.
+- `backend/app/providers/factory.py` — Singleton `ProviderFactory` managing provider registry and automatic fallback chain to `MockAIProvider`.
+- `backend/app/services/ai.py` — `AIService` enforcing **AI Safety Control Boundary** ("LLMs propose; deterministic code decides"). Performs structured output JSON schema validation without mutating authoritative world or risk state.
+- `backend/app/api/ai.py` — Typed FastAPI REST endpoints: `GET /api/ai/providers`, `GET /api/ai/health`, `POST /api/ai/generate`.
+
+**Backend Automated AI Provider Test Suite (`backend/tests/`)**
+- `test_ai_provider.py` — Provider contract, mock determinism, expected schema generation, health, capabilities, and factory fallback tests (5/5 PASS).
+- `test_ai_service.py` — AI safety control boundary state preservation, schema validation failure handling, fallback chain, and health diagnostic tests (4/4 PASS).
+- `test_ai_api.py` — REST API integration tests for provider list, health, and generation endpoints (3/3 PASS). Total test suite: 45/45 PASS.
+
+**Frontend AI Status Integration (`frontend/src/`)**
+- `frontend/src/types/ai.ts` — TypeScript interfaces matching backend AI schemas.
+- `frontend/src/api/aiApi.ts` — API client for fetching AI providers, health, and executing AI reasoning.
+- Updated `frontend/src/components/common/Navbar.tsx` & `App.tsx` — Integrated active AI Provider status pill (`AI: MOCK (ACTIVE)`) into global header. `npm run build` PASS.
+
+**Architecture Decisions**
+- Added `ADR-017: Vendor-Neutral AI Provider Abstraction & Safe Intelligence Boundary` to `docs/DECISION_LOG.md`.
+
+---
+
 ## [0.4.0] — 2026-09-19 — Phase 03: Risk Engine Implementation & End-to-End Vertical Slice
 
 ### Added

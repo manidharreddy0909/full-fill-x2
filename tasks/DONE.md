@@ -116,7 +116,27 @@
 
 ---
 
+## Phase 04 — AI Provider Abstraction & Safe Intelligence Layer
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P04-001 | Abstract `AIProvider` Interface (`backend/app/providers/base.py`) | DONE | Abstract contracts (`generate`, `health`, `capabilities`) defined PASS | TBD |
+| P04-002 | AI Schemas & Request/Response Contracts (`backend/app/schemas/ai.py`) | DONE | `AIRequest`, `AIResponse`, `TaskType`, `AIProviderType`, `ProviderInfo` validation PASS | TBD |
+| P04-003 | Deterministic Mock AI Provider (`backend/app/providers/mock.py`) | DONE | 100% offline, seed-reproducible structured responses for task types & expected schemas PASS | TBD |
+| P04-004 | Google Gemini Provider Adapter (`backend/app/providers/gemini.py`) | DONE | Isolated API key handling, async httpx execution, structured JSON mode PASS | TBD |
+| P04-005 | Ollama Local Provider Adapter (`backend/app/providers/ollama.py`) | DONE | Local endpoint ping (`http://localhost:11434`), graceful offline handling PASS | TBD |
+| P04-006 | Amazon Bedrock Provider Boundary (`backend/app/providers/bedrock.py`) | DONE | AWS credentials & region configuration checks PASS | TBD |
+| P04-007 | Provider Factory & Fallback Chain (`backend/app/providers/factory.py`) | DONE | Singleton `ProviderFactory` with automatic fallback to `MockAIProvider` PASS | TBD |
+| P04-008 | AIService & AI Safety Boundary (`backend/app/services/ai.py`) | DONE | Enforces "LLMs propose; deterministic code decides". Validates structured output against expected schemas without mutating world state PASS | TBD |
+| P04-009 | AI REST API Router (`backend/app/api/ai.py`) | DONE | `/api/ai/providers`, `/api/ai/health`, `/api/ai/generate` endpoints PASS | TBD |
+| P04-010 | Backend Test Suite for AI Providers & Safety (`backend/tests/`) | DONE | `test_ai_provider.py`, `test_ai_service.py`, `test_ai_api.py` (12/12 PASS). Total backend suite: 45/45 PASS | TBD |
+| P04-011 | Frontend AI Status Integration (`frontend/src/types/ai.ts`, `api/aiApi.ts`, `Navbar.tsx`) | DONE | TypeScript types, fetch client & active AI status pill rendering PASS | TBD |
+| P04-012 | Documentation & ADR Updates | DONE | `ADR-017` added to `DECISION_LOG.md`; `TODO.md`, `IN_PROGRESS.md`, `DONE.md`, `CHANGELOG.md` updated | TBD |
+
+---
+
 *Commit hashes to be filled in after `git commit` completes.*
+
 
 
 
