@@ -3,9 +3,34 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.8.0] — 2026-09-19 — Phase 07: Adversary Agent & Stress Testing Framework
+
+### Added
+
+**Backend Adversary Engine & Red-Team System (`backend/app/engine/`, `schemas/`, `agents/`, `services/`, `api/`)**
+- `backend/app/schemas/adversary.py` — Strongly-typed Pydantic v2 schemas: `AttackType` (12 controlled attack types), `AttackSeverity`, `ResilienceDimension` (8 explicit dimensions), `VulnerabilityType`, `AttackTarget`, `AttackAssumption`, `AdversaryAttack`, `StressScenario`, `DegradationMetric`, `ResilienceScore`, `Vulnerability`, `DefensiveRecommendation`, `PlanStressResult`, `AdversaryStatus`, `AdversaryReport`.
+- `backend/app/engine/adversary.py` — `AdversaryEngine` featuring `AttackTargetingStrategy` (red-team targeting of exposed suppliers, ports, bottlenecks), seed-based reproducible `AttackGenerator` (`seed=42`), isolated snapshot `StressSimulator` (`WorldStateSnapshot.model_copy(deep=True)`), 8-dimension transparent `ResilienceScorer`, and structural `VulnerabilityDetector`.
+- `backend/app/agents/adversary.py` — `AdversaryAgent` implementing `BaseAgent` interface with snapshot immutability safety boundary.
+- `backend/app/services/adversary.py` — `AdversaryService` orchestrator managing red-team attack suites, candidate plan stress tests, and findings caching.
+- `backend/app/api/adversary.py` — FastAPI REST endpoints: `GET /api/adversary/status`, `POST /api/adversary/run`, `POST /api/adversary/stress-test`, `POST /api/adversary/attack-suite`, `GET /api/adversary/findings`. Registered in `backend/app/api/router.py`.
+
+**Backend Adversary Test Suite (`backend/tests/test_adversary.py`)**
+- Comprehensive test suite covering Pydantic schemas, 12-type attack taxonomy, seed-based generator determinism (`attacks_run_1 == attacks_run_2`), red-team targeting strategy, snapshot isolation & state mutation safety (`assert world_before == world_after` & `assert risk_before == risk_after`), 8-dimension resilience scoring, vulnerability detection, end-to-end service execution, and REST API endpoints (70/70 total backend pytest PASS).
+
+**Frontend Adversary Board UI (`frontend/src/`)**
+- `frontend/src/types/adversary.ts` — TypeScript definitions matching backend adversary schemas.
+- `frontend/src/api/adversaryApi.ts` — Async API client for adversary status, execution, attack suite generation, and findings retrieval.
+- `frontend/src/components/agents/AdversaryBoard.tsx` — Glassmorphic UI board featuring executive summary metrics, Candidate Plan comparative resilience matrix (Plans A/B/C compared side-by-side across 8 dimensions, service degradation, cost spike, transit delay, recovery time, and assumption invalidations), Red-Team Vulnerabilities tab, Attack Suite preview tab, and Defensive Recommendations tab.
+- Updated `SpecialistWarRoom.tsx` — Integrated `Adversary Red-Team` tab alongside `Specialist Proposals` and `Coordinator & Candidate Plans`, with "Run Adversary Red-Team" action button. `npm run build` PASS.
+
+**Documentation & ADRs**
+- Added `docs/ADVERSARY_SPEC.md` specification.
+- Added `ADR-020: Adversary Red-Team Agent & Isolated Snapshot Stress Testing Engine` to `docs/DECISION_LOG.md`.
+
 ---
 
 ## [0.7.0] — 2026-09-19 — Phase 06: Coordinator Agent & Multi-Agent Proposal Reconciliation
+
 
 ### Added
 

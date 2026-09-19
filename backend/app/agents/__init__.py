@@ -8,6 +8,8 @@ from app.agents.transportation import TransportationAgent
 from app.agents.fulfillment import FulfillmentAgent
 from app.agents.sustainability import SustainabilityAgent
 from app.agents.resilience import ResilienceAgent
+from app.agents.coordinator import CoordinatorAgent
+from app.agents.adversary import AdversaryAgent
 from app.agents.registry import AgentRegistry
 
 __all__ = [
@@ -18,5 +20,8 @@ __all__ = [
     "FulfillmentAgent",
     "SustainabilityAgent",
     "ResilienceAgent",
+    "CoordinatorAgent",
+    "AdversaryAgent",
     "AgentRegistry",
 ]
+

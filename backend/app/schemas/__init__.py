@@ -42,3 +42,22 @@ __all__ = [
     "WorldSummary",
     "ApiResponse",
 ]
+
+from app.schemas.adversary import (
+    AttackType,
+    AttackSeverity,
+    ResilienceDimension,
+    VulnerabilityType,
+    AttackTarget,
+    AttackAssumption,
+    AdversaryAttack,
+    StressScenario,
+    DegradationMetric,
+    ResilienceScore,
+    Vulnerability,
+    DefensiveRecommendation,
+    PlanStressResult,
+    AdversaryStatus,
+    AdversaryReport,
+)
+

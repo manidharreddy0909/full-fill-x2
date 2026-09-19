@@ -519,3 +519,46 @@ as a multi-dimensional object. The corrected response uses `NodeRiskScores`.
 | Decision Cockpit | GET /api/plans/{id}, POST /api/plans/{id}/approve|reject |
 | Evaluation | GET /api/evaluation/suites, POST /api/evaluation/run |
 | System Status | GET /api/system/health, GET /api/system/providers |
+
+---
+
+## 12. Adversary Endpoints (Phase 07)
+
+### GET /api/adversary/status
+| Field | Value |
+|-------|-------|
+| **Purpose** | Check status and supported attack taxonomy of Adversary Engine |
+| **Response** | `AdversaryStatus` schema |
+| **Frontend** | Specialist War Room -> Adversary Red-Team Tab |
+
+### POST /api/adversary/run
+| Field | Value |
+|-------|-------|
+| **Purpose** | Run deterministic Adversary analysis on candidate plans |
+| **Request** | `AdversaryRunRequest` (candidate_plans, coordination_id, seed) |
+| **Response** | `AdversaryReport` schema |
+| **Frontend** | Specialist War Room -> Run Adversary Red-Team Action |
+
+### POST /api/adversary/stress-test
+| Field | Value |
+|-------|-------|
+| **Purpose** | Stress test specific candidate plan against custom attack injection |
+| **Request** | `StressTestRequest` (candidate_plan, attack) |
+| **Response** | `PlanStressResult` schema |
+| **Frontend** | Custom Attack Injection Panel |
+
+### POST /api/adversary/attack-suite
+| Field | Value |
+|-------|-------|
+| **Purpose** | Generate and preview deterministic attack suite |
+| **Request** | `AdversaryRunRequest` |
+| **Response** | `List[AdversaryAttack]` |
+| **Frontend** | Attack Suite Tab |
+
+### GET /api/adversary/findings
+| Field | Value |
+|-------|-------|
+| **Purpose** | Retrieve latest generated adversary findings report |
+| **Response** | `AdversaryReport` |
+| **Frontend** | Adversary Findings View |
+

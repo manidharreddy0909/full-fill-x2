@@ -100,16 +100,31 @@
 | P06-014 | Map Candidate Plan Preview Integration & Banner (`App.tsx`) | P06-013 | DONE |
 | P06-015 | Documentation, ADR-019 & Phase 06 Commit | P06-014 | DONE |
 
-## Phase 07 — Adversary Agent
+## Phase 07 — Adversary Agent & Stress Testing Framework [COMPLETED]
 
 | ID | Description | Dependencies | Status |
 |----|-------------|-------------|--------|
-| P06-001 | Implement DisruptionLibrary | P00 complete | PLANNED |
-| P06-002 | Implement AdversaryAgent | P05-003,P04-006 | PLANNED |
-| P06-003 | Integrate adversary loop in Orchestrator | P06-002,P05-011 | PLANNED |
-| P06-004 | Write unit tests: test_adversary.py | P06-003 | PLANNED |
-| P06-005 | Verify: adversary finds ≥1 vulnerability in test plan | P06-004 | PLANNED |
-| P06-006 | Commit P06 | P06-005 | PLANNED |
+| P07-001 | Adversary Pydantic Schemas (`backend/app/schemas/adversary.py`) | Phase 06 complete | DONE |
+| P07-002 | Controlled Attack Taxonomy (12 Attack Types) | P07-001 | DONE |
+| P07-003 | Deterministic Attack Generator (`backend/app/engine/adversary.py`) | P07-002 | DONE |
+| P07-004 | Red-Team Attack Targeting Strategy (high risk, bottlenecks, single sources) | P07-003 | DONE |
+| P07-005 | Candidate Plan Stress Analysis (Plans A/B/C side-by-side) | P07-004 | DONE |
+| P07-006 | Deterministic Stress Simulator on Isolated Snapshot Copies | P07-005 | DONE |
+| P07-007 | Transparent 8-Dimension Resilience Scorer | P07-006 | DONE |
+| P07-008 | Red-Team Vulnerability Detection Engine | P07-007 | DONE |
+| P07-009 | Plan Assumption Challenge & Invalidation Generator | P07-008 | DONE |
+| P07-010 | Bounded Compound Attack Scenario Generation | P07-009 | DONE |
+| P07-011 | Adversary Agent with Immutability Safety Boundary (`backend/app/agents/adversary.py`) | P07-010 | DONE |
+| P07-012 | Adversary Service (`backend/app/services/adversary.py`) | P07-011 | DONE |
+| P07-013 | Adversary REST API (`backend/app/api/adversary.py`) | P07-012 | DONE |
+| P07-014 | Frontend TypeScript types & API client (`types/adversary.ts`, `api/adversaryApi.ts`) | P07-013 | DONE |
+| P07-015 | Adversary Board UI Component (`AdversaryBoard.tsx`, `SpecialistWarRoom.tsx`) | P07-014 | DONE |
+| P07-016 | Deterministic Test Suite (`backend/tests/test_adversary.py` - 70/70 PASS) | P07-015 | DONE |
+| P07-017 | State Mutation Safety Test (`assert world_before == world_after`) | P07-016 | DONE |
+| P07-018 | End-to-End Demo Verification | P07-017 | DONE |
+| P07-019 | Documentation (`docs/ADVERSARY_SPEC.md`, ADR-020 in `docs/DECISION_LOG.md`) | P07-018 | DONE |
+| P07-020 | Final Verification (pytest & npm build passing) | P07-019 | DONE |
+
 
 ## Phase 07 — Backend API
 

@@ -178,7 +178,35 @@
 
 ---
 
+## Phase 07 — Adversary Agent & Stress Testing Framework
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P07-001 | Adversary Pydantic Schemas (`backend/app/schemas/adversary.py`) | DONE | `AdversaryAttack`, `AttackTarget`, `AttackAssumption`, `StressScenario`, `ResilienceScore`, `Vulnerability`, `DefensiveRecommendation`, `AdversaryReport` PASS | TBD |
+| P07-002 | Controlled Attack Taxonomy (12 Attack Types) | DONE | All 12 attack types (`SUPPLIER_FAILURE`, `PORT_CLOSURE`, `PORT_CONGESTION`, `TRANSPORT_DELAY`, `DEMAND_SPIKE`, `COMPOUND_DISRUPTION`, etc.) PASS | TBD |
+| P07-003 | Deterministic Attack Generator (`backend/app/engine/adversary.py`) | DONE | Seed-based reproducibility (`seed=42` produces 100% identical attack suites) PASS | TBD |
+| P07-004 | Red-Team Attack Targeting Strategy | DONE | Automatically targets exposed suppliers, port chokepoints, high centrality hubs, and bottleneck transport edges PASS | TBD |
+| P07-005 | Candidate Plan Stress Analysis | DONE | Evaluates Candidate Plans A/B/C side-by-side against identical attack suites PASS | TBD |
+| P07-006 | Isolated Snapshot Stress Simulator | DONE | Deep-clones `WorldStateSnapshot` in memory; zero side effects on `WorldRepository` or `RiskRepository` PASS | TBD |
+| P07-007 | Transparent 8-Dimension Resilience Scorer | DONE | Evaluates Service, Supply, Transport, Inventory, Cost, Emissions, Recovery, and Network Resilience scores [0-100] PASS | TBD |
+| P07-008 | Red-Team Vulnerability Detector | DONE | Detects `SINGLE_SOURCE_DEPENDENCY`, `BOTTLENECK_DEPENDENCY`, `ROUTE_FRAGILITY`, `COMPOUND_FAILURE` PASS | TBD |
+| P07-009 | Assumption Challenge & Invalidation Generator | DONE | Identifies implicit plan assumptions and generates targeted invalidation evidence PASS | TBD |
+| P07-010 | Bounded Compound Attack Generator | DONE | Multi-vector disruptions (Supplier failure + Port congestion + Demand surge) PASS | TBD |
+| P07-011 | Adversary Agent (`backend/app/agents/adversary.py`) | DONE | Implements `BaseAgent` with safe execution pipeline and immutability safety checks PASS | TBD |
+| P07-012 | Adversary Service (`backend/app/services/adversary.py`) | DONE | High-level orchestrator running attack suites, candidate stress tests, and findings caching PASS | TBD |
+| P07-013 | Adversary REST API (`backend/app/api/adversary.py`) | DONE | `/api/adversary/status`, `/api/adversary/run`, `/api/adversary/stress-test`, `/api/adversary/attack-suite`, `/api/adversary/findings` PASS | TBD |
+| P07-014 | Frontend TypeScript types & API client (`types/adversary.ts`, `api/adversaryApi.ts`) | DONE | Types matching backend schemas & async fetch client PASS | TBD |
+| P07-015 | Adversary Board UI Component (`AdversaryBoard.tsx`, `SpecialistWarRoom.tsx`) | DONE | Glassmorphic UI tab featuring attack suite, candidate stress matrix, vulnerability cards, defensive recommendations PASS | TBD |
+| P07-016 | Deterministic Test Suite (`backend/tests/test_adversary.py`) | DONE | Comprehensive test coverage (70/70 backend tests PASS) PASS | TBD |
+| P07-017 | State Mutation Safety Test | DONE | `assert world_before == world_after` & `assert risk_before == risk_after` PASS | TBD |
+| P07-018 | End-to-End Demo Flow Verification | DONE | Disruption -> Signals -> Risk -> 6 Specialists -> Coordinator -> Candidate Plans A/B/C -> Adversary Red-Team PASS | TBD |
+| P07-019 | Documentation & ADR Updates | DONE | `docs/ADVERSARY_SPEC.md` & `ADR-020` added to `DECISION_LOG.md`; `TODO.md`, `IN_PROGRESS.md`, `DONE.md`, `CHANGELOG.md` updated PASS | TBD |
+| P07-020 | Final Verification | DONE | Backend pytest 70/70 PASS & Frontend build PASS PASS | TBD |
+
+---
+
 *Commit hashes to be filled in after `git commit` completes.*
+
 
 
 
