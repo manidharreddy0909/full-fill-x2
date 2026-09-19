@@ -5,6 +5,37 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [0.4.0] — 2026-09-19 — Phase 03: Risk Engine Implementation & End-to-End Vertical Slice
+
+### Added
+
+**Backend Risk Intelligence Engine (`backend/app/engine/`, `schemas/`, `api/`)**
+- `backend/app/schemas/signal.py` — Strongly-typed Pydantic v2 schemas for disruption signals: `Signal`, `SignalCreateRequest`, `FusedSignal`, `SignalType`, `SignalSeverity`, `SignalStatus`.
+- `backend/app/schemas/risk.py` — Strongly-typed Pydantic v2 schemas for risk scoring: `RiskLevel`, `SignalContribution`, `RiskExplanation`, `NodeRiskDetail`, `RiskScoreMap`.
+- `backend/app/engine/fusion.py` — `SignalFusionEngine` with 6-hour sliding window signal deduplication and compound confidence weighting (`1 - ∏(1 - c_i)`).
+- `backend/app/engine/risk.py` — Deterministic `RiskEngine` containing `DirectImpactScorer` (`LOW=0.25`, `MEDIUM=0.50`, `HIGH=0.75`, `CRITICAL=0.95`), `CompoundComposer`, `GraphPropagator` (BFS propagation across `DEPENDENCY` edges, `MAX_HOPS=3`, `DECAY_FACTOR=0.6`), `DimensionalRiskComposer` (Financial, SLA, Operational, Sustainability breakdown), and `ExplanationBuilder`.
+- `backend/app/repository/risk.py` — Thread-safe `RiskRepository` managing signal store and calculated risk maps (integrated with `WorldRepository` and `RLock()`).
+- `backend/app/services/risk.py` — `RiskService` orchestrating signal ingestion, resolution, recalculation, and detail generation.
+- `backend/app/api/signals.py` & `risks.py` — Typed FastAPI REST endpoints: `GET /api/signals`, `POST /api/signals`, `PATCH /api/signals/{id}/resolve`, `GET /api/risks`, `GET /api/risks/nodes/{id}`, `POST /api/risks/recalculate`, `POST /api/risks/reset`.
+
+**Backend Automated Risk Test Suite (`backend/tests/`)**
+- `test_fusion.py` — 6-hour sliding window deduplication, multi-cluster outside 6hr window, and max severity ordering tests (3/3 PASS).
+- `test_risk_engine.py` — Severity mapping, compound score upper-bound clamping, risk level bands, BFS hop decay, explanation traceability, and 100% seed determinism tests (6/6 PASS).
+- `test_risk_api.py` — REST API integration tests for signals, risk recalculation, node risk detail, and reset endpoints (4/4 PASS). Total backend test suite: 33/33 PASS.
+
+**Frontend Risk State & Intelligence UI (`frontend/src/`)**
+- `frontend/src/types/risk.ts` — TypeScript interfaces matching backend Risk and Signal Pydantic models.
+- `frontend/src/api/riskApi.ts` — Fetch API client for signal and risk endpoints.
+- `frontend/src/components/risk/SignalInjectorModal.tsx` — Modal component providing interactive weak signal creation with quick demo presets (Supplier S1 Halt, Port P1 Typhoon, Warehouse W1 Cyber).
+- `frontend/src/components/risk/RiskExplorer.tsx` — Detailed risk inspector drawer displaying multi-dimensional risk index matrix, risk level bands, deterministic explanation text, active fused signals, and upstream/downstream propagation impact nodes.
+- Updated `World2DView.tsx` & `World3DView.tsx` — Integrated real-time composite risk scores into 2D node borders, stock meters, 3D emissive colors, selected indicator rings, and disruption pulses.
+- `frontend/src/App.tsx` — Wire up live Risk API state, automatic risk recalculation, Signal Injector modal, and Risk Explorer panel. `npm run build` PASS.
+
+**Architecture Decisions**
+- Added `ADR-016: Deterministic Risk Engine & BFS Graph Propagation Architecture` to `docs/DECISION_LOG.md`.
+
+---
+
 ## [0.3.0] — 2026-09-19 — Phase 02: World Model + Synthetic Data + First Vertical Slice
 
 ### Added

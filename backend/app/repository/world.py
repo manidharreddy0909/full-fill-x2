@@ -23,10 +23,10 @@ class WorldRepository:
     """
 
     _instance: Optional["WorldRepository"] = None
-    _lock: threading.Lock = threading.Lock()
+    _lock: threading.RLock = threading.RLock()
 
     def __init__(self, seed: int = 42, preset: str = "healthy"):
-        self.lock = threading.Lock()
+        self.lock = threading.RLock()
         self.current_seed: int = seed
         self.current_preset: str = preset
         self.graph: SupplyNetworkGraph = SyntheticDataGenerator(seed=seed, preset=preset).generate()

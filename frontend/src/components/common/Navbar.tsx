@@ -10,6 +10,7 @@ interface NavbarProps {
   isBackendConnected: boolean;
   onSeedChange: (preset: string, seed: number) => void;
   onReset: () => void;
+  onOpenInjector?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -21,6 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   isBackendConnected,
   onSeedChange,
   onReset,
+  onOpenInjector,
 }) => {
   const getHealthColor = (score: number) => {
     if (score >= 0.85) return 'var(--color-healthy)';
@@ -50,11 +52,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '0.5px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 FULFILL<span style={{ color: 'var(--text-accent)' }}>-X</span>
                 <span className="mono" style={{ fontSize: '10px', background: 'rgba(91, 147, 246, 0.15)', color: 'var(--text-accent)', padding: '2px 6px', borderRadius: '4px', border: '1px solid var(--border-accent)' }}>
-                  PHASE 02
+                  PHASE 03
                 </span>
               </div>
               <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
-                Deterministic Supply Network World Model
+                Deterministic Risk Engine & Intelligence Vertical Slice
               </div>
             </div>
           </div>
@@ -160,6 +162,29 @@ export const Navbar: React.FC<NavbarProps> = ({
               <RefreshCw size={14} />
             </button>
           </div>
+
+          {/* Inject Signal Button */}
+          {onOpenInjector && (
+            <button
+              onClick={onOpenInjector}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '6px 14px',
+                borderRadius: '6px',
+                background: 'rgba(232, 80, 58, 0.15)',
+                border: '1px solid #E8503A',
+                color: '#FF453A',
+                fontWeight: 700,
+                fontSize: '12px',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+              }}
+            >
+              <ShieldAlert size={15} /> Inject Signal
+            </button>
+          )}
 
           {/* Health Status Pill */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'var(--bg-surface-elevated)', padding: '6px 12px', borderRadius: '6px', border: '1px solid var(--border-default)' }}>

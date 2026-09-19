@@ -97,6 +97,26 @@
 
 ---
 
+## Phase 03 — Risk Engine Implementation & End-to-End Vertical Slice
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P03-001 | Signal Schemas & Lifecycle (`backend/app/schemas/signal.py`) | DONE | `Signal`, `SignalCreateRequest`, `FusedSignal`, `SignalStatus` validation PASS | TBD |
+| P03-002 | Signal Fusion Engine (`backend/app/engine/fusion.py`) | DONE | `pytest backend/tests/test_fusion.py` 3/3 PASS (6-hr sliding window deduplication & confidence weighting) | TBD |
+| P03-003 | Risk Schemas & Explanations (`backend/app/schemas/risk.py`) | DONE | `RiskLevel`, `SignalContribution`, `RiskExplanation`, `NodeRiskDetail`, `RiskScoreMap` PASS | TBD |
+| P03-004 | Deterministic Risk Engine & BFS Propagation (`backend/app/engine/risk.py`) | DONE | `pytest backend/tests/test_risk_engine.py` 6/6 PASS (Direct impact + BFS graph propagation + dimensional decomposition) | TBD |
+| P03-005 | Risk Repository & Service (`backend/app/repository/risk.py`, `services/risk.py`) | DONE | Thread-safe `RLock()` state store integrated with `WorldRepository` PASS | TBD |
+| P03-006 | Risk & Signal REST APIs (`backend/app/api/signals.py`, `risks.py`) | DONE | `pytest backend/tests/test_risk_api.py` 4/4 PASS (`/api/signals`, `/api/risks`, `/recalculate`, `/reset`) | TBD |
+| P03-007 | Frontend Risk State & API Client (`frontend/src/types/risk.ts`, `api/riskApi.ts`) | DONE | Strict TypeScript interfaces & API methods with offline fallback PASS | TBD |
+| P03-008 | Signal Injector Modal Component (`frontend/src/components/risk/SignalInjectorModal.tsx`) | DONE | Preset triggers & interactive parameter inputs for weak signals PASS | TBD |
+| P03-009 | Risk Explorer Detail Panel (`frontend/src/components/risk/RiskExplorer.tsx`) | DONE | Multi-dimensional risk score breakdown, risk level bands & traceable evidence text PASS | TBD |
+| P03-010 | 2D / 3D Risk Heatmap Encodings (`World2DView.tsx`, `World3DView.tsx`, `App.tsx`) | DONE | Real-time visual risk pulse, highlight rings, and operational heatmaps PASS | TBD |
+| P03-011 | Verification & Build Validation | DONE | `pytest backend/tests/` 33/33 PASS; `npm run build` PASS | TBD |
+| P03-012 | Documentation & ADR Updates | DONE | `ADR-016` added to `DECISION_LOG.md`; `TODO.md`, `DONE.md`, `CHANGELOG.md` updated | TBD |
+
+---
+
 *Commit hashes to be filled in after `git commit` completes.*
+
 
 

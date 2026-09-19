@@ -345,6 +345,35 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 02 — World Model Complete*
+---
+
+## ADR-016: Deterministic Risk Engine & BFS Graph Propagation Architecture
+
+**Date**: 2026-09-19
+**Status**: ACCEPTED
+**Phase**: 03
+
+**Context**: Need a fast, 100% deterministic, explainable risk intelligence engine that fuses weak disruption signals, calculates multi-dimensional node/edge risks, and propagates risk downstream across multi-tiered supply network dependencies.
+
+**Decision**:
+1. **Signal Fusion**: Implement 6-hour sliding deduplication window and compound confidence weighting (`1 - ∏(1 - c_i)`).
+2. **Deterministic Risk Scorer**: Direct impact scoring mapped to severity bands (`LOW=0.25`, `MEDIUM=0.50`, `HIGH=0.75`, `CRITICAL=0.95`).
+3. **BFS Graph Propagation**: Propagate risk downstream over `DEPENDENCY` edges up to `MAX_HOPS=3` with logarithmic decay factor (`DECAY_FACTOR=0.6`).
+4. **Traceable Explanations**: Generate deterministic, structured natural-language explanations preserving contributing signal UUIDs, primary driver, and affected upstream/downstream node lists.
+5. **No LLMs in Risk Calculation**: All risk scores are calculated by deterministic Python algorithms; LLMs only consume risk outputs downstream.
+
+**Rationale**:
+- Ensures 100% reproducible benchmark evaluation and automated testing (`seed=42` produces identical risk maps every time).
+- Guarantees bounded scores in `[0.0, 1.0]`.
+- Gives human operators full auditability into why a specific warehouse or fulfillment center is marked at-risk.
+
+**Consequences**:
+- AI agents in later phases will consume explicit, structured risk state without hallucinating risk values.
+- Downstream propagation depth is bounded (`MAX_HOPS=3`) to prevent unrealistic global panics across unrelated nodes.
+
+---
+
+*Last updated: Phase 03 — Risk Engine Implementation & End-to-End Vertical Slice Complete*
+
 
 

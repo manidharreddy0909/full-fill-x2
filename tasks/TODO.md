@@ -22,17 +22,17 @@
 | P02-012 | World Model Integration Tests | P02-008 | DONE |
 | P02-013 | Documentation / Diagrams / Handoff | P02-012 | DONE |
 
-## Phase 03 — Risk Engine Implementation
+## Phase 03 — Risk Engine Implementation [COMPLETED]
 
 | ID | Description | Dependencies | Status |
 |----|-------------|-------------|--------|
-| P03-001 | Signal Fusion Engine (`backend/app/engine/fusion.py` - 6-hour window deduplication) | P02 complete | PLANNED |
-| P03-002 | Direct Impact Risk Scorer (`backend/app/engine/direct_risk.py`) | P03-001 | PLANNED |
-| P03-003 | Multi-Dimensional Risk Decomposition (financial, SLA, operational, sustainability) | P03-002 | PLANNED |
-| P03-004 | BFS Risk Propagation Engine (`backend/app/engine/propagation.py` - decay factor 0.6) | P03-003 | PLANNED |
-| P03-005 | Risk Engine REST API (`/api/risks` endpoints) | P03-004 | PLANNED |
-| P03-006 | Risk Propagation Unit & Integration Tests (`backend/tests/test_risk_engine.py`) | P03-005 | PLANNED |
-| P03-007 | Frontend Risk Explorer Integration (`frontend/src/components/risk/`) | P03-005 | PLANNED |
+| P03-001 | Signal Fusion Engine (`backend/app/engine/fusion.py` - 6-hour window deduplication) | P02 complete | DONE |
+| P03-002 | Direct Impact Risk Scorer (`backend/app/engine/direct_risk.py` / `risk.py`) | P03-001 | DONE |
+| P03-003 | Multi-Dimensional Risk Decomposition (financial, SLA, operational, sustainability) | P03-002 | DONE |
+| P03-004 | BFS Risk Propagation Engine (`backend/app/engine/risk.py` - decay factor 0.6) | P03-003 | DONE |
+| P03-005 | Risk Engine REST API (`/api/risks` and `/api/signals` endpoints) | P03-004 | DONE |
+| P03-006 | Risk Propagation Unit & Integration Tests (`backend/tests/test_risk_engine.py`, `test_fusion.py`, `test_risk_api.py`) | P03-005 | DONE |
+| P03-007 | Frontend Risk Explorer Integration & Signal Injector (`frontend/src/components/risk/`, `App.tsx`) | P03-005 | DONE |
 
 
 ## Phase 03 — Scenario Engine
