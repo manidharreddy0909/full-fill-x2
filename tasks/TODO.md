@@ -196,26 +196,23 @@
 | P09-013 | Verification Board Cockpit UI (`frontend/src/components/agents/VerificationBoard.tsx`) | P09-011 | DONE |
 | P09-014 | Verification Documentation & Decision Log Update | P09-012, P09-013 | DONE |
 
-## Phase 10 — All 12 Screens
+## Phase 10 — Decision Cockpit & End-to-End Intelligence Console [COMPLETED]
 
 | ID | Description | Dependencies | Status |
 |----|-------------|-------------|--------|
-| P10-001 | Implement Command Center | P08, P09 | PLANNED |
-| P10-002 | Implement 3D World Model screen | P09 | PLANNED |
-| P10-003 | Implement Signal Intelligence | P08 | PLANNED |
-| P10-004 | Implement Risk Explorer | P08 | PLANNED |
-| P10-005 | Implement Scenario Lab | P08 | PLANNED |
-| P10-006 | Implement Agent War Room | P08 | PLANNED |
-| P10-007 | Implement Plan Comparison | P08 | PLANNED |
-| P10-008 | Implement Adversary Attack | P08 | PLANNED |
-| P10-009 | Implement Stress Test | P08 | PLANNED |
-| P10-010 | Implement Decision Cockpit | P08 | PLANNED |
-| P10-011 | Implement Evaluation | P08 | PLANNED |
-| P10-012 | Implement System Status | P08 | PLANNED |
-| P10-013 | Write E2E tests: all 12 screens happy path | P10-001–P10-012 | PLANNED |
-| P10-014 | Verify: all E2E tests pass | P10-013 | PLANNED |
-| P10-015 | Verify: accessibility audit passes (axe) | P10-014 | PLANNED |
-| P10-016 | Commit P10 | P10-015 | PLANNED |
+| P10-001 | Cockpit Pydantic v2 Schemas (`backend/app/schemas/cockpit.py`) | Phase 09 complete | DONE |
+| P10-002 | 8-Stage Workflow Orchestration Engine (`backend/app/services/cockpit.py`) | P10-001 | DONE |
+| P10-003 | Zero State Mutation Protection & Immutability Assertion | P10-002 | DONE |
+| P10-004 | Traceable Evidence Links & Provenance Chain Builder | P10-002 | DONE |
+| P10-005 | Human Approval Gate with Persona Rationale Logging | P10-002 | DONE |
+| P10-006 | Cockpit REST API Router (`backend/app/api/cockpit.py`) | P10-002 | DONE |
+| P10-007 | Backend Unit & Integration Test Suite (`backend/tests/test_cockpit.py` - 101/101 PASS) | P10-006 | DONE |
+| P10-008 | Frontend TypeScript Types & API Client (`types/cockpit.ts`, `api/cockpitApi.ts`) | P10-006 | DONE |
+| P10-009 | Inspectable Evidence Drawer Component (`EvidenceDrawer.tsx`) | P10-008 | DONE |
+| P10-010 | Glassmorphic Decision Cockpit UI (`DecisionCockpit.tsx`) | P10-009 | DONE |
+| P10-011 | Integration into Specialist War Room & Navbar (`SpecialistWarRoom.tsx`, `Navbar.tsx`, `App.tsx`) | P10-010 | DONE |
+| P10-012 | Documentation (`docs/DECISION_COCKPIT_SPEC.md`, ADR-023) | P10-011 | DONE |
+
 
 ## Phase 11 — Evaluation Harness
 

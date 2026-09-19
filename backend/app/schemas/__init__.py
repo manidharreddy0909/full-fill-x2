@@ -101,3 +101,23 @@ from app.schemas.verification import (
     VerificationStatusResponse,
     VerificationRequest,
 )
+
+from app.schemas.cockpit import (
+    DecisionStage,
+    DecisionStageStatus,
+    DecisionWorkflowStatus,
+    DecisionStageRecord,
+    DecisionTimeline,
+    EvidenceLink,
+    ExecutiveSummary,
+    ApprovalDecision,
+    AuditEvent,
+    CockpitError,
+    DecisionSession,
+    SessionCreateRequest,
+    SessionRunRequest,
+    SessionApproveRequest,
+    SessionRejectRequest,
+    CockpitStatusResponse,
+)
+

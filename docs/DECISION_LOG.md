@@ -533,7 +533,31 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 09 — Verification & Validation Engine Complete*
+## ADR-023: Decision Cockpit & End-to-End Workflow Orchestration Architecture
+
+**Date**: 2026-09-19  
+**Status**: ACCEPTED  
+**Phase**: 10  
+
+**Context**: FULFILL-X comprises multiple specialized reasoning layers (Observe, Risk Engine, 6 Specialist Agents, Coordinator, Adversary Red-Team, Multi-Objective Planner, and Verification Engine). An end-to-end command console and workflow orchestrator (`CockpitService`) is required to drive the complete decision loop from initial signal observation to human approval, with full provenance tracking and state immutability safety.
+
+**Decision**:
+1. **Unified Orchestration Engine**: Implement `CockpitService` managing an 8-stage state machine (`OBSERVING` $\rightarrow$ `ANALYZING_RISK` $\rightarrow$ `RUNNING_SPECIALISTS` $\rightarrow$ `COORDINATING` $\rightarrow$ `ADVERSARIAL_TESTING` $\rightarrow$ `OPTIMIZING` $\rightarrow$ `VERIFYING` $\rightarrow$ `READY_FOR_APPROVAL`).
+2. **State Immutability Guarantee**: `CockpitService` operates on isolated snapshots. Neither `run_full_loop()`, stage execution, human approval, nor session reset mutates live `WorldRepository` or `RiskRepository` state.
+3. **Traceable Evidence & Audit Trail**: Every stage generates structured `EvidenceLink` records and appends to an immutable `AuditEvent` log.
+4. **Human Approval Gate**: Approval decisions require human persona name and decision rationale, providing explicit human-in-the-loop authorization.
+5. **Glassmorphic Decision Cockpit UI**: Fullscreen interactive console (`DecisionCockpit.tsx` & `EvidenceDrawer.tsx`) with real-time stage timeline, executive summary metrics, candidate plan matrix, and provenance inspection.
+
+**Rationale**:
+- Consolidates all autonomous intelligence layers into a single operational interface.
+- Ensures human control over supply chain mitigations while maintaining zero risk of accidental state corruption.
+
+**Consequences**:
+- End-to-end operational intelligence loop is 100% reproducible, verifiable, and safe.
+
+---
+
+*Last updated: Phase 10 — Decision Cockpit & End-to-End Intelligence Console Complete*
 
 
 

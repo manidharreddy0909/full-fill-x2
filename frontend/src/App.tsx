@@ -17,6 +17,7 @@ import { NodeInspector } from './components/world/NodeInspector';
 import { RiskExplorer } from './components/risk/RiskExplorer';
 import { SignalInjectorModal } from './components/risk/SignalInjectorModal';
 import { SpecialistWarRoom } from './components/agents/SpecialistWarRoom';
+import { DecisionCockpit } from './components/cockpit/DecisionCockpit';
 import { CandidatePlan } from './types/coordinator';
 
 export const App: React.FC = () => {
@@ -36,6 +37,7 @@ export const App: React.FC = () => {
   const [isInjectorOpen, setIsInjectorOpen] = useState<boolean>(false);
   const [injectorTargetId, setInjectorTargetId] = useState<string | null>(null);
   const [isWarRoomOpen, setIsWarRoomOpen] = useState<boolean>(false);
+  const [isCockpitOpen, setIsCockpitOpen] = useState<boolean>(false);
   const [previewCandidatePlan, setPreviewCandidatePlan] = useState<CandidatePlan | null>(null);
 
   const loadWorldAndRiskData = useCallback(async () => {
@@ -164,6 +166,7 @@ export const App: React.FC = () => {
         onReset={handleReset}
         onOpenInjector={() => handleOpenInjector()}
         onOpenWarRoom={() => setIsWarRoomOpen(true)}
+        onOpenCockpit={() => setIsCockpitOpen(true)}
       />
 
       {/* World Summary Bar */}
@@ -273,6 +276,13 @@ export const App: React.FC = () => {
               selectedNodeId={selectedNodeId}
               onPreviewCandidate={(cand) => setPreviewCandidatePlan(cand)}
               selectedCandidateId={previewCandidatePlan?.candidate_id}
+            />
+
+            {/* Decision Cockpit Modal */}
+            <DecisionCockpit
+              isOpen={isCockpitOpen}
+              onClose={() => setIsCockpitOpen(false)}
+              onPreviewCandidate={(cand) => setPreviewCandidatePlan(cand)}
             />
           </>
         )}

@@ -3,6 +3,33 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.11.0] — 2026-09-19 — Phase 10: Decision Cockpit & End-to-End Intelligence Console
+
+### Added
+
+**Backend Decision Cockpit Orchestrator (`backend/app/schemas/`, `services/`, `api/`)**
+- `backend/app/schemas/cockpit.py` — Strongly-typed Pydantic v2 schemas: `DecisionStage`, `DecisionStageStatus`, `DecisionWorkflowStatus`, `DecisionStageRecord`, `DecisionTimeline`, `EvidenceLink`, `ExecutiveSummary`, `ApprovalDecision`, `AuditEvent`, `CockpitError`, `DecisionSession`, `SessionCreateRequest`, `SessionRunRequest`, `SessionApproveRequest`, `SessionRejectRequest`, `CockpitStatusResponse`.
+- `backend/app/services/cockpit.py` — `CockpitService` managing an 8-stage state machine (`OBSERVING` $\rightarrow$ `ANALYZING_RISK` $\rightarrow$ `RUNNING_SPECIALISTS` $\rightarrow$ `COORDINATING` $\rightarrow$ `ADVERSARIAL_TESTING` $\rightarrow$ `OPTIMIZING` $\rightarrow$ `VERIFYING` $\rightarrow$ `READY_FOR_APPROVAL`).
+- Immutability Protection & Assertion: Explicit assertion that `world_before == world_after` & `risk_before == risk_after` across session creation, full loop execution, stage execution, human approval/rejection, and session reset.
+- `backend/app/api/cockpit.py` — FastAPI REST router: `GET /api/cockpit/status`, `POST /api/cockpit/session`, `GET /api/cockpit/session/{id}`, `POST /api/cockpit/session/{id}/run`, `POST /api/cockpit/session/{id}/stage`, `POST /api/cockpit/session/{id}/approve`, `POST /api/cockpit/session/{id}/reject`, `POST /api/cockpit/session/{id}/reset`. Registered in `backend/app/api/router.py`.
+
+**Backend Cockpit Test Suite (`backend/tests/test_cockpit.py`)**
+- 8 comprehensive unit and integration tests covering schemas, session creation, workflow state machine stage execution, full decision loop orchestration, human approval/rejection gates, session reset, state mutation immutability safety, and REST API endpoints (101/101 total backend pytest PASS).
+
+**Frontend Decision Cockpit UI (`frontend/src/`)**
+- `frontend/src/types/cockpit.ts` — TypeScript interfaces matching backend models.
+- `frontend/src/api/cockpitApi.ts` — Async API fetch client functions.
+- `frontend/src/components/cockpit/EvidenceDrawer.tsx` — Interactive slide-over drawer rendering step-by-step provenance traces & metadata payloads.
+- `frontend/src/components/cockpit/DecisionCockpit.tsx` — Glassmorphic fullscreen console with header & live controls ("RUN FULL DECISION LOOP", "Reset Session"), 8-stage workflow timeline, executive summary metrics, candidate plan comparison matrix, human approval gate, evidence chain, and chronological audit log.
+- Integration into `Navbar.tsx`, `SpecialistWarRoom.tsx`, and `App.tsx` with dedicated "Decision Cockpit" header button and tab 6 in Specialist War Room. `npm run build` PASS.
+
+**Documentation & ADRs**
+- Added `docs/DECISION_COCKPIT_SPEC.md` specification.
+- Added `ADR-023: Decision Cockpit & End-to-End Workflow Orchestration Architecture` to `docs/DECISION_LOG.md`.
+- Updated `docs/API_CATALOG.md` (Section 15), `tasks/TODO.md`, `tasks/IN_PROGRESS.md`, `tasks/DONE.md`.
+
+---
+
 ## [0.10.0] — 2026-09-19 — Phase 09: Verification & Validation Engine
 
 ### Added

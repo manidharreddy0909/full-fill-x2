@@ -653,5 +653,84 @@ as a multi-dimensional object. The corrected response uses `NodeRiskScores`.
 | **Response 200** | `VerificationReport` schema |
 | **Frontend** | Verification Board Detail View |
 
+---
+
+## 15. Decision Cockpit & Workflow Orchestration Endpoints (Phase 10)
+
+### GET /api/cockpit/status
+| Field | Value |
+|-------|-------|
+| **Purpose** | Check status, active sessions count, and immutability safety guarantee |
+| **Response 200** | `CockpitStatusResponse` schema |
+| **Frontend** | Decision Cockpit Header |
+
+---
+
+### POST /api/cockpit/session
+| Field | Value |
+|-------|-------|
+| **Purpose** | Create a new decision cockpit session for a preset & seed |
+| **Request** | `SessionCreateRequest` (`{ preset_name: "double_punch", seed: 42 }`) |
+| **Response 200** | `DecisionSession` schema |
+| **Frontend** | Decision Cockpit (Initialization) |
+
+---
+
+### GET /api/cockpit/session/{session_id}
+| Field | Value |
+|-------|-------|
+| **Purpose** | Retrieve complete state of an active decision session |
+| **Response 200** | `DecisionSession` schema |
+| **Frontend** | Decision Cockpit Board |
+
+---
+
+### POST /api/cockpit/session/{session_id}/run
+| Field | Value |
+|-------|-------|
+| **Purpose** | Execute full 8-stage decision workflow loop end-to-end |
+| **Response 200** | `DecisionSession` schema |
+| **Frontend** | Decision Cockpit ("RUN FULL DECISION LOOP" button) |
+
+---
+
+### POST /api/cockpit/session/{session_id}/stage
+| Field | Value |
+|-------|-------|
+| **Purpose** | Step through a single workflow stage |
+| **Request** | `{ target_stage: "COORDINATING" }` |
+| **Response 200** | `DecisionSession` schema |
+| **Frontend** | Timeline Stage Item Click |
+
+---
+
+### POST /api/cockpit/session/{session_id}/approve
+| Field | Value |
+|-------|-------|
+| **Purpose** | Log human approval decision for a candidate plan |
+| **Request** | `SessionApproveRequest` (`{ plan_id: "candidate-a", approver: "CSO", rationale: "Verified" }`) |
+| **Response 200** | `DecisionSession` schema |
+| **Frontend** | Human Approval Gate ("APPROVE PLAN" button) |
+
+---
+
+### POST /api/cockpit/session/{session_id}/reject
+| Field | Value |
+|-------|-------|
+| **Purpose** | Log human rejection decision for a candidate plan |
+| **Request** | `SessionRejectRequest` (`{ plan_id: "candidate-b", approver: "CSO", rationale: "Infeasible" }`) |
+| **Response 200** | `DecisionSession` schema |
+| **Frontend** | Human Approval Gate ("REJECT PLAN" button) |
+
+---
+
+### POST /api/cockpit/session/{session_id}/reset
+| Field | Value |
+|-------|-------|
+| **Purpose** | Reset decision session state to clean initial observation |
+| **Response 200** | `DecisionSession` schema |
+| **Frontend** | Decision Cockpit Header ("Reset Session" button) |
+
+
 
 

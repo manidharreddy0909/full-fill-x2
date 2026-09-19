@@ -13,6 +13,7 @@ interface NavbarProps {
   onReset: () => void;
   onOpenInjector?: () => void;
   onOpenWarRoom?: () => void;
+  onOpenCockpit?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -27,6 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onReset,
   onOpenInjector,
   onOpenWarRoom,
+  onOpenCockpit,
 }) => {
   const getHealthColor = (score: number) => {
     if (score >= 0.85) return 'var(--color-healthy)';
@@ -211,6 +213,30 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
             >
               <Bot size={15} color="#A78BFA" /> Specialist War Room
+            </button>
+          )}
+
+          {/* Decision Cockpit Button */}
+          {onOpenCockpit && (
+            <button
+              onClick={onOpenCockpit}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '6px 14px',
+                borderRadius: '6px',
+                background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.35) 0%, rgba(91, 147, 246, 0.35) 100%)',
+                border: '1px solid #A78BFA',
+                color: '#FFFFFF',
+                fontWeight: 700,
+                fontSize: '12px',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                boxShadow: '0 0 14px rgba(167, 139, 250, 0.3)',
+              }}
+            >
+              <Cpu size={15} color="#A78BFA" /> Decision Cockpit
             </button>
           )}
 

@@ -251,6 +251,27 @@
 
 ---
 
+## Phase 10 — Decision Cockpit & End-to-End Intelligence Console
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P10-001 | Cockpit Pydantic v2 Schemas (`backend/app/schemas/cockpit.py`) | DONE | `DecisionStage`, `DecisionStageStatus`, `DecisionWorkflowStatus`, `DecisionStageRecord`, `DecisionTimeline`, `EvidenceLink`, `ExecutiveSummary`, `ApprovalDecision`, `AuditEvent`, `CockpitError`, `DecisionSession`, `SessionCreateRequest`, `SessionRunRequest`, `SessionApproveRequest`, `SessionRejectRequest`, `CockpitStatusResponse` PASS | TBD |
+| P10-002 | 8-Stage Workflow Orchestration Engine (`backend/app/services/cockpit.py`) | DONE | Orchestrates full workflow: `OBSERVING` $\rightarrow$ `ANALYZING_RISK` $\rightarrow$ `RUNNING_SPECIALISTS` $\rightarrow$ `COORDINATING` $\rightarrow$ `ADVERSARIAL_TESTING` $\rightarrow$ `OPTIMIZING` $\rightarrow$ `VERIFYING` $\rightarrow$ `READY_FOR_APPROVAL` PASS | TBD |
+| P10-003 | Zero State Mutation Protection & Immutability Assertion | DONE | Explicit assertion that `world_before == world_after` & `risk_before == risk_after` across session run, stage run, approval, and reset PASS | TBD |
+| P10-004 | Traceable Evidence Links & Provenance Chain Builder | DONE | Generates step-by-step provenance chain tracking source stages, entity types, and raw metrics PASS | TBD |
+| P10-005 | Human Approval Gate with Persona Rationale Logging | DONE | Logs human approver name, decision rationale, timestamp, and target plan without mutating world state PASS | TBD |
+| P10-006 | Cockpit REST API Router (`backend/app/api/cockpit.py`) | DONE | `/api/cockpit/status`, `/api/cockpit/session`, `/api/cockpit/session/{id}`, `/api/cockpit/session/{id}/run`, `/api/cockpit/session/{id}/stage`, `/api/cockpit/session/{id}/approve`, `/api/cockpit/session/{id}/reject`, `/api/cockpit/session/{id}/reset` PASS | TBD |
+| P10-007 | Backend Unit & Integration Test Suite (`backend/tests/test_cockpit.py`) | DONE | 8 unit/integration tests; 101/101 total backend pytest PASS PASS | TBD |
+| P10-008 | Frontend TypeScript Types & API Client (`types/cockpit.ts`, `api/cockpitApi.ts`) | DONE | TypeScript interfaces matching backend models & async API fetch functions PASS | TBD |
+| P10-009 | Inspectable Evidence Drawer Component (`EvidenceDrawer.tsx`) | DONE | Interactive slide-over drawer rendering step-by-step provenance traces & metadata payloads PASS | TBD |
+| P10-010 | Glassmorphic Decision Cockpit UI (`DecisionCockpit.tsx`) | DONE | Fullscreen console rendering workflow timeline, executive summary metrics, candidate plan matrix, human approval gate, and chronological audit log PASS | TBD |
+| P10-011 | Integration into Specialist War Room & Navbar (`SpecialistWarRoom.tsx`, `Navbar.tsx`, `App.tsx`) | DONE | Direct button in Navbar header and dedicated 6th tab in Specialist War Room PASS | TBD |
+| P10-012 | Documentation & ADR Updates | DONE | `docs/DECISION_COCKPIT_SPEC.md` & `ADR-023` added to `DECISION_LOG.md`; `API_CATALOG.md` updated PASS | TBD |
+| P10-013 | Final Verification | DONE | Backend pytest 101/101 PASS & Frontend production build PASS PASS | TBD |
+
+
+---
+
 *Commit hashes to be filled in after `git commit` completes.*
 
 

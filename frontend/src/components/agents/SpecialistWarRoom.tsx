@@ -22,6 +22,7 @@ import {
   GitMerge,
   Flame,
   Award,
+  Cpu,
 } from 'lucide-react';
 import {
   AgentId,
@@ -42,6 +43,7 @@ import { CoordinationBoard } from './CoordinationBoard';
 import { AdversaryBoard } from './AdversaryBoard';
 import { PlannerBoard } from './PlannerBoard';
 import { VerificationBoard } from './VerificationBoard';
+import { DecisionCockpit } from '../cockpit/DecisionCockpit';
 
 
 
@@ -88,7 +90,7 @@ export const SpecialistWarRoom: React.FC<SpecialistWarRoomProps> = ({
   onPreviewCandidate,
   selectedCandidateId,
 }) => {
-  const [mainTab, setMainTab] = useState<'SPECIALISTS' | 'COORDINATOR' | 'ADVERSARY' | 'PLANNER' | 'VERIFICATION'>('SPECIALISTS');
+  const [mainTab, setMainTab] = useState<'SPECIALISTS' | 'COORDINATOR' | 'ADVERSARY' | 'PLANNER' | 'VERIFICATION' | 'DECISION_COCKPIT'>('SPECIALISTS');
   const [loadingAll, setLoadingAll] = useState<boolean>(false);
   const [loadingCoordinator, setLoadingCoordinator] = useState<boolean>(false);
   const [loadingAdversary, setLoadingAdversary] = useState<boolean>(false);
@@ -422,6 +424,26 @@ export const SpecialistWarRoom: React.FC<SpecialistWarRoomProps> = ({
           }}
         >
           <CheckCircle2 size={16} color={mainTab === 'VERIFICATION' ? '#34D399' : '#94A3B8'} /> Verification & Validation
+        </button>
+
+        <button
+          onClick={() => setMainTab('DECISION_COCKPIT')}
+          style={{
+            padding: '10px 18px',
+            borderRadius: '6px 6px 0 0',
+            border: 'none',
+            background: mainTab === 'DECISION_COCKPIT' ? 'rgba(30, 41, 59, 0.9)' : 'transparent',
+            color: mainTab === 'DECISION_COCKPIT' ? '#FFFFFF' : '#94A3B8',
+            fontSize: '13px',
+            fontWeight: 700,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            borderBottom: mainTab === 'DECISION_COCKPIT' ? '2px solid #8B5CF6' : '2px solid transparent',
+          }}
+        >
+          <Cpu size={16} color={mainTab === 'DECISION_COCKPIT' ? '#A78BFA' : '#94A3B8'} /> Decision Cockpit
         </button>
 
       </div>
@@ -825,6 +847,15 @@ export const SpecialistWarRoom: React.FC<SpecialistWarRoomProps> = ({
             isLoading={loadingVerification}
           />
         </div>
+      )}
+
+      {/* TAB CONTENT 6: DECISION COCKPIT */}
+      {mainTab === 'DECISION_COCKPIT' && (
+        <DecisionCockpit
+          isOpen={true}
+          onClose={() => setMainTab('SPECIALISTS')}
+          onPreviewCandidate={onPreviewCandidate}
+        />
       )}
     </div>
   );
