@@ -22,6 +22,7 @@ import { EvaluationDashboard } from './components/evaluation/EvaluationDashboard
 import { DemoMode } from './components/demo/DemoMode';
 import { CommandCenter } from './components/command/CommandCenter';
 import { IntelligencePanel } from './components/intelligence/IntelligencePanel';
+import { DataFoundation } from './components/data/DataFoundation';
 import { EventToastContainer } from './components/common/EventToastContainer';
 import { useRealtimeStore } from './store/realtimeStore';
 import { CandidatePlan } from './types/coordinator';
@@ -220,6 +221,8 @@ export const App: React.FC = () => {
           <EvaluationDashboard />
         ) : activeTab === 'DEMO' ? (
           <DemoMode />
+        ) : activeTab === 'DATA' ? (
+          <DataFoundation />
         ) : activeTab === 'RESPONSE' ? (
           <div className="max-w-7xl mx-auto p-6">
             <SpecialistWarRoom

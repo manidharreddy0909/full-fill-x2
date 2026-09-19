@@ -1,7 +1,7 @@
 import React from 'react';
 import { Activity, ShieldAlert, RefreshCw, Cpu, Layers, Box, Bot, Sparkles, LayoutDashboard, Database } from 'lucide-react';
 
-export type ProductTab = 'COMMAND' | 'WORLD' | 'INTELLIGENCE' | 'RESPONSE' | 'DECISION' | 'EVALUATION' | 'DEMO';
+export type ProductTab = 'COMMAND' | 'WORLD' | 'INTELLIGENCE' | 'RESPONSE' | 'DECISION' | 'EVALUATION' | 'DEMO' | 'DATA';
 
 interface NavbarProps {
   activeTab: ProductTab;
@@ -46,6 +46,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { tab: 'DECISION', label: 'Cockpit', icon: <Cpu size={14} /> },
     { tab: 'EVALUATION', label: 'Evaluation', icon: <Activity size={14} /> },
     { tab: 'DEMO', label: 'Demo Mode', icon: <Sparkles size={14} /> },
+    { tab: 'DATA', label: 'Data Platform', icon: <Database size={14} /> },
   ];
 
   return (

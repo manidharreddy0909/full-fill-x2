@@ -749,7 +749,32 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 1 — Real AWS + Production Infrastructure Complete*
+## ADR-032: Free-First Real Data Platform Architecture
+
+**Date**: 2026-09-19  
+**Status**: ACCEPTED  
+**Phase**: 2 (Real Data Platform)  
+
+**Context**: FULFILL-X required a production-grade, local-first, free-first persistent data platform capable of running fully decoupled on open-source infrastructure (PostgreSQL 16, Redis 7) without requiring paid cloud services, while maintaining zero-overhead falling back to in-memory mode when DB services are unprovisioned.
+
+**Decision**:
+1. **Layered Persistence Architecture & Dependency Inversion**: Created abstract repository interfaces (`WorldRepository`, `RiskRepository`, `EvaluationRepository`) with dual concrete implementations: In-Memory (Tier A default) and PostgreSQL 16 Async ORM (SQLAlchemy 2.0 + asyncpg).
+2. **Comprehensive ORM Schema & Alembic Migrations**: Defined 12 relational tables (`world_snapshots`, `signals`, `risk_snapshots`, `scenarios`, `agent_proposals`, `candidate_plans`, `verification_reports`, `approval_decisions`, `evaluation_runs`, `audit_events`, `event_history`, `data_provenance`) with Alembic versioning.
+3. **Data Platform Service & Automated Quality Engine**: Implemented `DataPlatformService` (`backend/app/services/data.py`) providing provenance tracking, data quality checks (orphan references, invalid schemas), deterministic seeding (`seed=42`), JSON/JSONL/CSV import/export, and retention policy enforcement.
+4. **Persistent EventBus Sink**: Created asynchronous `EventBus` persistent event sink recording live state events to `event_history` without blocking WebSocket broadcasting.
+5. **Operational Data Platform View**: Created `DataFoundation.tsx` frontend view and registered top-level `DATA` workspace tab for real-time storage mode monitoring, data quality scores, seeding, and export/import operations.
+6. **Free-First Policy & Multi-Format Specification**: Authored `FREE_FIRST_ARCHITECTURE.md`, `DATA_PLATFORM_SPEC.md`, `DATA_MODEL.md`, `DATABASE_SPEC.md`, `DATA_PROVENANCE_SPEC.md`, and `DATA_MIGRATION_GUIDE.md`.
+
+**Rationale**:
+- Guarantees 100% functionality and testability on free/local environments while being immediately ready for enterprise PostgreSQL/Redis production backends.
+
+**Consequences**:
+- Phase 2 Real Data Platform is fully implemented, tested, and integrated.
+
+---
+
+*Last updated: Phase 2 — Real Data Platform Complete*
+
 
 
 

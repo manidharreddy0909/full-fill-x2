@@ -1,0 +1,203 @@
+{
+  "session_id": "demo-session-90c13f32",
+  "scenario_id": "DEMO-05",
+  "seed": 42,
+  "mode": "STEP",
+  "status": "COMPLETED",
+  "total_duration_ms": 37.47,
+  "workflow_completed": true,
+  "candidate_plan_selected": null,
+  "approval_decision": null,
+  "final_executive_summary": {
+    "network_health_score": 0.7953,
+    "critical_risk_count": 3,
+    "affected_node_count": 5,
+    "active_disruption_count": 2,
+    "specialist_proposal_count": 14,
+    "candidate_plan_count": 3,
+    "adversarial_vulnerability_count": 4,
+    "pareto_candidate_count": 3,
+    "verification_status": "REJECTED",
+    "verification_pass_rate": 79.4
+  },
+  "evaluation_summary": {
+    "overall_score": 0.9,
+    "risk_detection": 0.8,
+    "risk_localization": 0.6,
+    "scenario_validity": 1.0,
+    "agent_validity": 0.0,
+    "coordination_quality": 0.8,
+    "adversarial_coverage": 0.0,
+    "plan_feasibility": 1.0,
+    "plan_robustness": 0.85,
+    "verification_accuracy": 0.0,
+    "transparency_completeness": 1.0,
+    "execution_time_seconds": 1.2
+  },
+  "timeline_steps": [
+    {
+      "step_index": 0,
+      "stage": "OBSERVING",
+      "title": "1. Baseline Network Observation",
+      "status": "COMPLETED",
+      "duration_ms": 0.0,
+      "summary": "Initialized",
+      "key_metrics": {
+        "preset": "double_punch",
+        "seed": 42
+      },
+      "evidence_ids": [],
+      "timestamp": "2026-09-19T19:49:26.727548Z"
+    },
+    {
+      "step_index": 1,
+      "stage": "ANALYZING_RISK",
+      "title": "2. Weak Signal Intelligence Ingest",
+      "status": "COMPLETED",
+      "duration_ms": 2.02,
+      "summary": "Executed 2. Weak Signal Intelligence Ingest successfully",
+      "key_metrics": {
+        "stage": "ANALYZING_RISK",
+        "network_health": 0.7953,
+        "risk_level": 3
+      },
+      "evidence_ids": [],
+      "timestamp": "2026-09-19T19:49:26.727548Z"
+    },
+    {
+      "step_index": 2,
+      "stage": "RUNNING_SPECIALISTS",
+      "title": "3. Multi-Dimensional Risk Propagation",
+      "status": "COMPLETED",
+      "duration_ms": 2.72,
+      "summary": "Executed 3. Multi-Dimensional Risk Propagation successfully",
+      "key_metrics": {
+        "stage": "RUNNING_SPECIALISTS",
+        "network_health": 0.7953,
+        "risk_level": 3
+      },
+      "evidence_ids": [],
+      "timestamp": "2026-09-19T19:49:26.727548Z"
+    },
+    {
+      "step_index": 3,
+      "stage": "COORDINATING",
+      "title": "4. Compound Scenario Composition",
+      "status": "COMPLETED",
+      "duration_ms": 4.24,
+      "summary": "Executed 4. Compound Scenario Composition successfully",
+      "key_metrics": {
+        "stage": "COORDINATING",
+        "network_health": 0.7953,
+        "risk_level": 3
+      },
+      "evidence_ids": [],
+      "timestamp": "2026-09-19T19:49:26.727548Z"
+    },
+    {
+      "step_index": 4,
+      "stage": "ADVERSARIAL_TESTING",
+      "title": "5. 6 Specialist Agents Dispatch",
+      "status": "COMPLETED",
+      "duration_ms": 15.06,
+      "summary": "Executed 5. 6 Specialist Agents Dispatch successfully",
+      "key_metrics": {
+        "stage": "ADVERSARIAL_TESTING",
+        "network_health": 0.7953,
+        "risk_level": 3
+      },
+      "evidence_ids": [],
+      "timestamp": "2026-09-19T19:49:26.727548Z"
+    },
+    {
+      "step_index": 5,
+      "stage": "OPTIMIZING",
+      "title": "6. Coordinator Conflict Reconciliation",
+      "status": "COMPLETED",
+      "duration_ms": 2.72,
+      "summary": "Executed 6. Coordinator Conflict Reconciliation successfully",
+      "key_metrics": {
+        "stage": "OPTIMIZING",
+        "network_health": 0.7953,
+        "risk_level": 3
+      },
+      "evidence_ids": [],
+      "timestamp": "2026-09-19T19:49:26.727548Z"
+    },
+    {
+      "step_index": 6,
+      "stage": "VERIFYING",
+      "title": "7. Candidate Plans A / B / C Synthesized",
+      "status": "COMPLETED",
+      "duration_ms": 10.02,
+      "summary": "Executed 7. Candidate Plans A / B / C Synthesized successfully",
+      "key_metrics": {
+        "stage": "VERIFYING",
+        "network_health": 0.7953,
+        "risk_level": 3
+      },
+      "evidence_ids": [],
+      "timestamp": "2026-09-19T19:49:26.727548Z"
+    },
+    {
+      "step_index": 7,
+      "stage": "READY_FOR_APPROVAL",
+      "title": "8. Adversary Red-Team Stress Test",
+      "status": "COMPLETED",
+      "duration_ms": 0.69,
+      "summary": "Executed 8. Adversary Red-Team Stress Test successfully",
+      "key_metrics": {
+        "stage": "READY_FOR_APPROVAL",
+        "network_health": 0.7953,
+        "risk_level": 3
+      },
+      "evidence_ids": [],
+      "timestamp": "2026-09-19T19:49:26.727548Z"
+    },
+    {
+      "step_index": 8,
+      "stage": "READY_FOR_APPROVAL",
+      "title": "9. Multi-Objective Pareto Optimization",
+      "status": "PENDING",
+      "duration_ms": 0.0,
+      "summary": "Waiting for step execution",
+      "key_metrics": {},
+      "evidence_ids": [],
+      "timestamp": "2026-09-19T19:49:26.727548Z"
+    },
+    {
+      "step_index": 9,
+      "stage": "READY_FOR_APPROVAL",
+      "title": "10. Sandbox Plan Verification",
+      "status": "PENDING",
+      "duration_ms": 0.0,
+      "summary": "Waiting for step execution",
+      "key_metrics": {},
+      "evidence_ids": [],
+      "timestamp": "2026-09-19T19:49:26.727548Z"
+    },
+    {
+      "step_index": 10,
+      "stage": "READY_FOR_APPROVAL",
+      "title": "11. Human Executive Decision Gate",
+      "status": "PENDING",
+      "duration_ms": 0.0,
+      "summary": "Waiting for step execution",
+      "key_metrics": {},
+      "evidence_ids": [],
+      "timestamp": "2026-09-19T19:49:26.727548Z"
+    },
+    {
+      "step_index": 11,
+      "stage": "READY_FOR_APPROVAL",
+      "title": "12. Final Resilience Scorecard & Report",
+      "status": "COMPLETED",
+      "duration_ms": 0.0,
+      "summary": "Waiting for step execution",
+      "key_metrics": {},
+      "evidence_ids": [],
+      "timestamp": "2026-09-19T19:49:26.727548Z"
+    }
+  ],
+  "generated_at": "2026-09-19T19:49:26.791501Z"
+}

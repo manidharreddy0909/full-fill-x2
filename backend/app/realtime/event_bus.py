@@ -85,7 +85,36 @@ class EventBus:
             except Exception as err:
                 logger.error(f"Error in EventBus callback subscriber: {err}", exc_info=True)
 
+        # Dispatch async persistence sink record
+        try:
+            await self._persist_event(envelope)
+        except Exception as err:
+            logger.warning(f"Error persisting event sink record: {err}")
+
         return envelope
+
+    async def _persist_event(self, envelope: EventEnvelope) -> None:
+        """Asynchronously record published event into database persistence sink."""
+        from app.config import settings
+        if settings.PERSISTENCE_MODE != "postgres":
+            return
+        try:
+            from app.db.session import get_async_sessionmaker
+            from app.models.db import EventHistoryModel
+            async with get_async_sessionmaker()() as session:
+                model = EventHistoryModel(
+                    event_type=envelope.event_type.value if hasattr(envelope.event_type, "value") else str(envelope.event_type),
+                    sequence=envelope.sequence,
+                    session_id=envelope.session_id,
+                    stage=envelope.stage,
+                    source=envelope.source,
+                    severity=envelope.severity.value if hasattr(envelope.severity, "value") else str(envelope.severity),
+                    payload=envelope.payload or {},
+                )
+                session.add(model)
+                await session.commit()
+        except Exception as ex:
+            logger.debug(f"Async event persistence sink error: {ex}")
 
     def publish_sync(
         self,

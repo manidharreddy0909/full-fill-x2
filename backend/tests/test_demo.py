@@ -115,7 +115,7 @@ async def test_demo_rejection_workflow():
     )
 
     # Fast forward to approval stage
-    while session.current_step_index < 7:
+    while session.current_step_index < len(session.timeline) - 1:
         session = await service.step_demo(session.session_id)
 
     # Reject decision
@@ -128,7 +128,8 @@ async def test_demo_rejection_workflow():
     assert session.status == DemoStatus.REJECTED
 
 
-def test_demo_report_generator(tmp_path):
+@pytest.mark.asyncio
+async def test_demo_report_generator(tmp_path):
     """Test structured JSON and Markdown report artifact generation."""
     service = DemoService.get_instance()
     service.reset_demo()
@@ -136,9 +137,8 @@ def test_demo_report_generator(tmp_path):
     # Create dummy completed session
     session = service._active_session
     if not session:
-        import asyncio
-        session = asyncio.run(service.start_demo(scenario_id=DemoScenarioId.DEMO_05, seed=42))
-        session = asyncio.run(service.approve_plan(session.session_id))
+        session = await service.start_demo(scenario_id=DemoScenarioId.DEMO_05, seed=42)
+        session = await service.approve_plan(session.session_id)
 
     out_dir = str(tmp_path / "artifacts" / "demo")
     report = DemoReportGenerator.generate_report(session, output_dir=out_dir)

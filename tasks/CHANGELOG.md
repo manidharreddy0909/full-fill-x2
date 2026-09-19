@@ -3,6 +3,30 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.2.0] — 2026-09-19 — Phase 2: Real Data Platform (Free-First / Local-First)
+
+### Added
+
+**Free-First Layered Persistence Architecture (`backend/app/db/`, `backend/app/models/db.py`, `backend/alembic/`)**
+- Layered persistence layer supporting local open-source infrastructure (PostgreSQL 16, Redis 7) with zero-overhead fallback to `MEMORY` mode.
+- SQLAlchemy 2.0 async ORM models & Alembic migrations (`001_initial_schema.py`) covering all 12 platform entities: `world_snapshots`, `signals`, `risk_snapshots`, `scenarios`, `agent_proposals`, `candidate_plans`, `verification_reports`, `approval_decisions`, `evaluation_runs`, `audit_events`, `event_history`, and `data_provenance`.
+- Concrete PostgreSQL repository adapters (`PostgresWorldRepository`, `PostgresRiskRepository`, `PostgresEvaluationRepository`).
+
+**Data Platform Service & Quality Engine (`backend/app/services/data.py`, `backend/app/api/data.py`)**
+- `DataPlatformService` handling data provenance recording, automated data quality checks (orphan edge/signal validation), deterministic seeding (`seed=42`), JSON/JSONL/CSV import/export, and configurable data retention policies.
+- Persistent `EventBus` event sink recording live events asynchronously to `event_history` without blocking WebSockets.
+- REST endpoints registered under `/api/data/*` (`/status`, `/stats`, `/provenance`, `/quality`, `/seed`, `/export`, `/import`).
+
+**Operational Data Platform Frontend View (`frontend/src/components/data/DataFoundation.tsx`, `Navbar.tsx`, `App.tsx`)**
+- Created `DataFoundation.tsx` providing real-time storage mode monitoring, record count statistics, quality scores, deterministic seeding triggers, export format options (JSON, JSONL, CSV), and file import interface.
+- Registered top-level `DATA` workspace tab in primary application navigation shell.
+
+**Comprehensive Specifications & Documentation (`docs/`)**
+- Authored `FREE_FIRST_ARCHITECTURE.md`, `DATA_PLATFORM_SPEC.md`, `DATA_MODEL.md`, `DATABASE_SPEC.md`, `DATA_PROVENANCE_SPEC.md`, `DATA_MIGRATION_GUIDE.md`, and added `ADR-032` to `DECISION_LOG.md`.
+- Authored unit test suites `backend/tests/test_database.py` and `backend/tests/test_data_platform.py` (7/7 PASS).
+
+---
+
 ## [1.1.0] — 2026-09-19 — Phase 1: Real AWS + Production Infrastructure
 
 ### Added

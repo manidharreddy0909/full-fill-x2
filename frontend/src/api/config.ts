@@ -12,6 +12,8 @@ export const getApiBaseUrl = (): string => {
   return 'http://localhost:8000/api';
 };
 
+export const API_BASE_URL = getApiBaseUrl();
+
 export const getWsBaseUrl = (): string => {
   const envWs = (import.meta as any).env?.VITE_WS_URL;
   if (envWs) {

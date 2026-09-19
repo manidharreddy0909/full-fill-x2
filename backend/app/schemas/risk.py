@@ -53,3 +53,23 @@ class RiskScoreMap(BaseModel):
     explanations: dict[str, RiskExplanation] = Field(default_factory=dict)
     network_health: float = Field(default=1.0, ge=0.0, le=1.0)
     highest_risk_nodes: list[str] = Field(default_factory=list)
+
+    @property
+    def average_risk_score(self) -> float:
+        if not self.node_risks:
+            return 0.0
+        return round(sum(nr.composite for nr in self.node_risks.values()) / len(self.node_risks), 4)
+
+    @property
+    def overall_risk_level(self) -> RiskLevel:
+        if not self.node_risks:
+            return RiskLevel.LOW
+        max_comp = max(nr.composite for nr in self.node_risks.values())
+        if max_comp >= 0.85:
+            return RiskLevel.CRITICAL
+        if max_comp >= 0.60:
+            return RiskLevel.HIGH
+        if max_comp >= 0.25:
+            return RiskLevel.MEDIUM
+        return RiskLevel.LOW
+

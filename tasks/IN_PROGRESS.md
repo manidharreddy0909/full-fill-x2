@@ -7,7 +7,7 @@
 
 ## Currently In Progress
 
-*(Empty — Phase 16 Competition Demo Mode, Guided Scenario Engine & Judge-Facing Demonstration Complete)*
+*(Empty — Phase 2 Real Data Platform (Free-First / Local-First) Complete)*
 
 ---
 
@@ -19,4 +19,4 @@
 
 ---
 
-*Last updated: Phase 16 — Competition Demo Mode, Guided Scenario Engine & Judge-Facing Demonstration Complete*
+*Last updated: Phase 2 — Real Data Platform (Free-First / Local-First) Complete*

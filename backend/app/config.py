@@ -30,6 +30,14 @@ class Settings(BaseModel):
     AWS_REGION: str = os.getenv("AWS_REGION", "us-east-1")
     AWS_BEDROCK_MODEL_ID: str = os.getenv("AWS_BEDROCK_MODEL_ID", "anthropic.claude-3-sonnet-20240229-v1:0")
     
+    # Phase 2 Persistence & Data Platform Settings
+    PERSISTENCE_MODE: str = os.getenv("PERSISTENCE_MODE", "memory").lower()  # "memory" or "postgres"
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "postgresql+asyncpg://fulfillx:fulfillx_secret_pass@localhost:5432/fulfillx_db")
+    REDIS_URL: str = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+    RETENTION_EVENTS_DAYS: int = int(os.getenv("RETENTION_EVENTS_DAYS", "90"))
+    RETENTION_SIGNALS_DAYS: int = int(os.getenv("RETENTION_SIGNALS_DAYS", "180"))
+    RETENTION_RISKS_DAYS: int = int(os.getenv("RETENTION_RISKS_DAYS", "180"))
+    
     # Security & limits
     WS_MAX_CONNECTIONS_PER_SESSION: int = int(os.getenv("WS_MAX_CONNECTIONS_PER_SESSION", "50"))
     MAX_REQUEST_BODY_BYTES: int = int(os.getenv("MAX_REQUEST_BODY_BYTES", "10485760"))  # 10MB
