@@ -5,6 +5,40 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [0.3.0] — 2026-09-19 — Phase 02: World Model + Synthetic Data + First Vertical Slice
+
+### Added
+
+**Backend World Model Architecture (`backend/app/`)**
+- `backend/app/schemas/world.py` — Strict Pydantic v2 schemas: `Position3D`, `NodeRiskScores`, `WorldNode`, `WorldEdge`, `Product`, `InventoryRecord`, `Order`, `Shipment`, `Commitment`, `WorldStateSnapshot`, `WorldSummary`, `ApiResponse`.
+- `backend/app/models/world.py` — `SupplyNetworkGraph` in-memory graph domain model with fast adjacency indices (`_outgoing_edges`, `_incoming_edges`, `_nodes_by_type`), snapshot serialization, and health/risk computation.
+- `backend/app/generator/synthetic.py` — `SyntheticDataGenerator` seeded random network generator (5 suppliers, 3 ports, 3 warehouses, 2 FCs, 10 customer zones, 3 products, inventory, orders, commitments, route & dependency edges). Guarantees `seed=42 == seed=42` deterministic reproduction. Presets: `healthy`, `double_punch`.
+- `backend/app/repository/world.py` — Thread-safe `WorldRepository` state store supporting atomic snapshots, seeding, resetting, and summary metric aggregation.
+- `backend/app/services/world.py` — Business logic `WorldService` exposing graph operations and graph visualizer layout transforms.
+- `backend/app/api/world.py` — Typed FastAPI REST endpoints: `GET /api/world`, `GET /api/world/summary`, `GET /api/world/graph`, `GET /api/world/nodes/{id}`, `GET /api/world/edges/{id}`, `POST /api/world/seed`, `POST /api/world/reset`.
+- `backend/app/main.py` — FastAPI server with CORS middleware enabling frontend communication.
+
+**Backend Automated Test Suite (`backend/tests/`)**
+- `test_schemas.py` — Pydantic schema validation, clamping, range constraints, and serialization tests (5/5 PASS).
+- `test_generator.py` — Deterministic seed reproduction, preset overlay, structural graph integrity tests (5/5 PASS).
+- `test_repository.py` — Thread-safe state store, singleton, snapshot restore, summary metric tests (4/4 PASS).
+- `test_api.py` — REST API integration tests using FastAPI `TestClient` (6/6 PASS).
+
+**Frontend World Model Vertical Slice (`frontend/`)**
+- Full Vite + React 18 + TypeScript application.
+- `frontend/src/types/world.ts` — TypeScript interfaces matching backend Pydantic models.
+- `frontend/src/api/worldApi.ts` — Fetch client connecting to REST endpoints with offline preview fallback.
+- `frontend/src/components/common/Navbar.tsx` — Top Header with preset switcher, seed input controller, 2D/3D toggle, and live health pill.
+- `frontend/src/components/world/WorldSummaryBar.tsx` — Network KPI bar displaying node counts by type, total inventory, utilization, disruptions, and health score.
+- `frontend/src/components/world/World2DView.tsx` — Operational 2D 5-Tier layout displaying interactive nodes, risk borders, stock meters, and disruption indicators.
+- `frontend/src/components/world/World3DView.tsx` — React Three Fiber + Three.js + Drei spatial scene renderer mapping real node 3D coordinates, custom geometries, floating HTML labels, and route lines.
+- `frontend/src/components/world/NodeInspector.tsx` — Drawer panel exposing node details, multi-dimensional risk breakdown matrix (Financial, SLA, Operational, Sustainability), inventory meters, and connected routes.
+
+**Architecture Decisions**
+- Added `ADR-015: World Model Vertical Slice & Deterministic Graph Architecture` to `docs/DECISION_LOG.md`.
+
+---
+
 ## [0.2.0] — 2026-09-18 — Phase 01: Complete Product Intelligence & Architecture Mapping
 
 ### Added

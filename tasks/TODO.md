@@ -4,30 +4,36 @@
 
 ---
 
-## Phase 01 — World Model & Synthetic Data
+## Phase 02 — World Model + Synthetic Data + First Vertical Slice [COMPLETED]
 
 | ID | Description | Dependencies | Status |
 |----|-------------|-------------|--------|
-| P01-001 | Create Pydantic schemas for WorldNode, WorldEdge, WorldStateSnapshot | P00 complete | PLANNED |
-| P01-002 | Implement SQLAlchemy ORM models (world_nodes, world_edges) | P01-001 | PLANNED |
-| P01-003 | Implement Alembic migration: initial schema | P01-002 | PLANNED |
-| P01-004 | Implement SyntheticDataGenerator (5 suppliers, 3 WH, 2 FC, 10 customers) | P01-001 | PLANNED |
-| P01-005 | Implement WorldModelEngine (CRUD + graph operations) | P01-002 | PLANNED |
-| P01-006 | Write unit tests: test_world_model.py | P01-005 | PLANNED |
-| P01-007 | Verify: pytest test_world_model.py passes (all green) | P01-006 | PLANNED |
-| P01-008 | Commit P01 | P01-007 | PLANNED |
+| P02-001 | World Pydantic Schemas (`backend/app/schemas/world.py`) | Phase 01 complete | DONE |
+| P02-002 | Domain Model / World State (`backend/app/models/world.py`) | P02-001 | DONE |
+| P02-003 | Deterministic Synthetic Network Generator (`backend/app/generator/synthetic.py`) | P02-001 | DONE |
+| P02-004 | World Repository / State Store (`backend/app/repository/world.py`) | P02-002 | DONE |
+| P02-005 | World Service (`backend/app/services/world.py`) | P02-004 | DONE |
+| P02-006 | World REST API (`backend/app/api/world.py`) | P02-005 | DONE |
+| P02-007 | World Serialization / Snapshot | P02-002 | DONE |
+| P02-008 | Deterministic Reproduction Tests (`tests/test_world_model.py`) | P02-003 | DONE |
+| P02-009 | Frontend World-State Integration (`frontend/src/`) | P02-006 | DONE |
+| P02-010 | 2D Supply-Chain Visualization (`frontend/src/components/world/World2DView.tsx`) | P02-009 | DONE |
+| P02-011 | Initial 3D World Data Adapter (`frontend/src/components/world/World3DView.tsx`) | P02-009 | DONE |
+| P02-012 | World Model Integration Tests | P02-008 | DONE |
+| P02-013 | Documentation / Diagrams / Handoff | P02-012 | DONE |
 
-## Phase 02 — Risk Engine
+## Phase 03 — Risk Engine Implementation
 
 | ID | Description | Dependencies | Status |
 |----|-------------|-------------|--------|
-| P02-001 | Implement multi-dimensional risk scoring (financial, SLA, operational, sustainability) | P01-005 | PLANNED |
-| P02-002 | Implement risk propagation (BFS through graph, max 3 hops, decay factor) | P02-001 | PLANNED |
-| P02-003 | Implement signal → risk delta mapping | P02-001 | PLANNED |
-| P02-004 | Implement RiskEngine.compute(world_state, signals) → RiskScoreMap | P02-001,P02-002 | PLANNED |
-| P02-005 | Write unit tests: test_risk_engine.py | P02-004 | PLANNED |
-| P02-006 | Verify: all risk tests pass; risk scores in [0,1] | P02-005 | PLANNED |
-| P02-007 | Commit P02 | P02-006 | PLANNED |
+| P03-001 | Signal Fusion Engine (`backend/app/engine/fusion.py` - 6-hour window deduplication) | P02 complete | PLANNED |
+| P03-002 | Direct Impact Risk Scorer (`backend/app/engine/direct_risk.py`) | P03-001 | PLANNED |
+| P03-003 | Multi-Dimensional Risk Decomposition (financial, SLA, operational, sustainability) | P03-002 | PLANNED |
+| P03-004 | BFS Risk Propagation Engine (`backend/app/engine/propagation.py` - decay factor 0.6) | P03-003 | PLANNED |
+| P03-005 | Risk Engine REST API (`/api/risks` endpoints) | P03-004 | PLANNED |
+| P03-006 | Risk Propagation Unit & Integration Tests (`backend/tests/test_risk_engine.py`) | P03-005 | PLANNED |
+| P03-007 | Frontend Risk Explorer Integration (`frontend/src/components/risk/`) | P03-005 | PLANNED |
+
 
 ## Phase 03 — Scenario Engine
 

@@ -1,0 +1,97 @@
+:root {
+  /* Color Palette — FULFILL-X Design System */
+  --bg-canvas: #080d14;
+  --bg-surface: #0d1520;
+  --bg-surface-elevated: #111c2a;
+  --bg-overlay: #162030;
+
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-default: rgba(255, 255, 255, 0.12);
+  --border-accent: rgba(91, 147, 246, 0.5);
+
+  --text-primary: #e8eeff;
+  --text-secondary: #8899ae;
+  --text-tertiary: #4a5c72;
+  --text-accent: #5b93f6;
+
+  --color-healthy: #34c77b;
+  --color-warning: #f5a623;
+  --color-critical: #e8503a;
+  --color-disrupted: #ff3b30;
+
+  --color-supplier: #3b82f6;
+  --color-port: #8b5cf6;
+  --color-warehouse: #06b6d4;
+  --color-fc: #10b981;
+  --color-cz: #f59e0b;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --shadow-panel: 0 8px 32px rgba(0, 0, 0, 0.45);
+  --shadow-glow-blue: 0 0 20px rgba(91, 147, 246, 0.3);
+  --shadow-glow-red: 0 0 20px rgba(255, 59, 48, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-overlay);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.glass-panel {
+  background: rgba(13, 21, 32, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  box-shadow: var(--shadow-panel);
+}
+
+.pulse-red {
+  animation: pulse-red-anim 2s infinite ease-in-out;
+}
+
+@keyframes pulse-red-anim {
+  0% { box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.6); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 59, 48, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 59, 48, 0); }
+}
+
+.pulse-green {
+  animation: pulse-green-anim 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse-green-anim {
+  0% { box-shadow: 0 0 0 0 rgba(52, 199, 123, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(52, 199, 123, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 199, 123, 0); }
+}

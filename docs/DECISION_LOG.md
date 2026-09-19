@@ -328,5 +328,23 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 01 — Architecture Mapping Complete*
+## ADR-015: World Model Vertical Slice & Seeded Determinism
+
+**Date**: 2026-09-19
+**Status**: ACCEPTED
+**Phase**: 02
+
+**Context**: Need a foundational World Model that serves as the single source of truth for all downstream risk calculations, scenario generation, specialist AI agents, 2D topology graphs, and 3D spatial visualizers.
+
+**Decision**: Implement `SupplyNetworkGraph` in Python with explicit Pydantic v2 schemas (`WorldNode`, `WorldEdge`, `WorldStateSnapshot`, `Position3D`, `NodeRiskScores`), backed by `SyntheticDataGenerator` using centralized `random.Random(seed)`.
+
+**Rationale**:
+- Guaranteed exact seed reproducibility (`seed=42 == seed=42`) across test harnesses, backend APIs, and frontend visualizers.
+- Strict control boundary prevents unvalidated AI outputs from mutating state directly.
+- Single dataset drives both 2D operational topology and 3D React Three Fiber spatial rendering.
+
+---
+
+*Last updated: Phase 02 — World Model Complete*
+
 

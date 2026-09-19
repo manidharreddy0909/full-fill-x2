@@ -77,5 +77,26 @@
 
 ---
 
+## Phase 02 — World Model + Synthetic Data + First Vertical Slice
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P02-001 | World Pydantic Schemas (`backend/app/schemas/world.py`) | DONE | `pytest backend/tests/test_schemas.py` 5/5 PASS | TBD |
+| P02-002 | Domain Model / World State (`backend/app/models/world.py`) | DONE | `SupplyNetworkGraph` in-memory graph structure & adjacency | TBD |
+| P02-003 | Deterministic Synthetic Generator (`backend/app/generator/synthetic.py`) | DONE | `pytest backend/tests/test_generator.py` 5/5 PASS (5 sup, 3 WH, 2 FC, 10 CZ, 3 ports) | TBD |
+| P02-004 | World Repository / State Store (`backend/app/repository/world.py`) | DONE | `pytest backend/tests/test_repository.py` 4/4 PASS | TBD |
+| P02-005 | World Service (`backend/app/services/world.py`) | DONE | Business logic & graph layout transformation | TBD |
+| P02-006 | World REST API (`backend/app/api/world.py`) | DONE | `pytest backend/tests/test_api.py` 6/6 PASS (`/api/world`, `/summary`, `/seed`, `/reset`) | TBD |
+| P02-007 | World Serialization / Snapshot | DONE | `to_snapshot()` & `from_snapshot()` equality PASS | TBD |
+| P02-008 | Deterministic Reproduction Tests | DONE | `seed=42 == seed=42` and `seed=42 != seed=43` PASS | TBD |
+| P02-009 | Frontend World-State Integration (`frontend/src/`) | DONE | React 18 + TS app fetching live REST API state | TBD |
+| P02-010 | 2D Supply-Chain Visualization (`frontend/src/components/world/World2DView.tsx`) | DONE | 5-Tier layout (Suppliers → Ports → Warehouses → FCs → Customer Zones) | TBD |
+| P02-011 | Initial 3D World Data Adapter (`frontend/src/components/world/World3DView.tsx`) | DONE | React Three Fiber + Three.js + Drei spatial scene renderer | TBD |
+| P02-012 | World Model Integration Tests | DONE | 20/20 pytest tests PASS; `npm run build` PASS | TBD |
+| P02-013 | Documentation / Diagrams / Handoff | DONE | `docs/HANDOFF.md`, `CHANGELOG.md`, `DECISION_LOG.md` updated | TBD |
+
+---
+
 *Commit hashes to be filled in after `git commit` completes.*
+
 
