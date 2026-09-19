@@ -2,7 +2,7 @@ import React from 'react';
 import { Activity, ShieldAlert, RefreshCw, Cpu, Layers, Box, Bot, Sparkles, LayoutDashboard, Database, Shield, Lock, Radio, Brain, GitFork } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 
-export type ProductTab = 'COMMAND' | 'WORLD' | 'INTELLIGENCE' | 'RESPONSE' | 'DECISION' | 'EVALUATION' | 'DEMO' | 'DATA' | 'SECURITY' | 'OBSERVABILITY' | 'PREDICTIVE_ML' | 'GRAPH_INTELLIGENCE' | 'SIMULATION';
+export type ProductTab = 'COMMAND' | 'WORLD' | 'INTELLIGENCE' | 'RESPONSE' | 'DECISION' | 'EVALUATION' | 'DEMO' | 'DATA' | 'SECURITY' | 'OBSERVABILITY' | 'PREDICTIVE_ML' | 'GRAPH_INTELLIGENCE' | 'SIMULATION' | 'RESILIENCE_AGENTS';
 
 interface NavbarProps {
   activeTab: ProductTab;
@@ -57,6 +57,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { tab: 'PREDICTIVE_ML', label: 'Predictive ML', icon: <Brain size={14} /> },
     { tab: 'GRAPH_INTELLIGENCE', label: 'Graph GNN', icon: <GitFork size={14} /> },
     { tab: 'SIMULATION', label: 'Monte Carlo Twin', icon: <Layers size={14} /> },
+    { tab: 'RESILIENCE_AGENTS', label: 'Resilience Agents', icon: <Bot size={14} /> },
   ];
 
   return (

@@ -42,6 +42,9 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.GNN_READ, Permission.GNN_TRAIN, Permission.GNN_EVALUATE, Permission.GNN_ACTIVATE, Permission.GNN_RETIRE, Permission.GNN_PREDICT, Permission.GNN_MANAGE,
         Permission.CAUSAL_READ, Permission.CAUSAL_ANALYZE, Permission.CAUSAL_COUNTERFACTUAL, Permission.CAUSAL_MANAGE,
         Permission.TWIN_READ, Permission.TWIN_CREATE, Permission.TWIN_MANAGE, Permission.SIMULATION_MANAGE, Permission.RESILIENCE_READ, Permission.RESILIENCE_ANALYZE, Permission.RESILIENCE_MANAGE, Permission.STRATEGY_SIMULATE,
+        Permission.AGENT_MEMORY_READ, Permission.AGENT_MEMORY_WRITE, Permission.AGENT_DELIBERATE, Permission.AGENT_DEBATE, Permission.AGENT_PERFORMANCE_READ,
+        Permission.OUTCOME_READ, Permission.OUTCOME_WRITE, Permission.FEEDBACK_READ, Permission.FEEDBACK_WRITE,
+        Permission.LEARNING_READ, Permission.LEARNING_DATASET_CREATE, Permission.LEARNING_TRAIN, Permission.LEARNING_EVALUATE, Permission.LEARNING_ACTIVATE, Permission.LEARNING_RETIRE, Permission.LEARNING_MANAGE,
         Permission.SYSTEM_ADMIN,
     ],
     SystemRole.OPERATOR: [
@@ -62,6 +65,9 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.ML_READ, Permission.ML_TRAIN, Permission.ML_PREDICT, Permission.ML_EVALUATE,
         Permission.GRAPH_READ, Permission.GRAPH_ANALYZE, Permission.GNN_READ, Permission.GNN_PREDICT, Permission.CAUSAL_READ, Permission.CAUSAL_COUNTERFACTUAL,
         Permission.TWIN_READ, Permission.TWIN_CREATE, Permission.RESILIENCE_READ, Permission.RESILIENCE_ANALYZE, Permission.STRATEGY_SIMULATE,
+        Permission.AGENT_MEMORY_READ, Permission.AGENT_MEMORY_WRITE, Permission.AGENT_DELIBERATE, Permission.AGENT_DEBATE, Permission.AGENT_PERFORMANCE_READ,
+        Permission.OUTCOME_READ, Permission.OUTCOME_WRITE, Permission.FEEDBACK_READ, Permission.FEEDBACK_WRITE,
+        Permission.LEARNING_READ, Permission.LEARNING_TRAIN, Permission.LEARNING_EVALUATE,
     ],
     SystemRole.ANALYST: [
         Permission.WORLD_READ,
@@ -81,6 +87,8 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.ML_READ, Permission.ML_PREDICT, Permission.ML_EVALUATE,
         Permission.GRAPH_READ, Permission.GRAPH_ANALYZE, Permission.GNN_READ, Permission.GNN_PREDICT, Permission.CAUSAL_READ, Permission.CAUSAL_ANALYZE, Permission.CAUSAL_COUNTERFACTUAL,
         Permission.TWIN_READ, Permission.TWIN_CREATE, Permission.RESILIENCE_READ, Permission.RESILIENCE_ANALYZE, Permission.STRATEGY_SIMULATE,
+        Permission.AGENT_MEMORY_READ, Permission.AGENT_DELIBERATE, Permission.AGENT_DEBATE, Permission.AGENT_PERFORMANCE_READ,
+        Permission.OUTCOME_READ, Permission.FEEDBACK_READ, Permission.LEARNING_READ, Permission.LEARNING_EVALUATE,
     ],
     SystemRole.VIEWER: [
         Permission.WORLD_READ,
@@ -98,6 +106,7 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.ML_READ,
         Permission.GRAPH_READ, Permission.GNN_READ, Permission.CAUSAL_READ,
         Permission.TWIN_READ, Permission.RESILIENCE_READ,
+        Permission.AGENT_MEMORY_READ, Permission.AGENT_PERFORMANCE_READ, Permission.OUTCOME_READ, Permission.FEEDBACK_READ, Permission.LEARNING_READ,
     ],
     SystemRole.AUDITOR: [
         Permission.WORLD_READ,

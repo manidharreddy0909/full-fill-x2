@@ -28,6 +28,7 @@ import { ObservabilityCenter } from './components/observability/ObservabilityCen
 import { PredictiveIntelligence } from './components/ml/PredictiveIntelligence';
 import { GraphIntelligence } from './components/graph/GraphIntelligence';
 import { DigitalTwinWorkspace } from './components/simulation/DigitalTwinWorkspace';
+import { ResilienceAgentsWorkspace } from './components/learning/ResilienceAgentsWorkspace';
 import { IdentityGateway } from './components/auth/IdentityGateway';
 import { EventToastContainer } from './components/common/EventToastContainer';
 import { useRealtimeStore } from './store/realtimeStore';
@@ -241,6 +242,8 @@ export const App: React.FC = () => {
           <GraphIntelligence />
         ) : activeTab === 'SIMULATION' ? (
           <DigitalTwinWorkspace />
+        ) : activeTab === 'RESILIENCE_AGENTS' ? (
+          <ResilienceAgentsWorkspace />
         ) : activeTab === 'RESPONSE' ? (
           <div className="max-w-7xl mx-auto p-6">
             <SpecialistWarRoom

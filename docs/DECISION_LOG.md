@@ -924,7 +924,32 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 8 — Digital Twin & Monte Carlo Resilience Engine Complete*
+## ADR-039: Multi-Agent Resilience & Continuous Learning Platform
+
+**Date**: 2026-09-20
+**Status**: ACCEPTED
+**Phase**: 09
+
+**Context**: Phase 8 answered what happens across many possible futures via Monte Carlo simulation. Phase 9 must answer how specialist agents collaborate, debate, and continuously learn from decision outcomes without uncontrolled self-modification or memory leakage.
+
+**Decision**:
+1. **Evidence-First Multi-Agent Deliberation & Bounded Debate**: Implemented `BoundedDebateEngine` executing multi-round structured debate (max 3 rounds) among specialist agents, Adversary, and Verification Agent to resolve consensus (`UNANIMOUS`, `SUPERMAJORITY`, `DISAGREEMENT`, `REJECTED_BY_VERIFICATION`) with complete `DecisionEvidenceBundle` provenance links.
+2. **Structured Agent Memory Subsystem**: Implemented `AgentMemoryEngine` managing structured operational memories (`CASE`, `DECISION`, `OUTCOME`, `FAILURE`, `SUCCESS`, `CONSTRAINT`, `PATTERN`, `LESSON`), strength decay rates, validation boosting, and strict multi-tenant isolation (`organization_id`).
+3. **Agent Calibration & Performance Tracker**: Implemented `AgentPerformanceTracker` tracking specialist proposal counts, verification survival rates, simulation agreement rates, and calibration MAE/RMSE metrics.
+4. **Expected vs Actual Outcome Capture & Feedback Loop**: Implemented `OutcomeEngine` calculating metric deviations (SLA gaps, cost overruns, TTR deviations) and `FeedbackEngine` generating structured feedback records (`CORRECT`, `PARTIALLY_CORRECT`, `INCORRECT`).
+5. **Continuous Learning Pipeline & Challenger Model Governance**: Implemented `ContinuousLearningPipeline` creating versioned training datasets, training Challenger candidate models, enforcing human approval activation gates (`activate_challenger`), and providing safety one-click model rollback (`rollback_model`).
+6. **Persistence, RBAC & API**: Database schema `008_multi_agent_learning.py`, SQLAlchemy models (`backend/app/models/learning.py`), 17 RBAC permissions (`AGENT_MEMORY_*`, `OUTCOME_*`, `LEARNING_*`), 15 realtime event types, and `/api/agents/resilience/*`, `/api/agents/memory/*`, `/api/agents/performance/*`, `/api/outcomes/*`, `/api/feedback/*`, `/api/learning/*` REST endpoints.
+7. **Cinematic Frontend Workspace**: Implemented `ResilienceAgentsWorkspace.tsx` featuring Agent War Room Calibration Matrix, Live Deliberation & Debate Visualizer, Decision Evidence Bundle Inspector, Structured Memory Explorer, Outcome Explorer, and Continuous Learning Console.
+
+**Rationale**:
+- Enforces strict safety, multi-tenant isolation, human-in-the-loop model governance, and evidence-first decision provenance.
+
+**Consequences**:
+- Phase 9 Multi-Agent Resilience & Continuous Learning Platform is 100% complete, fully unit tested, integrated into the full 225+ regression test suite, verified with 3-run deterministic demo pass, frontend production built, and documented.
+
+---
+
+*Last updated: Phase 9 — Multi-Agent Resilience & Continuous Learning Platform Complete*
 
 
 
