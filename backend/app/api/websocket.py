@@ -45,10 +45,12 @@ async def handle_websocket_connection(websocket: WebSocket, session_id: Optional
             token = auth_hdr[7:].strip()
 
     org_id = "org-fulfillx-default"
+    user_id = None
     if token:
         try:
             sec_ctx = AuthService.get_instance().build_security_context_from_token(token)
             org_id = sec_ctx.organization_id
+            user_id = sec_ctx.user_id
         except Exception as auth_err:
             logger.warning(f"Rejecting WS connection due to invalid token: {auth_err}")
             await websocket.close(code=1008, reason="Authentication failed: invalid token")
@@ -60,14 +62,12 @@ async def handle_websocket_connection(websocket: WebSocket, session_id: Optional
         await websocket.close(code=1008, reason="Max session connection limit exceeded")
         return
 
-    await websocket_manager.connect(websocket, session_id=session_id)
+    await websocket_manager.connect(websocket, session_id=session_id, organization_id=org_id, user_id=user_id)
 
     # Replay catch-up events if session_id is provided, filtered by org_id
     if session_id:
-        recent_events = event_bus.get_replay_events(session_id=session_id, since_sequence=0, max_count=50)
+        recent_events = event_bus.get_replay_events(session_id=session_id, since_sequence=0, max_count=50, organization_id=org_id)
         for event in recent_events:
-            if hasattr(event, "organization_id") and event.organization_id != org_id and event.organization_id != "org-fulfillx-default":
-                continue
             await websocket_manager.send_event(websocket, event)
 
     try:
@@ -85,10 +85,12 @@ async def handle_websocket_connection(websocket: WebSocket, session_id: Optional
                 client_msg = ClientWsMessage.model_validate(msg_dict)
 
                 if client_msg.action == ClientWsAction.PING:
+                    websocket_manager.update_heartbeat(websocket)
                     pong_event = EventEnvelope(
                         event_type=EventType.SYSTEM_WARNING,
                         payload={"status": "PONG", "received_at": client_msg.payload.get("timestamp")},
                         session_id=session_id,
+                        organization_id=org_id,
                         source="websocket_server",
                         severity=EventSeverity.INFO,
                     )

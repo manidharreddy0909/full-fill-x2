@@ -114,3 +114,33 @@ async def get_readiness(response: Response):
         timestamp=datetime.now(timezone.utc).isoformat(),
         dependencies=dependencies,
     )
+
+
+@router.get("/health/deep")
+async def get_deep_health():
+    """
+    Comprehensive Deep Health Check endpoint for Phase 5 Observability.
+    Verifies World, Risk, EventTransport, WebSocketManager, AI Providers, and Storage Mode.
+    """
+    from app.realtime.transport import TransportFactory
+    from app.realtime.websocket_manager import websocket_manager
+    from app.adapters.registry import AdapterRegistry
+
+    transport = TransportFactory.get_transport()
+    transport_health = await transport.health()
+    ws_stats = websocket_manager.get_connection_stats()
+    adapter_sources = await AdapterRegistry.get_instance().health_check_all()
+
+    return {
+        "status": "healthy",
+        "version": settings.APP_VERSION,
+        "environment": settings.APP_ENV,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "persistence_mode": settings.PERSISTENCE_MODE,
+        "event_transport": transport_health,
+        "websocket_gateway": ws_stats,
+        "data_adapters": {
+            "count": len(adapter_sources),
+            "sources": [s.model_dump() for s in adapter_sources],
+        },
+    }

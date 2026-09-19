@@ -820,7 +820,33 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 4 — Real-World Data & Supply-Chain Integrations Complete*
+## ADR-035: Distributed Realtime and Observability Architecture
+
+**Date**: 2026-09-19  
+**Status**: ACCEPTED  
+**Phase**: 5 (Distributed Realtime + Observability)  
+
+**Context**: FULFILL-X required a production-grade, observable, horizontally extensible event-driven system evolving from in-process eventing to distributed event transport, idempotency engine, structured telemetry, Prometheus metrics, and operational alert management while remaining Free-First and multi-tenant isolated.
+
+**Decision**:
+1. **Event Transport Abstraction (`EventTransport`)**: Created `EventTransport` protocol interface with `InMemoryEventTransport` (Free-First default) and `RedisEventTransport` (Redis Streams & Consumer Groups with zero-downtime fallback to memory).
+2. **Hardened Event Contract & Trace Context**: Augmented `EventEnvelope` with `correlation_id`, `causation_id`, `producer`, `metadata`, and `schema_version` (v1.0.0).
+3. **Idempotency Engine**: Implemented `IdempotencyEngine` preventing duplicate event processing on `(event_id, consumer_id)` backed by `idempotency_records` table & Alembic migration `004_distributed_realtime_observability.py`.
+4. **Hardened Realtime Gateway**: Implemented JWT authentication & `SecurityContext` registration on WebSocket connect, per-client bounded queues (`MAX_QUEUE_SIZE = 1000`), priority retention (`CRITICAL`/`HIGH` events never dropped), and heartbeat tracking.
+5. **Observability & Telemetry Subsystem**: Created `StructuredJsonFormatter` logging with secret redaction, `TracingSpan` context propagation, `MetricsRegistry` Prometheus exporter (`/metrics`), `/health/deep` readiness check, and `AlertEngine` with fingerprint deduplication, cooldown (`300s`), and `/api/observability/*` REST endpoints.
+6. **Operations Observatory Workspace**: Created `ObservabilityCenter.tsx` frontend featuring System Pulse, Event Pipeline Flow visualizer, Live Event Stream, Trace Explorer, Alert Center, and Deep Health component breakdown.
+7. **Comprehensive Specs**: Authored `DISTRIBUTED_EVENT_ARCHITECTURE.md`, `EVENT_TRANSPORT_SPEC.md`, `EVENT_SCHEMA_SPEC.md`, `EVENT_REPLAY_SPEC.md`, `REALTIME_ARCHITECTURE.md`, `OBSERVABILITY_ARCHITECTURE.md`, `METRICS_SPEC.md`, `TRACING_SPEC.md`, `ALERTING_SPEC.md`, `OPERATIONS_RUNBOOK.md`, `FAILURE_MODES.md`.
+
+**Rationale**:
+- Evolves FULFILL-X into a production-capable, observable, event-driven intelligence platform with 100% free-first local operation and zero cloud vendor lock-in.
+
+**Consequences**:
+- Phase 5 Distributed Realtime + Observability is fully completed, tested, verified, and documented.
+
+---
+
+*Last updated: Phase 5 — Distributed Realtime + Observability Complete*
+
 
 
 

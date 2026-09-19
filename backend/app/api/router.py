@@ -19,6 +19,8 @@ from app.api.demo import router as demo_router
 from app.api.data import router as data_router
 from app.api.ingestion import router as ingestion_router
 from app.api.auth import router as auth_router
+from app.api.observability import router as observability_router
+from app.core.metrics import metrics_registry
 from app.schemas.world import ApiResponse
 
 api_router = APIRouter()
@@ -39,6 +41,15 @@ api_router.include_router(evaluation_router)
 api_router.include_router(demo_router)
 api_router.include_router(data_router)
 api_router.include_router(ingestion_router)
+api_router.include_router(observability_router)
+
+
+@api_router.get("/metrics", tags=["Observability & Telemetry"])
+@api_router.get("/api/metrics", tags=["Observability & Telemetry"])
+def get_prometheus_metrics():
+    """Prometheus exposition format endpoint."""
+    from fastapi.responses import PlainTextResponse
+    return PlainTextResponse(metrics_registry.generate_prometheus_text())
 
 
 

@@ -3,6 +3,42 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.5.0] — 2026-09-19 — Phase 5: Distributed Realtime + Observability (Free-First / Local-First / Event-Driven)
+
+### Added
+
+**Distributed Event Transport Abstraction (`backend/app/realtime/transport.py`, `backend/app/realtime/event_bus.py`)**
+- `EventTransport` protocol interface with `InMemoryEventTransport` (Free-First default) and `RedisEventTransport` (Redis Streams & Consumer Groups with zero-downtime fallback to memory).
+- TransportFactory dynamic binding and backwards-compatible EventBus integration.
+
+**Hardened Event Envelope & Traceability (`backend/app/schemas/events.py`)**
+- Extended `EventEnvelope` with `correlation_id`, `causation_id`, `producer`, `metadata`, and `schema_version` (v1.0.0).
+- Added event types: `ALERT_TRIGGERED`, `ALERT_ACKNOWLEDGED`, `METRICS_COLLECTED`, `HEALTH_STATUS_CHANGED`, `DEAD_LETTER_EVENT`.
+
+**Idempotency & Deduplication Engine (`backend/app/services/idempotency.py`, `backend/app/models/idempotency.py`, `004_distributed_realtime_observability.py`)**
+- `IdempotencyEngine` preventing duplicate event execution on `(event_id, consumer_id)`.
+- Persistent ORM table `IdempotencyRecordModel` and Alembic migration `004_distributed_realtime_observability.py`.
+
+**Hardened WebSocket Realtime Gateway (`backend/app/realtime/websocket_manager.py`, `backend/app/api/websocket.py`)**
+- JWT authentication & `SecurityContext` registration on WebSocket connect.
+- Per-client bounded queue (`MAX_QUEUE_SIZE = 1000`) with event priority retention (`CRITICAL`, `HIGH`, `NORMAL`, `LOW`) and backpressure management.
+
+**Observability, Telemetry & Alert Subsystem (`backend/app/core/telemetry.py`, `metrics.py`, `services/alerts.py`, `api/observability.py`)**
+- Structured JSON Logger with secret redaction and correlation propagation.
+- Non-fatal `TracingSpan` OpenTelemetry context wrappers.
+- Prometheus Metrics Registry (`/metrics`) and Deep Health check (`/health/deep`).
+- `AlertEngine` evaluating operational rules with fingerprint deduplication, cooldown timers (`300s`), and `/api/observability/*` REST endpoints.
+
+**Operations Observatory Workspace UI (`frontend/src/components/observability/ObservabilityCenter.tsx`, `Navbar.tsx`, `App.tsx`)**
+- `ObservabilityCenter.tsx` featuring System Pulse, Event Pipeline Flow visualizer, Live Event Stream, Trace Explorer, Alert Center, and Deep System Health breakdown.
+- Connected `ObservabilityCenter` into `App.tsx` navigation shell under top-level `OBSERVABILITY` tab.
+
+**Comprehensive Specifications & Unit Test Suites (`docs/`, `backend/tests/`)**
+- Authored `DISTRIBUTED_EVENT_ARCHITECTURE.md`, `EVENT_TRANSPORT_SPEC.md`, `EVENT_SCHEMA_SPEC.md`, `EVENT_REPLAY_SPEC.md`, `REALTIME_ARCHITECTURE.md`, `OBSERVABILITY_ARCHITECTURE.md`, `METRICS_SPEC.md`, `TRACING_SPEC.md`, `ALERTING_SPEC.md`, `OPERATIONS_RUNBOOK.md`, `FAILURE_MODES.md`, and `ADR-035`.
+- Authored test suites (`test_event_transport.py`, `test_idempotency.py`, `test_observability.py`, `test_alerts.py`, `test_websocket_hardening.py`).
+
+---
+
 ## [1.4.0] — 2026-09-19 — Phase 4: Real-World Data + Supply-Chain Integrations (Free-First / Local-First / Open-Data-First)
 
 ### Added

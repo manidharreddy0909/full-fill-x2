@@ -40,6 +40,13 @@ class Permission(str, Enum):
     ORGANIZATION_READ = "organization:read"
     ORGANIZATION_MANAGE = "organization:manage"
     AUDIT_READ = "audit:read"
+    OBSERVABILITY_READ = "observability:read"
+    OBSERVABILITY_MANAGE = "observability:manage"
+    ALERTS_READ = "alerts:read"
+    ALERTS_MANAGE = "alerts:manage"
+    METRICS_READ = "metrics:read"
+    TRACES_READ = "traces:read"
+    EVENTS_INSPECT = "events:inspect"
     SYSTEM_ADMIN = "system:admin"
 
 

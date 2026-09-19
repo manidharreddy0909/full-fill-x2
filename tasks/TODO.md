@@ -452,4 +452,20 @@
 | P04-INT-009 | Phase 4 Specification Documentation (`DATA_INTEGRATION_ARCHITECTURE.md`, `ADR-034`) | P04-INT-008 | DONE |
 | P04-INT-010 | Full Backend Test Regression & Build Verification (173 Pytest PASS, Build PASS) | P04-INT-009 | DONE |
 
+## Phase 5 — Distributed Realtime + Observability [COMPLETED]
+
+| ID | Description | Dependencies | Status |
+|----|-------------|-------------|--------|
+| P05-OBS-001 | Abstract `EventTransport` Contract & `TransportFactory` (`transport.py`) | Phase 4 complete | DONE |
+| P05-OBS-002 | `InMemoryEventTransport` & `RedisEventTransport` (Streams & PubSub) | P05-OBS-001 | DONE |
+| P05-OBS-003 | Hardened `EventEnvelope` Schema (correlation_id, causation_id, versioning) | P05-OBS-002 | DONE |
+| P05-OBS-004 | `IdempotencyEngine` & Alembic Migration `004_distributed_realtime_observability.py` | P05-OBS-003 | DONE |
+| P05-OBS-005 | Hardened WebSocket Realtime Gateway (JWT auth, queue limits, priority retention) | P05-OBS-004 | DONE |
+| P05-OBS-006 | Telemetry Framework (`StructuredJsonFormatter`, `TracingSpan`, Prometheus `/metrics`) | P05-OBS-005 | DONE |
+| P05-OBS-007 | `AlertEngine` & REST Router under `/api/observability/*` & `/health/deep` | P05-OBS-006 | DONE |
+| P05-OBS-008 | Cinematic Operations Observatory UI (`ObservabilityCenter.tsx`) & Navigation | P05-OBS-007 | DONE |
+| P05-OBS-009 | Specification Documentation (`DISTRIBUTED_EVENT_ARCHITECTURE.md`, `ADR-035`) | P05-OBS-008 | DONE |
+| P05-OBS-010 | Full System Regression & Production Build Verification (178 Pytest PASS, Build PASS) | P05-OBS-009 | DONE |
+
+
 

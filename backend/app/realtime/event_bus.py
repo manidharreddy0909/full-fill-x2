@@ -2,10 +2,10 @@
 FULFILL-X In-Process Asynchronous EventBus
 Provides thread-safe async pub/sub, monotonic sequence numbering, session-filtering,
 bounded in-memory replay buffer, and zero-side-effect observational event broadcasting.
+Delegates transport operations to EventTransport abstraction (Phase 5).
 """
 import asyncio
 import logging
-from collections import deque, defaultdict
 from typing import Dict, List, Set, Optional, Callable, Awaitable, Any
 from app.schemas.events import EventEnvelope, EventType, EventSeverity
 
@@ -15,26 +15,17 @@ logger = logging.getLogger("fulfillx.realtime.event_bus")
 class EventBus:
     def __init__(self, max_replay_per_session: int = 100):
         self._max_replay = max_replay_per_session
-        # Subscribers: session_id -> Set[Callable[[EventEnvelope], Awaitable[None]]]
-        # Key None represents global subscribers interested in all sessions
-        self._subscribers: Dict[Optional[str], Set[Callable[[EventEnvelope], Awaitable[None]]]] = defaultdict(set)
-        # Sequence counter per session (and 'global' for non-session events)
-        self._sequences: Dict[str, int] = defaultdict(int)
-        # Bounded replay buffers per session_id
-        self._replay_buffers: Dict[str, deque] = defaultdict(lambda: deque(maxlen=self._max_replay))
-        self._lock = asyncio.Lock()
 
     def subscribe(self, session_id: Optional[str], callback: Callable[[EventEnvelope], Awaitable[None]]) -> None:
         """Subscribe an async callback to events for a specific session_id or None for all events."""
-        self._subscribers[session_id].add(callback)
+        from app.realtime.transport import TransportFactory
+        TransportFactory.get_transport().subscribe(session_id, callback)
         logger.debug(f"EventBus subscriber added for session {session_id}")
 
     def unsubscribe(self, session_id: Optional[str], callback: Callable[[EventEnvelope], Awaitable[None]]) -> None:
         """Unsubscribe a callback."""
-        if session_id in self._subscribers:
-            self._subscribers[session_id].discard(callback)
-            if not self._subscribers[session_id]:
-                del self._subscribers[session_id]
+        from app.realtime.transport import TransportFactory
+        TransportFactory.get_transport().unsubscribe(session_id, callback)
 
     async def publish(
         self,
@@ -45,18 +36,20 @@ class EventBus:
         source: str = "system",
         severity: EventSeverity = EventSeverity.INFO,
         organization_id: str = "org-fulfillx-default",
+        correlation_id: Optional[str] = None,
+        causation_id: Optional[str] = None,
+        producer: str = "fulfillx-backend",
+        metadata: Optional[Dict[str, Any]] = None,
     ) -> EventEnvelope:
         """
         Publish an event envelope.
-        Increments session sequence number, buffers in memory, and dispatches to subscribers.
+        Increments session sequence number, buffers in transport, and dispatches to subscribers.
         Zero state mutation on domain repositories.
         """
+        from app.realtime.transport import TransportFactory
+
         payload = payload or {}
-        seq_key = session_id or "global"
-        
-        async with self._lock:
-            self._sequences[seq_key] += 1
-            sequence_num = self._sequences[seq_key]
+        metadata = metadata or {}
 
         envelope = EventEnvelope(
             event_type=event_type,
@@ -66,26 +59,16 @@ class EventBus:
             stage=stage,
             source=source,
             severity=severity,
-            sequence=sequence_num,
+            sequence=0,
+            correlation_id=correlation_id,
+            causation_id=causation_id,
+            producer=producer,
+            metadata=metadata,
         )
 
-        # Buffer for replay if session_id exists
-        if session_id:
-            self._replay_buffers[session_id].append(envelope)
-
-        # Determine target callbacks (session-specific + global)
-        target_callbacks = set(self._subscribers.get(session_id, set()))
-        if session_id is not None:
-            target_callbacks.update(self._subscribers.get(None, set()))
-
-        # Notify subscribers
-        for callback in target_callbacks:
-            try:
-                res = callback(envelope)
-                if asyncio.iscoroutine(res):
-                    await res
-            except Exception as err:
-                logger.error(f"Error in EventBus callback subscriber: {err}", exc_info=True)
+        # Publish via EventTransport (handles sequence numbering, replay buffer, and dispatching to subscribers)
+        transport = TransportFactory.get_transport()
+        envelope = await transport.publish(envelope)
 
         # Dispatch async persistence sink record
         try:
@@ -135,7 +118,6 @@ class EventBus:
             asyncio.run(self.publish(event_type, payload, session_id, stage, source, severity))
         
         # Build envelope for immediate return if needed
-        seq_key = session_id or "global"
         return EventEnvelope(
             event_type=event_type,
             payload=payload or {},
@@ -143,7 +125,7 @@ class EventBus:
             stage=stage,
             source=source,
             severity=severity,
-            sequence=self._sequences.get(seq_key, 0),
+            sequence=0,
         )
 
     def get_replay_events(
@@ -151,20 +133,21 @@ class EventBus:
         session_id: str,
         since_sequence: int = 0,
         max_count: int = 50,
+        organization_id: Optional[str] = None,
     ) -> List[EventEnvelope]:
         """Retrieve recent events for session catch-up after reconnect."""
-        if session_id not in self._replay_buffers:
-            return []
-        
-        buffer = self._replay_buffers[session_id]
-        events = [evt for evt in buffer if evt.sequence > since_sequence]
-        return events[-max_count:]
+        from app.realtime.transport import TransportFactory
+        return TransportFactory.get_transport().get_replay_events(
+            session_id=session_id,
+            since_sequence=since_sequence,
+            max_count=max_count,
+            organization_id=organization_id,
+        )
 
     def reset(self) -> None:
         """Reset all subscribers, sequence counters, and replay buffers (for tests)."""
-        self._subscribers.clear()
-        self._sequences.clear()
-        self._replay_buffers.clear()
+        from app.realtime.transport import TransportFactory
+        TransportFactory.reset()
 
 
 # Global singleton instance

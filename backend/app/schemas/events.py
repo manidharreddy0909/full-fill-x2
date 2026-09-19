@@ -70,9 +70,14 @@ class EventType(str, Enum):
     DATA_REPLAY_STARTED = "DATA_REPLAY_STARTED"
     DATA_REPLAY_COMPLETED = "DATA_REPLAY_COMPLETED"
 
-    # System Alerts
+    # System Alerts & Observability (Phase 5)
     SYSTEM_WARNING = "SYSTEM_WARNING"
     SYSTEM_ERROR = "SYSTEM_ERROR"
+    ALERT_TRIGGERED = "ALERT_TRIGGERED"
+    ALERT_ACKNOWLEDGED = "ALERT_ACKNOWLEDGED"
+    METRICS_COLLECTED = "METRICS_COLLECTED"
+    HEALTH_STATUS_CHANGED = "HEALTH_STATUS_CHANGED"
+    DEAD_LETTER_EVENT = "DEAD_LETTER_EVENT"
 
 
 class EventSeverity(str, Enum):
@@ -93,7 +98,11 @@ class EventEnvelope(BaseModel):
     source: str = "system"
     severity: EventSeverity = EventSeverity.INFO
     sequence: int = 0
+    correlation_id: Optional[str] = None
+    causation_id: Optional[str] = None
+    producer: str = "fulfillx-backend"
     payload: Dict[str, Any] = Field(default_factory=dict)
+    metadata: Dict[str, Any] = Field(default_factory=dict)
     schema_version: str = "1.0.0"
 
 

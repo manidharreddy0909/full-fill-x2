@@ -33,7 +33,11 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.DATA_READ, Permission.DATA_EXPORT, Permission.DATA_IMPORT, Permission.DATA_RESET,
         Permission.USERS_READ, Permission.USERS_MANAGE,
         Permission.ORGANIZATION_READ, Permission.ORGANIZATION_MANAGE,
-        Permission.AUDIT_READ, Permission.SYSTEM_ADMIN,
+        Permission.AUDIT_READ,
+        Permission.OBSERVABILITY_READ, Permission.OBSERVABILITY_MANAGE,
+        Permission.ALERTS_READ, Permission.ALERTS_MANAGE,
+        Permission.METRICS_READ, Permission.TRACES_READ, Permission.EVENTS_INSPECT,
+        Permission.SYSTEM_ADMIN,
     ],
     SystemRole.OPERATOR: [
         Permission.WORLD_READ, Permission.WORLD_WRITE,
@@ -48,6 +52,8 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.DATA_READ, Permission.DATA_EXPORT,
         Permission.ORGANIZATION_READ, Permission.USERS_READ,
         Permission.AUDIT_READ,
+        Permission.OBSERVABILITY_READ, Permission.ALERTS_READ, Permission.ALERTS_MANAGE,
+        Permission.METRICS_READ, Permission.TRACES_READ, Permission.EVENTS_INSPECT,
     ],
     SystemRole.ANALYST: [
         Permission.WORLD_READ,
@@ -62,6 +68,8 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.DATA_READ, Permission.DATA_EXPORT,
         Permission.ORGANIZATION_READ, Permission.USERS_READ,
         Permission.AUDIT_READ,
+        Permission.OBSERVABILITY_READ, Permission.ALERTS_READ,
+        Permission.METRICS_READ, Permission.TRACES_READ, Permission.EVENTS_INSPECT,
     ],
     SystemRole.VIEWER: [
         Permission.WORLD_READ,
@@ -75,6 +83,7 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.EVALUATION_READ,
         Permission.DATA_READ,
         Permission.ORGANIZATION_READ,
+        Permission.OBSERVABILITY_READ, Permission.ALERTS_READ, Permission.METRICS_READ,
     ],
     SystemRole.AUDITOR: [
         Permission.WORLD_READ,
@@ -82,12 +91,15 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.RISK_READ,
         Permission.AGENTS_READ,
         Permission.PLANS_READ,
+        Permission.SIMULATION_READ,
         Permission.VERIFICATION_READ,
         Permission.DECISION_READ,
         Permission.EVALUATION_READ,
         Permission.DATA_READ,
-        Permission.AUDIT_READ,
         Permission.ORGANIZATION_READ, Permission.USERS_READ,
+        Permission.AUDIT_READ,
+        Permission.OBSERVABILITY_READ, Permission.ALERTS_READ,
+        Permission.METRICS_READ, Permission.TRACES_READ, Permission.EVENTS_INSPECT,
     ],
 }
 

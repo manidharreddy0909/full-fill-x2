@@ -50,6 +50,10 @@ class AdapterRegistry:
         """Return configs of all registered adapters."""
         return [adapter.config for adapter in self.adapters.values()]
 
+    async def health_check_all(self) -> List[DataSourceConfig]:
+        """Check health/config of all registered adapters (for deep health check)."""
+        return self.list_configs()
+
     def set_ingestion_mode(self, mode: IngestionMode) -> None:
         """Set active ingestion mode (LIVE, HYBRID, OFFLINE)."""
         self.mode = mode

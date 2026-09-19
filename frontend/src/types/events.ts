@@ -33,12 +33,17 @@ export interface EventEnvelope {
   event_id: string;
   event_type: EventType;
   timestamp: string;
+  organization_id?: string;
   session_id?: string | null;
   stage?: string | null;
   source: string;
   severity: EventSeverity;
   sequence: number;
+  correlation_id?: string | null;
+  causation_id?: string | null;
+  producer?: string;
   payload: Record<string, any>;
+  metadata?: Record<string, any>;
   schema_version: string;
 }
 
