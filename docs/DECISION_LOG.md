@@ -474,7 +474,37 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 07 — Adversary Agent & Stress Testing Framework Complete*
+## ADR-021: Multi-Objective Optimization & Robust Pareto Planning Engine
+
+**Date**: 2026-09-19  
+**Status**: ACCEPTED  
+**Phase**: 08  
+
+**Context**: FULFILL-X requires an explicit decision-reasoning engine to evaluate Candidate Plans A, B, and C against specialist operational metrics and Adversary stress testing findings. The system must adhere strictly to the principle: **"Specialists propose; Coordinator reconciles; Adversary attacks; Planner optimizes; Verification validates; Human approves"**. Exposing multi-objective trade-offs transparently is mandatory—collapsing objective vectors into a single arbitrary scalar score ("Score = 8.73") is forbidden.
+
+**Decision**:
+1. **Pareto Dominance Engine**: Implement `ParetoEngine` to evaluate non-dominated candidate plans using formal Pareto dominance logic across both Baseline operational metrics and Stressed resilience degradation metrics.
+2. **Dual Pareto Frontiers**: Construct two distinct frontiers:
+   - **Baseline Pareto Frontier**: Evaluates plans under normal operational conditions.
+   - **Robust Pareto Frontier**: Evaluates plans under post-adversarial stress degradation.
+3. **14 Normalized Objective Vectors**: Map specialist operational metrics (service, cost, emissions, inventory, supplier risk, transport efficiency) and adversary stress resilience scores (8 dimensions) to normalized range $[0.0, 1.0]$.
+4. **Feasibility Constraint Evaluator**: Implement `ConstraintEvaluator` to enforce Hard constraints (marked `INFEASIBLE` if violated) and Soft constraints (marked `CONDITIONAL` if violated).
+5. **Sensitivity Sweeps**: Perform parameter sweeps across $\pm 50\%$ perturbations (cost scaling factor, disruption severity factor, demand surge factor) to calculate volatility and stability scores per plan.
+6. **Zero State Mutation**: `PlannerService` and `PlannerAgent` operate exclusively on immutable snapshot copies; `WorldRepository` and `RiskRepository` remain 100% untouched.
+7. **Planner Board UI**: Interactive `PlannerBoard.tsx` tab integrated into Specialist War Room rendering Baseline vs Robust Pareto Frontiers, Feasibility Constraints, Robustness Profiles, Sensitivity Sweeps, and Trade-off profiles.
+
+**Rationale**:
+- Eliminates subjective weight bias by preserving multi-dimensional Pareto dominance sets.
+- Enables human decision-makers to evaluate operational trade-offs with complete mathematical rigor and clarity.
+- Guarantees strict immutability and test reproducibility.
+
+**Consequences**:
+- Candidates are classified as `PARETO_OPTIMAL`, `DOMINATED`, or `EQUIVALENT` along with explicit feasibility status (`FEASIBLE`, `INFEASIBLE`, `CONDITIONAL`) for human review and final verification.
+
+---
+
+*Last updated: Phase 08 — Multi-Objective Planner & Optimization Engine Complete*
+
 
 
 

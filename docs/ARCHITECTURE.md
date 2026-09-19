@@ -66,7 +66,7 @@ graph TB
         SIGNAL[Signal Ingestor]
     end
 
-    subgraph AGENTS["Specialist Agents"]
+    subgraph AGENTS["Specialist & Decision Agents"]
         INV[Inventory Agent]
         SUP[Supplier Agent]
         TRX[Transportation Agent]
@@ -75,6 +75,7 @@ graph TB
         RES[Resilience Agent]
         COORD[Coordinator Agent]
         ADV[Adversary Agent]
+        PLANNER[Planner Agent / Optimization Engine]
     end
 
     subgraph AI["AI Provider Abstraction"]
@@ -135,8 +136,9 @@ sequenceDiagram
     participant SC as Scenario Engine
     participant O as Orchestrator
     participant A as Specialist Agents
-    participant ADV as Adversary Agent
     participant C as Coordinator
+    participant ADV as Adversary Agent
+    participant PL as Planner Engine
     participant UI as Frontend
 
     S->>I: Raw signal event
@@ -147,14 +149,16 @@ sequenceDiagram
     R->>SC: Risk-annotated world
     SC->>SC: Compose compound scenario
     SC->>O: Scenario object
-    O->>A: Parallel agent dispatch
+    O->>A: Parallel agent dispatch (6 Specialists)
     A-->>O: Proposals
-    O->>ADV: Plans for adversarial testing
-    ADV-->>O: Adversarial findings
-    O->>C: All proposals + findings
-    C-->>O: Reconciled plan ranking
-    O->>UI: Plan update via WebSocket
-    O->>W: Accepted plan → state update
+    O->>C: Reconcile proposals into Candidate Plans A/B/C
+    C-->>O: Candidate Plans
+    O->>ADV: Red-team stress testing on candidate plans
+    ADV-->>O: Stress Report (8-dim resilience scores)
+    O->>PL: Evaluate Pareto dominance, constraints & sensitivity
+    PL-->>O: Baseline & Robust Pareto Frontiers + Trade-offs
+    O->>UI: Multi-Objective Decision Package
+    UI->>W: Human Approved Plan → state update
 ```
 
 ## 5. Key Architectural Principles

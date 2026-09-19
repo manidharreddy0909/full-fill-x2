@@ -21,6 +21,8 @@ class AgentId(str, Enum):
     RESILIENCE = "resilience"
     COORDINATOR = "coordinator"
     ADVERSARY = "adversary"
+    PLANNER = "planner"
+
 
 
 class AgentObjective(str, Enum):

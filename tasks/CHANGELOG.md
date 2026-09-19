@@ -3,6 +3,33 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.9.0] — 2026-09-19 — Phase 08: Multi-Objective Planner & Optimization Engine
+
+### Added
+
+**Backend Multi-Objective Planner Engine (`backend/app/engine/`, `schemas/`, `agents/`, `services/`, `api/`)**
+- `backend/app/schemas/planner.py` — Strongly-typed Pydantic v2 schemas: `ObjectiveDirection`, `PlannerObjective`, `ConstraintType`, `FeasibilityStatus`, `ParetoDominanceStatus`, `ObjectiveValue`, `ObjectiveVector`, `Constraint`, `FeasibilityResult`, `ParetoPoint`, `ParetoFrontier`, `RobustnessProfile`, `PlanSensitivityItem`, `PlanEvaluation`, `PlannerReport`.
+- `backend/app/engine/planner.py` — `ObjectiveNormalizer` (maps 14 objectives to range [0.0, 1.0]), `ConstraintEvaluator` (evaluates Hard/Soft constraints: `FEASIBLE`, `INFEASIBLE`, `CONDITIONAL`), `ParetoEngine` (formal Pareto dominance math & Baseline/Robust Pareto Frontiers), `SensitivityAnalyzer` (parameter sweeps across ±50% cost, disruption, and demand factors), and `PlannerEngine` orchestrator.
+- `backend/app/agents/planner.py` — `PlannerAgent` implementing `BaseAgent` interface with snapshot immutability safety boundary.
+- `backend/app/services/planner.py` — `PlannerService` orchestrator connecting candidate plans, stress reports, and optimization calculations.
+- `backend/app/api/planner.py` — FastAPI REST endpoints: `GET /api/planner/status`, `POST /api/planner/run`, `POST /api/planner/pareto`, `POST /api/planner/sensitivity`, `GET /api/planner/report`. Registered in `backend/app/api/router.py`.
+
+**Backend Multi-Objective Planner Test Suite (`backend/tests/test_planner.py`)**
+- Comprehensive test suite covering Pydantic v2 schemas, metric normalization [0.0, 1.0], hard/soft constraint evaluator, Pareto dominance math, baseline and robust Pareto frontiers, sensitivity parameter sweeps, state mutation immutability safety (`assert world_before == world_after` & `assert risk_before == risk_after`), service E2E, and REST API endpoints (78/78 total backend pytest PASS).
+
+**Frontend Planner Board UI (`frontend/src/`)**
+- `frontend/src/types/planner.ts` — TypeScript interfaces matching backend planner models.
+- `frontend/src/api/plannerApi.ts` — Async API client for fetching status, running optimization, calculating pareto frontiers, sensitivity analysis, and retrieving reports.
+- `frontend/src/components/agents/PlannerBoard.tsx` — Glassmorphic UI board rendering Baseline vs Robust Pareto Frontiers, Feasibility Constraints, Robustness Profiles, Sensitivity Sweeps, and Objective Vector Trade-off profiles.
+- Updated `SpecialistWarRoom.tsx` — Integrated `Multi-Objective Planner` sub-tab alongside `Specialists`, `Coordinator`, and `Adversary`, with "Run Multi-Objective Planner" action button. `npm run build` PASS.
+
+**Documentation & ADRs**
+- Added `docs/PLANNER_SPEC.md` and `docs/OPTIMIZATION_SPEC.md` specifications.
+- Added `ADR-021: Multi-Objective Optimization & Robust Pareto Planning Engine` to `docs/DECISION_LOG.md`.
+- Updated `docs/API_CATALOG.md` (Section 13), `docs/DEMO_STORYBOARD.md`, `docs/ARCHITECTURE.md`.
+
+---
+
 ## [0.8.0] — 2026-09-19 — Phase 07: Adversary Agent & Stress Testing Framework
 
 ### Added

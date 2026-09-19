@@ -7,6 +7,14 @@ from app.engine.adversary import (
     AttackTargetingStrategy,
 )
 
+from app.engine.planner import (
+    PlannerEngine,
+    ObjectiveNormalizer,
+    ConstraintEvaluator,
+    ParetoEngine,
+    SensitivityAnalyzer,
+)
+
 __all__ = [
     "AdversaryEngine",
     "AttackGenerator",
@@ -14,4 +22,10 @@ __all__ = [
     "ResilienceScorer",
     "VulnerabilityDetector",
     "AttackTargetingStrategy",
+    "PlannerEngine",
+    "ObjectiveNormalizer",
+    "ConstraintEvaluator",
+    "ParetoEngine",
+    "SensitivityAnalyzer",
 ]
+

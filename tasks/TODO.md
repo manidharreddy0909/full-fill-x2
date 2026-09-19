@@ -125,6 +125,27 @@
 | P07-019 | Documentation (`docs/ADVERSARY_SPEC.md`, ADR-020 in `docs/DECISION_LOG.md`) | P07-018 | DONE |
 | P07-020 | Final Verification (pytest & npm build passing) | P07-019 | DONE |
 
+## Phase 08 — Multi-Objective Planner & Optimization Engine [COMPLETED]
+
+| ID | Description | Dependencies | Status |
+|----|-------------|-------------|--------|
+| P08-001 | Planner Pydantic v2 Schemas (`backend/app/schemas/planner.py`) | Phase 07 complete | DONE |
+| P08-002 | Objective Normalizer Range [0.0, 1.0] (`backend/app/engine/planner.py`) | P08-001 | DONE |
+| P08-003 | Hard/Soft Business Constraint Evaluator (`backend/app/engine/planner.py`) | P08-001 | DONE |
+| P08-004 | Formal Pareto Dominance Engine & Baseline/Robust Frontiers | P08-002 | DONE |
+| P08-005 | Parameter Sensitivity Analyzer (±50% parameter sweeps) | P08-004 | DONE |
+| P08-006 | Planner Engine Orchestrator (`PlannerEngine`) | P08-005 | DONE |
+| P08-007 | Planner Agent with Immutability Safety Boundary (`backend/app/agents/planner.py`) | P08-006 | DONE |
+| P08-008 | Planner Service (`backend/app/services/planner.py`) | P08-007 | DONE |
+| P08-009 | Planner REST API (`backend/app/api/planner.py`) | P08-008 | DONE |
+| P08-010 | Frontend TypeScript types & API client (`types/planner.ts`, `api/plannerApi.ts`) | P08-009 | DONE |
+| P08-011 | Planner Board UI Component (`PlannerBoard.tsx`, `SpecialistWarRoom.tsx`) | P08-010 | DONE |
+| P08-012 | Test Suite (`backend/tests/test_planner.py` - 78/78 total PASS) | P08-011 | DONE |
+| P08-013 | State Mutation Immutability Test (`assert world_before == world_after`) | P08-012 | DONE |
+| P08-014 | Documentation (`docs/PLANNER_SPEC.md`, `OPTIMIZATION_SPEC.md`, ADR-021) | P08-013 | DONE |
+| P08-015 | Final Verification (`pytest` & `npm run build` passing) | P08-014 | DONE |
+
+
 
 ## Phase 07 — Backend API
 

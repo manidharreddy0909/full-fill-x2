@@ -562,3 +562,54 @@ as a multi-dimensional object. The corrected response uses `NodeRiskScores`.
 | **Response** | `AdversaryReport` |
 | **Frontend** | Adversary Findings View |
 
+---
+
+## 13. Planner Endpoints (Phase 08)
+
+### GET /api/planner/status
+| Field | Value |
+|-------|-------|
+| **Purpose** | Check status, tracked objectives, and constraint rules of Multi-Objective Planner Engine |
+| **Response 200** | `{ status: "READY", engine_version: "1.0.0", tracked_objectives: [...], hard_constraints: [...], soft_constraints: [...] }` |
+| **Frontend** | Specialist War Room -> Planner Board Tab |
+
+---
+
+### POST /api/planner/run
+| Field | Value |
+|-------|-------|
+| **Purpose** | Run full multi-objective optimization, constraint checks, baseline/robust Pareto frontiers, sensitivity sweeps, and trade-off profiles |
+| **Request** | `{ candidate_plans: [...], adversary_report: {...}, coordination_id: "..." }` |
+| **Response 200** | `PlannerReport` schema |
+| **Frontend** | Specialist War Room -> Run Multi-Objective Planner Action |
+
+---
+
+### POST /api/planner/pareto
+| Field | Value |
+|-------|-------|
+| **Purpose** | Calculate Baseline and Robust Pareto Frontiers for custom plan sets |
+| **Request** | `{ candidate_plans: [...], adversary_report: {...} }` |
+| **Response 200** | `{ baseline_frontier: ParetoFrontier, robust_frontier: ParetoFrontier }` |
+| **Frontend** | Pareto Frontier Analysis view |
+
+---
+
+### POST /api/planner/sensitivity
+| Field | Value |
+|-------|-------|
+| **Purpose** | Run sensitivity sweeps across cost, disruption, and demand factors |
+| **Request** | `{ candidate_plans: [...], sweep_variables: [...] }` |
+| **Response 200** | `{ sensitivity_results: List[PlanSensitivityItem] }` |
+| **Frontend** | Sensitivity Sweeps Chart |
+
+---
+
+### GET /api/planner/report
+| Field | Value |
+|-------|-------|
+| **Purpose** | Retrieve latest generated Multi-Objective Planner evaluation report |
+| **Response 200** | `PlannerReport` schema |
+| **Frontend** | Specialist War Room -> Multi-Objective Planner Tab |
+
+

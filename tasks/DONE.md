@@ -205,7 +205,30 @@
 
 ---
 
+## Phase 08 — Multi-Objective Planner & Optimization Engine
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P08-001 | Planner Pydantic v2 Schemas (`backend/app/schemas/planner.py`) | DONE | `ObjectiveDirection`, `PlannerObjective`, `ConstraintType`, `FeasibilityStatus`, `ParetoDominanceStatus`, `ObjectiveValue`, `ObjectiveVector`, `Constraint`, `FeasibilityResult`, `ParetoPoint`, `ParetoFrontier`, `RobustnessProfile`, `PlanSensitivityItem`, `PlanEvaluation`, `PlannerReport` PASS | TBD |
+| P08-002 | Objective Normalizer Range [0.0, 1.0] (`backend/app/engine/planner.py`) | DONE | Scaling algorithm maps 6 specialist + 8 adversary metrics to normalized utilities [0.0, 1.0] PASS | TBD |
+| P08-003 | Hard/Soft Business Constraint Evaluator | DONE | Enforces Hard constraints (`INFEASIBLE`) and Soft constraints (`CONDITIONAL`) PASS | TBD |
+| P08-004 | Formal Pareto Dominance Engine & Dual Frontiers | DONE | Evaluates non-dominanceSets & constructs Baseline and Robust Pareto Frontiers PASS | TBD |
+| P08-005 | Parameter Sensitivity Analyzer | DONE | Sweeps parameter factors across ±50% (cost scaling, disruption severity, demand surge) PASS | TBD |
+| P08-006 | Planner Engine Orchestrator (`PlannerEngine`) | DONE | Orchestrates normalization, Pareto dominance, constraints, sensitivity, and trade-offs PASS | TBD |
+| P08-007 | Planner Agent (`backend/app/agents/planner.py`) | DONE | Implements `BaseAgent` with safe execution pipeline and snapshot immutability verification PASS | TBD |
+| P08-008 | Planner Service (`backend/app/services/planner.py`) | DONE | Connects candidate plans, stress reports, and optimization calculation PASS | TBD |
+| P08-009 | Planner REST API (`backend/app/api/planner.py`) | DONE | `/api/planner/status`, `/api/planner/run`, `/api/planner/pareto`, `/api/planner/sensitivity`, `/api/planner/report` PASS | TBD |
+| P08-010 | Frontend TypeScript types & API client (`types/planner.ts`, `api/plannerApi.ts`) | DONE | Interfaces matching backend models & async fetch methods PASS | TBD |
+| P08-011 | Planner Board UI Component (`PlannerBoard.tsx`, `SpecialistWarRoom.tsx`) | DONE | Glassmorphic UI rendering Pareto Frontiers, Feasibility Constraints, Robustness Profiles, Sensitivity sweeps, and Trade-off profiles PASS | TBD |
+| P08-012 | Test Suite (`backend/tests/test_planner.py`) | DONE | 78/78 total backend pytest PASS | TBD |
+| P08-013 | State Mutation Immutability Test | DONE | `assert world_before == world_after` & `assert risk_before == risk_after` PASS | TBD |
+| P08-014 | Documentation & ADR Updates | DONE | `docs/PLANNER_SPEC.md`, `OPTIMIZATION_SPEC.md` & `ADR-021` added to `DECISION_LOG.md` PASS | TBD |
+| P08-015 | Final Verification | DONE | Backend pytest 78/78 PASS & Frontend build PASS PASS | TBD |
+
+---
+
 *Commit hashes to be filled in after `git commit` completes.*
+
 
 
 

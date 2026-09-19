@@ -21,6 +21,7 @@ import {
   Layers,
   GitMerge,
   Flame,
+  Award,
 } from 'lucide-react';
 import {
   AgentId,
@@ -31,10 +32,14 @@ import {
 import { runAgent, runAllAgents } from '../../api/agentApi';
 import { runCoordinator, runAllWithCoordinator } from '../../api/coordinatorApi';
 import { runAdversary } from '../../api/adversaryApi';
+import { runPlanner } from '../../api/plannerApi';
 import { CoordinatorResult, CandidatePlan } from '../../types/coordinator';
 import { AdversaryReport } from '../../types/adversary';
+import { PlannerReport } from '../../types/planner';
 import { CoordinationBoard } from './CoordinationBoard';
 import { AdversaryBoard } from './AdversaryBoard';
+import { PlannerBoard } from './PlannerBoard';
+
 
 
 interface SpecialistWarRoomProps {
@@ -79,15 +84,17 @@ export const SpecialistWarRoom: React.FC<SpecialistWarRoomProps> = ({
   onPreviewCandidate,
   selectedCandidateId,
 }) => {
-  const [mainTab, setMainTab] = useState<'SPECIALISTS' | 'COORDINATOR' | 'ADVERSARY'>('SPECIALISTS');
+  const [mainTab, setMainTab] = useState<'SPECIALISTS' | 'COORDINATOR' | 'ADVERSARY' | 'PLANNER'>('SPECIALISTS');
   const [loadingAll, setLoadingAll] = useState<boolean>(false);
   const [loadingCoordinator, setLoadingCoordinator] = useState<boolean>(false);
   const [loadingAdversary, setLoadingAdversary] = useState<boolean>(false);
+  const [loadingPlanner, setLoadingPlanner] = useState<boolean>(false);
   const [runningAgentId, setRunningAgentId] = useState<string | null>(null);
   const [allProposals, setAllProposals] = useState<AllSpecialistProposalsResponse | null>(null);
   const [individualResults, setIndividualResults] = useState<Record<string, AgentResult>>({});
   const [coordinationResult, setCoordinationResult] = useState<CoordinatorResult | null>(null);
   const [adversaryReport, setAdversaryReport] = useState<AdversaryReport | null>(null);
+  const [plannerReport, setPlannerReport] = useState<PlannerReport | null>(null);
   const [expandedReasoning, setExpandedReasoning] = useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = useState<'ALL' | AgentId>('ALL');
 
@@ -138,6 +145,23 @@ export const SpecialistWarRoom: React.FC<SpecialistWarRoomProps> = ({
       setLoadingAdversary(false);
     }
   };
+
+  const handleRunPlanner = async () => {
+    setLoadingPlanner(true);
+    try {
+      const plans = coordinationResult?.candidate_plans || undefined;
+      const advRep = adversaryReport || null;
+      const coordId = coordinationResult?.coordination_id || '';
+      const rep = await runPlanner(plans, advRep, coordId);
+      setPlannerReport(rep);
+      setMainTab('PLANNER');
+    } catch (err) {
+      console.error('Failed to run multi-objective planner:', err);
+    } finally {
+      setLoadingPlanner(false);
+    }
+  };
+
 
 
   const handleRunSingle = async (agentId: AgentId) => {
@@ -311,6 +335,26 @@ export const SpecialistWarRoom: React.FC<SpecialistWarRoomProps> = ({
         >
           <Flame size={16} color={mainTab === 'ADVERSARY' ? '#F87171' : '#94A3B8'} /> Adversary Red-Team
         </button>
+
+        <button
+          onClick={() => setMainTab('PLANNER')}
+          style={{
+            padding: '10px 18px',
+            borderRadius: '6px 6px 0 0',
+            border: 'none',
+            background: mainTab === 'PLANNER' ? 'rgba(30, 41, 59, 0.9)' : 'transparent',
+            color: mainTab === 'PLANNER' ? '#FFFFFF' : '#94A3B8',
+            fontSize: '13px',
+            fontWeight: 700,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            borderBottom: mainTab === 'PLANNER' ? '2px solid #3B82F6' : '2px solid transparent',
+          }}
+        >
+          <Award size={16} color={mainTab === 'PLANNER' ? '#60A5FA' : '#94A3B8'} /> Multi-Objective Planner
+        </button>
       </div>
 
       {/* Safety Banner */}
@@ -326,7 +370,7 @@ export const SpecialistWarRoom: React.FC<SpecialistWarRoomProps> = ({
       >
         <ShieldCheck size={16} color="#60A5FA" style={{ flexShrink: 0 }} />
         <span style={{ fontSize: '11px', color: '#93C5FD', lineHeight: '1.4' }}>
-          <strong>Non-Authoritative Safety Boundary:</strong> Specialist proposals, Coordinator plans, and Adversary simulations execute on isolated copies without altering World State.
+          <strong>Non-Authoritative Safety Boundary:</strong> Specialist proposals, Coordinator plans, Adversary simulations, and Multi-Objective Optimization execute on isolated copies without altering World State.
         </span>
       </div>
 
@@ -344,7 +388,7 @@ export const SpecialistWarRoom: React.FC<SpecialistWarRoomProps> = ({
         <div style={{ display: 'flex', gap: '10px' }}>
           <button
             onClick={handleRunAllSpecialists}
-            disabled={loadingAll || loadingCoordinator || loadingAdversary}
+            disabled={loadingAll || loadingCoordinator || loadingAdversary || loadingPlanner}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -366,7 +410,7 @@ export const SpecialistWarRoom: React.FC<SpecialistWarRoomProps> = ({
 
           <button
             onClick={handleRunCoordinator}
-            disabled={loadingCoordinator || loadingAll || loadingAdversary}
+            disabled={loadingCoordinator || loadingAll || loadingAdversary || loadingPlanner}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -388,7 +432,7 @@ export const SpecialistWarRoom: React.FC<SpecialistWarRoomProps> = ({
 
           <button
             onClick={handleRunAdversary}
-            disabled={loadingAdversary || loadingAll || loadingCoordinator}
+            disabled={loadingAdversary || loadingAll || loadingCoordinator || loadingPlanner}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -404,10 +448,33 @@ export const SpecialistWarRoom: React.FC<SpecialistWarRoomProps> = ({
               boxShadow: '0 4px 12px rgba(220, 38, 38, 0.3)',
             }}
           >
-            {loadingAdversary ? <RefreshCw size={14} className="spin" /> : <Zap size={14} />}
+            {loadingAdversary ? <RefreshCw size={14} className="spin" /> : <Flame size={14} />}
             Run Adversary Red-Team
           </button>
+
+          <button
+            onClick={handleRunPlanner}
+            disabled={loadingPlanner || loadingAll || loadingCoordinator || loadingAdversary}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '8px 16px',
+              borderRadius: '6px',
+              background: loadingPlanner ? 'rgba(59, 130, 246, 0.4)' : 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)',
+              border: 'none',
+              color: '#FFFFFF',
+              fontWeight: 700,
+              fontSize: '12px',
+              cursor: loadingPlanner ? 'not-allowed' : 'pointer',
+              boxShadow: '0 4px 12px rgba(37, 99, 235, 0.3)',
+            }}
+          >
+            {loadingPlanner ? <RefreshCw size={14} className="spin" /> : <Award size={14} />}
+            Run Multi-Objective Planner
+          </button>
         </div>
+
 
 
         {allProposals && (
@@ -668,7 +735,19 @@ export const SpecialistWarRoom: React.FC<SpecialistWarRoomProps> = ({
           />
         </div>
       )}
+
+      {/* TAB CONTENT 4: MULTI-OBJECTIVE PLANNER */}
+      {mainTab === 'PLANNER' && (
+        <div style={{ flex: 1, overflowY: 'auto', padding: '24px' }}>
+          <PlannerBoard
+            report={plannerReport}
+            onRunPlanner={handleRunPlanner}
+            isLoading={loadingPlanner}
+          />
+        </div>
+      )}
     </div>
   );
 };
+
 
