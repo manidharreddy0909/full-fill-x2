@@ -1,8 +1,8 @@
 import React from 'react';
-import { Activity, ShieldAlert, RefreshCw, Cpu, Layers, Box, Bot, Sparkles, LayoutDashboard, Database, Shield, Lock, Radio } from 'lucide-react';
+import { Activity, ShieldAlert, RefreshCw, Cpu, Layers, Box, Bot, Sparkles, LayoutDashboard, Database, Shield, Lock, Radio, Brain } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 
-export type ProductTab = 'COMMAND' | 'WORLD' | 'INTELLIGENCE' | 'RESPONSE' | 'DECISION' | 'EVALUATION' | 'DEMO' | 'DATA' | 'SECURITY' | 'OBSERVABILITY';
+export type ProductTab = 'COMMAND' | 'WORLD' | 'INTELLIGENCE' | 'RESPONSE' | 'DECISION' | 'EVALUATION' | 'DEMO' | 'DATA' | 'SECURITY' | 'OBSERVABILITY' | 'PREDICTIVE_ML';
 
 interface NavbarProps {
   activeTab: ProductTab;
@@ -54,6 +54,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { tab: 'DATA', label: 'Data Platform', icon: <Database size={14} /> },
     { tab: 'SECURITY', label: 'Security', icon: <Shield size={14} /> },
     { tab: 'OBSERVABILITY', label: 'Observability', icon: <Radio size={14} /> },
+    { tab: 'PREDICTIVE_ML', label: 'Predictive ML', icon: <Brain size={14} /> },
   ];
 
   return (

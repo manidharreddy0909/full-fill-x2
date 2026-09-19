@@ -467,5 +467,23 @@
 | P05-OBS-009 | Specification Documentation (`DISTRIBUTED_EVENT_ARCHITECTURE.md`, `ADR-035`) | P05-OBS-008 | DONE |
 | P05-OBS-010 | Full System Regression & Production Build Verification (178 Pytest PASS, Build PASS) | P05-OBS-009 | DONE |
 
+## Phase 6 — Predictive AI / ML Platform [COMPLETED]
+
+| ID | Description | Dependencies | Status |
+|----|-------------|-------------|--------|
+| P06-ML-001 | Feature Engineering Engine (`FeatureExtractor`) & Anti-Leakage Feature Store | Phase 5 complete | DONE |
+| P06-ML-002 | Deterministic Time-Aware Dataset Generator (`DeterministicDatasetGenerator`) | P06-ML-001 | DONE |
+| P06-ML-003 | Predictive Algorithms (Demand Forecasting, Disruption Probability, Anomaly Detection) | P06-ML-002 | DONE |
+| P06-ML-004 | Model Trainer & Mandatory Naive Baseline Comparison Safeguard | P06-ML-003 | DONE |
+| P06-ML-005 | Local Model Registry with Checksum Verification & Rollback Capability | P06-ML-004 | DONE |
+| P06-ML-006 | Prediction Service & Predictive Signal Injection into Risk Engine | P06-ML-005 | DONE |
+| P06-ML-007 | Feature Drift Engine (PSI / KS Statistics) & Explanation Generator | P06-ML-006 | DONE |
+| P06-ML-008 | Database ORM Models (`ml.py`), Alembic Migration `005` & 7 ML Permissions | P06-ML-007 | DONE |
+| P06-ML-009 | REST API Router (`/api/ml/*`) & Realtime ML Events | P06-ML-008 | DONE |
+| P06-ML-010 | Cinematic Predictive Intelligence Workspace UI (`PredictiveIntelligence.tsx`) | P06-ML-009 | DONE |
+| P06-ML-011 | Comprehensive Specification Docs & ADR-036 | P06-ML-010 | DONE |
+| P06-ML-012 | Full System Test Regression & Production Build Verification | P06-ML-011 | DONE |
+
+
 
 

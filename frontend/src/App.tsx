@@ -25,6 +25,7 @@ import { IntelligencePanel } from './components/intelligence/IntelligencePanel';
 import { DataFabric } from './components/data/DataFabric';
 import { SecurityConsole } from './components/security/SecurityConsole';
 import { ObservabilityCenter } from './components/observability/ObservabilityCenter';
+import { PredictiveIntelligence } from './components/ml/PredictiveIntelligence';
 import { IdentityGateway } from './components/auth/IdentityGateway';
 import { EventToastContainer } from './components/common/EventToastContainer';
 import { useRealtimeStore } from './store/realtimeStore';
@@ -232,6 +233,8 @@ export const App: React.FC = () => {
           <SecurityConsole />
         ) : activeTab === 'OBSERVABILITY' ? (
           <ObservabilityCenter />
+        ) : activeTab === 'PREDICTIVE_ML' ? (
+          <PredictiveIntelligence />
         ) : activeTab === 'RESPONSE' ? (
           <div className="max-w-7xl mx-auto p-6">
             <SpecialistWarRoom

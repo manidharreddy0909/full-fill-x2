@@ -47,6 +47,13 @@ class Permission(str, Enum):
     METRICS_READ = "metrics:read"
     TRACES_READ = "traces:read"
     EVENTS_INSPECT = "events:inspect"
+    ML_READ = "ml:read"
+    ML_TRAIN = "ml:train"
+    ML_EVALUATE = "ml:evaluate"
+    ML_ACTIVATE = "ml:activate"
+    ML_RETIRE = "ml:retire"
+    ML_PREDICT = "ml:predict"
+    ML_MANAGE = "ml:manage"
     SYSTEM_ADMIN = "system:admin"
 
 

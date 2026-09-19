@@ -37,6 +37,7 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.OBSERVABILITY_READ, Permission.OBSERVABILITY_MANAGE,
         Permission.ALERTS_READ, Permission.ALERTS_MANAGE,
         Permission.METRICS_READ, Permission.TRACES_READ, Permission.EVENTS_INSPECT,
+        Permission.ML_READ, Permission.ML_TRAIN, Permission.ML_EVALUATE, Permission.ML_ACTIVATE, Permission.ML_RETIRE, Permission.ML_PREDICT, Permission.ML_MANAGE,
         Permission.SYSTEM_ADMIN,
     ],
     SystemRole.OPERATOR: [
@@ -54,6 +55,7 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.AUDIT_READ,
         Permission.OBSERVABILITY_READ, Permission.ALERTS_READ, Permission.ALERTS_MANAGE,
         Permission.METRICS_READ, Permission.TRACES_READ, Permission.EVENTS_INSPECT,
+        Permission.ML_READ, Permission.ML_TRAIN, Permission.ML_PREDICT, Permission.ML_EVALUATE,
     ],
     SystemRole.ANALYST: [
         Permission.WORLD_READ,
@@ -70,6 +72,7 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.AUDIT_READ,
         Permission.OBSERVABILITY_READ, Permission.ALERTS_READ,
         Permission.METRICS_READ, Permission.TRACES_READ, Permission.EVENTS_INSPECT,
+        Permission.ML_READ, Permission.ML_PREDICT, Permission.ML_EVALUATE,
     ],
     SystemRole.VIEWER: [
         Permission.WORLD_READ,
@@ -84,6 +87,7 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.DATA_READ,
         Permission.ORGANIZATION_READ,
         Permission.OBSERVABILITY_READ, Permission.ALERTS_READ, Permission.METRICS_READ,
+        Permission.ML_READ,
     ],
     SystemRole.AUDITOR: [
         Permission.WORLD_READ,
@@ -98,6 +102,7 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.DATA_READ,
         Permission.ORGANIZATION_READ, Permission.USERS_READ,
         Permission.AUDIT_READ,
+        Permission.ML_READ,
         Permission.OBSERVABILITY_READ, Permission.ALERTS_READ,
         Permission.METRICS_READ, Permission.TRACES_READ, Permission.EVENTS_INSPECT,
     ],

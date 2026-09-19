@@ -3,6 +3,37 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.6.0] — 2026-09-20 — Phase 6: Predictive AI / ML Platform (Free-First / Local-First / Deterministic / Explainable)
+
+### Added
+
+**Predictive ML Architecture & Algorithms (`backend/app/ml/`)**
+- Free-First local ML engine built on `scikit-learn`, `numpy`, `pandas`, `scipy`, and `joblib`.
+- `DemandForecastingModel` (predictive values + 95% confidence intervals), `DisruptionProbabilityModel` (calibrated probabilities + risk drivers), and `OperationalAnomalyDetector` (Isolation Forest + Z-Score scoring).
+
+**Naive Baseline Comparison Safeguard & Local Model Registry (`backend/app/ml/training.py`, `backend/app/ml/registry.py`)**
+- `ModelTrainer` comparing every ML model against naive baselines; marks `is_baseline_preferred = True` if ML model fails to beat baseline.
+- `LocalModelRegistry` with checksum verification, lifecycle states (`TRAINED`, `VALIDATED`, `CANDIDATE`, `ACTIVE`, `RETIRED`, `REJECTED`), and instant rollback (`rollback_model`).
+
+**Anti-Leakage Feature Store & Deterministic Dataset Generator (`backend/app/ml/features.py`, `backend/app/ml/datasets.py`, `backend/app/ml/store.py`)**
+- `FeatureExtractor` computing temporal, operational, network, external, risk, and lag features adhering to `feature_schema_version = "v1.0.0"`.
+- `DeterministicDatasetGenerator` producing time-aware train/val/test splits ($70\% / 15\% / 15\%$) across 6 scenario modes with seed 42.
+
+**Inference, Predictive Signals & Drift Monitoring (`backend/app/ml/inference.py`, `backend/app/ml/drift.py`, `backend/app/ml/explainability.py`)**
+- `PredictionService` producing `Prediction` envelopes and publishing `PredictiveSignal` objects into `SignalFusionEngine`.
+- `ExplanationGenerator` producing deterministic feature importance drivers and natural language evidence narratives.
+- `DriftDetector` computing Population Stability Index (PSI) and Kolmogorov-Smirnov statistics.
+
+**ORM Persistence, Alembic Migration & Security (`backend/app/models/ml.py`, `005_predictive_ml_platform.py`, `auth.py`, `security.py`)**
+- Persistent SQLAlchemy 2.0 ORM models (`MLDatasetModel`, `MLModelRecordModel`, `MLPredictionRecordModel`, `MLDriftRecordModel`) and Alembic migration `005_predictive_ml_platform.py`.
+- Registered 7 ML permissions (`ML_READ`, `ML_TRAIN`, `ML_EVALUATE`, `ML_ACTIVATE`, `ML_RETIRE`, `ML_PREDICT`, `ML_MANAGE`) in `Permission` enum and `ROLE_PERMISSIONS_MAP`.
+
+**Predictive Intelligence Workspace UI (`frontend/src/components/ml/PredictiveIntelligence.tsx`, `Navbar.tsx`, `App.tsx`)**
+- `PredictiveIntelligence.tsx` workspace featuring Demand Forecast Chart, Disruption Probability Map, Anomaly Inspector, Model Observatory, and Training/Drift Console.
+- Registered top-level `PREDICTIVE ML` tab in Navbar shell.
+
+---
+
 ## [1.5.0] — 2026-09-19 — Phase 5: Distributed Realtime + Observability (Free-First / Local-First / Event-Driven)
 
 ### Added

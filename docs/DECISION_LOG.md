@@ -845,7 +845,34 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 5 — Distributed Realtime + Observability Complete*
+## ADR-036: Predictive AI / ML Platform Architecture
+
+**Date**: 2026-09-20  
+**Status**: ACCEPTED  
+**Phase**: 6 (Predictive AI / ML Platform)  
+
+**Context**: FULFILL-X required a genuine, reproducible, explainable Predictive ML Platform introducing predictive risk, demand forecasting, disruption probability modeling, and operational anomaly detection without turning FULFILL-X into an ungrounded LLM chatbot or altering deterministic Risk Engine calculation boundaries.
+
+**Decision**:
+1. **Free-First ML Engine**: Built on `scikit-learn`, `numpy`, `pandas`, `scipy`, and `joblib` operating 100% locally with zero paid API dependencies or GPU clouds.
+2. **Three Core Predictive Tasks**: Implemented `DemandForecastingModel` (predictive values + 95% confidence bounds), `DisruptionProbabilityModel` (calibrated probabilities + risk drivers), and `OperationalAnomalyDetector` (Isolation Forest + Z-Score scoring).
+3. **Naive Baseline Safeguard**: Implemented `ModelTrainer` evaluating every ML model against naive baselines; marks `is_baseline_preferred = True` if ML model fails to beat baseline metrics.
+4. **Anti-Leakage Feature Store**: Built `FeatureExtractor` and `MemoryFeatureStore` providing time-aware temporal, operational, network, external, risk, and lag features with `feature_schema_version = "v1.0.0"`.
+5. **Local Model Registry**: Implemented `LocalModelRegistry` with checksum verification, model lifecycle state transitions (`TRAINED`, `VALIDATED`, `CANDIDATE`, `ACTIVE`, `RETIRED`, `REJECTED`), and instant rollback (`rollback_model`).
+6. **Inference & Predictive Signals**: Built `PredictionService` producing `Prediction` envelopes and injecting `PredictiveSignal` objects into `SignalFusionEngine` without mutating World Model state directly.
+7. **Drift & Governance Subsystem**: Built `DriftDetector` computing Population Stability Index (PSI) and Kolmogorov-Smirnov statistics, generating `DriftReport` objects and `ModelCard` transparency artifacts.
+8. **Cinematic Predictive Intelligence UI**: Authored `PredictiveIntelligence.tsx` frontend featuring Demand Forecast Chart, Disruption Probability Map, Anomaly Inspector, Model Observatory, and Training/Drift Console. Registered under top-level `PREDICTIVE ML` tab.
+9. **RBAC & Realtime Integration**: Added 7 ML permissions (`ML_READ`, `ML_TRAIN`, `ML_EVALUATE`, `ML_ACTIVATE`, `ML_RETIRE`, `ML_PREDICT`, `ML_MANAGE`), registered `/api/ml/*` REST router, and emitted realtime ML events (`MODEL_TRAINING_STARTED`, `MODEL_ACTIVATED`, `PREDICTION_CREATED`, `MODEL_DRIFT_DETECTED`).
+
+**Rationale**:
+- Provides predictive intelligence capabilities to FULFILL-X while maintaining 100% determinism, baseline verification, security isolation, and zero paid API dependencies.
+
+**Consequences**:
+- Phase 6 Predictive AI / ML Platform is fully completed, tested, verified, and documented.
+
+---
+
+*Last updated: Phase 6 — Predictive AI / ML Platform Complete*
 
 
 
