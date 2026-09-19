@@ -1,8 +1,9 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Html, Line } from '@react-three/drei';
 import * as THREE from 'three';
 import { WorldNode, WorldEdge } from '../../types/world';
+import { Filter, Eye, RefreshCcw } from 'lucide-react';
 
 interface World3DViewProps {
   nodes: WorldNode[];
@@ -20,7 +21,6 @@ interface NodeMeshProps {
 const NodeMesh: React.FC<NodeMeshProps> = ({ node, isSelected, onSelectNode }) => {
   const meshRef = useRef<THREE.Mesh>(null);
 
-  // Slow rotation for visual dynamic effect
   useFrame((_, delta) => {
     if (meshRef.current) {
       meshRef.current.rotation.y += delta * 0.4;
@@ -109,14 +109,68 @@ export const World3DView: React.FC<World3DViewProps> = ({
   selectedNodeId,
   onSelectNode,
 }) => {
+  const [selectedType, setSelectedType] = useState<string>('ALL');
+  const [minRiskFilter, setMinRiskFilter] = useState<number>(0.0);
+
+  const filteredNodes = useMemo(() => {
+    return nodes.filter((n) => {
+      if (selectedType !== 'ALL' && n.type !== selectedType) return false;
+      if ((n.risk_scores?.composite ?? 0) < minRiskFilter) return false;
+      return true;
+    });
+  }, [nodes, selectedType, minRiskFilter]);
+
+  const filteredNodeIds = useMemo(() => new Set(filteredNodes.map((n) => n.id)), [filteredNodes]);
+
+  const filteredEdges = useMemo(() => {
+    return edges.filter(
+      (e) => filteredNodeIds.has(e.source_node_id) && filteredNodeIds.has(e.target_node_id)
+    );
+  }, [edges, filteredNodeIds]);
+
   const nodeMap = useMemo(() => {
     const map = new Map<string, WorldNode>();
-    nodes.forEach((n) => map.set(n.id, n));
+    filteredNodes.forEach((n) => map.set(n.id, n));
     return map;
-  }, [nodes]);
+  }, [filteredNodes]);
 
   return (
     <div style={{ width: '100%', height: '100%', position: 'relative', background: '#080D14' }}>
+      {/* 3D Scene Controls Overlay */}
+      <div className="absolute top-4 left-4 z-20 bg-slate-900/90 border border-slate-800 rounded-xl p-3 shadow-xl backdrop-blur-md flex items-center space-x-3 text-xs">
+        <div className="flex items-center space-x-1.5 text-slate-300 font-semibold">
+          <Filter className="w-3.5 h-3.5 text-indigo-400" />
+          <span>Type:</span>
+        </div>
+        <select
+          value={selectedType}
+          onChange={(e) => setSelectedType(e.target.value)}
+          className="bg-slate-950 border border-slate-700 rounded px-2 py-1 text-slate-200 text-xs font-mono"
+        >
+          <option value="ALL">All Nodes ({nodes.length})</option>
+          <option value="SUPPLIER">Suppliers</option>
+          <option value="PORT">Ports</option>
+          <option value="WAREHOUSE">Warehouses</option>
+          <option value="FULFILLMENT_CENTER">Fulfillment Centers</option>
+          <option value="CUSTOMER_ZONE">Customer Zones</option>
+        </select>
+
+        <div className="flex items-center space-x-1.5 text-slate-300 font-semibold ml-2">
+          <Eye className="w-3.5 h-3.5 text-amber-400" />
+          <span>Min Risk:</span>
+        </div>
+        <select
+          value={minRiskFilter}
+          onChange={(e) => setMinRiskFilter(parseFloat(e.target.value))}
+          className="bg-slate-950 border border-slate-700 rounded px-2 py-1 text-slate-200 text-xs font-mono"
+        >
+          <option value={0.0}>All Risks</option>
+          <option value={0.25}>&ge; 25% (Elevated)</option>
+          <option value={0.5}>&ge; 50% (High)</option>
+          <option value={0.7}>&ge; 70% (Critical)</option>
+        </select>
+      </div>
+
       <Canvas
         camera={{ position: [0, 22, 35], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
@@ -135,7 +189,7 @@ export const World3DView: React.FC<World3DViewProps> = ({
         />
 
         {/* Render 3D Route Edges */}
-        {edges.map((edge) => {
+        {filteredEdges.map((edge) => {
           const src = nodeMap.get(edge.source_node_id);
           const tgt = nodeMap.get(edge.target_node_id);
           if (!src || !tgt) return null;
@@ -163,7 +217,7 @@ export const World3DView: React.FC<World3DViewProps> = ({
         })}
 
         {/* Render 3D Nodes */}
-        {nodes.map((node) => (
+        {filteredNodes.map((node) => (
           <NodeMesh
             key={node.id}
             node={node}

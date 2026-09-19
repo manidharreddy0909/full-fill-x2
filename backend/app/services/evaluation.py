@@ -23,12 +23,20 @@ from app.realtime import event_bus
 class EvaluationService:
     """Service layer for evaluation and benchmarking."""
 
+    _instance: Optional["EvaluationService"] = None
+
     def __init__(self):
         self.runner = EvaluationRunner()
         self.repository = EvaluationRepository.get_instance()
         self.scenario_registry = ScenarioRegistry()
         self.world_repo = WorldRepository.get_instance()
         self.risk_repo = RiskRepository.get_instance()
+
+    @classmethod
+    def get_instance(cls) -> "EvaluationService":
+        if cls._instance is None:
+            cls._instance = EvaluationService()
+        return cls._instance
 
     def get_status(self) -> Dict[str, Any]:
         """Return system evaluation harness status."""

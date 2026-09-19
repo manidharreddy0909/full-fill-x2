@@ -3,6 +3,67 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.0.0] — 2026-09-19 — Phase 17: Final Product Experience, Complete QA & Submission Readiness
+
+### Added
+
+**Unified Product Shell & Navigation (`frontend/src/App.tsx`, `frontend/src/components/common/Navbar.tsx`)**
+- 8 top-level product tabs: `COMMAND`, `WORLD`, `INTELLIGENCE`, `RESPONSE`, `DECISION`, `SIMULATION`, `EVALUATION`, and `DEMO`.
+- Active status pill indicators, seamless view switching, responsive layout, and unified dark glassmorphism design.
+
+**Executive Command Center (`frontend/src/components/command/CommandCenter.tsx`)**
+- High-level executive dashboard visualizing core resilience KPIs (Health Score, Resilience Score, SLR, Risk Score), top elevated risk nodes, live event feeds, and decision loop shortcuts.
+
+**Signal Ingestion & Fusion Intelligence Panel (`frontend/src/components/intelligence/IntelligencePanel.tsx`)**
+- Dedicated view tracing raw disruption signals through 6-hour deduplication clustering, BFS risk propagation, and evidence links.
+
+**Enhanced 3D Spatial Digital Twin Overlays (`frontend/src/components/world/World3DView.tsx`)**
+- Interactive floating node type (Suppliers, Hubs, Ports, Plants) and risk level (Critical, High, Medium, Low) filter overlays.
+
+**Documentation & System Specifications (`docs/FINAL_PRODUCT_SPEC.md`, `docs/FINAL_TEST_MATRIX.md`, `docs/DECISION_LOG.md`)**
+- Created `docs/FINAL_PRODUCT_SPEC.md` and `docs/FINAL_TEST_MATRIX.md`.
+- Added `ADR-030: Final Product Experience Architecture & Submission Readiness` to `docs/DECISION_LOG.md`.
+
+### Fixed
+
+**Async WebSocket Coroutine Boundary (`backend/app/realtime/event_bus.py`)**
+- Resolved all pytest `RuntimeWarning: coroutine 'WebSocketManager.broadcast_to_session' was never awaited` warnings by converting `on_event_bus_published` to an async subscriber handler and directly awaiting subscriber callbacks in `EventBus.publish`.
+
+---
+
+## [0.17.0] — 2026-09-19 — Phase 16: Competition Demo Mode, Guided Scenario Engine & Judge-Facing Demonstration
+
+### Added
+
+**Competition Demo Engine (`backend/app/demo/`, `backend/app/schemas/demo.py`, `backend/app/api/demo.py`)**
+- `backend/app/schemas/demo.py` — Pydantic v2 schemas: `DemoScenarioId` (`DEMO-01`–`DEMO-05`), `DemoStatus` (14-state machine), `DemoModeType` (`STEP`, `FAST`), `DemoStepRecord`, `DemoScenario`, `DemoSession`, `DemoStartRequest`, `DemoStepRequest`, `DemoApprovalRequest`, `DemoStatusResponse`, `DemoReport`.
+- `backend/app/demo/scenarios.py` — `DemoScenarioRegistry` with 5 scenarios (`DEMO-01` to `DEMO-05`), featuring primary showcase `DEMO-05` (*Full Resilience Challenge*) with fixed `seed=42`.
+- `backend/app/demo/service.py` — `DemoService` singleton orchestrating 14-state machine (`IDLE` $\rightarrow$ `OBSERVING` $\rightarrow$ `RISK_DETECTED` $\rightarrow$ `SPECIALISTS_RUNNING` $\rightarrow$ `COORDINATING` $\rightarrow$ `ADVERSARY_RUNNING` $\rightarrow$ `OPTIMIZING` $\rightarrow$ `VERIFYING` $\rightarrow$ `AWAITING_APPROVAL` $\rightarrow$ `APPROVED`/`REJECTED` $\rightarrow$ `COMPLETED`), pause/resume/step/reset, approval gate, report generation, and realtime event emissions via `event_bus`.
+- `backend/app/demo/report.py` — `DemoReportGenerator` building machine-readable `artifacts/demo/demo_report.json` and human-readable `artifacts/demo/demo_report.md`.
+- `backend/app/api/demo.py` — REST API router exposing `/api/demo/status`, `/scenarios`, `/start`, `/step`, `/pause`, `/resume`, `/reset`, `/approve`, `/reject`, `/session/{session_id}`, `/report/{session_id}`.
+
+**Frontend Demo Mode Console (`frontend/src/components/demo/`, `types/demo.ts`, `api/demoApi.ts`)**
+- `frontend/src/types/demo.ts` & `frontend/src/api/demoApi.ts` — TypeScript interfaces and fetch API client for Competition Demo Mode.
+- `frontend/src/components/demo/DemoScenarioSelector.tsx` — Card selector for competition scenarios highlighting `DEMO-05` Showcase.
+- `frontend/src/components/demo/DemoTimeline.tsx` — 12-stage visual storyboard progress indicator with stage status icons and metrics.
+- `frontend/src/components/demo/DemoControlBar.tsx` — Interactive control bar for Launch, Fast Run, Step Forward, Pause, Resume, Reset, and Human Approval buttons.
+- `frontend/src/components/demo/DemoResult.tsx` — Competition presentation report card with network health, resilience scores, SLR, and human decision details.
+- `frontend/src/components/demo/DemoMode.tsx` — Main demo console container.
+- `frontend/src/components/common/Navbar.tsx` & `App.tsx` — Added prominent "Competition Demo Mode" navigation button and route integration.
+
+**Automated Test Suite & 100% Determinism Verification (`backend/tests/test_demo.py`)**
+- Created `backend/tests/test_demo.py` testing scenario registry, 14-state machine transitions, manual/fast modes, pause/resume/reset, human approval/rejection gates, REST API endpoints, report generation, and 100% determinism verification across 3 consecutive runs (`Run 1 == Run 2 == Run 3`).
+- All 150/150 backend pytest tests PASS cleanly.
+- Frontend production bundle (`npm run build`) builds with 0 errors.
+
+**Documentation & Decision Log**
+- Created `docs/DEMO_MODE_SPEC.md` (Competition Demo Architecture & State Machine).
+- Created `docs/DEMO_SCRIPT.md` (12-stage, 3–5 minute judge presentation script).
+- Added `ADR-029: Deterministic Competition Demo Architecture` in `docs/DECISION_LOG.md`.
+- Updated `docs/MASTER_PLAN.md`, `docs/ARCHITECTURE.md`, `docs/API_CATALOG.md`, `tasks/TODO.md`, `tasks/IN_PROGRESS.md`, `tasks/DONE.md`.
+
+---
+
 ## [0.16.0] — 2026-09-19 — Phase 15: Security Audit, AI Safety, Dependency Security & Open-Source Attribution
 
 ### Added

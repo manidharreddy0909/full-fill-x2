@@ -431,7 +431,52 @@
 
 ---
 
+## Phase 16 — Competition Demo Mode, Guided Scenario Engine & Judge-Facing Demonstration
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P16-001 | Demo Mode Pydantic v2 Schemas (`backend/app/schemas/demo.py`) | DONE | Pydantic v2 validation PASS | TBD |
+| P16-002 | Demo Scenario Registry with 5 scenarios (`backend/app/demo/scenarios.py`) | DONE | 5 scenarios registered PASS | TBD |
+| P16-003 | Demo Service 14-State Machine Orchestrator (`backend/app/demo/service.py`) | DONE | State machine execution PASS | TBD |
+| P16-004 | Competition Demo Report Generator (`backend/app/demo/report.py`) | DONE | JSON & MD artifacts generated PASS | TBD |
+| P16-005 | Demo Mode REST API Router (`backend/app/api/demo.py`) | DONE | REST API routes PASS | TBD |
+| P16-006 | Main API Router Integration (`backend/app/api/router.py`) | DONE | Route inclusion PASS | TBD |
+| P16-007 | Frontend TypeScript Types & API Client (`types/demo.ts`, `api/demoApi.ts`) | DONE | Type safety PASS | TBD |
+| P16-008 | Demo Scenario Selector Component (`DemoScenarioSelector.tsx`) | DONE | UI component PASS | TBD |
+| P16-009 | Demo Storyboard Timeline Component (`DemoTimeline.tsx`) | DONE | UI component PASS | TBD |
+| P16-010 | Demo Control Bar Component (`DemoControlBar.tsx`) | DONE | UI component PASS | TBD |
+| P16-011 | Competition Presentation Report Component (`DemoResult.tsx`) | DONE | UI component PASS | TBD |
+| P16-012 | Main Demo Console Container (`DemoMode.tsx`) | DONE | Main view container PASS | TBD |
+| P16-013 | Integration into Navbar & App Routing (`Navbar.tsx`, `App.tsx`) | DONE | Navigation integration PASS | TBD |
+| P16-014 | Competition Demo Specification (`docs/DEMO_MODE_SPEC.md`) | DONE | Spec document PASS | TBD |
+| P16-015 | 12-Stage Judge Presentation Script (`docs/DEMO_SCRIPT.md`) | DONE | Script document PASS | TBD |
+| P16-016 | ADR-029: Deterministic Competition Demo Architecture | DONE | ADR committed PASS | TBD |
+| P16-017 | Automated Demo Test Suite (`backend/tests/test_demo.py`) | DONE | Pytest test suite PASS | TBD |
+| P16-018 | 100% Determinism Verification across 3 consecutive runs | DONE | `Run 1 == Run 2 == Run 3` PASS | TBD |
+| P16-019 | Full Test Suite & Build Verification | DONE | 150/150 pytest PASS & npm run build PASS | TBD |
+| P16-020 | Master Documentation & Changelog Update (`v0.17.0`) | DONE | Documentation updated PASS | TBD |
+
+---
+
+## Phase 17 — Final Product Experience & Submission Readiness
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P17-001 | Executive Command Center View (`frontend/src/components/command/CommandCenter.tsx`) | DONE | Rendered resilience KPIs, elevated risk nodes & live events PASS | TBD |
+| P17-002 | Signal Ingestion & Fusion Intelligence Panel (`frontend/src/components/intelligence/IntelligencePanel.tsx`) | DONE | Rendered signal ingestion, deduplication, BFS graph & evidence links PASS | TBD |
+| P17-003 | Interactive Filter Overlays in 3D Spatial Twin (`frontend/src/components/world/World3DView.tsx`) | DONE | Rendered interactive Node Type and Risk Level overlays PASS | TBD |
+| P17-004 | Unified Top-Level Navigation Shell (`Navbar.tsx`, `App.tsx`) | DONE | 8 workspace tabs integrated with active status indicators PASS | TBD |
+| P17-005 | Shared Async WebSocket Event Bus Boundary Fix (`EventBus.publish`) | DONE | Async subscriber callbacks awaited; 0 coroutine warnings PASS | TBD |
+| P17-006 | Final Product Specification (`docs/FINAL_PRODUCT_SPEC.md`) | DONE | Spec committed PASS | TBD |
+| P17-007 | Final Test Matrix & Verification Report (`docs/FINAL_TEST_MATRIX.md`) | DONE | Matrix committed PASS | TBD |
+| P17-008 | ADR-030: Final Product Architecture & Submission Readiness | DONE | ADR committed PASS | TBD |
+| P17-009 | Master Documentation & Versioning Update (`v1.0.0`) | DONE | Version `v1.0.0` updated across all docs PASS | TBD |
+| P17-010 | Full System Regression & Production Build | DONE | 149/149 pytest PASS (0 warnings), npm run build PASS | TBD |
+
+---
+
 *Commit hashes to be filled in after `git commit` completes.*
+
 
 
 

@@ -76,12 +76,12 @@ class EventBus:
         if session_id is not None:
             target_callbacks.update(self._subscribers.get(None, set()))
 
-        # Notify subscribers concurrently
+        # Notify subscribers
         for callback in target_callbacks:
             try:
                 res = callback(envelope)
                 if asyncio.iscoroutine(res):
-                    asyncio.create_task(res)
+                    await res
             except Exception as err:
                 logger.error(f"Error in EventBus callback subscriber: {err}", exc_info=True)
 

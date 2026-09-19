@@ -9,7 +9,7 @@ import {
   resetRisk,
 } from './api/riskApi';
 import { fetchAIProviders } from './api/aiApi';
-import { Navbar } from './components/common/Navbar';
+import { Navbar, ProductTab } from './components/common/Navbar';
 import { WorldSummaryBar } from './components/world/WorldSummaryBar';
 import { World2DView } from './components/world/World2DView';
 import { World3DView } from './components/world/World3DView';
@@ -19,11 +19,15 @@ import { SignalInjectorModal } from './components/risk/SignalInjectorModal';
 import { SpecialistWarRoom } from './components/agents/SpecialistWarRoom';
 import { DecisionCockpit } from './components/cockpit/DecisionCockpit';
 import { EvaluationDashboard } from './components/evaluation/EvaluationDashboard';
+import { DemoMode } from './components/demo/DemoMode';
+import { CommandCenter } from './components/command/CommandCenter';
+import { IntelligencePanel } from './components/intelligence/IntelligencePanel';
 import { EventToastContainer } from './components/common/EventToastContainer';
 import { useRealtimeStore } from './store/realtimeStore';
 import { CandidatePlan } from './types/coordinator';
 
 export const App: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<ProductTab>('COMMAND');
   const [viewMode, setViewMode] = useState<'2D' | '3D'>('2D');
   const [snapshot, setSnapshot] = useState<WorldStateSnapshot | null>(null);
   const [summary, setSummary] = useState<WorldSummary | null>(null);
@@ -41,7 +45,6 @@ export const App: React.FC = () => {
   const [injectorTargetId, setInjectorTargetId] = useState<string | null>(null);
   const [isWarRoomOpen, setIsWarRoomOpen] = useState<boolean>(false);
   const [isCockpitOpen, setIsCockpitOpen] = useState<boolean>(false);
-  const [isEvaluationOpen, setIsEvaluationOpen] = useState<boolean>(false);
   const [previewCandidatePlan, setPreviewCandidatePlan] = useState<CandidatePlan | null>(null);
 
   const loadWorldAndRiskData = useCallback(async () => {
@@ -117,7 +120,6 @@ export const App: React.FC = () => {
   const handleInjectSignal = async (req: SignalCreateRequest) => {
     try {
       await injectSignal(req);
-      // Refresh snapshot and risk map after signal injection & risk recalculation
       const [snapData, sumData, rMap] = await Promise.all([
         fetchWorldSnapshot(),
         fetchWorldSummary(),
@@ -143,7 +145,6 @@ export const App: React.FC = () => {
   const { nodeRisks: rtNodeRisks } = useRealtimeStore();
   const selectedNode = snapshot?.nodes.find((n) => n.id === selectedNodeId) || null;
 
-  // Merge updated risk scores into WorldNodes if available (combining riskMap & WebSocket realtime updates)
   const currentNodes: WorldNode[] = (snapshot?.nodes || []).map((node) => {
     const rtRisk = rtNodeRisks[node.id];
     if (rtRisk) {
@@ -175,6 +176,8 @@ export const App: React.FC = () => {
 
       {/* Navbar */}
       <Navbar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
         viewMode={viewMode}
         setViewMode={setViewMode}
         activePreset={activePreset}
@@ -185,21 +188,55 @@ export const App: React.FC = () => {
         onSeedChange={handleSeedChange}
         onReset={handleReset}
         onOpenInjector={() => handleOpenInjector()}
-        onOpenWarRoom={() => setIsWarRoomOpen(true)}
-        onOpenCockpit={() => setIsCockpitOpen(true)}
-        onOpenEvaluation={() => setIsEvaluationOpen(!isEvaluationOpen)}
       />
 
       {/* World Summary Bar */}
       <WorldSummaryBar summary={summary} />
 
-      {/* Main View Area */}
-      <main style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
-        {isEvaluationOpen ? (
-          <EvaluationDashboard />
-        ) : loading ? (
+      {/* Main Product View Area */}
+      <main style={{ flex: 1, position: 'relative', overflow: 'auto' }}>
+        {loading ? (
           <div style={{ display: 'flex', height: '100%', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)' }}>
             <div className="mono">Loading FULFILL-X World State & Deterministic Risk Engine...</div>
+          </div>
+        ) : activeTab === 'COMMAND' ? (
+          <CommandCenter
+            summary={summary}
+            nodes={currentNodes}
+            riskMap={riskMap}
+            onOpenInjector={() => handleOpenInjector()}
+            onOpenWarRoom={() => setIsWarRoomOpen(true)}
+            onOpenCockpit={() => setIsCockpitOpen(true)}
+            onOpenEvaluation={() => setActiveTab('EVALUATION')}
+            onOpenDemo={() => setActiveTab('DEMO')}
+            onSelectNode={(nid) => { setSelectedNodeId(nid); setActiveTab('WORLD'); }}
+          />
+        ) : activeTab === 'INTELLIGENCE' ? (
+          <IntelligencePanel
+            onOpenInjector={() => handleOpenInjector()}
+            onSelectNode={(nid) => { setSelectedNodeId(nid); setActiveTab('WORLD'); }}
+          />
+        ) : activeTab === 'EVALUATION' ? (
+          <EvaluationDashboard />
+        ) : activeTab === 'DEMO' ? (
+          <DemoMode />
+        ) : activeTab === 'RESPONSE' ? (
+          <div className="max-w-7xl mx-auto p-6">
+            <SpecialistWarRoom
+              isOpen={true}
+              onClose={() => setActiveTab('COMMAND')}
+              selectedNodeId={selectedNodeId}
+              onPreviewCandidate={(cand) => setPreviewCandidatePlan(cand)}
+              selectedCandidateId={previewCandidatePlan?.candidate_id}
+            />
+          </div>
+        ) : activeTab === 'DECISION' ? (
+          <div className="max-w-7xl mx-auto p-6">
+            <DecisionCockpit
+              isOpen={true}
+              onClose={() => setActiveTab('COMMAND')}
+              onPreviewCandidate={(cand) => setPreviewCandidatePlan(cand)}
+            />
           </div>
         ) : (
           <>
@@ -219,7 +256,7 @@ export const App: React.FC = () => {
               />
             )}
 
-            {/* Risk Detail Inspector Panel (if risk details available) */}
+            {/* Risk Detail Inspector Panel */}
             {nodeRiskDetail ? (
               <RiskExplorer
                 riskDetail={nodeRiskDetail}
@@ -235,79 +272,36 @@ export const App: React.FC = () => {
                 onSelectNode={setSelectedNodeId}
               />
             )}
-
-            {/* Signal Injector Modal */}
-            <SignalInjectorModal
-              isOpen={isInjectorOpen}
-              onClose={() => setIsInjectorOpen(false)}
-              nodes={currentNodes}
-              initialTargetNodeId={injectorTargetId}
-              onInject={handleInjectSignal}
-            />
-
-            {/* Candidate Plan Visual Preview Banner */}
-            {previewCandidatePlan && (
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '16px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  background: 'rgba(124, 58, 237, 0.9)',
-                  backdropFilter: 'blur(12px)',
-                  border: '1px solid #A78BFA',
-                  boxShadow: '0 0 20px rgba(139, 92, 246, 0.5)',
-                  padding: '8px 20px',
-                  borderRadius: '30px',
-                  color: '#FFFFFF',
-                  zIndex: 100,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                }}
-              >
-                <span className="mono" style={{ fontSize: '11px', fontWeight: 700, background: '#4C1D95', padding: '2px 8px', borderRadius: '12px' }}>
-                  CANDIDATE PREVIEW
-                </span>
-                <span style={{ fontSize: '13px', fontWeight: 600 }}>
-                  {previewCandidatePlan.name}
-                </span>
-                <span style={{ fontSize: '11px', color: '#E9D5FF' }}>
-                  (UNEXECUTED CANDIDATE PLAN — WORLD STATE UNMUTATED)
-                </span>
-                <button
-                  onClick={() => setPreviewCandidatePlan(null)}
-                  style={{
-                    background: 'transparent',
-                    border: 'none',
-                    color: '#FFF',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                    fontWeight: 700,
-                    marginLeft: '8px',
-                  }}
-                >
-                  ✕
-                </button>
-              </div>
-            )}
-
-            {/* Specialist & Coordinator War Room Drawer */}
-            <SpecialistWarRoom
-              isOpen={isWarRoomOpen}
-              onClose={() => setIsWarRoomOpen(false)}
-              selectedNodeId={selectedNodeId}
-              onPreviewCandidate={(cand) => setPreviewCandidatePlan(cand)}
-              selectedCandidateId={previewCandidatePlan?.candidate_id}
-            />
-
-            {/* Decision Cockpit Modal */}
-            <DecisionCockpit
-              isOpen={isCockpitOpen}
-              onClose={() => setIsCockpitOpen(false)}
-              onPreviewCandidate={(cand) => setPreviewCandidatePlan(cand)}
-            />
           </>
+        )}
+
+        {/* Signal Injector Modal */}
+        <SignalInjectorModal
+          isOpen={isInjectorOpen}
+          onClose={() => setIsInjectorOpen(false)}
+          nodes={currentNodes}
+          initialTargetNodeId={injectorTargetId}
+          onInject={handleInjectSignal}
+        />
+
+        {/* Specialist War Room Drawer (Modal Mode) */}
+        {isWarRoomOpen && (
+          <SpecialistWarRoom
+            isOpen={isWarRoomOpen}
+            onClose={() => setIsWarRoomOpen(false)}
+            selectedNodeId={selectedNodeId}
+            onPreviewCandidate={(cand) => setPreviewCandidatePlan(cand)}
+            selectedCandidateId={previewCandidatePlan?.candidate_id}
+          />
+        )}
+
+        {/* Decision Cockpit Modal */}
+        {isCockpitOpen && (
+          <DecisionCockpit
+            isOpen={isCockpitOpen}
+            onClose={() => setIsCockpitOpen(false)}
+            onPreviewCandidate={(cand) => setPreviewCandidatePlan(cand)}
+          />
         )}
       </main>
     </div>

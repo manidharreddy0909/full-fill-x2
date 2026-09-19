@@ -666,9 +666,9 @@ class CockpitService:
                 EvidenceLink(
                     source_stage=DecisionStage.OBSERVING,
                     entity_type="signal",
-                    entity_id=sig.id,
+                    entity_id=str(sig.id),
                     title=f"Disruption Signal: {sig.title}",
-                    description=f"Ingested signal '{sig.title}' ({sig.type.value if hasattr(sig.type, 'value') else sig.type}) at node {sig.target_node_id}",
+                    description=f"Ingested signal '{sig.title}' ({sig.type.value if hasattr(sig.type, 'value') else sig.type}) at node {sig.affected_node_ids[0] if sig.affected_node_ids else 'GLOBAL'}",
                     provenance_chain=["OBSERVE", f"Signal:{sig.id}"],
                     metadata={"severity": str(sig.severity), "confidence": sig.confidence},
                 )

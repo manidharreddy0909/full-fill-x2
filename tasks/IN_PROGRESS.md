@@ -7,7 +7,7 @@
 
 ## Currently In Progress
 
-*(Empty — Phase 15 Security Audit, AI Safety, Dependency Security & Open-Source Attribution Complete)*
+*(Empty — Phase 16 Competition Demo Mode, Guided Scenario Engine & Judge-Facing Demonstration Complete)*
 
 ---
 
@@ -19,4 +19,4 @@
 
 ---
 
-*Last updated: Phase 15 — Security Audit, AI Safety, Dependency Security & Open-Source Attribution Complete*
+*Last updated: Phase 16 — Competition Demo Mode, Guided Scenario Engine & Judge-Facing Demonstration Complete*

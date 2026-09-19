@@ -42,21 +42,23 @@ SPECIALIST AGENTS → ADVERSARY → MULTI-OBJECTIVE PLAN → VERIFY → MEMORY
 | Phase | Name | Status | Description |
 |-------|------|--------|-------------|
 | 00 | Initialization | ✅ COMPLETE | Repository, governance, all specs |
-| 01 | World Model + Data | PLANNED | Deterministic network model, synthetic data |
-| 02 | Risk Engine | PLANNED | Multi-dimensional risk scoring |
-| 03 | Scenario Engine | PLANNED | Compound scenario composition |
-| 04 | Agent Framework | PLANNED | AI provider abstraction + agent contracts |
-| 05 | Specialist Agents | PLANNED | All 7 specialist agents + coordinator |
-| 06 | Adversary Agent | PLANNED | Plan stress testing |
-| 07 | Backend API | PLANNED | FastAPI + WebSocket server |
-| 08 | Frontend Core | PLANNED | React + TS + Vite + Tailwind scaffold |
-| 09 | 3D World Model UI | PLANNED | React Three Fiber visualization |
-| 10 | All 12 Screens | PLANNED | Full UI implementation |
-| 11 | Real-Time Intelligence & Events | COMPLETE | In-process EventBus + WebSockets |
-| 12 | Evaluation Harness & Benchmark Suite | COMPLETE | Deterministic benchmarks & quantitative metrics |
+| 01 | World Model + Data | ✅ COMPLETE | Deterministic network model, synthetic data |
+| 02 | Risk Engine | ✅ COMPLETE | Multi-dimensional risk scoring |
+| 03 | Scenario Engine | ✅ COMPLETE | Compound scenario composition |
+| 04 | Agent Framework | ✅ COMPLETE | AI provider abstraction + agent contracts |
+| 05 | Specialist Agents | ✅ COMPLETE | All specialist agents + coordinator |
+| 06 | Adversary Agent | ✅ COMPLETE | Plan stress testing |
+| 07 | Backend API | ✅ COMPLETE | FastAPI + WebSocket server |
+| 08 | Frontend Core | ✅ COMPLETE | React + TS + Vite + Tailwind scaffold |
+| 09 | 3D World Model UI | ✅ COMPLETE | React Three Fiber visualization |
+| 10 | All 12 Screens | ✅ COMPLETE | Full UI implementation |
+| 11 | Real-Time Intelligence & Events | ✅ COMPLETE | In-process EventBus + WebSockets |
+| 12 | Evaluation Harness & Benchmark Suite | ✅ COMPLETE | Deterministic benchmarks & quantitative metrics |
 | 13 | Production Hardening & Containerization | ✅ COMPLETE | Production Docker, Nginx, CORS, health probes, logging, bundle optimization |
 | 14 | AWS Deployment & Production Integration | ✅ COMPLETE | Terraform IaC, S3, CloudFront, ECR, ECS Fargate, ALB, Bedrock AI boundary, CI/CD pipeline |
 | 15 | Security Audit & AI Safety Hardening | ✅ COMPLETE | Threat model, secret scan, SBOM, security test suite, open-source attribution, ADR-028 |
+| 16 | Competition Demo Mode & Guided Console | ✅ COMPLETE | Deterministic demo engine, 14-state machine, judge presentation script, report artifacts, ADR-029 |
+| 17 | Final Product Experience & Submission Readiness | ✅ COMPLETE | Unified navigation shell, Command & Intelligence panels, zero-warning test pass, ADR-030 |
 
 ---
 

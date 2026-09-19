@@ -357,5 +357,43 @@
 | P13-018 | Bundle Code Splitting & Optimization (App bundle reduced 84.5%) | P13-017 | DONE |
 | P13-019 | Single-Source Application Versioning (`0.13.0`) | P13-002 | DONE |
 | P13-020 | Automated Production & Security Smoke Test Suite (`test_production_smoke.py`) | P13-019 | DONE |
-| P13-021 | Full Test Suite Verification (`pytest` 126/126 PASS & `npm run build` PASS) | P13-020 | DONE |
-| P13-022 | Documentation & ADR Updates (`PRODUCTION_READINESS.md`, ADR-026) | P13-021 | DONE |
+## Phase 16 — Competition Demo Mode, Guided Scenario Engine & Judge-Facing Demonstration [COMPLETED]
+
+| ID | Description | Dependencies | Status |
+|----|-------------|-------------|--------|
+| P16-001 | Demo Mode Pydantic v2 Schemas (`backend/app/schemas/demo.py`) | Phase 15 complete | DONE |
+| P16-002 | Demo Scenario Registry with 5 deterministic scenarios (`backend/app/demo/scenarios.py`) | P16-001 | DONE |
+| P16-003 | Demo Service 14-State Machine Orchestrator (`backend/app/demo/service.py`) | P16-002 | DONE |
+| P16-004 | Competition Demo Report Generator (`backend/app/demo/report.py`) | P16-003 | DONE |
+| P16-005 | Demo Mode REST API Router (`backend/app/api/demo.py`) | P16-004 | DONE |
+| P16-006 | Main API Router Integration (`backend/app/api/router.py`) | P16-005 | DONE |
+| P16-007 | Frontend TypeScript Types & API Client (`types/demo.ts`, `api/demoApi.ts`) | P16-005 | DONE |
+| P16-008 | Demo Scenario Selector Component (`DemoScenarioSelector.tsx`) | P16-007 | DONE |
+| P16-009 | Demo Storyboard Timeline Component (`DemoTimeline.tsx`) | P16-007 | DONE |
+| P16-010 | Demo Control Bar Component (`DemoControlBar.tsx`) | P16-007 | DONE |
+| P16-011 | Competition Presentation Report Component (`DemoResult.tsx`) | P16-007 | DONE |
+| P16-012 | Main Demo Console Container (`DemoMode.tsx`) | P16-008–P16-011 | DONE |
+| P16-013 | Integration into Navbar & App Routing (`Navbar.tsx`, `App.tsx`) | P16-012 | DONE |
+| P16-014 | Competition Demo Specification (`docs/DEMO_MODE_SPEC.md`) | P16-006 | DONE |
+| P16-015 | 12-Stage Judge Presentation Script (`docs/DEMO_SCRIPT.md`) | P16-014 | DONE |
+| P16-016 | ADR-029: Deterministic Competition Demo Architecture (`docs/DECISION_LOG.md`) | P16-015 | DONE |
+| P16-017 | Automated Demo Test Suite (`backend/tests/test_demo.py`) | P16-006 | DONE |
+| P16-018 | 100% Determinism Verification across 3 consecutive runs (`Run 1 == Run 2 == Run 3`) | P16-017 | DONE |
+| P16-019 | Full Test Suite & Build Verification (`pytest` 150/150 PASS & `npm run build` PASS) | P16-018 | DONE |
+| P16-020 | Master Documentation & Changelog Update (`v0.17.0`) | P16-019 | DONE |
+
+## Phase 17 — Final Product Experience & Submission Readiness [COMPLETED]
+
+| ID | Description | Dependencies | Status |
+|----|-------------|-------------|--------|
+| P17-001 | Executive Command Center View (`frontend/src/components/command/CommandCenter.tsx`) | Phase 16 complete | DONE |
+| P17-002 | Signal Ingestion & Fusion Intelligence Panel (`frontend/src/components/intelligence/IntelligencePanel.tsx`) | P17-001 | DONE |
+| P17-003 | Interactive Filter Overlays in 3D Spatial Twin (`frontend/src/components/world/World3DView.tsx`) | P17-001 | DONE |
+| P17-004 | Unified Top-Level Navigation Shell (`Navbar.tsx`, `App.tsx`) | P17-001–P17-003 | DONE |
+| P17-005 | Shared Async WebSocket Event Bus Boundary Fix (`EventBus.publish` async awaiting) | P17-004 | DONE |
+| P17-006 | Final Product Specification (`docs/FINAL_PRODUCT_SPEC.md`) | P17-004 | DONE |
+| P17-007 | Final Test Matrix & Verification Report (`docs/FINAL_TEST_MATRIX.md`) | P17-005 | DONE |
+| P17-008 | ADR-030: Final Product Architecture & Submission Readiness (`docs/DECISION_LOG.md`) | P17-006 | DONE |
+| P17-009 | Master Documentation & Versioning Update (`v1.0.0`) | P17-008 | DONE |
+| P17-010 | Full System Regression (149+ Pytest PASS, 0 warnings, Frontend Build PASS) | P17-009 | DONE |
+

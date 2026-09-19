@@ -106,13 +106,9 @@ class WebSocketManager:
 websocket_manager = WebSocketManager()
 
 
-def on_event_bus_published(envelope: EventEnvelope) -> None:
+async def on_event_bus_published(envelope: EventEnvelope) -> None:
     """EventBus subscriber callback that relays published events to WebSockets."""
-    try:
-        loop = asyncio.get_running_loop()
-        if envelope.session_id:
-            loop.create_task(websocket_manager.broadcast_to_session(envelope.session_id, envelope))
-        else:
-            loop.create_task(websocket_manager.broadcast(envelope))
-    except RuntimeError:
-        pass
+    if envelope.session_id:
+        await websocket_manager.broadcast_to_session(envelope.session_id, envelope)
+    else:
+        await websocket_manager.broadcast(envelope)

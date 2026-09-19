@@ -836,6 +836,58 @@ as a multi-dimensional object. The corrected response uses `NodeRiskScores`.
 - **Payload Guard**: `MAX_REQUEST_SIZE_BYTES` (10 MB limit); requests exceeding 10 MB rejected with HTTP 413.
 - **Error Sanitization**: Suppression of Python tracebacks in production mode.
 
+---
+
+## 19. Competition Demo Mode Endpoints (Phase 16)
+
+### GET /api/demo/status
+- **Purpose**: Get current Demo Engine status, active session, and available competition scenarios.
+- **Response 200**: `ApiResponse[DemoStatusResponse]`
+
+### GET /api/demo/scenarios
+- **Purpose**: List all 5 registered competition demo scenarios (`DEMO-01` through `DEMO-05`).
+- **Response 200**: `ApiResponse[List[DemoScenario]]`
+
+### POST /api/demo/start
+- **Purpose**: Initialize and launch a new competition demo session (`DEMO-05`, seed 42).
+- **Request Body**: `DemoStartRequest`
+- **Response 200**: `ApiResponse[DemoSession]`
+
+### POST /api/demo/step
+- **Purpose**: Advance active demo state machine by one stage.
+- **Request Body**: `DemoStepRequest`
+- **Response 200**: `ApiResponse[DemoSession]`
+
+### POST /api/demo/pause
+- **Purpose**: Pause active demo session execution.
+- **Response 200**: `ApiResponse[DemoSession]`
+
+### POST /api/demo/resume
+- **Purpose**: Resume paused demo session execution.
+- **Response 200**: `ApiResponse[DemoSession]`
+
+### POST /api/demo/reset
+- **Purpose**: Reset Demo engine state and world repository to clean baseline.
+- **Response 200**: `ApiResponse[dict]`
+
+### POST /api/demo/approve
+- **Purpose**: Execute human approval decision gate in demo mode and trigger benchmark evaluation.
+- **Request Body**: `DemoApprovalRequest`
+- **Response 200**: `ApiResponse[DemoSession]`
+
+### POST /api/demo/reject
+- **Purpose**: Execute human rejection decision gate in demo mode.
+- **Response 200**: `ApiResponse[DemoSession]`
+
+### GET /api/demo/session/{session_id}
+- **Purpose**: Fetch demo session details.
+- **Response 200**: `ApiResponse[DemoSession]`
+
+### GET /api/demo/report/{session_id}
+- **Purpose**: Generate and retrieve machine-readable JSON and Markdown competition presentation reports.
+- **Response 200**: `ApiResponse[DemoReport]`
+
+
 
 
 
