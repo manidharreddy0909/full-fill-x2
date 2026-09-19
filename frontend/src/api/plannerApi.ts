@@ -8,10 +8,12 @@ import {
   PlanSensitivityItem,
 } from '../types/planner';
 
-const PLANNER_API = 'http://localhost:8000/api/planner';
+import { getApiBaseUrl } from './config';
+
+const getPlannerApi = () => `${getApiBaseUrl()}/planner`;
 
 export async function fetchPlannerStatus(): Promise<PlannerStatus> {
-  const response = await fetch(`${PLANNER_API}/status`);
+  const response = await fetch(`${getPlannerApi()}/status`);
   if (!response.ok) {
     throw new Error(`Failed to fetch planner status: ${response.statusText}`);
   }
@@ -24,7 +26,7 @@ export async function runPlanner(
   adversaryReport?: AdversaryReport | null,
   coordinationId: string = ''
 ): Promise<PlannerReport> {
-  const response = await fetch(`${PLANNER_API}/run`, {
+  const response = await fetch(`${getPlannerApi()}/run`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -44,7 +46,7 @@ export async function computePareto(
   candidatePlans: CandidatePlan[],
   adversaryReport?: AdversaryReport | null
 ): Promise<ParetoFrontier> {
-  const response = await fetch(`${PLANNER_API}/pareto`, {
+  const response = await fetch(`${getPlannerApi()}/pareto`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -60,7 +62,7 @@ export async function computePareto(
 }
 
 export async function fetchLatestPlannerReport(): Promise<PlannerReport | null> {
-  const response = await fetch(`${PLANNER_API}/report`);
+  const response = await fetch(`${getPlannerApi()}/report`);
   if (!response.ok) {
     throw new Error(`Failed to fetch latest planner report: ${response.statusText}`);
   }

@@ -4,11 +4,12 @@ import {
   AgentResult,
   AllSpecialistProposalsResponse,
 } from '../types/agent';
+import { getApiBaseUrl } from './config';
 
-const AGENTS_API = 'http://localhost:8000/api/agents';
+const getAgentsApi = () => `${getApiBaseUrl()}/agents`;
 
 export async function fetchAgents(): Promise<AgentMetadata[]> {
-  const response = await fetch(AGENTS_API);
+  const response = await fetch(getAgentsApi());
   if (!response.ok) {
     throw new Error(`Failed to fetch agents: ${response.statusText}`);
   }
@@ -17,7 +18,7 @@ export async function fetchAgents(): Promise<AgentMetadata[]> {
 }
 
 export async function fetchAgentById(agentId: string): Promise<AgentMetadata> {
-  const response = await fetch(`${AGENTS_API}/${agentId}`);
+  const response = await fetch(`${getAgentsApi()}/${agentId}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch agent '${agentId}': ${response.statusText}`);
   }
@@ -26,7 +27,7 @@ export async function fetchAgentById(agentId: string): Promise<AgentMetadata> {
 }
 
 export async function runAgent(agentId: string, targetNodeIds: string[] = []): Promise<AgentResult> {
-  const response = await fetch(`${AGENTS_API}/${agentId}/run`, {
+  const response = await fetch(`${getAgentsApi()}/${agentId}/run`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ target_node_ids: targetNodeIds }),
@@ -39,7 +40,7 @@ export async function runAgent(agentId: string, targetNodeIds: string[] = []): P
 }
 
 export async function runAllAgents(targetNodeIds: string[] = []): Promise<AllSpecialistProposalsResponse> {
-  const response = await fetch(`${AGENTS_API}/run-all`, {
+  const response = await fetch(`${getAgentsApi()}/run-all`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ target_node_ids: targetNodeIds }),

@@ -328,6 +328,35 @@
 
 ---
 
+## Phase 13 — Production Hardening, Containerization & Deployment Preparation
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P13-001 | Production Architecture Audit & Readiness Spec (`docs/PRODUCTION_READINESS.md`) | DONE | Comprehensive audit checklist and deployment blueprint committed PASS | TBD |
+| P13-002 | Backend Environment Configuration (`backend/app/config.py`, `.env.example`) | DONE | Pydantic `Settings` model & safe placeholders PASS | TBD |
+| P13-003 | Frontend Environment Configuration (`frontend/.env.example`) | DONE | Configurable VITE_API_BASE_URL and VITE_WS_URL PASS | TBD |
+| P13-004 | Backend Production Dockerfile (`backend/Dockerfile`) | DONE | Python 3.12-slim, non-root user `fulfillx` (UID 10001), health check PASS | TBD |
+| P13-005 | Frontend Production Dockerfile (`frontend/Dockerfile`) | DONE | Multi-stage Node 20 build -> Nginx 1.25 alpine static runtime PASS | TBD |
+| P13-006 | Production Nginx Server Config (`frontend/nginx.conf`) | DONE | SPA fallback, static asset caching, security headers, reverse proxy pass PASS | TBD |
+| P13-007 | Docker Compose Services & Network (`docker-compose.yml`) | DONE | `backend` + `frontend` services on isolated `fulfillx-net` bridge network PASS | TBD |
+| P13-008 | Health & Readiness Probes (`/health`, `/api/health`) | DONE | Lightweight `/health` (liveness) and deep `/api/health` (readiness) PASS | TBD |
+| P13-009 | Container Security & `.dockerignore` files | DONE | `backend/.dockerignore` & `frontend/.dockerignore` ignoring temporary build files PASS | TBD |
+| P13-010 | CORS Hardening | DONE | Environment-driven origin lists without wildcards in production PASS | TBD |
+| P13-011 | Security Error Handling & Sanitization | DONE | Global exception handler sanitizing internal stack traces & secrets PASS | TBD |
+| P13-012 | Structured Logging Framework | DONE | Structured log entries with event, request_id, method, path, duration_ms PASS | TBD |
+| P13-013 | Request Correlation ID Middleware (`X-Request-ID`) | DONE | Assigns and propagates correlation IDs across HTTP responses PASS | TBD |
+| P13-014 | Graceful Shutdown Signal Handlers (SIGTERM / SIGINT) | DONE | FastAPI lifespan handler closing active WebSockets cleanly PASS | TBD |
+| P13-015 | WebSocket Production Hardening | DONE | Connection limit check (`WS_MAX_CONNECTIONS_PER_SESSION`) & payload validation PASS | TBD |
+| P13-016 | Dependency Pinning & Locking (`backend/requirements.txt`) | DONE | Pinned versions for FastAPI, Uvicorn, Pydantic, HTTPX, Pytest, WebSockets PASS | TBD |
+| P13-017 | Frontend Dynamic URL Resolver (`frontend/src/api/config.ts`) | DONE | Dynamic API & WS resolution across dev, Docker Compose, and cloud PASS | TBD |
+| P13-018 | Bundle Code Splitting & Optimization (`frontend/vite.config.ts`) | DONE | Rollup manualChunks code splitting; main app bundle reduced by 84.5% PASS | TBD |
+| P13-019 | Single-Source Application Versioning (`0.13.0`) | DONE | Authoritative version string exposed via `/health` & `/api/health` PASS | TBD |
+| P13-020 | Automated Production & Security Smoke Test Suite (`test_production_smoke.py`) | DONE | 8 automated tests covering probes, CORS, correlation ID, error sanitization, latency PASS | TBD |
+| P13-021 | Full Test Suite Verification | DONE | 126/126 backend pytest tests PASS; `npm run build` PASS PASS | TBD |
+| P13-022 | Specifications & Documentation Updates | DONE | Created `docs/PRODUCTION_READINESS.md`, updated `DECISION_LOG.md` (ADR-026), `API_CATALOG.md`, `MASTER_PLAN.md`, `ARCHITECTURE.md`, `TODO.md` PASS | TBD |
+
+---
+
 *Commit hashes to be filled in after `git commit` completes.*
 
 

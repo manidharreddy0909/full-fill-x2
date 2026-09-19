@@ -33,6 +33,14 @@ async def websocket_session_endpoint(websocket: WebSocket, session_id: str):
 
 async def handle_websocket_connection(websocket: WebSocket, session_id: Optional[str] = None):
     """Handle client connection lifecycle, catch-up event replay, and message receiving loop."""
+    from app.config import settings
+    
+    # Check max connections limit per session
+    if session_id and websocket_manager.session_active_count(session_id) >= settings.WS_MAX_CONNECTIONS_PER_SESSION:
+        logger.warning(f"Rejecting WS connection: session {session_id} exceeded max connections ({settings.WS_MAX_CONNECTIONS_PER_SESSION})")
+        await websocket.close(code=1008, reason="Max session connection limit exceeded")
+        return
+
     await websocket_manager.connect(websocket, session_id=session_id)
 
     # Replay catch-up events if session_id is provided

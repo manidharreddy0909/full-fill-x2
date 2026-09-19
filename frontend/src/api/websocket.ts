@@ -1,4 +1,5 @@
 import { EventEnvelope, ConnectionStatus, ClientWsMessage } from '../types/events';
+import { getWsBaseUrl } from './config';
 
 export class RealtimeWebSocketClient {
   private ws: WebSocket | null = null;
@@ -15,10 +16,7 @@ export class RealtimeWebSocketClient {
   private statusListeners: Set<(status: ConnectionStatus) => void> = new Set();
 
   constructor(baseUrl?: string) {
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const host = window.location.hostname || 'localhost';
-    const port = '8000';
-    this.url = baseUrl || `${protocol}//${host}:${port}/ws`;
+    this.url = baseUrl || getWsBaseUrl();
   }
 
   public connect(sessionId?: string): void {

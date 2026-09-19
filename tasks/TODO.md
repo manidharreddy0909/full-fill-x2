@@ -284,13 +284,29 @@
 | P12-015 | Verify: public URL accessible, all screens render | P12-012 | PLANNED |
 | P12-016 | Commit P12 infra code | P12-015 | PLANNED |
 
-## Phase 13 — Demo Polish
+## Phase 13 — Production Hardening & Containerization [COMPLETED]
 
 | ID | Description | Dependencies | Status |
 |----|-------------|-------------|--------|
-| P13-001 | Seed demo data with preset "double_punch" scenario | P12 complete | PLANNED |
-| P13-002 | Rehearse demo narrative (DEMO_SPEC.md) | P13-001 | PLANNED |
-| P13-003 | Record backup demo video | P13-002 | PLANNED |
-| P13-004 | Verify: full demo runs in ≤12 minutes | P13-003 | PLANNED |
-| P13-005 | Export evaluation benchmark results PDF | P12-013 | PLANNED |
-| P13-006 | Final commit: tag v1.0.0-demo | P13-004 | PLANNED |
+| P13-001 | Production Architecture Audit & Readiness Spec (`docs/PRODUCTION_READINESS.md`) | Phase 12 complete | DONE |
+| P13-002 | Backend Environment Configuration (`backend/app/config.py`, `.env.example`) | P13-001 | DONE |
+| P13-003 | Frontend Environment Configuration (`frontend/.env.example`) | P13-001 | DONE |
+| P13-004 | Backend Production Dockerfile (`backend/Dockerfile`, non-root UID 10001) | P13-002 | DONE |
+| P13-005 | Frontend Production Multi-Stage Dockerfile (`frontend/Dockerfile`) | P13-003 | DONE |
+| P13-006 | Production Nginx Server Config (`frontend/nginx.conf`, SPA fallback, headers) | P13-005 | DONE |
+| P13-007 | Docker Compose Services & Network (`docker-compose.yml`, `fulfillx-net`) | P13-004, P13-005 | DONE |
+| P13-008 | Health & Readiness Probes (`/health`, `/api/health`) | P13-002 | DONE |
+| P13-009 | Container Security & `.dockerignore` files | P13-004, P13-005 | DONE |
+| P13-010 | CORS Hardening (Environment-controlled origins) | P13-002 | DONE |
+| P13-011 | Security Error Handling & Sanitization | P13-002 | DONE |
+| P13-012 | Structured Logging Framework | P13-002 | DONE |
+| P13-013 | Request Correlation ID Middleware (`X-Request-ID`) | P13-002 | DONE |
+| P13-014 | Graceful Shutdown Signal Handlers (SIGTERM / SIGINT) | P13-002 | DONE |
+| P13-015 | WebSocket Production Hardening & Connection Limits | P13-002 | DONE |
+| P13-016 | Dependency Pinning & Locking (`backend/requirements.txt`) | P13-002 | DONE |
+| P13-017 | Frontend Dynamic URL Resolver (`frontend/src/api/config.ts`) | P13-003 | DONE |
+| P13-018 | Bundle Code Splitting & Optimization (App bundle reduced 84.5%) | P13-017 | DONE |
+| P13-019 | Single-Source Application Versioning (`0.13.0`) | P13-002 | DONE |
+| P13-020 | Automated Production & Security Smoke Test Suite (`test_production_smoke.py`) | P13-019 | DONE |
+| P13-021 | Full Test Suite Verification (`pytest` 126/126 PASS & `npm run build` PASS) | P13-020 | DONE |
+| P13-022 | Documentation & ADR Updates (`PRODUCTION_READINESS.md`, ADR-026) | P13-021 | DONE |

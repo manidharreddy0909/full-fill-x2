@@ -9,14 +9,16 @@ import {
   VerificationStatusResponse,
 } from '../types/verification';
 
-const API_BASE_URL = '/api/verification';
+import { getApiBaseUrl } from './config';
+
+const getApiUrl = () => `${getApiBaseUrl()}/verification`;
 
 export const verificationApi = {
   /**
    * Fetch status of Verification Engine and supported rules catalog.
    */
   async getStatus(): Promise<VerificationStatusResponse> {
-    const res = await fetch(`${API_BASE_URL}/status`);
+    const res = await fetch(`${getApiUrl()}/status`);
     if (!res.ok) {
       throw new Error(`Failed to fetch verification status: ${res.statusText}`);
     }
@@ -30,7 +32,7 @@ export const verificationApi = {
     candidatePlan: CandidatePlan,
     coordinationId?: string
   ): Promise<VerificationReport> {
-    const res = await fetch(`${API_BASE_URL}/run`, {
+    const res = await fetch(`${getApiUrl()}/run`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -50,8 +52,8 @@ export const verificationApi = {
    */
   async getLatestReport(candidateId?: string): Promise<VerificationReport> {
     const url = candidateId
-      ? `${API_BASE_URL}/report?candidate_id=${encodeURIComponent(candidateId)}`
-      : `${API_BASE_URL}/report`;
+      ? `${getApiUrl()}/report?candidate_id=${encodeURIComponent(candidateId)}`
+      : `${getApiUrl()}/report`;
     const res = await fetch(url);
     if (!res.ok) {
       throw new Error(`Failed to fetch verification report: ${res.statusText}`);

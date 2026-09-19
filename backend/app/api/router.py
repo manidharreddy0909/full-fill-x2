@@ -13,10 +13,12 @@ from app.api.planner import router as planner_router
 from app.api.verification import router as verification_router
 from app.api.cockpit import router as cockpit_router
 from app.api.websocket import router as websocket_router
+from app.api.health import router as health_router
 from app.api.evaluation import router as evaluation_router
 from app.schemas.world import ApiResponse
 
 api_router = APIRouter()
+api_router.include_router(health_router)
 api_router.include_router(world_router)
 api_router.include_router(signals_router)
 api_router.include_router(risks_router)

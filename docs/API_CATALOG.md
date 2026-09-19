@@ -811,6 +811,24 @@ as a multi-dimensional object. The corrected response uses `NodeRiskScores`.
 | **Request** | `{ "baseline_run_id": "run-01", "target_run_id": "run-02" }` |
 | **Response 200** | `BenchmarkComparison` |
 
+---
+
+## 18. Health & Readiness Endpoints (Phase 13)
+
+### GET /health
+| Field | Value |
+|-------|-------|
+| **Purpose** | Lightweight Liveness Probe for Docker / K8s probes |
+| **Response 200** | `{ "status": "ok", "version": "0.13.0", "environment": "production", "timestamp": "ISO-8601" }` |
+
+---
+
+### GET /api/health
+| Field | Value |
+|-------|-------|
+| **Purpose** | Deep Readiness Probe inspecting WorldRepository, RiskRepository, and AI Provider Factory |
+| **Response 200/503** | `ReadinessResponse` |
+
 
 
 

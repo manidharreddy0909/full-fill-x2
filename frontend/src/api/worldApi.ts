@@ -1,9 +1,10 @@
 import { ApiResponse, WorldStateSnapshot, WorldSummary, WorldNode, WorldEdge } from '../types/world';
+import { getApiBaseUrl } from './config';
 
-const API_BASE_URL = 'http://localhost:8000/api/world';
+const getEndpoint = () => `${getApiBaseUrl()}/world`;
 
 export async function fetchWorldSnapshot(): Promise<WorldStateSnapshot> {
-  const response = await fetch(`${API_BASE_URL}`);
+  const response = await fetch(`${getEndpoint()}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch world snapshot: ${response.statusText}`);
   }
@@ -12,7 +13,7 @@ export async function fetchWorldSnapshot(): Promise<WorldStateSnapshot> {
 }
 
 export async function fetchWorldSummary(): Promise<WorldSummary> {
-  const response = await fetch(`${API_BASE_URL}/summary`);
+  const response = await fetch(`${getEndpoint()}/summary`);
   if (!response.ok) {
     throw new Error(`Failed to fetch world summary: ${response.statusText}`);
   }
@@ -21,7 +22,7 @@ export async function fetchWorldSummary(): Promise<WorldSummary> {
 }
 
 export async function fetchNodeById(nodeId: string): Promise<WorldNode> {
-  const response = await fetch(`${API_BASE_URL}/nodes/${nodeId}`);
+  const response = await fetch(`${getEndpoint()}/nodes/${nodeId}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch node '${nodeId}': ${response.statusText}`);
   }
@@ -30,7 +31,7 @@ export async function fetchNodeById(nodeId: string): Promise<WorldNode> {
 }
 
 export async function fetchEdgeById(edgeId: string): Promise<WorldEdge> {
-  const response = await fetch(`${API_BASE_URL}/edges/${edgeId}`);
+  const response = await fetch(`${getEndpoint()}/edges/${edgeId}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch edge '${edgeId}': ${response.statusText}`);
   }
@@ -39,7 +40,7 @@ export async function fetchEdgeById(edgeId: string): Promise<WorldEdge> {
 }
 
 export async function seedWorld(preset: string = 'healthy', seed: number = 42): Promise<WorldStateSnapshot> {
-  const response = await fetch(`${API_BASE_URL}/seed`, {
+  const response = await fetch(`${getEndpoint()}/seed`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ preset, seed }),
@@ -52,7 +53,7 @@ export async function seedWorld(preset: string = 'healthy', seed: number = 42): 
 }
 
 export async function resetWorld(): Promise<WorldStateSnapshot> {
-  const response = await fetch(`${API_BASE_URL}/reset`, {
+  const response = await fetch(`${getEndpoint()}/reset`, {
     method: 'POST',
   });
   if (!response.ok) {

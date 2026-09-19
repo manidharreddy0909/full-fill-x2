@@ -604,7 +604,31 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 12 — Evaluation Harness & Benchmark Suite Complete*
+## ADR-026: Production Hardening, Containerization & Health Probes Architecture
+
+**Date**: 2026-09-19  
+**Status**: ACCEPTED  
+**Phase**: 13  
+
+**Context**: FULFILL-X required production-grade hardening, containerization, environment-driven configuration, health probing, request correlation tracing, security sanitization, and bundle optimization prior to AWS deployment.
+
+**Decision**:
+1. **Container Security**: Package backend and frontend into multi-stage Docker images running non-root processes (`fulfillx` UID 10001, Nginx alpine).
+2. **Health Probe Split**: Differentiate `/health` (lightweight liveness probe for Docker/K8s) and `/api/health` (deep readiness probe inspecting repositories, risk engines, and AI providers).
+3. **Environment & CORS Hardening**: Manage settings via `app.config.Settings` and enforce strict CORS origin lists in production without wildcard origins (`*`).
+4. **Request Correlation**: Implement `X-Request-ID` correlation middleware across FastAPI routes and include correlation IDs in structured JSON log entries.
+5. **Security Error Sanitization**: Intercept unhandled exceptions globally to sanitize internal stack traces and secrets from production client responses.
+6. **Bundle Code Splitting**: Configure Rollup `manualChunks` in `vite.config.ts` to separate React core and Three.js 3D rendering engines into isolated chunks, reducing main bundle size by 84.5%.
+
+**Rationale**:
+- Ensures reliability, security compliance, container isolation, and operational observability required for cloud production deployments.
+
+**Consequences**:
+- Application is containerized, benchmarked, smoke-tested, and fully deployment-ready for Phase 14 AWS cloud hosting.
+
+---
+
+*Last updated: Phase 13 — Production Hardening, Containerization & Deployment Preparation Complete*
 
 
 

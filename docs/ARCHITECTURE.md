@@ -270,6 +270,19 @@ graph TD
     Report --> Dashboard["Evaluation Dashboard & Decision Cockpit"]
 ```
 
+## 11. Production Architecture & Containerization (Phase 13)
+
+```mermaid
+graph TD
+    Client["Browser Client"] --> Nginx["Nginx 1.25 Alpine (Frontend Container :80)"]
+    Nginx --> Static["SPA Static Bundle (Vite React + R3F)"]
+    Nginx -- "/api/* & /ws" --> FastAPI["FastAPI Uvicorn (Backend Container :8000)"]
+    FastAPI --> Health["Health Probes (/health & /api/health)"]
+    FastAPI --> Correlation["X-Request-ID Correlation Middleware"]
+    FastAPI --> WSManager["WebSocket Connection Manager"]
+    FastAPI --> Providers["AI Provider Factory (Mock / Gemini / Ollama / Bedrock)"]
+```
+
 ---
 
 *See `docs/DECISION_LOG.md` for all recorded architecture decisions.*

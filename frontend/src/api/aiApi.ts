@@ -6,10 +6,12 @@ import {
   AIResponse,
 } from '../types/ai';
 
-const AI_API = 'http://localhost:8000/api/ai';
+import { getApiBaseUrl } from './config';
+
+const getAiApi = () => `${getApiBaseUrl()}/ai`;
 
 export async function fetchAIProviders(): Promise<AIProvidersSummaryResponse> {
-  const response = await fetch(`${AI_API}/providers`);
+  const response = await fetch(`${getAiApi()}/providers`);
   if (!response.ok) {
     throw new Error(`Failed to fetch AI providers: ${response.statusText}`);
   }
@@ -18,7 +20,7 @@ export async function fetchAIProviders(): Promise<AIProvidersSummaryResponse> {
 }
 
 export async function fetchAIHealth(): Promise<AIHealthResponse> {
-  const response = await fetch(`${AI_API}/health`);
+  const response = await fetch(`${getAiApi()}/health`);
   if (!response.ok) {
     throw new Error(`Failed to fetch AI health: ${response.statusText}`);
   }
@@ -30,7 +32,7 @@ export async function generateAIReasoning(
   request: AIRequest,
   providerOverride?: string
 ): Promise<AIResponse> {
-  const url = `${AI_API}/generate${providerOverride ? `?provider=${providerOverride}` : ''}`;
+  const url = `${getAiApi()}/generate${providerOverride ? `?provider=${providerOverride}` : ''}`;
   const response = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

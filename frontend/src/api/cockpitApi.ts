@@ -4,10 +4,12 @@ import {
   DecisionStage,
 } from '../types/cockpit';
 
-const API_BASE = 'http://localhost:8000/api/cockpit';
+import { getApiBaseUrl } from './config';
+
+const getCockpitApi = () => `${getApiBaseUrl()}/cockpit`;
 
 export async function fetchCockpitStatus(): Promise<CockpitStatusResponse> {
-  const res = await fetch(`${API_BASE}/status`);
+  const res = await fetch(`${getCockpitApi()}/status`);
   if (!res.ok) throw new Error(`Cockpit status failed: ${res.statusText}`);
   const body = await res.json();
   return body.data;
@@ -17,7 +19,7 @@ export async function createCockpitSession(
   preset: string = 'healthy',
   seed: number = 42
 ): Promise<DecisionSession> {
-  const res = await fetch(`${API_BASE}/session`, {
+  const res = await fetch(`${getCockpitApi()}/session`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ preset, seed }),
@@ -28,14 +30,14 @@ export async function createCockpitSession(
 }
 
 export async function fetchCockpitSession(sessionId: string): Promise<DecisionSession> {
-  const res = await fetch(`${API_BASE}/session/${sessionId}`);
+  const res = await fetch(`${getCockpitApi()}/session/${sessionId}`);
   if (!res.ok) throw new Error(`Fetch session failed: ${res.statusText}`);
   const body = await res.json();
   return body.data;
 }
 
 export async function runCockpitLoop(sessionId: string): Promise<DecisionSession> {
-  const res = await fetch(`${API_BASE}/session/${sessionId}/run`, {
+  const res = await fetch(`${getCockpitApi()}/session/${sessionId}/run`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
   });
@@ -48,7 +50,7 @@ export async function runCockpitStage(
   sessionId: string,
   targetStage: DecisionStage
 ): Promise<DecisionSession> {
-  const res = await fetch(`${API_BASE}/session/${sessionId}/stage`, {
+  const res = await fetch(`${getCockpitApi()}/session/${sessionId}/stage`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ target_stage: targetStage }),
@@ -64,7 +66,7 @@ export async function approveCockpitPlan(
   approver: string = 'Chief Supply Chain Officer',
   rationale: string = 'Plan verified and safe for execution.'
 ): Promise<DecisionSession> {
-  const res = await fetch(`${API_BASE}/session/${sessionId}/approve`, {
+  const res = await fetch(`${getCockpitApi()}/session/${sessionId}/approve`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ plan_id: planId, approver, rationale }),
@@ -80,7 +82,7 @@ export async function rejectCockpitPlan(
   approver: string = 'Chief Risk Officer',
   rationale: string = 'Plan rejected due to unmitigated operational risk.'
 ): Promise<DecisionSession> {
-  const res = await fetch(`${API_BASE}/session/${sessionId}/reject`, {
+  const res = await fetch(`${getCockpitApi()}/session/${sessionId}/reject`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ plan_id: planId, approver, rationale }),
@@ -91,7 +93,7 @@ export async function rejectCockpitPlan(
 }
 
 export async function resetCockpitSession(sessionId: string): Promise<DecisionSession> {
-  const res = await fetch(`${API_BASE}/session/${sessionId}/reset`, {
+  const res = await fetch(`${getCockpitApi()}/session/${sessionId}/reset`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
   });

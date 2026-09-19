@@ -54,7 +54,7 @@ SPECIALIST AGENTS → ADVERSARY → MULTI-OBJECTIVE PLAN → VERIFY → MEMORY
 | 10 | All 12 Screens | PLANNED | Full UI implementation |
 | 11 | Real-Time Intelligence & Events | COMPLETE | In-process EventBus + WebSockets |
 | 12 | Evaluation Harness & Benchmark Suite | COMPLETE | Deterministic benchmarks & quantitative metrics |
-| 13 | Demo Polish | PLANNED | Scripted demo, rehearsal, documentation |
+| 13 | Production Hardening & Containerization | ✅ COMPLETE | Production Docker, Nginx, CORS, health probes, logging, bundle optimization |
 
 ---
 

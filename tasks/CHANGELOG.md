@@ -3,6 +3,36 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.14.0] — 2026-09-19 — Phase 13: Production Hardening, Containerization & Deployment Preparation
+
+### Added
+
+**Backend Production Infrastructure & Hardening (`backend/app/`, `backend/Dockerfile`, `backend/requirements.txt`)**
+- `backend/app/config.py` — Environment-driven Pydantic `Settings` model supporting `APP_ENV`, `APP_HOST`, `APP_PORT`, `LOG_LEVEL`, `CORS_ORIGINS`, `AI_PROVIDER`, `AI_FALLBACK_PROVIDER`, `WEBSOCKET_ENABLED`, `EVALUATION_ENABLED`, `API_PREFIX`, and single-source application version (`0.13.0`).
+- `backend/app/main.py` — Production FastAPI entrypoint featuring request correlation middleware (`X-Request-ID`), structured logging, environment-controlled CORS (wildcards disabled in production), global error handling (sanitizing stack traces & secrets), and graceful shutdown lifespan handlers (closing active WebSockets cleanly).
+- `backend/app/api/health.py` — Probing endpoints exposing `/health` (lightweight liveness probe for Docker/K8s) and `/api/health` (deep readiness probe inspecting WorldRepository, RiskRepository, and AI Provider status).
+- `backend/Dockerfile` — Security-hardened Python 3.12-slim production container running non-root user `fulfillx` (UID 10001) with `HEALTHCHECK` probe.
+- `backend/requirements.txt` — Pinned production dependencies for FastAPI, Uvicorn, Pydantic, HTTPX, Pytest, Pytest-Asyncio, WebSockets.
+- `backend/.dockerignore` — Excludes `.git`, `.env`, `__pycache__`, `.pytest_cache`, logs, and IDE metadata from container contexts.
+
+**Backend Automated Smoke Test Suite (`backend/tests/test_production_smoke.py`)**
+- 8 comprehensive unit and integration tests covering liveness `/health`, readiness `/api/health`, request correlation `X-Request-ID` propagation, error sanitization, CORS origin enforcement, malformed JSON rejection, performance latency baselines (< 3ms for health & graph operations), and WebSocket ping/pong protocol (`126/126 total backend pytest PASS`).
+
+**Frontend Containerization & Bundle Optimization (`frontend/`, `frontend/Dockerfile`, `frontend/nginx.conf`)**
+- `frontend/src/api/config.ts` — Dynamic API Base URL (`getApiBaseUrl()`) and WebSocket URL (`getWsBaseUrl()`) resolver supporting development, Docker Compose, and AWS cloud environments.
+- Updated all API clients (`worldApi.ts`, `riskApi.ts`, `aiApi.ts`, `agentApi.ts`, `coordinatorApi.ts`, `adversaryApi.ts`, `plannerApi.ts`, `verificationApi.ts`, `cockpitApi.ts`, `evaluation.ts`, `websocket.ts`) to use dynamic URL getters instead of hardcoded localhost assumptions.
+- `frontend/vite.config.ts` — Rollup `manualChunks` code splitting isolating React core and Three.js WebGL engine, reducing main application bundle size from 1,193 kB to **184 kB (84.5% reduction)**. `npm run build` PASS.
+- `frontend/Dockerfile` — Multi-stage build (`node:20-alpine` build stage $\rightarrow$ `nginx:1.25-alpine` static asset runtime).
+- `frontend/nginx.conf` — Production Nginx server configuration featuring SPA fallback routing, static asset caching, security headers (`X-Frame-Options`, `X-Content-Type-Options`, `CSP`, `HSTS`), and reverse proxy rules for `/api/` and `/ws`.
+
+**Container Orchestration & Documentation (`docker-compose.yml`, `docs/`)**
+- `docker-compose.yml` — Production Docker Compose configuration running `backend` (port 8000) and `frontend` (port 80) on isolated `fulfillx-net` bridge network with health checks and restart policies.
+- `docs/PRODUCTION_READINESS.md` — Comprehensive 15-point production readiness checklist, container topology, performance latency baselines, and Phase 14 AWS deployment blueprint.
+- Added `ADR-026: Production Hardening, Containerization & Health Probes Architecture` to `docs/DECISION_LOG.md`.
+- Updated `docs/API_CATALOG.md` (Section 18), `docs/MASTER_PLAN.md`, `docs/ARCHITECTURE.md`, `tasks/TODO.md`, `tasks/IN_PROGRESS.md`, `tasks/DONE.md`.
+
+---
+
 ## [0.13.0] — 2026-09-19 — Phase 12: Evaluation Harness & Benchmark Suite
 
 ### Added

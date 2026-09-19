@@ -1,74 +1,52 @@
-version: "3.9"
+version: "3.8"
 
 services:
-  postgres:
-    image: postgres:16-alpine
-    container_name: fulfillx-postgres
-    environment:
-      POSTGRES_USER: fulfillx
-      POSTGRES_PASSWORD: fulfillx_dev
-      POSTGRES_DB: fulfillx
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U fulfillx"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
-  redis:
-    image: redis:7-alpine
-    container_name: fulfillx-redis
-    ports:
-      - "6379:6379"
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
   backend:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
-      target: backend
     container_name: fulfillx-backend
+    restart: unless-stopped
     ports:
       - "8000:8000"
     environment:
-      DATABASE_URL: postgresql+asyncpg://fulfillx:fulfillx_dev@postgres:5432/fulfillx
-      REDIS_URL: redis://redis:6379/0
-      AI_PROVIDER: mock
-      ENVIRONMENT: development
-      LOG_LEVEL: INFO
-      CORS_ORIGINS: http://localhost:5173
-      SIMULATION_SEED: "42"
-    env_file:
-      - .env
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    volumes:
-      - ./backend:/app/backend:ro
-    command: uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload
+      - APP_ENV=production
+      - APP_HOST=0.0.0.0
+      - APP_PORT=8000
+      - LOG_LEVEL=INFO
+      - CORS_ORIGINS=http://localhost,http://localhost:80,http://localhost:5173
+      - AI_PROVIDER=mock
+      - WEBSOCKET_ENABLED=true
+      - EVALUATION_ENABLED=true
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    networks:
+      - fulfillx-net
 
   frontend:
-    image: node:20-alpine
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     container_name: fulfillx-frontend
-    working_dir: /app
+    restart: unless-stopped
     ports:
-      - "5173:5173"
-    volumes:
-      - ./frontend:/app:cached
-      - /app/node_modules
-    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
-    environment:
-      VITE_API_URL: http://localhost:8000
-      VITE_WS_URL: ws://localhost:8000
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget --quiet --spider http://localhost:80/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    networks:
+      - fulfillx-net
 
-volumes:
-  postgres_data:
+networks:
+  fulfillx-net:
+    driver: bridge

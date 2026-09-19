@@ -6,11 +6,12 @@ import {
   AdversaryAttack,
   PlanStressResult,
 } from '../types/adversary';
+import { getApiBaseUrl } from './config';
 
-const ADVERSARY_API = 'http://localhost:8000/api/adversary';
+const getAdversaryApi = () => `${getApiBaseUrl()}/adversary`;
 
 export async function fetchAdversaryStatus(): Promise<AdversaryStatus> {
-  const response = await fetch(`${ADVERSARY_API}/status`);
+  const response = await fetch(`${getAdversaryApi()}/status`);
   if (!response.ok) {
     throw new Error(`Failed to fetch adversary status: ${response.statusText}`);
   }
@@ -23,7 +24,7 @@ export async function runAdversary(
   coordinationId: string = '',
   seed: number = 42
 ): Promise<AdversaryReport> {
-  const response = await fetch(`${ADVERSARY_API}/run`, {
+  const response = await fetch(`${getAdversaryApi()}/run`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -43,7 +44,7 @@ export async function generateAttackSuite(
   candidatePlans?: CandidatePlan[],
   seed: number = 42
 ): Promise<AdversaryAttack[]> {
-  const response = await fetch(`${ADVERSARY_API}/attack-suite`, {
+  const response = await fetch(`${getAdversaryApi()}/attack-suite`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -59,7 +60,7 @@ export async function generateAttackSuite(
 }
 
 export async function fetchLatestFindings(): Promise<AdversaryReport | null> {
-  const response = await fetch(`${ADVERSARY_API}/findings`);
+  const response = await fetch(`${getAdversaryApi()}/findings`);
   if (!response.ok) {
     throw new Error(`Failed to fetch latest findings: ${response.statusText}`);
   }

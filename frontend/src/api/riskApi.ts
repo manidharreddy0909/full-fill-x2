@@ -6,14 +6,16 @@ import {
   NodeRiskDetail,
 } from '../types/risk';
 
-const SIGNALS_API = 'http://localhost:8000/api/signals';
-const RISKS_API = 'http://localhost:8000/api/risks';
+import { getApiBaseUrl } from './config';
+
+const getSignalsApi = () => `${getApiBaseUrl()}/signals`;
+const getRisksApi = () => `${getApiBaseUrl()}/risks`;
 
 export async function fetchSignals(status?: string, node_id?: string): Promise<Signal[]> {
   const params = new URLSearchParams();
   if (status) params.append('status', status);
   if (node_id) params.append('node_id', node_id);
-  const url = `${SIGNALS_API}${params.toString() ? `?${params.toString()}` : ''}`;
+  const url = `${getSignalsApi()}${params.toString() ? `?${params.toString()}` : ''}`;
 
   const response = await fetch(url);
   if (!response.ok) {
@@ -24,7 +26,7 @@ export async function fetchSignals(status?: string, node_id?: string): Promise<S
 }
 
 export async function injectSignal(signalData: SignalCreateRequest): Promise<Signal> {
-  const response = await fetch(SIGNALS_API, {
+  const response = await fetch(getSignalsApi(), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(signalData),
@@ -37,7 +39,7 @@ export async function injectSignal(signalData: SignalCreateRequest): Promise<Sig
 }
 
 export async function resolveSignal(signalId: string): Promise<Signal> {
-  const response = await fetch(`${SIGNALS_API}/${signalId}/resolve`, {
+  const response = await fetch(`${getSignalsApi()}/${signalId}/resolve`, {
     method: 'PATCH',
   });
   if (!response.ok) {
@@ -48,7 +50,7 @@ export async function resolveSignal(signalId: string): Promise<Signal> {
 }
 
 export async function fetchRiskMap(): Promise<RiskScoreMap> {
-  const response = await fetch(RISKS_API);
+  const response = await fetch(getRisksApi());
   if (!response.ok) {
     throw new Error(`Failed to fetch risk map: ${response.statusText}`);
   }
@@ -57,7 +59,7 @@ export async function fetchRiskMap(): Promise<RiskScoreMap> {
 }
 
 export async function fetchNodeRiskDetail(nodeId: string): Promise<NodeRiskDetail> {
-  const response = await fetch(`${RISKS_API}/nodes/${nodeId}`);
+  const response = await fetch(`${getRisksApi()}/nodes/${nodeId}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch risk detail for node '${nodeId}': ${response.statusText}`);
   }
@@ -66,7 +68,7 @@ export async function fetchNodeRiskDetail(nodeId: string): Promise<NodeRiskDetai
 }
 
 export async function recalculateRisk(): Promise<RiskScoreMap> {
-  const response = await fetch(`${RISKS_API}/recalculate`, {
+  const response = await fetch(`${getRisksApi()}/recalculate`, {
     method: 'POST',
   });
   if (!response.ok) {
@@ -77,7 +79,7 @@ export async function recalculateRisk(): Promise<RiskScoreMap> {
 }
 
 export async function resetRisk(): Promise<RiskScoreMap> {
-  const response = await fetch(`${RISKS_API}/reset`, {
+  const response = await fetch(`${getRisksApi()}/reset`, {
     method: 'POST',
   });
   if (!response.ok) {
