@@ -1,0 +1,152 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-09-19T20:28:00Z",
+    "tools": [
+      {
+        "vendor": "FULFILL-X Security Engine",
+        "name": "fulfillx-sbom-generator",
+        "version": "0.15.0"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "name": "FULFILL-X",
+      "version": "0.15.0",
+      "description": "Agentic Fulfillment Resilience Intelligence System"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "fastapi",
+      "version": "0.110.0",
+      "description": "FastAPI framework, high performance, easy to learn, fast to code, ready for production",
+      "licenses": [{ "license": { "id": "MIT" } }],
+      "purl": "pkg:pypi/fastapi@0.110.0"
+    },
+    {
+      "type": "library",
+      "name": "uvicorn",
+      "version": "0.28.0",
+      "description": "The lightning-fast ASGI server",
+      "licenses": [{ "license": { "id": "BSD-3-Clause" } }],
+      "purl": "pkg:pypi/uvicorn@0.28.0"
+    },
+    {
+      "type": "library",
+      "name": "pydantic",
+      "version": "2.6.0",
+      "description": "Data validation using Python type hints",
+      "licenses": [{ "license": { "id": "MIT" } }],
+      "purl": "pkg:pypi/pydantic@2.6.0"
+    },
+    {
+      "type": "library",
+      "name": "pydantic-settings",
+      "version": "2.2.0",
+      "description": "Settings management using Pydantic",
+      "licenses": [{ "license": { "id": "MIT" } }],
+      "purl": "pkg:pypi/pydantic-settings@2.2.0"
+    },
+    {
+      "type": "library",
+      "name": "httpx",
+      "version": "0.27.0",
+      "description": "The next generation HTTP client for Python",
+      "licenses": [{ "license": { "id": "BSD-3-Clause" } }],
+      "purl": "pkg:pypi/httpx@0.27.0"
+    },
+    {
+      "type": "library",
+      "name": "websockets",
+      "version": "12.0",
+      "description": "An implementation of the WebSocket Protocol",
+      "licenses": [{ "license": { "id": "BSD-3-Clause" } }],
+      "purl": "pkg:pypi/websockets@12.0"
+    },
+    {
+      "type": "library",
+      "name": "pytest",
+      "version": "8.3.2",
+      "description": "pytest: simple powerful testing with Python",
+      "licenses": [{ "license": { "id": "MIT" } }],
+      "purl": "pkg:pypi/pytest@8.3.2"
+    },
+    {
+      "type": "library",
+      "name": "pytest-asyncio",
+      "version": "0.23.8",
+      "description": "Pytest support for asyncio",
+      "licenses": [{ "license": { "id": "Apache-2.0" } }],
+      "purl": "pkg:pypi/pytest-asyncio@0.23.8"
+    },
+    {
+      "type": "library",
+      "name": "react",
+      "version": "18.2.0",
+      "description": "React is a JavaScript library for building user interfaces",
+      "licenses": [{ "license": { "id": "MIT" } }],
+      "purl": "pkg:npm/react@18.2.0"
+    },
+    {
+      "type": "library",
+      "name": "react-dom",
+      "version": "18.2.0",
+      "description": "React package for working with the DOM",
+      "licenses": [{ "license": { "id": "MIT" } }],
+      "purl": "pkg:npm/react-dom@18.2.0"
+    },
+    {
+      "type": "library",
+      "name": "three",
+      "version": "0.162.0",
+      "description": "JavaScript 3D library",
+      "licenses": [{ "license": { "id": "MIT" } }],
+      "purl": "pkg:npm/three@0.162.0"
+    },
+    {
+      "type": "library",
+      "name": "@react-three/fiber",
+      "version": "8.16.0",
+      "description": "React renderer for Three.js",
+      "licenses": [{ "license": { "id": "MIT" } }],
+      "purl": "pkg:npm/%40react-three/fiber@8.16.0"
+    },
+    {
+      "type": "library",
+      "name": "@react-three/drei",
+      "version": "9.100.0",
+      "description": "Useful helpers for react-three-fiber",
+      "licenses": [{ "license": { "id": "MIT" } }],
+      "purl": "pkg:npm/%40react-three/drei@9.100.0"
+    },
+    {
+      "type": "library",
+      "name": "lucide-react",
+      "version": "0.350.0",
+      "description": "Beautiful & consistent icons for React",
+      "licenses": [{ "license": { "id": "ISC" } }],
+      "purl": "pkg:npm/lucide-react@0.350.0"
+    },
+    {
+      "type": "library",
+      "name": "vite",
+      "version": "5.4.14",
+      "description": "Native-native frontend build tool",
+      "licenses": [{ "license": { "id": "MIT" } }],
+      "purl": "pkg:npm/vite@5.4.14"
+    },
+    {
+      "type": "library",
+      "name": "typescript",
+      "version": "5.2.2",
+      "description": "TypeScript is a language for application scale JavaScript development",
+      "licenses": [{ "license": { "id": "Apache-2.0" } }],
+      "purl": "pkg:npm/typescript@5.2.2"
+    }
+  ]
+}

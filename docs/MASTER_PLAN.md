@@ -56,6 +56,7 @@ SPECIALIST AGENTS → ADVERSARY → MULTI-OBJECTIVE PLAN → VERIFY → MEMORY
 | 12 | Evaluation Harness & Benchmark Suite | COMPLETE | Deterministic benchmarks & quantitative metrics |
 | 13 | Production Hardening & Containerization | ✅ COMPLETE | Production Docker, Nginx, CORS, health probes, logging, bundle optimization |
 | 14 | AWS Deployment & Production Integration | ✅ COMPLETE | Terraform IaC, S3, CloudFront, ECR, ECS Fargate, ALB, Bedrock AI boundary, CI/CD pipeline |
+| 15 | Security Audit & AI Safety Hardening | ✅ COMPLETE | Threat model, secret scan, SBOM, security test suite, open-source attribution, ADR-028 |
 
 ---
 

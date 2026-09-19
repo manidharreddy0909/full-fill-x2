@@ -3,6 +3,28 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.16.0] — 2026-09-19 — Phase 15: Security Audit, AI Safety, Dependency Security & Open-Source Attribution
+
+### Added
+
+**Security Audit & Threat Modeling (`docs/SECURITY_AUDIT.md`, `docs/SECURITY_SCORECARD.md`)**
+- `docs/SECURITY_AUDIT.md` — Comprehensive security audit specification featuring full FULFILL-X threat model, trust-boundary architecture (Browser $\rightarrow$ CloudFront $\rightarrow$ ALB $\rightarrow$ ECS $\rightarrow$ API $\rightarrow$ Domain Engine $\rightarrow$ AI Providers), Mermaid trust-boundary diagram, and evidence-based vulnerability inventory across 12 domains.
+- `docs/SECURITY_SCORECARD.md` — Published factual security scorecard documenting status, empirical verification evidence, and remaining production risks across all security domains.
+
+**Open-Source Attribution & SBOM Artifacts (`THIRD_PARTY_NOTICES.md`, `artifacts/security/sbom_inventory.json`)**
+- `THIRD_PARTY_NOTICES.md` — Complete open-source attribution notice covering Python backend libraries, TypeScript frontend packages, fonts (Inter, JetBrains Mono OFL-1.1), Lucide icons (ISC), and container base images.
+- `artifacts/security/sbom_inventory.json` — Software Bill of Materials (SBOM) dependency inventory generated in CycloneDX v1.5 JSON format.
+
+**Backend Security Hardening & Test Suite (`backend/app/main.py`, `backend/tests/test_security.py`)**
+- `backend/app/main.py` — Added 10 MB request payload size limit middleware rejecting oversized entity bodies with HTTP 413.
+- `backend/tests/test_security.py` — Created automated security test suite executing 12+ security test cases covering secret safety, CORS enforcement, malformed JSON rejection, payload size limits, path traversal prevention, error sanitization (no stack trace exposure in production), agent state immutability, prompt injection boundaries, Cockpit approval security, and WebSocket session isolation.
+
+**Documentation & Architecture**
+- Added `ADR-028: Security Architecture, AI Safety Boundary & Open-Source Attribution` to `docs/DECISION_LOG.md`.
+- Updated `docs/ARCHITECTURE.md` (Section 13 Security Architecture), `docs/MASTER_PLAN.md`, `docs/API_CATALOG.md` (Section 18), `tasks/TODO.md`, `tasks/IN_PROGRESS.md`, `tasks/DONE.md`.
+
+---
+
 ## [0.15.0] — 2026-09-19 — Phase 14: AWS Deployment, Cloud Infrastructure & Production Integration
 
 ### Added

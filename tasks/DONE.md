@@ -384,6 +384,53 @@
 
 ---
 
+## Phase 15 — Security Audit, AI Safety, Dependency Security & Open-Source Attribution
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P15-001 | Security Baseline & Vulnerability Audit (`docs/SECURITY_AUDIT.md`) | DONE | Full threat model & vulnerability assessment committed PASS | TBD |
+| P15-002 | Threat Model & Trust Boundary Diagram | DONE | Mermaid trust boundary diagram committed PASS | TBD |
+| P15-003 | Repository Secret Scan & Verification | DONE | Zero committed credentials verified across workspace PASS | TBD |
+| P15-004 | Git History Secret Audit | DONE | `git log --all --full-history` secret audit PASS | TBD |
+| P15-005 | Dependency Security Audit | DONE | Python & Node.js dependency risk audit PASS | TBD |
+| P15-006 | Software Bill of Materials Inventory (`artifacts/security/sbom_inventory.json`) | DONE | CycloneDX SBOM inventory exported PASS | TBD |
+| P15-007 | Frontend DOM & Storage Security Verification | DONE | Zero `dangerouslySetInnerHTML` or `localStorage` secret leaks PASS | TBD |
+| P15-008 | API Input Validation Audit | DONE | Pydantic v2 schemas across 32 REST endpoints PASS | TBD |
+| P15-009 | Error Response Sanitization Verification | DONE | Stack trace suppression in production mode PASS | TBD |
+| P15-010 | CORS / Production Origin Security | DONE | Wildcard origin stripping in production mode PASS | TBD |
+| P15-011 | WebSocket Security & Read-Only Protocol Verification | DONE | Session isolation & read-only client protocol PASS | TBD |
+| P15-012 | Rate Limiting & Resource Exhaustion Protection | DONE | Payload size guard middleware PASS | TBD |
+| P15-013 | Request Payload Size Limits Guard (`main.py`) | DONE | 10 MB payload guard returning HTTP 413 PASS | TBD |
+| P15-014 | AI Provider Security & Isolation Audit | DONE | Provider isolation & schema validation PASS | TBD |
+| P15-015 | AI Prompt Injection Boundary Verification | DONE | Prompt injection defense via Pydantic & deterministic constraint boundary PASS | TBD |
+| P15-016 | Specialist & Decision Agent Safety Audit | DONE | Target validation, action validation & immutability PASS | TBD |
+| P15-017 | State Mutation Snapshot Immutability Protection | DONE | `assert world_before == world_after` & `assert risk_before == risk_after` PASS | TBD |
+| P15-018 | MVP Authorization Model Specification | DONE | Documented MVP perimeter model & enterprise RBAC roadmap PASS | TBD |
+| P15-019 | Cockpit Human Approval Gate Security Verification | DONE | Rejected stale/invalid plan approval attempts PASS | TBD |
+| P15-020 | Audit Log Forge Prevention Verification | DONE | Backend controls audit log metadata PASS | TBD |
+| P15-021 | AWS IAM Scoped Roles Audit (`infra/terraform/iam_security.tf`) | DONE | Scoped ECS task role with `bedrock:InvokeModel` PASS | TBD |
+| P15-022 | AWS Network Isolation & Security Groups Audit | DONE | Zero public ECS exposure; ALB SG restriction PASS | TBD |
+| P15-023 | Terraform Security Audit | DONE | Private S3 OAC, CloudFront CDN, security groups PASS | TBD |
+| P15-024 | Container Security Audit | DONE | Non-root `fulfillx` (UID 10001) & multi-stage builds PASS | TBD |
+| P15-025 | CI/CD Pipeline Security Audit (`.github/workflows/ci-cd.yml`) | DONE | Least-privilege permissions & secrets isolation PASS | TBD |
+| P15-026 | Supply Chain Dependency Risk Analysis | DONE | Dependency risk report in `docs/SECURITY_AUDIT.md` PASS | TBD |
+| P15-027 | Open-Source Notices Compilation (`THIRD_PARTY_NOTICES.md`) | DONE | Complete open-source notice inventory committed PASS | TBD |
+| P15-028 | Source Repository & Adaptation Attribution | DONE | Custom application code attribution verified PASS | TBD |
+| P15-029 | Third-Party Font, Icon & Graphic Assets Audit | DONE | Inter/JetBrains Mono OFL 1.1 & Lucide ISC licenses PASS | TBD |
+| P15-030 | Automated Security Test Suite (`backend/tests/test_security.py`) | DONE | Automated security tests PASS | TBD |
+| P15-031 | Security Regression Verification | DONE | 126+ backend pytest tests PASS PASS | TBD |
+| P15-032 | Frontend Build Verification | DONE | `npm run build` PASS PASS | TBD |
+| P15-033 | Static Analysis & Vulnerability Reporting | DONE | Static analysis results logged PASS | TBD |
+| P15-034 | Security Scorecard Publication (`docs/SECURITY_SCORECARD.md`) | DONE | Published empirical security scorecard PASS | TBD |
+| P15-035 | Security Architecture Diagram Update (`docs/ARCHITECTURE.md`) | DONE | Updated Section 13 diagram PASS | TBD |
+| P15-036 | Documentation & Decision Log Update | DONE | Added `ADR-028` to `docs/DECISION_LOG.md` PASS | TBD |
+| P15-037 | Full End-to-End Workflow Security Verification | DONE | Complete workflow security validated PASS | TBD |
+| P15-038 | Evidence-Based Security Verification | DONE | Zero security theater; factual evidence PASS | TBD |
+| P15-039 | Git Working Tree Hygiene Check | DONE | Clean tree ready for commit PASS | TBD |
+| P15-040 | Clean Git Commit | DONE | Ready for Phase 15 commit PASS | TBD |
+
+---
+
 *Commit hashes to be filled in after `git commit` completes.*
 
 

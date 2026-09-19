@@ -69,11 +69,24 @@ app.add_middleware(
 )
 
 
+# Maximum Request Body Payload Limit Guard (10 MB)
+MAX_REQUEST_SIZE_BYTES = 10 * 1024 * 1024
+
+
 # Request Correlation & Structured Logging Middleware
 @app.middleware("http")
 async def correlation_and_logging_middleware(request: Request, call_next: Callable) -> Response:
     request_id = request.headers.get("X-Request-ID", str(uuid.uuid4()))
     request.state.request_id = request_id
+    
+    # Request Payload Size Limit Check
+    content_length = request.headers.get("Content-Length")
+    if content_length and int(content_length) > MAX_REQUEST_SIZE_BYTES:
+        logger.warning(f"event=payload_too_large request_id={request_id} size={content_length}")
+        return JSONResponse(
+            status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+            content={"detail": "Request payload exceeds 10MB limit.", "request_id": request_id},
+        )
     
     start_time = time.perf_counter()
     

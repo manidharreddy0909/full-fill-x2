@@ -288,6 +288,51 @@
 | P14-019 | Full Test Suite & Build Verification (`pytest` 126/126 PASS & `npm run build` PASS) | P14-018 | DONE |
 | P14-020 | Clean Working Tree & Git Commit | P14-019 | DONE |
 
+## Phase 15 — Security Audit, AI Safety, Dependency Security & Open-Source Attribution [COMPLETED]
+
+| ID | Description | Dependencies | Status |
+|----|-------------|-------------|--------|
+| P15-001 | Security Baseline & Vulnerability Audit (`docs/SECURITY_AUDIT.md`) | Phase 14 complete | DONE |
+| P15-002 | Threat Model & Trust Boundary Diagram (`docs/SECURITY_AUDIT.md`) | P15-001 | DONE |
+| P15-003 | Repository Secret Scan & Verification | P15-001 | DONE |
+| P15-004 | Git History Secret Audit | P15-003 | DONE |
+| P15-005 | Dependency Security Audit (`pip-audit` / `npm audit`) | P15-001 | DONE |
+| P15-006 | Software Bill of Materials Inventory (`artifacts/security/sbom_inventory.json`) | P15-005 | DONE |
+| P15-007 | Frontend DOM & Storage Security Verification | P15-001 | DONE |
+| P15-008 | API Input Validation Audit across 32 Endpoints | P15-001 | DONE |
+| P15-009 | Error Response Sanitization Verification | P15-001 | DONE |
+| P15-010 | CORS / Production Origin Security | P15-001 | DONE |
+| P15-011 | WebSocket Security & Read-Only Protocol Verification | P15-001 | DONE |
+| P15-012 | Rate Limiting & Resource Exhaustion Protection | P15-008 | DONE |
+| P15-013 | Request Payload Size Limits Guard (10 MB middleware guard in `main.py`) | P15-012 | DONE |
+| P15-014 | AI Provider Security & Isolation Audit | P15-001 | DONE |
+| P15-015 | AI Prompt Injection Boundary Verification | P15-014 | DONE |
+| P15-016 | Specialist & Decision Agent Safety Audit | P15-001 | DONE |
+| P15-017 | State Mutation Snapshot Immutability Protection (`assert world_before == world_after`) | P15-016 | DONE |
+| P15-018 | MVP Authorization Model & Enterprise Roadmap Specification | P15-001 | DONE |
+| P15-019 | Cockpit Human Approval Gate Security Verification | P15-001 | DONE |
+| P15-020 | Audit Log Forge Prevention Verification | P15-019 | DONE |
+| P15-021 | AWS IAM Scoped Roles Audit (`infra/terraform/iam_security.tf`) | P15-001 | DONE |
+| P15-022 | AWS Network Isolation & Security Groups Audit | P15-021 | DONE |
+| P15-023 | Terraform Security & Defaults Audit | P15-021 | DONE |
+| P15-024 | Container Security Audit (`backend/Dockerfile`, `frontend/Dockerfile`) | P15-001 | DONE |
+| P15-025 | CI/CD Pipeline Security Audit (`.github/workflows/ci-cd.yml`) | P15-001 | DONE |
+| P15-026 | Supply Chain Dependency Risk Analysis | P15-005 | DONE |
+| P15-027 | Open-Source Notices Compilation (`THIRD_PARTY_NOTICES.md`) | P15-026 | DONE |
+| P15-028 | Source Repository & Adaptation Attribution | P15-027 | DONE |
+| P15-029 | Third-Party Font, Icon & Graphic Assets Audit | P15-027 | DONE |
+| P15-030 | Automated Security Test Suite (`backend/tests/test_security.py`) | P15-001–P15-029 | DONE |
+| P15-031 | Security Regression Verification (`pytest` 126+ PASS) | P15-030 | DONE |
+| P15-032 | Frontend Build Verification (`npm run build` PASS) | P15-030 | DONE |
+| P15-033 | Static Analysis & Vulnerability Reporting | P15-005 | DONE |
+| P15-034 | Security Scorecard Publication (`docs/SECURITY_SCORECARD.md`) | P15-033 | DONE |
+| P15-035 | Security Architecture Diagram Update (`docs/ARCHITECTURE.md`) | P15-034 | DONE |
+| P15-036 | Documentation & Decision Log Update (`docs/DECISION_LOG.md` ADR-028) | P15-035 | DONE |
+| P15-037 | Full End-to-End Workflow Security Verification | P15-036 | DONE |
+| P15-038 | Evidence-Based Security Verification (No security theater) | P15-037 | DONE |
+| P15-039 | Git Working Tree Hygiene Check | P15-038 | DONE |
+| P15-040 | Clean Git Commit (`feat(security): complete security audit and attribution hardening (phase 15)`) | P15-039 | DONE |
+
 ## Phase 13 — Production Hardening & Containerization [COMPLETED]
 
 | ID | Description | Dependencies | Status |

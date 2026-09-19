@@ -813,13 +813,13 @@ as a multi-dimensional object. The corrected response uses `NodeRiskScores`.
 
 ---
 
-## 18. Health & Readiness Endpoints (Phase 13 / Phase 14 AWS)
+## 18. Health & Security Probes (Phase 13 / Phase 14 AWS / Phase 15 Security)
 
 ### GET /health
 | Field | Value |
 |-------|-------|
 | **Purpose** | Lightweight Liveness Probe for Docker / AWS ALB probes |
-| **Response 200** | `{ "status": "ok", "version": "0.15.0", "environment": "production", "timestamp": "ISO-8601" }` |
+| **Response 200** | `{ "status": "ok", "version": "0.16.0", "environment": "production", "timestamp": "ISO-8601" }` |
 
 ---
 
@@ -828,6 +828,13 @@ as a multi-dimensional object. The corrected response uses `NodeRiskScores`.
 |-------|-------|
 | **Purpose** | Deep Readiness Probe inspecting WorldRepository, RiskRepository, AWS Bedrock and AI Provider Factory |
 | **Response 200/503** | `ReadinessResponse` |
+
+---
+
+### Security Middleware & Payload Guards (Phase 15)
+- **Correlation Header**: `X-Request-ID` assigned/propagated on all HTTP responses.
+- **Payload Guard**: `MAX_REQUEST_SIZE_BYTES` (10 MB limit); requests exceeding 10 MB rejected with HTTP 413.
+- **Error Sanitization**: Suppression of Python tracebacks in production mode.
 
 
 

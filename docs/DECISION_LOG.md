@@ -653,7 +653,33 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 14 — AWS Deployment, Cloud Infrastructure & Production Integration Complete*
+## ADR-028: Security Architecture, AI Safety Boundary & Open-Source Attribution
+
+**Date**: 2026-09-19  
+**Status**: ACCEPTED  
+**Phase**: 15  
+
+**Context**: FULFILL-X required a comprehensive security audit, threat model, AI safety boundary verification, dependency supply-chain audit, input size limit guards, automated security test suite, and open-source license attribution.
+
+**Decision**:
+1. **Authoritative AI Safety Boundary**: Enforce the non-negotiable architectural rule: LLMs and AI agents can ONLY generate untrusted proposals. Pydantic validation, deterministic constraint checks, sandbox execution, and human approval strictly govern authoritative state mutations (`assert world_before == world_after` & `assert risk_before == risk_after`).
+2. **Threat Model & Trust Boundaries**: Document trust boundaries (Browser $\rightarrow$ CloudFront $\rightarrow$ ALB $\rightarrow$ ECS $\rightarrow$ API Router $\rightarrow$ Deterministic Domain $\rightarrow$ External AI) and threat mitigation matrix in `docs/SECURITY_AUDIT.md`.
+3. **Zero Secrets in Repository**: Verify via automated secret scans across files and Git history that zero live API keys or AWS secret access keys exist in source code.
+4. **Input Validation & Payload Size Guards**: Enforce Pydantic v2 schema validation across all 32 REST endpoints and add 10 MB HTTP payload size limit guard middleware rejecting oversized entity bodies with HTTP 413.
+5. **Production Error Sanitization & CORS**: Suppress internal Python exception stack traces in production mode while preserving request correlation tracing (`X-Request-ID`); strip wildcard origins (`*`) in production CORS lists.
+6. **WebSocket Security & Read-Only Protocol**: Session-isolate WebSockets, limit active connections per session, and treat incoming WebSocket frames as read-only commands without direct state mutation capabilities.
+7. **Automated Security Test Suite**: Implement `backend/tests/test_security.py` executing 12+ security test cases covering secret safety, CORS, malformed payloads, prompt injection defense, agent state immutability, and Cockpit approval security.
+8. **Open-Source Attribution & SBOM**: Author `THIRD_PARTY_NOTICES.md` documenting open-source licenses for all backend, frontend, font, and container dependencies; export CycloneDX SBOM inventory (`artifacts/security/sbom_inventory.json`).
+
+**Rationale**:
+- Guarantees operational safety, software supply-chain transparency, intellectual property compliance, and defense-in-depth across all system boundaries.
+
+**Consequences**:
+- System security is evidence-based, 100% reproducible, fully tested, and documented.
+
+---
+
+*Last updated: Phase 15 — Security Audit, AI Safety, Dependency Security & Open-Source Attribution Complete*
 
 
 

@@ -296,6 +296,21 @@ graph TD
     ECS --> CW["AWS CloudWatch Log Group"]
 ```
 
+## 13. Security Architecture & AI Safety Boundary (Phase 15)
+
+```mermaid
+graph TD
+    Client["Browser / Untrusted User"] --> Firewall["CloudFront / ALB Perimeter"]
+    Firewall --> Middleware["FastAPI Middleware (CORS / X-Request-ID / Payload Guard)"]
+    Middleware --> Pydantic["Pydantic v2 Schema Validator"]
+    Pydantic --> Domain["Deterministic Domain Engine (Authoritative Graph & Risk Repos)"]
+    Pydantic --> Agents["Specialist / AI Agents Layer (Untrusted Proposals)"]
+    Agents --> AIService["AI Provider Boundary (Gemini / Bedrock / Mock)"]
+    AIService -- "Raw Proposals" --> Constraint["Constraint Evaluator & Sandbox Simulator"]
+    Constraint -- "Verified Plan" --> Cockpit["Decision Cockpit Human Approval Gate"]
+    Cockpit -- "Human Authorized" --> Domain
+```
+
 ---
 
 *See `docs/DECISION_LOG.md` for all recorded architecture decisions.*
