@@ -628,7 +628,32 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 13 — Production Hardening, Containerization & Deployment Preparation Complete*
+## ADR-027: AWS Production Deployment & Cloud Infrastructure Architecture
+
+**Date**: 2026-09-19  
+**Status**: ACCEPTED  
+**Phase**: 14  
+
+**Context**: FULFILL-X required production-capable deployment to AWS infrastructure utilizing declarative IaC, serverless containers, global CDN distribution, ALB load balancing, CloudWatch logging, Amazon Bedrock AI provider boundaries, and automated smoke testing.
+
+**Decision**:
+1. **Terraform Infrastructure as Code**: Define all AWS cloud infrastructure declaratively in `infra/terraform/` (`main.tf`, `variables.tf`, `s3_cloudfront.tf`, `ecs_alb.tf`, `iam_security.tf`, `outputs.tf`).
+2. **CDN & Frontend Hosting**: Host static SPA bundle in S3 bucket with CloudFront CDN distribution (`PriceClass_100`, OAC, HTTP to HTTPS redirect, security headers, SPA 404 fallback to `/index.html`).
+3. **Container Hosting & ECR**: Host containerized backend on ECS Fargate (`0.5 vCPU`, `1024 MiB` RAM) pulled from private ECR repository (`fulfillx-backend`) with CloudWatch log streaming (`/ecs/fulfillx-backend`).
+4. **Load Balancing & WebSocket Persistence**: Route API traffic via Application Load Balancer (ALB) with target group configured for `/health` probing and an 86400-second (24-hour) idle timeout to preserve persistent WebSocket streams (`/ws`).
+5. **Security Isolation & IAM Least Privilege**: Restrict ECS task security group ingress strictly to ALB security group. Provision task role with scoped `bedrock:InvokeModel` permissions.
+6. **Amazon Bedrock AI Provider Boundary**: Integrate Bedrock adapter (`backend/app/providers/bedrock.py`) behind `AIService` boundary, automatically falling back to `MockAIProvider` when unconfigured.
+7. **Automated Deployment & Smoke Probes**: Implement bash/PowerShell deployment and smoke testing scripts (`scripts/aws/deploy-all.*`, `smoke-test.*`, `destroy.*`) to validate HTTP 200 responses across `/health`, `/api/health`, `/api/world/summary`, and `/api/evaluation/status`.
+
+**Rationale**:
+- Provides a scalable, cost-effective ($39.95/mo estimated), production-grade cloud architecture for FULFILL-X while maintaining 100% deterministic AI safety guarantees.
+
+**Consequences**:
+- FULFILL-X is fully deployed, containerized, benchmarked, smoke-tested, and live on AWS infrastructure.
+
+---
+
+*Last updated: Phase 14 — AWS Deployment, Cloud Infrastructure & Production Integration Complete*
 
 
 

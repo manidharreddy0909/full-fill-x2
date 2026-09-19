@@ -357,6 +357,33 @@
 
 ---
 
+## Phase 14 — AWS Deployment, Cloud Infrastructure & Production Integration
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P14-001 | AWS Deployment Architecture Specification (`docs/AWS_ARCHITECTURE.md`) | DONE | Topology, flow diagrams, security matrix, Bedrock boundary, cost breakdown committed PASS | TBD |
+| P14-002 | Terraform Variables & Defaults (`infra/terraform/variables.tf`) | DONE | Configurable region, env, ports, CPU, memory PASS | TBD |
+| P14-003 | Terraform Provider Configuration (`infra/terraform/main.tf`) | DONE | AWS provider v5 & default tags configured PASS | TBD |
+| P14-004 | Terraform S3 & CloudFront CDN Module (`infra/terraform/s3_cloudfront.tf`) | DONE | SPA 404 fallback to `/index.html`, security headers, OAC PASS | TBD |
+| P14-005 | Terraform ECS Fargate & ALB Module (`infra/terraform/ecs_alb.tf`) | DONE | Fargate task, ALB target group with 86400s WebSocket idle timeout PASS | TBD |
+| P14-006 | Terraform IAM Roles & Security Groups (`infra/terraform/iam_security.tf`) | DONE | Scoped ECS task role with Bedrock `InvokeModel` policy PASS | TBD |
+| P14-007 | Terraform Infrastructure Outputs (`infra/terraform/outputs.tf`) | DONE | Exports CloudFront domain, ALB DNS, ECR URL, S3 bucket name PASS | TBD |
+| P14-008 | Backend AWS Settings Configuration (`backend/app/config.py`) | DONE | Added `AWS_REGION` and `AWS_BEDROCK_MODEL_ID` settings PASS | TBD |
+| P14-009 | Amazon Bedrock AI Adapter Verification (`backend/app/providers/bedrock.py`) | DONE | Bedrock adapter verified with fallback to `MockAIProvider` PASS | TBD |
+| P14-010 | Automated Bash Deployment Script (`scripts/aws/deploy-all.sh`) | DONE | Provisioning, ECR push, S3 sync, CloudFront invalidation PASS | TBD |
+| P14-011 | Automated PowerShell Deployment Script (`scripts/aws/deploy-all.ps1`) | DONE | Windows PowerShell automated deployment script PASS | TBD |
+| P14-012 | Automated Bash Smoke Test Script (`scripts/aws/smoke-test.sh`) | DONE | Probes `/health`, `/api/health`, `/api/world/summary`, `/api/evaluation/status` PASS | TBD |
+| P14-013 | Automated PowerShell Smoke Test Script (`scripts/aws/smoke-test.ps1`) | DONE | Windows PowerShell automated smoke testing script PASS | TBD |
+| P14-014 | Automated Teardown Scripts (`scripts/aws/destroy.sh`, `destroy.ps1`) | DONE | Controlled infra teardown scripts PASS | TBD |
+| P14-015 | GitHub Actions CI/CD Pipeline (`.github/workflows/ci-cd.yml`) | DONE | Pytest regression, frontend build, Terraform validation PASS | TBD |
+| P14-016 | AWS Integration & Security Test Suite (`backend/tests/test_aws_integration.py`) | DONE | Tests region, Bedrock adapter, probe endpoints, secret safety PASS | TBD |
+| P14-017 | AWS Deployment Guide (`docs/AWS_DEPLOYMENT.md`) | DONE | 20-section comprehensive cloud deployment & ops guide committed PASS | TBD |
+| P14-018 | Master Documentation & ADR Updates | DONE | Updated `docs/DECISION_LOG.md` (ADR-027), `MASTER_PLAN.md`, `ARCHITECTURE.md`, `API_CATALOG.md` PASS | TBD |
+| P14-019 | Full Test Suite & Build Verification | DONE | 126/126 backend pytest tests PASS; `npm run build` PASS PASS | TBD |
+| P14-020 | Clean Working Tree & Git Commit | DONE | Clean working tree ready for Phase 14 commit PASS | TBD |
+
+---
+
 *Commit hashes to be filled in after `git commit` completes.*
 
 

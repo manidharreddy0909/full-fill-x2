@@ -3,6 +3,39 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.15.0] — 2026-09-19 — Phase 14: AWS Deployment, Cloud Infrastructure & Production Integration
+
+### Added
+
+**AWS Infrastructure as Code (`infra/terraform/`)**
+- `infra/terraform/variables.tf` — Configurable variables (`aws_region`, `environment`, `app_name`, `backend_port`, `fargate_cpu`, `fargate_memory`).
+- `infra/terraform/main.tf` — AWS provider v5 setup and default tagging policy (`Project: FULFILL-X`, `ManagedBy: Terraform`).
+- `infra/terraform/s3_cloudfront.tf` — S3 bucket, CloudFront Origin Access Control (OAC), CloudFront distribution with SPA 404 fallback to `/index.html`, and security headers.
+- `infra/terraform/ecs_alb.tf` — ECR repository (`fulfillx-backend`), CloudWatch log group (`/ecs/fulfillx-backend`), ECS Fargate cluster, task definition, Fargate service, ALB, target group (`/health` probe, 86400s WebSocket idle timeout), and HTTP listener.
+- `infra/terraform/iam_security.tf` — ALB security group, ECS task security group (restricting ingress ONLY from ALB), ECS execution role, and ECS task role with Bedrock `InvokeModel` policy.
+- `infra/terraform/outputs.tf` — Exports `cloudfront_domain_name`, `alb_dns_name`, `ecr_repository_url`, `s3_bucket_name`.
+
+**Backend & Provider Settings (`backend/app/config.py`, `backend/app/providers/bedrock.py`)**
+- `backend/app/config.py` — Added `AWS_REGION` ("us-east-1") and `AWS_BEDROCK_MODEL_ID` ("anthropic.claude-3-sonnet-20240229-v1:0") configuration attributes.
+- `backend/app/providers/bedrock.py` — Bedrock AI provider boundary adapter with `is_configured` credential check and fallback to `MockAIProvider`.
+
+**Automated Deployment & Smoke Test Scripts (`scripts/aws/`)**
+- `scripts/aws/deploy-all.sh` & `deploy-all.ps1` — One-click automated deployment (Terraform apply, ECR docker login/tag/push, S3 static sync, CloudFront invalidation).
+- `scripts/aws/smoke-test.sh` & `smoke-test.ps1` — Automated smoke test scripts validating HTTP 200 probes across `/health`, `/api/health`, `/api/world/summary`, and `/api/evaluation/status`.
+- `scripts/aws/destroy.sh` & `destroy.ps1` — Controlled teardown scripts.
+
+**CI/CD Pipeline & Automated Test Suite (`.github/workflows/ci-cd.yml`, `backend/tests/test_aws_integration.py`)**
+- `.github/workflows/ci-cd.yml` — GitHub Actions workflow executing pytest test suite, frontend production build, and Terraform format/validation checks.
+- `backend/tests/test_aws_integration.py` — AWS integration and security test suite covering settings, Bedrock adapter initialization, readiness probes, secret protection, and CORS origin validation (`126/126 backend tests PASS`).
+
+**Documentation & Architecture**
+- Created `docs/AWS_ARCHITECTURE.md` (detailed topology, security matrix, Bedrock boundary, cost breakdown).
+- Created `docs/AWS_DEPLOYMENT.md` (20-section step-by-step AWS operations guide).
+- Added `ADR-027: AWS Production Deployment & Cloud Infrastructure Architecture` to `docs/DECISION_LOG.md`.
+- Updated `docs/API_CATALOG.md` (Section 18), `docs/MASTER_PLAN.md`, `docs/ARCHITECTURE.md`, `tasks/TODO.md`, `tasks/IN_PROGRESS.md`, `tasks/DONE.md`.
+
+---
+
 ## [0.14.0] — 2026-09-19 — Phase 13: Production Hardening, Containerization & Deployment Preparation
 
 ### Added

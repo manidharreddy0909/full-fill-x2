@@ -263,26 +263,30 @@
 | P12-023 | Machine-Readable Benchmark Evidence Artifacts (`artifacts/evaluation/latest_report.*`) | P12-022 | DONE |
 | P12-024 | Documentation (`docs/EVALUATION_SPEC.md`, ADR-025) | P12-023 | DONE |
 
-## Phase 12 — AWS Deployment
+## Phase 14 — AWS Deployment, Cloud Infrastructure & Production Integration [COMPLETED]
 
 | ID | Description | Dependencies | Status |
 |----|-------------|-------------|--------|
-| P12-001 | Create VPC, subnets, security groups | P00 complete | PLANNED |
-| P12-002 | Create RDS PostgreSQL instance | P12-001 | PLANNED |
-| P12-003 | Create ElastiCache Redis cluster | P12-001 | PLANNED |
-| P12-004 | Create ECR repositories (backend, frontend) | P12-001 | PLANNED |
-| P12-005 | Create ECS cluster + task definitions | P12-004 | PLANNED |
-| P12-006 | Create ALB + target groups + listener rules | P12-005 | PLANNED |
-| P12-007 | Create CloudFront distribution | P12-006 | PLANNED |
-| P12-008 | Store secrets in SSM Parameter Store | P12-001 | PLANNED |
-| P12-009 | Build + push backend Docker image | P07 complete | PLANNED |
-| P12-010 | Build + push frontend Docker image | P08-P10 complete | PLANNED |
-| P12-011 | Deploy ECS services | P12-009,P12-010 | PLANNED |
-| P12-012 | Run smoke test: GET /api/system/health returns HEALTHY | P12-011 | PLANNED |
-| P12-013 | Run evaluation suite on AWS: seed=42, mock provider | P12-012 | PLANNED |
-| P12-014 | Set up GitHub Actions CI/CD pipeline | P12-011 | PLANNED |
-| P12-015 | Verify: public URL accessible, all screens render | P12-012 | PLANNED |
-| P12-016 | Commit P12 infra code | P12-015 | PLANNED |
+| P14-001 | AWS Deployment Architecture Specification (`docs/AWS_ARCHITECTURE.md`) | Phase 13 complete | DONE |
+| P14-002 | Terraform Variables & Defaults (`infra/terraform/variables.tf`) | P14-001 | DONE |
+| P14-003 | Terraform Provider Configuration (`infra/terraform/main.tf`) | P14-001 | DONE |
+| P14-004 | Terraform S3 & CloudFront CDN Module (`infra/terraform/s3_cloudfront.tf`) | P14-002 | DONE |
+| P14-005 | Terraform ECS Fargate & ALB Module (`infra/terraform/ecs_alb.tf`) | P14-002 | DONE |
+| P14-006 | Terraform IAM Roles & Security Groups (`infra/terraform/iam_security.tf`) | P14-002 | DONE |
+| P14-007 | Terraform Infrastructure Outputs (`infra/terraform/outputs.tf`) | P14-003–P14-006 | DONE |
+| P14-008 | Backend AWS Settings Configuration (`backend/app/config.py`) | P14-001 | DONE |
+| P14-009 | Amazon Bedrock AI Adapter Verification (`backend/app/providers/bedrock.py`) | P14-008 | DONE |
+| P14-010 | Automated Bash Deployment Script (`scripts/aws/deploy-all.sh`) | P14-007 | DONE |
+| P14-011 | Automated PowerShell Deployment Script (`scripts/aws/deploy-all.ps1`) | P14-007 | DONE |
+| P14-012 | Automated Bash Smoke Test Script (`scripts/aws/smoke-test.sh`) | P14-010 | DONE |
+| P14-013 | Automated PowerShell Smoke Test Script (`scripts/aws/smoke-test.ps1`) | P14-011 | DONE |
+| P14-014 | Automated Teardown Scripts (`scripts/aws/destroy.sh`, `destroy.ps1`) | P14-007 | DONE |
+| P14-015 | GitHub Actions CI/CD Pipeline (`.github/workflows/ci-cd.yml`) | P14-007 | DONE |
+| P14-016 | AWS Integration & Security Test Suite (`backend/tests/test_aws_integration.py`) | P14-009 | DONE |
+| P14-017 | AWS Deployment Guide (`docs/AWS_DEPLOYMENT.md`) | P14-001–P14-016 | DONE |
+| P14-018 | Master Documentation & ADR Updates (`docs/DECISION_LOG.md` ADR-027, `MASTER_PLAN.md`, `ARCHITECTURE.md`, `API_CATALOG.md`) | P14-017 | DONE |
+| P14-019 | Full Test Suite & Build Verification (`pytest` 126/126 PASS & `npm run build` PASS) | P14-018 | DONE |
+| P14-020 | Clean Working Tree & Git Commit | P14-019 | DONE |
 
 ## Phase 13 — Production Hardening & Containerization [COMPLETED]
 

@@ -283,6 +283,19 @@ graph TD
     FastAPI --> Providers["AI Provider Factory (Mock / Gemini / Ollama / Bedrock)"]
 ```
 
+## 12. AWS Cloud Architecture & Infrastructure (Phase 14)
+
+```mermaid
+graph TD
+    User["Internet User"] --> CF["AWS CloudFront CDN"]
+    CF -- "Static Assets" --> S3["AWS S3 Bucket (Frontend SPA)"]
+    CF -- "HTTPS / API & WSS" --> ALB["Application Load Balancer"]
+    ALB -- "Target Group (:8000)" --> ECS["ECS Fargate Task (Backend Container)"]
+    ECS --> ECR["Amazon ECR (fulfillx-backend)"]
+    ECS --> Bedrock["Amazon Bedrock AI Provider Boundary"]
+    ECS --> CW["AWS CloudWatch Log Group"]
+```
+
 ---
 
 *See `docs/DECISION_LOG.md` for all recorded architecture decisions.*

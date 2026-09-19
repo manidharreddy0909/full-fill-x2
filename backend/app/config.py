@@ -26,6 +26,10 @@ class Settings(BaseModel):
     API_PREFIX: str = os.getenv("API_PREFIX", "/api")
     APP_VERSION: str = os.getenv("APP_VERSION", "0.13.0")
     
+    # AWS Cloud Integration Settings
+    AWS_REGION: str = os.getenv("AWS_REGION", "us-east-1")
+    AWS_BEDROCK_MODEL_ID: str = os.getenv("AWS_BEDROCK_MODEL_ID", "anthropic.claude-3-sonnet-20240229-v1:0")
+    
     # Security & limits
     WS_MAX_CONNECTIONS_PER_SESSION: int = int(os.getenv("WS_MAX_CONNECTIONS_PER_SESSION", "50"))
     MAX_REQUEST_BODY_BYTES: int = int(os.getenv("MAX_REQUEST_BODY_BYTES", "10485760"))  # 10MB
