@@ -214,18 +214,18 @@ curl -X POST http://localhost:8000/api/system/providers/switch -d '{"provider":"
 
 ---
 
-### SEGMENT 8: Decision Cockpit (10:30–11:30)
+### SEGMENT 8: Verification Engine & Decision Cockpit (10:30–11:30)
 
-**Presenter action**: Navigate to `/decision`
+**Presenter action**: Navigate to `/decision` (or Specialist War Room -> Verification Board)
 
 **What audience sees**:
 - Recommended plan summary (full evidence chain)
-- Constraint satisfaction: all green checkmarks
-- Evidence chain traced from signal → risk → scenario → agents → coordinator → adversary → stress
+- **Verification & Validation Hero Badge**: `VERIFIED` (100% Pass Rate across Capacity, Routes, Inventory, Dependencies, Risk, Constraints)
+- **Before vs After Snapshot Matrix**: Proves max node utilization stays below capacity threshold, no negative inventory, zero state pollution
+- Evidence chain traced from signal → risk → scenario → agents → coordinator → adversary → planner → verification simulation
 
-> "Every number you see here is traceable. We know which signal caused which risk,
-> which risk triggered which agent action, which action the coordinator chose,
-> and whether the adversary found a weakness."
+> "Before presenting this plan for human sign-off, our non-authoritative Verification & Validation Engine executed an isolated sandbox simulation.
+> It confirmed zero capacity overloads, no negative stock, intact multi-echelon dependencies, and proved live world state immutability."
 
 **Presenter action**: Type approval note, click "Approve"
 

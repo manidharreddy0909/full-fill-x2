@@ -33,12 +33,16 @@ import { runAgent, runAllAgents } from '../../api/agentApi';
 import { runCoordinator, runAllWithCoordinator } from '../../api/coordinatorApi';
 import { runAdversary } from '../../api/adversaryApi';
 import { runPlanner } from '../../api/plannerApi';
-import { CoordinatorResult, CandidatePlan } from '../../types/coordinator';
+import { verificationApi } from '../../api/verificationApi';
+import { CoordinatorResult, CandidatePlan, CandidatePlanStatus } from '../../types/coordinator';
 import { AdversaryReport } from '../../types/adversary';
 import { PlannerReport } from '../../types/planner';
+import { VerificationReport } from '../../types/verification';
 import { CoordinationBoard } from './CoordinationBoard';
 import { AdversaryBoard } from './AdversaryBoard';
 import { PlannerBoard } from './PlannerBoard';
+import { VerificationBoard } from './VerificationBoard';
+
 
 
 
@@ -84,17 +88,19 @@ export const SpecialistWarRoom: React.FC<SpecialistWarRoomProps> = ({
   onPreviewCandidate,
   selectedCandidateId,
 }) => {
-  const [mainTab, setMainTab] = useState<'SPECIALISTS' | 'COORDINATOR' | 'ADVERSARY' | 'PLANNER'>('SPECIALISTS');
+  const [mainTab, setMainTab] = useState<'SPECIALISTS' | 'COORDINATOR' | 'ADVERSARY' | 'PLANNER' | 'VERIFICATION'>('SPECIALISTS');
   const [loadingAll, setLoadingAll] = useState<boolean>(false);
   const [loadingCoordinator, setLoadingCoordinator] = useState<boolean>(false);
   const [loadingAdversary, setLoadingAdversary] = useState<boolean>(false);
   const [loadingPlanner, setLoadingPlanner] = useState<boolean>(false);
+  const [loadingVerification, setLoadingVerification] = useState<boolean>(false);
   const [runningAgentId, setRunningAgentId] = useState<string | null>(null);
   const [allProposals, setAllProposals] = useState<AllSpecialistProposalsResponse | null>(null);
   const [individualResults, setIndividualResults] = useState<Record<string, AgentResult>>({});
   const [coordinationResult, setCoordinationResult] = useState<CoordinatorResult | null>(null);
   const [adversaryReport, setAdversaryReport] = useState<AdversaryReport | null>(null);
   const [plannerReport, setPlannerReport] = useState<PlannerReport | null>(null);
+  const [verificationReport, setVerificationReport] = useState<VerificationReport | null>(null);
   const [expandedReasoning, setExpandedReasoning] = useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = useState<'ALL' | AgentId>('ALL');
 
@@ -161,6 +167,48 @@ export const SpecialistWarRoom: React.FC<SpecialistWarRoomProps> = ({
       setLoadingPlanner(false);
     }
   };
+
+  const handleRunVerification = async () => {
+    setLoadingVerification(true);
+    try {
+      // Pick first valid candidate plan from coordinator or fallback synthetic plan
+      const candidateFromCoord = coordinationResult?.candidate_plans?.[0];
+      const targetPlan: CandidatePlan = candidateFromCoord || {
+        candidate_id: 'candidate-a',
+        name: 'Synthetic Baseline Plan',
+        description: 'Default plan for verification simulation',
+        actions: [],
+        supporting_agents: [],
+        objectives_addressed: [],
+        agreements: [],
+        conflicts_involved: [],
+        objective_impact_matrix: [],
+        tradeoff: {
+          candidate_id: 'candidate-a',
+          positive_objectives: [],
+          negative_objectives: [],
+          neutral_objectives: [],
+          explanation: 'Synthetic baseline plan',
+        },
+        estimated_total_cost: 1245000,
+        estimated_max_delay_hours: 12.0,
+        estimated_total_emissions_co2_kg: 15800,
+        status: 'VALID',
+        violations: [],
+      };
+
+      const coordId = coordinationResult?.coordination_id || undefined;
+      const rep = await verificationApi.runVerification(targetPlan, coordId);
+      setVerificationReport(rep);
+      setMainTab('VERIFICATION');
+    } catch (err) {
+      console.error('Failed to run verification simulation:', err);
+    } finally {
+      setLoadingVerification(false);
+    }
+  };
+
+
 
 
 
@@ -355,6 +403,27 @@ export const SpecialistWarRoom: React.FC<SpecialistWarRoomProps> = ({
         >
           <Award size={16} color={mainTab === 'PLANNER' ? '#60A5FA' : '#94A3B8'} /> Multi-Objective Planner
         </button>
+
+        <button
+          onClick={() => setMainTab('VERIFICATION')}
+          style={{
+            padding: '10px 18px',
+            borderRadius: '6px 6px 0 0',
+            border: 'none',
+            background: mainTab === 'VERIFICATION' ? 'rgba(30, 41, 59, 0.9)' : 'transparent',
+            color: mainTab === 'VERIFICATION' ? '#FFFFFF' : '#94A3B8',
+            fontSize: '13px',
+            fontWeight: 700,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            borderBottom: mainTab === 'VERIFICATION' ? '2px solid #10B981' : '2px solid transparent',
+          }}
+        >
+          <CheckCircle2 size={16} color={mainTab === 'VERIFICATION' ? '#34D399' : '#94A3B8'} /> Verification & Validation
+        </button>
+
       </div>
 
       {/* Safety Banner */}
@@ -746,8 +815,20 @@ export const SpecialistWarRoom: React.FC<SpecialistWarRoomProps> = ({
           />
         </div>
       )}
+
+      {/* TAB CONTENT 5: VERIFICATION & VALIDATION */}
+      {mainTab === 'VERIFICATION' && (
+        <div style={{ flex: 1, overflowY: 'auto', padding: '24px' }}>
+          <VerificationBoard
+            report={verificationReport}
+            onRunVerification={handleRunVerification}
+            isLoading={loadingVerification}
+          />
+        </div>
+      )}
     </div>
   );
 };
+
 
 

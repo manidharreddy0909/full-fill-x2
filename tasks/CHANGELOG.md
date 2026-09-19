@@ -3,6 +3,33 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.10.0] — 2026-09-19 — Phase 09: Verification & Validation Engine
+
+### Added
+
+**Backend Verification & Sandbox Engine (`backend/app/engine/`, `schemas/`, `agents/`, `services/`, `api/`)**
+- `backend/app/schemas/verification.py` — Strongly-typed Pydantic v2 schemas: `VerificationStatus` (`VERIFIED`, `CONDITIONAL`, `REJECTED`), `ValidationSeverity`, `ValidationCategory`, `ExecutionPlan`, `ValidationCheck`, `CapacityCheck`, `RouteCheck`, `InventoryCheck`, `DependencyCheck`, `RiskCheck`, `ConstraintCheck`, `StateDiff`, `SimulationResult`, `VerificationFinding`, `VerificationReport`, `VerificationStatusResponse`, `VerificationRequest`.
+- `backend/app/engine/verification.py` — `VerificationEngine` featuring `ExecutionPlanBuilder`, `ActionValidator`, `CapacityValidator`, `RouteValidator`, `InventoryValidator`, `DependencyValidator`, `SandboxSimulator` (isolated `WorldStateSnapshot` simulation), `RiskReEvaluator`, `ConstraintReEvaluator`, `StateDiffCalculator` (before vs after operational deltas), and `ReportGenerator`.
+- `backend/app/agents/verification.py` — `VerificationAgent` implementing `BaseAgent` interface with strict AI safety boundary (AI used strictly for narrative explanations, never altering deterministic pass/fail statuses, metrics, or validation check outcomes).
+- `backend/app/services/verification.py` — `VerificationService` orchestrator managing verification analysis, sandbox execution simulation, state mutation safety assertions (`world_before == world_after` & `risk_before == risk_after`), and report caching.
+- `backend/app/api/verification.py` — FastAPI REST endpoints: `GET /api/verification/status`, `POST /api/verification/run`, `POST /api/verification/simulate`, `GET /api/verification/report`. Registered in `backend/app/api/router.py`.
+
+**Backend Verification Test Suite (`backend/tests/test_verification.py`)**
+- Comprehensive test suite covering Pydantic schemas, execution plan building, action validation, capacity validation, route validation, inventory stock-out prevention validation, graph dependency validation, isolated sandbox simulation, state mutation immutability safety, verification scenarios (Scenario A VERIFIED, Scenario B CONDITIONAL, Scenario C REJECTED), service E2E, and REST API endpoints (93/93 total backend pytest PASS).
+
+**Frontend Verification Board UI (`frontend/src/`)**
+- `frontend/src/types/verification.ts` — TypeScript interfaces matching backend verification models.
+- `frontend/src/api/verificationApi.ts` — Async API client for fetching status, running verification simulations, executing sandbox runs, and retrieving reports.
+- `frontend/src/components/agents/VerificationBoard.tsx` — Glassmorphic UI board rendering Status Hero Badge (`VERIFIED`, `CONDITIONAL`, `REJECTED`), Before vs After Snapshot Matrix, Validation Check Tabs (Capacity, Routes, Inventory, Dependencies, Risk, Constraints), and Detailed Verification Findings.
+- Updated `SpecialistWarRoom.tsx` — Integrated `Verification & Validation` sub-tab alongside `Specialists`, `Coordinator`, `Adversary`, and `Multi-Objective Planner`, with "Run Verification Simulation" action button. `npm run build` PASS.
+
+**Documentation & ADRs**
+- Added `docs/VERIFICATION_SPEC.md` and `docs/EXECUTION_SIMULATION_SPEC.md` specifications.
+- Added `ADR-022: Authoritative Plan Verification & Sandbox Execution Engine` to `docs/DECISION_LOG.md`.
+- Updated `docs/API_CATALOG.md` (Section 14), `docs/DEMO_STORYBOARD.md`, `docs/ARCHITECTURE.md`.
+
+---
+
 ## [0.9.0] — 2026-09-19 — Phase 08: Multi-Objective Planner & Optimization Engine
 
 ### Added

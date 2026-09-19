@@ -22,6 +22,7 @@ class AgentId(str, Enum):
     COORDINATOR = "coordinator"
     ADVERSARY = "adversary"
     PLANNER = "planner"
+    VERIFICATION = "verification"
 
 
 
@@ -34,6 +35,7 @@ class AgentObjective(str, Enum):
     REDUCE_SYSTEMIC_FRAGILITY = "REDUCE_SYSTEMIC_FRAGILITY"
     RECONCILE_AND_RANK = "RECONCILE_AND_RANK"
     ATTACK_AND_AUDIT = "ATTACK_AND_AUDIT"
+    VERIFY_AND_SIMULATE = "VERIFY_AND_SIMULATE"
 
 
 class AgentResultStatus(str, Enum):

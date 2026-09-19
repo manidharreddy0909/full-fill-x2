@@ -612,4 +612,46 @@ as a multi-dimensional object. The corrected response uses `NodeRiskScores`.
 | **Response 200** | `PlannerReport` schema |
 | **Frontend** | Specialist War Room -> Multi-Objective Planner Tab |
 
+---
+
+## 14. Verification & Validation Endpoints (Phase 09)
+
+### GET /api/verification/status
+| Field | Value |
+|-------|-------|
+| **Purpose** | Get active status, version, and health of the Verification & Validation Engine |
+| **Response 200** | `VerificationStatusResponse` schema (`{ status, active_verifications, memory_snapshot_isolation: true, version }`) |
+| **Frontend** | Specialist War Room -> Verification Tab |
+
+---
+
+### POST /api/verification/run
+| Field | Value |
+|-------|-------|
+| **Purpose** | Execute deterministic verification and sandbox simulation on candidate plans |
+| **Request** | `VerificationRequest` (`{ plans: List[ExecutionPlan], include_simulation: true }`) |
+| **Response 200** | `VerificationReport` schema (`{ verification_id, plan_id, status: VERIFIED/CONDITIONAL/REJECTED, pass_rate, state_diff, findings, validation_checks }`) |
+| **Frontend** | Specialist War Room -> Verification Board (Run Verification Simulation) |
+
+---
+
+### POST /api/verification/simulate
+| Field | Value |
+|-------|-------|
+| **Purpose** | Run isolated sandbox execution simulation for a single execution plan |
+| **Request** | `ExecutionPlan` schema |
+| **Response 200** | `SimulationResult` schema (`{ plan_id, pass_rate, state_diff, findings, capacity_checks, route_checks, inventory_checks, dependency_checks, risk_checks, constraint_checks }`) |
+| **Frontend** | Sandbox Simulator View |
+
+---
+
+### GET /api/verification/report
+| Field | Value |
+|-------|-------|
+| **Purpose** | Retrieve latest cached or active verification report for a plan ID |
+| **Request Query** | `?plan_id=plan-candidate-a` |
+| **Response 200** | `VerificationReport` schema |
+| **Frontend** | Verification Board Detail View |
+
+
 

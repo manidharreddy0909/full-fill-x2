@@ -5,6 +5,7 @@ from app.services.world import WorldService
 from app.services.coordinator import coordinator_service, CoordinatorService
 from app.services.adversary import adversary_service, AdversaryService
 from app.services.planner import planner_service, PlannerService
+from app.services.verification import VerificationService
 
 __all__ = [
     "WorldService",
@@ -14,6 +15,8 @@ __all__ = [
     "AdversaryService",
     "planner_service",
     "PlannerService",
+    "VerificationService",
 ]
+
 
 

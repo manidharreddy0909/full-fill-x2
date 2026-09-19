@@ -11,6 +11,7 @@ from app.agents.resilience import ResilienceAgent
 from app.agents.coordinator import CoordinatorAgent
 from app.agents.adversary import AdversaryAgent
 from app.agents.planner import PlannerAgent
+from app.agents.verification import VerificationAgent
 from app.agents.registry import AgentRegistry
 
 __all__ = [
@@ -24,7 +25,9 @@ __all__ = [
     "CoordinatorAgent",
     "AdversaryAgent",
     "PlannerAgent",
+    "VerificationAgent",
     "AgentRegistry",
 ]
+
 
 

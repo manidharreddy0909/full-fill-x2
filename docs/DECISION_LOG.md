@@ -503,7 +503,38 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 08 — Multi-Objective Planner & Optimization Engine Complete*
+## ADR-022: Authoritative Plan Verification & Sandbox Execution Engine
+
+**Date**: 2026-09-19  
+**Status**: ACCEPTED  
+**Phase**: 09  
+
+**Context**: Candidate plans produced by specialists, reconciled by the Coordinator, and optimized by the Multi-Objective Planner require an authoritative, non-destructive Verification & Validation layer before human authorization. The system must strictly enforce: **"Specialists propose → Coordinator reconciles → Adversary attacks → Planner optimizes → VERIFICATION ENGINE → Human approves"**.
+
+**Decision**:
+1. **Deterministic Verification Engine**: Implement `VerificationEngine` with 6 deterministic validation checks:
+   - **Action & Entity Check**: Validates action parameters and verifies target nodes/edges exist.
+   - **Capacity Check**: Simulates facility throughput and volume loading to prevent over-capacity (`utilization > 100%`).
+   - **Route Check**: Evaluates edge disruptions, road/sea/air status, and transport delays.
+   - **Inventory Check**: Tracks projected stock levels at all node locations to prevent negative inventory (`projected_stock < 0`) and flag safety stock breaches.
+   - **Dependency Check**: Verifies graph connectivity across multi-echelon supply chains.
+   - **Risk & Constraint Re-evaluator**: Dynamically re-evaluates risk scores and hard/soft operational constraints post-simulation.
+2. **Authoritative Status Taxonomy**: Categorize candidate plans into `VERIFIED` (100% pass), `CONDITIONAL` (0 critical errors, 1+ warnings), or `REJECTED` (1+ critical errors or hard constraint breaches).
+3. **Zero State Mutation Barrier**: All sandbox execution runs execute strictly on `WorldStateSnapshot.model_copy(deep=True)`. `VerificationService` explicitly asserts `world_before == world_after` and `risk_before == risk_after`.
+4. **AI Safety Boundary**: AI capabilities are strictly isolated to generating natural language narrative summaries (`VerificationAgent`). AI reasoning is never permitted to mutate deterministic pass/fail statuses, metrics, or validation checks.
+5. **Verification Board UI**: Interactive `VerificationBoard.tsx` tab integrated into Specialist War Room featuring Status Hero Badges, Before vs After State Matrix, Validation Check Tabs, and Detailed Verification Findings.
+
+**Rationale**:
+- Provides mathematical certainty that recommended plans can safely execute without causing catastrophic stock-outs, route blockages, or facility overloading.
+- Guarantees 100% state safety and zero side effects on live authoritative data repositories.
+
+**Consequences**:
+- Executable candidate plans are conclusively verified before being presented for human authorization.
+
+---
+
+*Last updated: Phase 09 — Verification & Validation Engine Complete*
+
 
 
 

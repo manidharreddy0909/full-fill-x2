@@ -82,4 +82,22 @@ from app.schemas.planner import (
     PlannerReport,
 )
 
-
+from app.schemas.verification import (
+    VerificationStatus,
+    ValidationSeverity,
+    ValidationCategory,
+    ExecutionPlan,
+    ValidationCheck,
+    CapacityCheck,
+    RouteCheck,
+    InventoryCheck,
+    DependencyCheck,
+    RiskCheck,
+    ConstraintCheck,
+    StateDiff,
+    SimulationResult,
+    VerificationFinding,
+    VerificationReport,
+    VerificationStatusResponse,
+    VerificationRequest,
+)

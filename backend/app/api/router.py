@@ -10,6 +10,7 @@ from app.api.agents import router as agents_router
 from app.api.coordinator import router as coordinator_router
 from app.api.adversary import router as adversary_router
 from app.api.planner import router as planner_router
+from app.api.verification import router as verification_router
 from app.schemas.world import ApiResponse
 
 api_router = APIRouter()
@@ -21,6 +22,8 @@ api_router.include_router(agents_router)
 api_router.include_router(coordinator_router)
 api_router.include_router(adversary_router)
 api_router.include_router(planner_router)
+api_router.include_router(verification_router)
+
 
 
 

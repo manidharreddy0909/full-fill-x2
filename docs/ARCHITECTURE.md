@@ -76,6 +76,7 @@ graph TB
         COORD[Coordinator Agent]
         ADV[Adversary Agent]
         PLANNER[Planner Agent / Optimization Engine]
+        VERIFY[Verification Agent / Sandbox Engine]
     end
 
     subgraph AI["AI Provider Abstraction"]
@@ -109,6 +110,8 @@ graph TB
     ORCHESTRATOR --> RES
     ORCHESTRATOR --> COORD
     ORCHESTRATOR --> ADV
+    ORCHESTRATOR --> PLANNER
+    ORCHESTRATOR --> VERIFY
     INV --> AI
     SUP --> AI
     TRX --> AI
@@ -117,6 +120,8 @@ graph TB
     RES --> AI
     COORD --> AI
     ADV --> AI
+    PLANNER --> AI
+    VERIFY --> AI
     WORLD --> PG
     MEMORY --> PG
     ORCHESTRATOR --> REDIS

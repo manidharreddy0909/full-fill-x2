@@ -15,6 +15,8 @@ from app.engine.planner import (
     SensitivityAnalyzer,
 )
 
+from app.engine.verification import VerificationEngine
+
 __all__ = [
     "AdversaryEngine",
     "AttackGenerator",
@@ -27,5 +29,6 @@ __all__ = [
     "ConstraintEvaluator",
     "ParetoEngine",
     "SensitivityAnalyzer",
+    "VerificationEngine",
 ]
 
