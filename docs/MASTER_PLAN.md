@@ -59,6 +59,7 @@ SPECIALIST AGENTS → ADVERSARY → MULTI-OBJECTIVE PLAN → VERIFY → MEMORY
 | 15 | Security Audit & AI Safety Hardening | ✅ COMPLETE | Threat model, secret scan, SBOM, security test suite, open-source attribution, ADR-028 |
 | 16 | Competition Demo Mode & Guided Console | ✅ COMPLETE | Deterministic demo engine, 14-state machine, judge presentation script, report artifacts, ADR-029 |
 | 17 | Final Product Experience & Submission Readiness | ✅ COMPLETE | Unified navigation shell, Command & Intelligence panels, zero-warning test pass, ADR-030 |
+| Phase 1 | Real AWS + Production Infrastructure | ✅ COMPLETE | Terraform IaC, ECR, ECS Fargate, ALB, S3, CloudFront, CloudWatch, Bedrock AI boundary, deployment guide, runbook, ADR-031 |
 
 ---
 

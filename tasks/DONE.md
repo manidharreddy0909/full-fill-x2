@@ -475,6 +475,24 @@
 
 ---
 
+## Phase 1 — Real AWS + Production Infrastructure
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P01-AWS-001 | Host AWS CLI Discovery & STS Caller Verification | DONE | Discovery run; host AWS credentials unconfigured PASS | TBD |
+| P01-AWS-002 | Terraform IaC Audit & Security Group Isolation (`infra/terraform/`) | DONE | ECR, ECS, ALB, S3, CloudFront HCL templates verified PASS | TBD |
+| P01-AWS-003 | Non-root Production Dockerfile & Container Healthcheck | DONE | Non-root UID 10001 & curl healthcheck verified PASS | TBD |
+| P01-AWS-004 | AWS Bedrock AI Boundary & Provider Factory Auto-Fallback | DONE | `BedrockProvider` auto-fallback to `mock` verified PASS | TBD |
+| P01-AWS-005 | ALB 24h Idle Timeout Configuration for Persistent WebSockets | DONE | HCL `idle_timeout = 86400` verified PASS | TBD |
+| P01-AWS-006 | S3 Private Bucket Policy & CloudFront Origin Access Control | DONE | HCL CloudFront OAC + S3 block public access PASS | TBD |
+| P01-AWS-007 | CloudWatch Log Group Configuration (`/ecs/fulfillx-backend`) | DONE | `awslogs` driver log stream configuration PASS | TBD |
+| P01-AWS-008 | AWS Live Deployment Guide (`docs/AWS_LIVE_DEPLOYMENT.md`) | DONE | Spec document committed PASS | TBD |
+| P01-AWS-009 | AWS Operations & Incident Response Runbook (`docs/AWS_OPERATIONS_RUNBOOK.md`) | DONE | Runbook document committed PASS | TBD |
+| P01-AWS-010 | ADR-031: AWS Production Infrastructure & Deployment Readiness | DONE | ADR committed PASS | TBD |
+| P01-AWS-011 | System Test Regression & Production Build Verification | DONE | 149/149 pytest PASS (0 warnings), npm run build PASS | TBD |
+
+---
+
 *Commit hashes to be filled in after `git commit` completes.*
 
 

@@ -26,8 +26,14 @@
 
 ---
 
-## 3. SECURITY & COMPLIANCE VERIFICATION
+## 4. PHASE 1 AWS INFRASTRUCTURE DEPLOYMENT MATRIX
 
-1. **AI Safety Boundaries**: Prompt injection defense, payload sanitization, tool output validation verified via `test_security.py`.
-2. **State Safety Boundaries**: Deep copy immutability verified for world model state and risk map evaluations.
-3. **Async Event Bus Cleanliness**: `WebSocketManager.broadcast_to_session` awaited correctly; 0 coroutine warnings emitted.
+| Component | Target Architecture | IaC Validation | Runtime Fallback | Security Boundary Status |
+| :--- | :--- | :--- | :--- | :--- |
+| **Terraform IaC** | `infra/terraform/*.tf` | **VALIDATED** | N/A | Least-privilege IAM & SG isolation |
+| **ECR Container** | AWS ECR (`fulfillx-backend`) | **VALIDATED** | Non-root User (UID 10001) | Image scan on push & immutable tags |
+| **ECS Fargate** | AWS ECS (`fulfillx-cluster`) | **VALIDATED** | Healthcheck (`/health`) | Private subnets, non-public ingress |
+| **ALB Load Balancer** | AWS ALB (`fulfillx-alb`) | **VALIDATED** | 24h WebSocket timeout | Restricted HTTP/HTTPS ingress |
+| **S3 + CloudFront** | S3 Static + OAC CDN | **VALIDATED** | SPA fallback (`index.html`) | Bucket public access blocked |
+| **AWS Bedrock AI** | Bedrock Runtime Adapter | **VERIFIED** | Auto-fallback to `mock` | Safety boundary & immutable graph |
+

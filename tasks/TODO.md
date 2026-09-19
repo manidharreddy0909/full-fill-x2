@@ -397,3 +397,20 @@
 | P17-009 | Master Documentation & Versioning Update (`v1.0.0`) | P17-008 | DONE |
 | P17-010 | Full System Regression (149+ Pytest PASS, 0 warnings, Frontend Build PASS) | P17-009 | DONE |
 
+## Phase 1 — Real AWS + Production Infrastructure [COMPLETED]
+
+| ID | Description | Dependencies | Status |
+|----|-------------|-------------|--------|
+| P01-AWS-001 | Host AWS CLI Discovery & STS Caller Verification (`aws sts get-caller-identity`) | Phase 17 complete | DONE |
+| P01-AWS-002 | Terraform IaC Audit & Security Group Isolation (`infra/terraform/*.tf`) | P01-AWS-001 | DONE |
+| P01-AWS-003 | Non-root Production Dockerfile & Container Healthcheck Verification (`backend/Dockerfile`) | P01-AWS-001 | DONE |
+| P01-AWS-004 | AWS Bedrock AI Boundary & Provider Factory Auto-Fallback (`BedrockProvider`) | P01-AWS-001 | DONE |
+| P01-AWS-005 | ALB 24h Idle Timeout Configuration for Persistent WebSockets (`ecs_alb.tf`) | P01-AWS-002 | DONE |
+| P01-AWS-006 | S3 Private Bucket Policy & CloudFront Origin Access Control (`s3_cloudfront.tf`) | P01-AWS-002 | DONE |
+| P01-AWS-007 | CloudWatch Log Group Configuration (`/ecs/fulfillx-backend`) | P01-AWS-002 | DONE |
+| P01-AWS-008 | AWS Live Deployment Guide (`docs/AWS_LIVE_DEPLOYMENT.md`) | P01-AWS-007 | DONE |
+| P01-AWS-009 | AWS Operations & Incident Response Runbook (`docs/AWS_OPERATIONS_RUNBOOK.md`) | P01-AWS-008 | DONE |
+| P01-AWS-010 | ADR-031: AWS Production Infrastructure & Deployment Readiness | P01-AWS-009 | DONE |
+| P01-AWS-011 | System Test Regression & Production Build Verification (149 Pytest PASS, Build PASS) | P01-AWS-010 | DONE |
+
+

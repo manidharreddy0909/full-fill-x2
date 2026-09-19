@@ -3,6 +3,24 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.1.0] — 2026-09-19 — Phase 1: Real AWS + Production Infrastructure
+
+### Added
+
+**AWS Production Infrastructure & IaC Audit (`infra/terraform/*.tf`)**
+- Terraform IaC specifications covering AWS ECR (`fulfillx-backend`), ECS Fargate (`fulfillx-cluster`), Application Load Balancer (`fulfillx-alb`), S3 static hosting + CloudFront OAC, and CloudWatch log groups (`/ecs/fulfillx-backend`).
+- Security group isolation restricting ECS task ingress strictly to ALB security group (`aws_security_group.alb.id`).
+- ALB 24-hour idle timeout (`idle_timeout = 86400`) for persistent WebSockets.
+
+**AWS Bedrock AI Integration & Auto-Fallback (`backend/app/providers/bedrock.py`, `factory.py`)**
+- `BedrockProvider` adapter configured with automatic fallback to `MockAIProvider` if AWS credentials or model access are absent.
+
+**Operational Runbooks & Live Deployment Specifications (`docs/AWS_LIVE_DEPLOYMENT.md`, `docs/AWS_OPERATIONS_RUNBOOK.md`, `docs/DECISION_LOG.md`)**
+- Created `docs/AWS_LIVE_DEPLOYMENT.md` and `docs/AWS_OPERATIONS_RUNBOOK.md`.
+- Added `ADR-031: AWS Production Infrastructure & Deployment Readiness` to `docs/DECISION_LOG.md`.
+
+---
+
 ## [1.0.0] — 2026-09-19 — Phase 17: Final Product Experience, Complete QA & Submission Readiness
 
 ### Added
