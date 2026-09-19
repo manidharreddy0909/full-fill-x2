@@ -898,7 +898,34 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 7 — GNN + Causal Intelligence Platform Complete*
+## ADR-038: Digital Twin & Monte Carlo Resilience Engine
+
+**Date**: 2026-09-20
+**Status**: ACCEPTED
+**Phase**: 08
+
+**Context**: Phase 7 answered how risk propagates through the network. Phase 8 answers what happens if the network experiences thousands of different possible futures, how resilient the network is under uncertainty, and which mitigation strategies consistently perform well across simulated futures.
+
+**Decision**:
+1. **Isolated Executable Digital Twin Snapshot**: Implemented `DigitalTwin` snapshotting engine operating on deep-copied states (`mode = SIMULATION`, `production_mutation = False`). Production World Model state is **never** mutated.
+2. **Discrete-Time Dynamics Engine**: Implemented `DigitalTwinDynamics` ($1\text{h}$ step resolution) calculating inventory flow ($inv_{t+1} = inv_t + inbound - demand - loss$), capacity degradation/recovery, transport delays, backlog, and service level across horizons from $6\text{h}$ to $30\text{d}$.
+3. **Deterministic Scenario & Distribution Generator**: Implemented `ScenarioGenerator` for single, sequential, and compound disruptions + demand shocks, and `BoundedDistribution` for reproducible, seeded random variables.
+4. **Parallelized CPU Monte Carlo Engine**: Implemented `MonteCarloEngine` executing $100$ to $5,000$ iterations using CPU thread/process pools with resource bounds and 100% 3-run determinism (seed 42).
+5. **Statistical Resilience Metrics Subsystem**: Implemented `ResilienceMetricsCalculator` computing Service Level distributions ($P_{10}, P_{25}, P_{50}, P_{75}, P_{90}$), $TTR_{p90}$, $TTF$, Operational $VaR_{95}$, $CVaR_{95}$, Stockout Probability, and explicit weighted Resilience Scores.
+6. **Critical Node Simulation Analyzer & Strategy Comparison**: Implemented `CriticalityAnalyzer` ranking nodes by simulation metrics, and `RobustStrategyAnalyzer` comparing risk distributions across candidate mitigation strategies to recommend robust plans.
+7. **Persistence, Security & API**: Alembic migration `007_digital_twin_simulation.py`, 10 RBAC permissions (`TWIN_*`, `SIMULATION_*`, `RESILIENCE_*`, `STRATEGY_SIMULATE`), 10 event types, and `/api/twin/*`, `/api/simulation/*`, `/api/resilience/*` REST endpoints.
+8. **Cinematic Frontend Workspace**: Implemented `DigitalTwinWorkspace.tsx` featuring Mode Switcher (`OBSERVE`, `SIMULATE`, `COMPARE`), Scenario Builder, Monte Carlo Console, Percentile Distribution Explorer, Resilience Curve Chart, Strategy Comparison Matrix, and Criticality Explorer.
+
+**Rationale**:
+- Provides stochastic simulation capabilities and robust decision intelligence under uncertainty while preserving free-first CPU execution and state isolation safety.
+
+**Consequences**:
+- Phase 8 Digital Twin + Monte Carlo Resilience Engine is 100% complete, fully tested (225/225 backend unit tests passing), verified (7/7 demo test suite with 100% determinism), frontend built, and documented.
+
+---
+
+*Last updated: Phase 8 — Digital Twin & Monte Carlo Resilience Engine Complete*
+
 
 
 

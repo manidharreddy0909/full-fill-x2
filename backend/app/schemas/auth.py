@@ -67,6 +67,14 @@ class Permission(str, Enum):
     CAUSAL_ANALYZE = "causal:analyze"
     CAUSAL_COUNTERFACTUAL = "causal:counterfactual"
     CAUSAL_MANAGE = "causal:manage"
+    TWIN_READ = "twin:read"
+    TWIN_CREATE = "twin:create"
+    TWIN_MANAGE = "twin:manage"
+    SIMULATION_MANAGE = "simulation:manage"
+    RESILIENCE_READ = "resilience:read"
+    RESILIENCE_ANALYZE = "resilience:analyze"
+    RESILIENCE_MANAGE = "resilience:manage"
+    STRATEGY_SIMULATE = "strategy:simulate"
     SYSTEM_ADMIN = "system:admin"
 
 

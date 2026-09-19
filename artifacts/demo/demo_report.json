@@ -1,10 +1,10 @@
 {
-  "session_id": "demo-session-79947850",
+  "session_id": "demo-session-62d7c100",
   "scenario_id": "DEMO-05",
   "seed": 42,
   "mode": "STEP",
   "status": "COMPLETED",
-  "total_duration_ms": 24.2,
+  "total_duration_ms": 14.58,
   "workflow_completed": true,
   "candidate_plan_selected": null,
   "approval_decision": null,
@@ -47,14 +47,14 @@
         "seed": 42
       },
       "evidence_ids": [],
-      "timestamp": "2026-09-19T22:31:47.906762Z"
+      "timestamp": "2026-09-19T22:46:00.194867Z"
     },
     {
       "step_index": 1,
       "stage": "ANALYZING_RISK",
       "title": "2. Weak Signal Intelligence Ingest",
       "status": "COMPLETED",
-      "duration_ms": 1.76,
+      "duration_ms": 1.49,
       "summary": "Executed 2. Weak Signal Intelligence Ingest successfully",
       "key_metrics": {
         "stage": "ANALYZING_RISK",
@@ -62,14 +62,14 @@
         "risk_level": 3
       },
       "evidence_ids": [],
-      "timestamp": "2026-09-19T22:31:47.906762Z"
+      "timestamp": "2026-09-19T22:46:00.194867Z"
     },
     {
       "step_index": 2,
       "stage": "RUNNING_SPECIALISTS",
       "title": "3. Multi-Dimensional Risk Propagation",
       "status": "COMPLETED",
-      "duration_ms": 2.78,
+      "duration_ms": 2.13,
       "summary": "Executed 3. Multi-Dimensional Risk Propagation successfully",
       "key_metrics": {
         "stage": "RUNNING_SPECIALISTS",
@@ -77,14 +77,14 @@
         "risk_level": 3
       },
       "evidence_ids": [],
-      "timestamp": "2026-09-19T22:31:47.906762Z"
+      "timestamp": "2026-09-19T22:46:00.194867Z"
     },
     {
       "step_index": 3,
       "stage": "COORDINATING",
       "title": "4. Compound Scenario Composition",
       "status": "COMPLETED",
-      "duration_ms": 2.8,
+      "duration_ms": 1.49,
       "summary": "Executed 4. Compound Scenario Composition successfully",
       "key_metrics": {
         "stage": "COORDINATING",
@@ -92,14 +92,14 @@
         "risk_level": 3
       },
       "evidence_ids": [],
-      "timestamp": "2026-09-19T22:31:47.906762Z"
+      "timestamp": "2026-09-19T22:46:00.194867Z"
     },
     {
       "step_index": 4,
       "stage": "ADVERSARIAL_TESTING",
       "title": "5. 6 Specialist Agents Dispatch",
       "status": "COMPLETED",
-      "duration_ms": 8.92,
+      "duration_ms": 5.27,
       "summary": "Executed 5. 6 Specialist Agents Dispatch successfully",
       "key_metrics": {
         "stage": "ADVERSARIAL_TESTING",
@@ -107,14 +107,14 @@
         "risk_level": 3
       },
       "evidence_ids": [],
-      "timestamp": "2026-09-19T22:31:47.906762Z"
+      "timestamp": "2026-09-19T22:46:00.194867Z"
     },
     {
       "step_index": 5,
       "stage": "OPTIMIZING",
       "title": "6. Coordinator Conflict Reconciliation",
       "status": "COMPLETED",
-      "duration_ms": 1.15,
+      "duration_ms": 0.59,
       "summary": "Executed 6. Coordinator Conflict Reconciliation successfully",
       "key_metrics": {
         "stage": "OPTIMIZING",
@@ -122,14 +122,14 @@
         "risk_level": 3
       },
       "evidence_ids": [],
-      "timestamp": "2026-09-19T22:31:47.906762Z"
+      "timestamp": "2026-09-19T22:46:00.194867Z"
     },
     {
       "step_index": 6,
       "stage": "VERIFYING",
       "title": "7. Candidate Plans A / B / C Synthesized",
       "status": "COMPLETED",
-      "duration_ms": 6.26,
+      "duration_ms": 3.3,
       "summary": "Executed 7. Candidate Plans A / B / C Synthesized successfully",
       "key_metrics": {
         "stage": "VERIFYING",
@@ -137,14 +137,14 @@
         "risk_level": 3
       },
       "evidence_ids": [],
-      "timestamp": "2026-09-19T22:31:47.906762Z"
+      "timestamp": "2026-09-19T22:46:00.194867Z"
     },
     {
       "step_index": 7,
       "stage": "READY_FOR_APPROVAL",
       "title": "8. Adversary Red-Team Stress Test",
       "status": "COMPLETED",
-      "duration_ms": 0.53,
+      "duration_ms": 0.31,
       "summary": "Executed 8. Adversary Red-Team Stress Test successfully",
       "key_metrics": {
         "stage": "READY_FOR_APPROVAL",
@@ -152,7 +152,7 @@
         "risk_level": 3
       },
       "evidence_ids": [],
-      "timestamp": "2026-09-19T22:31:47.906762Z"
+      "timestamp": "2026-09-19T22:46:00.194867Z"
     },
     {
       "step_index": 8,
@@ -163,7 +163,7 @@
       "summary": "Waiting for step execution",
       "key_metrics": {},
       "evidence_ids": [],
-      "timestamp": "2026-09-19T22:31:47.906762Z"
+      "timestamp": "2026-09-19T22:46:00.194867Z"
     },
     {
       "step_index": 9,
@@ -174,7 +174,7 @@
       "summary": "Waiting for step execution",
       "key_metrics": {},
       "evidence_ids": [],
-      "timestamp": "2026-09-19T22:31:47.906762Z"
+      "timestamp": "2026-09-19T22:46:00.194867Z"
     },
     {
       "step_index": 10,
@@ -185,7 +185,7 @@
       "summary": "Waiting for step execution",
       "key_metrics": {},
       "evidence_ids": [],
-      "timestamp": "2026-09-19T22:31:47.906762Z"
+      "timestamp": "2026-09-19T22:46:00.194867Z"
     },
     {
       "step_index": 11,
@@ -196,8 +196,8 @@
       "summary": "Waiting for step execution",
       "key_metrics": {},
       "evidence_ids": [],
-      "timestamp": "2026-09-19T22:31:47.906762Z"
+      "timestamp": "2026-09-19T22:46:00.194867Z"
     }
   ],
-  "generated_at": "2026-09-19T22:31:47.953288Z"
+  "generated_at": "2026-09-19T22:46:00.223866Z"
 }
