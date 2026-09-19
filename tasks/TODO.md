@@ -80,7 +80,27 @@
 | P05-013 | Specialist War Room UI Component (`SpecialistWarRoom.tsx`, `Navbar.tsx`, `App.tsx`) | P05-012 | DONE |
 | P05-014 | Documentation, ADR-018 & Phase 05 Commit | P05-013 | DONE |
 
-## Phase 06 — Adversary Agent
+## Phase 06 — Coordinator Agent [COMPLETED]
+
+| ID | Description | Dependencies | Status |
+|----|-------------|-------------|--------|
+| P06-001 | Coordinator Pydantic Schemas (`backend/app/schemas/coordinator.py`) | Phase 05 complete | DONE |
+| P06-002 | Proposal Normalization & Action Deduplication (`backend/app/engine/reconciliation.py`) | P06-001 | DONE |
+| P06-003 | Agreement Detection & Traceable Proposal Attribution | P06-002 | DONE |
+| P06-004 | Conflict Detection (route, resource, objective opposition) | P06-002 | DONE |
+| P06-005 | 6-Objective Impact Matrix & Trade-off Engine | P06-003 | DONE |
+| P06-006 | Candidate Plan Generator (Candidate Plan A, B, C) | P06-005 | DONE |
+| P06-007 | Constraint Filter & Entity Integrity Validator | P06-006 | DONE |
+| P06-008 | Coordinator Agent with Immutability Safety Boundary (`backend/app/agents/coordinator.py`) | P06-007 | DONE |
+| P06-009 | Coordinator Service (`backend/app/services/coordinator.py`) | P06-008 | DONE |
+| P06-010 | Coordinator REST API (`backend/app/api/coordinator.py`) | P06-009 | DONE |
+| P06-011 | Backend Test Suite (`backend/tests/test_coordinator.py` - 60/60 total PASS) | P06-010 | DONE |
+| P06-012 | Frontend TypeScript types & API client (`types/coordinator.ts`, `api/coordinatorApi.ts`) | P06-010 | DONE |
+| P06-013 | Coordination Board UI Component (`CoordinationBoard.tsx`, `SpecialistWarRoom.tsx`) | P06-012 | DONE |
+| P06-014 | Map Candidate Plan Preview Integration & Banner (`App.tsx`) | P06-013 | DONE |
+| P06-015 | Documentation, ADR-019 & Phase 06 Commit | P06-014 | DONE |
+
+## Phase 07 — Adversary Agent
 
 | ID | Description | Dependencies | Status |
 |----|-------------|-------------|--------|

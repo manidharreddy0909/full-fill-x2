@@ -5,6 +5,31 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [0.7.0] — 2026-09-19 — Phase 06: Coordinator Agent & Multi-Agent Proposal Reconciliation
+
+### Added
+
+**Backend Coordinator Reconciliation Engine (`backend/app/engine/`, `schemas/`, `agents/`, `services/`, `api/`)**
+- `backend/app/schemas/coordinator.py` — Strongly-typed Pydantic v2 schemas: `ProposalNormalization`, `Agreement`, `Conflict`, `ConflictType`, `ObjectiveImpact`, `TradeOff`, `CandidatePlan`, `CandidatePlanStatus`, `CoordinatorResult`, `CoordinatorResultStatus`.
+- `backend/app/engine/reconciliation.py` — 100% deterministic `ReconciliationEngine` comprising `ProposalNormalizer`, `AgreementDetector` (traceable proposal attribution), `ConflictDetector` (mutually exclusive route, resource contention, objective opposition), `TradeOffAnalyzer` (6-objective impact matrix & trade-off vectors), `CandidatePlanGenerator` (Candidate Plans A, B, C), and `ConstraintFilter` (entity integrity validation).
+- `backend/app/agents/coordinator.py` — `CoordinatorAgent` implementing `BaseAgent` interface with snapshot immutability verification (`snap_id_before == snap_id_after` and `risk_snap_before == risk_snap_after`).
+- `backend/app/services/coordinator.py` — `CoordinatorService` orchestrator supporting pre-computed proposals or automated end-to-end specialist collection with partial failure resilience (`PARTIAL_PROPOSALS`).
+- `backend/app/api/coordinator.py` — FastAPI REST endpoints: `GET /api/coordinator/status`, `POST /api/coordinator/run`, `POST /api/coordinator/run-all`. Registered in `backend/app/api/router.py`.
+
+**Backend Coordinator Test Suite (`backend/tests/test_coordinator.py`)**
+- Comprehensive test suite covering Pydantic schemas, normalization deduplication, agreement detection, conflict detection, trade-off matrix scoring, candidate plan generation, entity constraint filtering, CoordinatorAgent safe_execute immutability, 100% determinism (`res1 == res2 == res3`), partial failure handling, and REST API endpoints (60/60 total backend PASS).
+
+**Frontend Coordination Board UI (`frontend/src/`)**
+- `frontend/src/types/coordinator.ts` — TypeScript interfaces matching backend coordinator schemas.
+- `frontend/src/api/coordinatorApi.ts` — Async API client for coordinator status and execution endpoints.
+- `frontend/src/components/agents/CoordinationBoard.tsx` — Glassmorphic UI featuring executive summary metrics, Agreements Panel, Conflict Panel (Agent A vs Agent B objective opposition), 6-Objective Trade-off Matrix Board, and Candidate Plan cards (`Candidate Plan A`, `Candidate Plan B`, `Candidate Plan C`) with action tables, cost/delay/emissions metrics, and trade-off comparison accordions.
+- Updated `SpecialistWarRoom.tsx` & `App.tsx` — Integrated `Specialists` vs `Coordinator Board` sub-tabs, "Run Coordinator Reconciliation" trigger, and Candidate Plan 2D/3D map preview overlay banner (`UNEXECUTED CANDIDATE PLAN — WORLD STATE UNMUTATED`). `npm run build` PASS.
+
+**Architecture Decisions**
+- Added `ADR-019: Coordinator Agent & Multi-Agent Proposal Reconciliation Layer` to `docs/DECISION_LOG.md`.
+
+---
+
 ## [0.6.0] — 2026-09-19 — Phase 05: Specialist Agent System & Safe Execution Pipeline
 
 ### Added

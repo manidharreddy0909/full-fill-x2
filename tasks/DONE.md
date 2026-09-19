@@ -156,6 +156,28 @@
 
 ---
 
+## Phase 06 — Coordinator Agent + Multi-Agent Proposal Reconciliation
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P06-001 | Coordinator Pydantic Schemas (`backend/app/schemas/coordinator.py`) | DONE | `ProposalNormalization`, `Agreement`, `Conflict`, `ObjectiveImpact`, `TradeOff`, `CandidatePlan`, `CoordinatorResult` models PASS | TBD |
+| P06-002 | Proposal Normalization & Deduplication (`backend/app/engine/reconciliation.py`) | DONE | Deduplicates overlapping actions, aggregates costs & max transit delays PASS | TBD |
+| P06-003 | Agreement Detection Engine | DONE | Identifies reinforcing proposal goals & shared entity targets with full proposal ID attribution PASS | TBD |
+| P06-004 | Conflict Detection Engine | DONE | Identifies route, resource, and objective oppositions (e.g. Air Freight vs Carbon Reduction) PASS | TBD |
+| P06-005 | 6-Objective Impact Matrix & Trade-off Analyzer | DONE | Scores 6 objectives in `[-1.0, 1.0]`, generates positive/negative trade-off vectors & natural language explanation PASS | TBD |
+| P06-006 | Candidate Plan Generator | DONE | Synthesizes 3 distinct Candidate Plans (`Candidate A: Service & Speed`, `Candidate B: Eco-Resilient`, `Candidate C: Total Synergy`) PASS | TBD |
+| P06-007 | Constraint Filter & Entity Integrity Validator | DONE | Validates target node/edge IDs against `WorldStateSnapshot`, marking invalid plans with explicit violations PASS | TBD |
+| P06-008 | Coordinator Agent (`backend/app/agents/coordinator.py`) | DONE | Inherits from `BaseAgent` with safe_execute pipeline & snapshot immutability verification PASS | TBD |
+| P06-009 | Coordinator Service (`backend/app/services/coordinator.py`) | DONE | Executes reconciliation and handles partial specialist failures (`PARTIAL_PROPOSALS`) PASS | TBD |
+| P06-010 | Coordinator REST API (`backend/app/api/coordinator.py`) | DONE | `GET /api/coordinator/status`, `POST /api/coordinator/run`, `POST /api/coordinator/run-all` PASS | TBD |
+| P06-011 | Backend Unit & Integration Tests (`backend/tests/test_coordinator.py`) | DONE | 9 comprehensive test cases (schemas, normalization, agreements, conflicts, trade-offs, candidates, constraints, immutability, determinism, API) (60/60 PASS) | TBD |
+| P06-012 | Frontend TypeScript types & API client (`types/coordinator.ts`, `api/coordinatorApi.ts`) | DONE | Interfaces matching backend models & async fetch methods PASS | TBD |
+| P06-013 | Coordination Board UI Component (`CoordinationBoard.tsx`) | DONE | Glassmorphic UI featuring Agreements panel, Conflict panel, 6-Objective matrix board, Candidate Plan cards PASS | TBD |
+| P06-014 | Map Candidate Plan Preview Overlay (`App.tsx`, `SpecialistWarRoom.tsx`) | DONE | Candidate preview selection banner & graph highlighting with unexecuted candidate tags PASS | TBD |
+| P06-015 | Documentation, ADR-019 & Phase 06 Commit | DONE | `ADR-019` added to `DECISION_LOG.md`; `TODO.md`, `IN_PROGRESS.md`, `DONE.md`, `CHANGELOG.md` updated PASS | TBD |
+
+---
+
 *Commit hashes to be filled in after `git commit` completes.*
 
 

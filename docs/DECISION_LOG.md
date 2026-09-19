@@ -423,7 +423,33 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 05 — Specialist Agent System Complete*
+## ADR-019: Coordinator Agent & Multi-Agent Proposal Reconciliation Layer
+
+**Date**: 2026-09-19
+**Status**: ACCEPTED
+**Phase**: 06
+
+**Context**: Independent specialist agents (Inventory, Supplier, Transportation, Fulfillment, Sustainability, Resilience) generate competing mitigation proposals. FULFILL-X requires a Coordinator reconciliation layer to normalize actions, detect reinforcing agreements and operational conflicts, evaluate 6-objective trade-off matrices, and synthesize structured Candidate Plans without prematurely forcing a single winning plan or mutating authoritative world/risk state.
+
+**Decision**:
+1. **Non-Authoritative Reconciliation Layer**: Implement `CoordinatorAgent`, `ReconciliationEngine`, and `CoordinatorService` to normalize actions, group duplicates, detect agreements and conflicts, and assemble candidate plan options (`Candidate Plan A`, `Candidate Plan B`, `Candidate Plan C`).
+2. **No Silent Winner Selection**: The Coordinator does NOT produce a single "optimal plan". It surfaces multiple valid candidate plan options with explicit evidence, agreements, conflict badges, and 6-objective trade-off matrices. Final multi-objective plan selection is reserved for later Multi-Objective Planner / Adversary phases.
+3. **100% Deterministic Engine**: Proposal normalization, agreement detection, conflict identification, objective impact scoring, candidate plan assembly, and entity/constraint filtering are calculated using 100% deterministic Python logic.
+4. **Partial Specialist Failure Resilience**: If any specialist agent fails or times out, the Coordinator handles partial inputs gracefully (`status: PARTIAL_PROPOSALS`), reporting missing specialist IDs without throwing runtime exceptions.
+5. **Interactive Coordination Board UI**: Integrated `CoordinationBoard.tsx` into Specialist War Room, featuring Agreements Panel, Conflict Panel, 6-Objective Trade-off Matrix, and Candidate Plan Cards with 2D/3D map preview overlays.
+
+**Rationale**:
+- Enforces strict safety boundary: **"Specialists propose; Coordinator reconciles; Multi-Objective Planner decides"**.
+- Exposes legitimate operational trade-offs (e.g. Expedited Air Freight for SLAs vs Carbon Emissions Reduction) transparently to human logistics planners.
+- Guarantees complete test reproducibility and immutability (`WorldRepository` and `RiskRepository` remain untouched).
+
+**Consequences**:
+- Candidate plans produced by the Coordinator remain unexecuted previews until subsequent simulation and planner components are invoked.
+
+---
+
+*Last updated: Phase 06 — Coordinator Agent Complete*
+
 
 
 

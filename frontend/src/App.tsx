@@ -17,6 +17,7 @@ import { NodeInspector } from './components/world/NodeInspector';
 import { RiskExplorer } from './components/risk/RiskExplorer';
 import { SignalInjectorModal } from './components/risk/SignalInjectorModal';
 import { SpecialistWarRoom } from './components/agents/SpecialistWarRoom';
+import { CandidatePlan } from './types/coordinator';
 
 export const App: React.FC = () => {
   const [viewMode, setViewMode] = useState<'2D' | '3D'>('2D');
@@ -35,6 +36,7 @@ export const App: React.FC = () => {
   const [isInjectorOpen, setIsInjectorOpen] = useState<boolean>(false);
   const [injectorTargetId, setInjectorTargetId] = useState<string | null>(null);
   const [isWarRoomOpen, setIsWarRoomOpen] = useState<boolean>(false);
+  const [previewCandidatePlan, setPreviewCandidatePlan] = useState<CandidatePlan | null>(null);
 
   const loadWorldAndRiskData = useCallback(async () => {
     try {
@@ -217,11 +219,60 @@ export const App: React.FC = () => {
               onInject={handleInjectSignal}
             />
 
-            {/* Specialist War Room Drawer */}
+            {/* Candidate Plan Visual Preview Banner */}
+            {previewCandidatePlan && (
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '16px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  background: 'rgba(124, 58, 237, 0.9)',
+                  backdropFilter: 'blur(12px)',
+                  border: '1px solid #A78BFA',
+                  boxShadow: '0 0 20px rgba(139, 92, 246, 0.5)',
+                  padding: '8px 20px',
+                  borderRadius: '30px',
+                  color: '#FFFFFF',
+                  zIndex: 100,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                }}
+              >
+                <span className="mono" style={{ fontSize: '11px', fontWeight: 700, background: '#4C1D95', padding: '2px 8px', borderRadius: '12px' }}>
+                  CANDIDATE PREVIEW
+                </span>
+                <span style={{ fontSize: '13px', fontWeight: 600 }}>
+                  {previewCandidatePlan.name}
+                </span>
+                <span style={{ fontSize: '11px', color: '#E9D5FF' }}>
+                  (UNEXECUTED CANDIDATE PLAN — WORLD STATE UNMUTATED)
+                </span>
+                <button
+                  onClick={() => setPreviewCandidatePlan(null)}
+                  style={{
+                    background: 'transparent',
+                    border: 'none',
+                    color: '#FFF',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    fontWeight: 700,
+                    marginLeft: '8px',
+                  }}
+                >
+                  ✕
+                </button>
+              </div>
+            )}
+
+            {/* Specialist & Coordinator War Room Drawer */}
             <SpecialistWarRoom
               isOpen={isWarRoomOpen}
               onClose={() => setIsWarRoomOpen(false)}
               selectedNodeId={selectedNodeId}
+              onPreviewCandidate={(cand) => setPreviewCandidatePlan(cand)}
+              selectedCandidateId={previewCandidatePlan?.candidate_id}
             />
           </>
         )}
