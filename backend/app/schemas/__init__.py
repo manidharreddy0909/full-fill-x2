@@ -121,3 +121,12 @@ from app.schemas.cockpit import (
     CockpitStatusResponse,
 )
 
+from app.schemas.events import (
+    EventType,
+    EventSeverity,
+    EventEnvelope,
+    ClientWsAction,
+    ClientWsMessage,
+)
+
+

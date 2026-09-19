@@ -3,6 +3,34 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.12.0] — 2026-09-19 — Phase 11: Real-Time Intelligence & Live Operational Event Layer
+
+### Added
+
+**Backend Real-Time Infrastructure (`backend/app/schemas/`, `realtime/`, `api/`)**
+- `backend/app/schemas/events.py` — Strongly-typed Pydantic v2 event envelopes (`event_id`, `event_type`, `sequence`, `timestamp`, `session_id`, `stage`, `source`, `severity`, `payload`), 27 lifecycle `EventType` enums, `EventSeverity`, `ClientWsAction`, and `ClientWsMessage`.
+- `backend/app/realtime/event_bus.py` — High-performance in-process async `EventBus` pub/sub hub with monotonic sequence numbers, session filtering, bounded memory catch-up replay log (`deque(maxlen=100)`), and zero domain-state mutation.
+- `backend/app/realtime/websocket_manager.py` — `WebSocketManager` singleton managing active socket connections, session-specific broadcasting, and graceful exception handling.
+- `backend/app/api/websocket.py` — FastAPI WebSocket endpoints (`/ws` & `/ws/{session_id}`) supporting client PING/PONG and subscription ACK.
+- Real-Time Event Producers: Wired lifecycle event broadcasting across `CockpitService`, `SpecialistAgentService`, `RiskEngine`, `SignalIngestor`, `CoordinatorService`, `AdversaryService`, `PlannerService`, and `VerificationService`.
+
+**Backend Real-Time Test Suite (`backend/tests/test_realtime.py`)**
+- 6 comprehensive unit and integration tests covering schemas, pub/sub, session filtering, catch-up replay, WebSocket API routes, lifecycle event emissions, and zero state mutation safety assertions (`107/107 total backend pytest PASS`).
+
+**Frontend Real-Time Client & Live Visualizations (`frontend/src/`)**
+- `frontend/src/types/events.ts` — TypeScript definitions matching backend event models.
+- `frontend/src/api/websocket.ts` — `RealtimeWebSocketClient` handling automatic reconnection with exponential backoff, sequence ordering, and duplicate frame filtering.
+- `frontend/src/store/realtimeStore.ts` — React hook store (`useRealtimeStore()`) managing connection status, event stream, stage execution statuses, agent progress, risk updates, and toasts.
+- `frontend/src/components/common/EventToastContainer.tsx` — Non-intrusive toast notification overlays for `HIGH`/`CRITICAL` severity events.
+- Live Decision Cockpit & Map Updates: Driven `DecisionCockpit.tsx` WS connection status pill (`LIVE`, `RECONNECTING`, `OFFLINE`), reactive stage execution spinners, 3-column Live Event Stream panel, and real-time 2D/3D visual risk state updates (`World2DView.tsx`, `World3DView.tsx`, `App.tsx`). `npm run build` PASS.
+
+**Documentation & ADRs**
+- Added `docs/WEBSOCKET_SPEC.md` specification.
+- Added `ADR-024: Real-Time Intelligence & Live Operational Event Infrastructure` to `docs/DECISION_LOG.md`.
+- Updated `docs/API_CATALOG.md` (Section 16), `tasks/TODO.md`, `tasks/IN_PROGRESS.md`, `tasks/DONE.md`.
+
+---
+
 ## [0.11.0] — 2026-09-19 — Phase 10: Decision Cockpit & End-to-End Intelligence Console
 
 ### Added

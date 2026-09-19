@@ -269,6 +269,30 @@
 | P10-012 | Documentation & ADR Updates | DONE | `docs/DECISION_COCKPIT_SPEC.md` & `ADR-023` added to `DECISION_LOG.md`; `API_CATALOG.md` updated PASS | TBD |
 | P10-013 | Final Verification | DONE | Backend pytest 101/101 PASS & Frontend production build PASS PASS | TBD |
 
+---
+
+## Phase 11 — Real-Time Intelligence & Live Operational Event Layer
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P11-001 | Event Pydantic v2 Schemas & Envelope (`backend/app/schemas/events.py`) | DONE | `EventType` (27 types), `EventSeverity`, `EventEnvelope`, `ClientWsAction`, `ClientWsMessage` PASS | TBD |
+| P11-002 | Async In-Process EventBus (`backend/app/realtime/event_bus.py`) | DONE | Async pub/sub, monotonic sequence counter, session isolation, bounded memory catch-up replay PASS | TBD |
+| P11-003 | WebSocket Connection Manager (`backend/app/realtime/websocket_manager.py`) | DONE | Manages active connections, session-specific broadcasting, auto-cleanup on disconnect PASS | TBD |
+| P11-004 | WebSocket API Router (`backend/app/api/websocket.py`) | DONE | `/ws` and `/ws/{session_id}` FastAPI WebSocket endpoints with PING/PONG and subscription ACK PASS | TBD |
+| P11-005 | Event Catch-Up Replay Buffer | DONE | Automatically replays recent session events (`max 100`) to newly connected clients PASS | TBD |
+| P11-006 | Cockpit & Domain Service Event Producers | DONE | Emits lifecycle events across Cockpit workflow stages, Specialists, Coordinator, Adversary, Planner, Verification, and Risk Engine PASS | TBD |
+| P11-007 | Frontend TypeScript Event Types (`types/events.ts`) | DONE | TypeScript interfaces matching backend event models PASS | TBD |
+| P11-008 | Frontend Realtime WebSocket Client (`api/websocket.ts`) | DONE | `RealtimeWebSocketClient` with exponential backoff reconnects, sequence ordering, and duplicate frame filtering PASS | TBD |
+| P11-009 | Real-Time Store (`store/realtimeStore.ts`) | DONE | React hook store managing connection status, event stream, stage progress, agent statuses, and toasts PASS | TBD |
+| P11-010 | Event Toast Container Component (`EventToastContainer.tsx`) | DONE | Non-intrusive toast notifications for HIGH/CRITICAL events PASS | TBD |
+| P11-011 | Live Cockpit Timeline & Event Log Drawer (`DecisionCockpit.tsx`) | DONE | Real-time WS connection pill, reactive stage execution spinners, and 3-column Live Event Stream log PASS | TBD |
+| P11-012 | Live 2D/3D Reactive Risk Updates (`World2DView.tsx`, `World3DView.tsx`, `App.tsx`) | DONE | Real-time visual risk state updates upon `RISK_UPDATED` events PASS | TBD |
+| P11-013 | Backend Test Suite (`backend/tests/test_realtime.py`) | DONE | 6 unit & integration tests; 107/107 total backend pytest PASS PASS | TBD |
+| P11-014 | State Mutation Immutability Test | DONE | `assert world_before == world_after` & `assert risk_before == risk_after` PASS | TBD |
+| P11-015 | Documentation & ADR Updates | DONE | `docs/WEBSOCKET_SPEC.md` & `ADR-024` added to `DECISION_LOG.md`; `API_CATALOG.md` updated PASS | TBD |
+| P11-016 | Final Verification | DONE | Backend pytest 107/107 PASS & Frontend production build PASS PASS | TBD |
+
+
 
 ---
 

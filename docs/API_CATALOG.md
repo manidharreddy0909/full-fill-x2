@@ -731,6 +731,30 @@ as a multi-dimensional object. The corrected response uses `NodeRiskScores`.
 | **Response 200** | `DecisionSession` schema |
 | **Frontend** | Decision Cockpit Header ("Reset Session" button) |
 
+---
+
+## 16. Real-Time WebSocket Endpoints (Phase 11)
+
+### WS /ws
+| Field | Value |
+|-------|-------|
+| **Purpose** | Global WebSocket connection endpoint for real-time live operational event streams |
+| **Protocol** | `ws://` / `wss://` |
+| **Outbound Frame** | `EventEnvelope` (`{ event_id, event_type, sequence, timestamp, source, severity, payload }`) |
+| **Inbound Action** | `ClientWsMessage` (`{ action: "PING" / "SUBSCRIBE" / "UNSUBSCRIBE" }`) |
+| **Frontend** | RealtimeStore (`RealtimeWebSocketClient`) |
+
+---
+
+### WS /ws/{session_id}
+| Field | Value |
+|-------|-------|
+| **Purpose** | Session-filtered WebSocket stream with automatic catch-up replay of recent session events |
+| **Protocol** | `ws://` / `wss://` |
+| **Replay Behavior** | Automatically streams past `EventEnvelope` items from session replay log upon handshake |
+| **Frontend** | Decision Cockpit Live Header Status & Event Stream Drawer |
+
+
 
 
 

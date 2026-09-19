@@ -18,6 +18,8 @@ import { RiskExplorer } from './components/risk/RiskExplorer';
 import { SignalInjectorModal } from './components/risk/SignalInjectorModal';
 import { SpecialistWarRoom } from './components/agents/SpecialistWarRoom';
 import { DecisionCockpit } from './components/cockpit/DecisionCockpit';
+import { EventToastContainer } from './components/common/EventToastContainer';
+import { useRealtimeStore } from './store/realtimeStore';
 import { CandidatePlan } from './types/coordinator';
 
 export const App: React.FC = () => {
@@ -136,10 +138,23 @@ export const App: React.FC = () => {
     setIsInjectorOpen(true);
   };
 
+  const { nodeRisks: rtNodeRisks } = useRealtimeStore();
   const selectedNode = snapshot?.nodes.find((n) => n.id === selectedNodeId) || null;
 
-  // Merge updated risk scores into WorldNodes if available
+  // Merge updated risk scores into WorldNodes if available (combining riskMap & WebSocket realtime updates)
   const currentNodes: WorldNode[] = (snapshot?.nodes || []).map((node) => {
+    const rtRisk = rtNodeRisks[node.id];
+    if (rtRisk) {
+      const baseScores = riskMap?.node_risks[node.id] || node.risk_scores;
+      return {
+        ...node,
+        risk_scores: {
+          ...baseScores,
+          composite: rtRisk.composite,
+        },
+        is_disrupted: rtRisk.composite >= 0.5 || node.is_disrupted,
+      };
+    }
     if (riskMap?.node_risks[node.id]) {
       const r = riskMap.node_risks[node.id];
       return {
@@ -153,6 +168,9 @@ export const App: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', width: '100vw', background: 'var(--bg-canvas)' }}>
+      {/* Real-time Toast Notifications */}
+      <EventToastContainer />
+
       {/* Navbar */}
       <Navbar
         viewMode={viewMode}

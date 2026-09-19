@@ -18,6 +18,8 @@ import {
   XCircle,
   Activity,
   Award,
+  Wifi,
+  Zap,
 } from 'lucide-react';
 import {
   DecisionSession,
@@ -36,6 +38,7 @@ import {
   resetCockpitSession,
 } from '../../api/cockpitApi';
 import { EvidenceDrawer } from './EvidenceDrawer';
+import { useRealtimeStore, realtimeStore } from '../../store/realtimeStore';
 
 interface DecisionCockpitProps {
   isOpen: boolean;
@@ -71,11 +74,20 @@ export const DecisionCockpit: React.FC<DecisionCockpitProps> = ({
   const [selectedEvidence, setSelectedEvidence] = useState<EvidenceLink | null>(null);
   const [isEvidenceOpen, setIsEvidenceOpen] = useState<boolean>(false);
 
+  // Real-time Event Store
+  const { connectionStatus, events: realtimeEvents, stageStatus: rtStageStatus } = useRealtimeStore();
+
   useEffect(() => {
     if (isOpen && !session) {
       handleCreateSession();
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen && session?.session_id) {
+      realtimeStore.connectSession(session.session_id);
+    }
+  }, [isOpen, session?.session_id]);
 
   if (!isOpen) return null;
 
@@ -249,6 +261,24 @@ export const DecisionCockpit: React.FC<DecisionCockpitProps> = ({
 
         {/* Live Workflow Controls */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          {/* WebSocket Live Status */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '6px 12px',
+              borderRadius: '6px',
+              background: connectionStatus === 'CONNECTED' ? 'rgba(46, 204, 113, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+              border: `1px solid ${connectionStatus === 'CONNECTED' ? '#2ECC71' : '#EF4444'}`,
+            }}
+          >
+            <Wifi size={14} color={connectionStatus === 'CONNECTED' ? '#2ECC71' : '#EF4444'} className={connectionStatus === 'RECONNECTING' ? 'spin' : ''} />
+            <span className="mono" style={{ fontSize: '11px', fontWeight: 700, color: connectionStatus === 'CONNECTED' ? '#2ECC71' : '#EF4444' }}>
+              WS: {connectionStatus}
+            </span>
+          </div>
+
           <button
             onClick={handleRunFullLoop}
             disabled={loading}
@@ -412,10 +442,11 @@ export const DecisionCockpit: React.FC<DecisionCockpitProps> = ({
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(8, 1fr)', gap: '12px' }}>
             {STAGE_ORDER.map(({ stage, label, num }) => {
               const rec = getStageRecord(stage);
-              const isCompleted = rec?.status === 'COMPLETED';
-              const isRunning = rec?.status === 'RUNNING';
-              const isFailed = rec?.status === 'FAILED';
-              const isCurrent = session?.current_stage === stage;
+              const rtInfo = rtStageStatus[stage];
+              const isCompleted = rec?.status === 'COMPLETED' || rtInfo?.status === 'COMPLETED';
+              const isRunning = rec?.status === 'RUNNING' || rtInfo?.status === 'RUNNING';
+              const isFailed = rec?.status === 'FAILED' || rtInfo?.status === 'FAILED';
+              const isCurrent = session?.current_stage === stage || isRunning;
 
               return (
                 <div
@@ -424,8 +455,10 @@ export const DecisionCockpit: React.FC<DecisionCockpitProps> = ({
                   style={{
                     padding: '12px',
                     borderRadius: '8px',
-                    background: isCurrent ? 'rgba(124, 58, 237, 0.15)' : 'var(--bg-canvas)',
-                    border: isCurrent
+                    background: isRunning ? 'rgba(139, 92, 246, 0.25)' : isCurrent ? 'rgba(124, 58, 237, 0.15)' : 'var(--bg-canvas)',
+                    border: isRunning
+                      ? '1px solid #A78BFA'
+                      : isCurrent
                       ? '1px solid #8B5CF6'
                       : isCompleted
                       ? '1px solid rgba(46, 204, 113, 0.3)'
@@ -440,17 +473,19 @@ export const DecisionCockpit: React.FC<DecisionCockpitProps> = ({
                     </span>
                     {isCompleted ? (
                       <CheckCircle2 size={14} color="var(--color-healthy)" />
+                    ) : isRunning ? (
+                      <RefreshCw size={14} color="#A78BFA" className="spin" />
                     ) : isFailed ? (
                       <AlertTriangle size={14} color="#FF453A" />
                     ) : (
                       <Clock size={14} color="var(--text-secondary)" />
                     )}
                   </div>
-                  <div style={{ fontSize: '12px', fontWeight: 700, color: isCurrent ? '#A78BFA' : 'var(--text-primary)' }}>
+                  <div style={{ fontSize: '12px', fontWeight: 700, color: isRunning ? '#A78BFA' : isCurrent ? '#A78BFA' : 'var(--text-primary)' }}>
                     {label}
                   </div>
                   <div className="mono" style={{ fontSize: '10px', color: 'var(--text-secondary)', marginTop: '4px' }}>
-                    {rec ? `${rec.duration_ms.toFixed(0)}ms` : 'Not Started'}
+                    {rtInfo?.duration_ms ? `${rtInfo.duration_ms.toFixed(0)}ms` : rec ? `${rec.duration_ms.toFixed(0)}ms` : isRunning ? 'Executing...' : 'Not Started'}
                   </div>
                 </div>
               );
@@ -696,10 +731,8 @@ export const DecisionCockpit: React.FC<DecisionCockpitProps> = ({
               </button>
             </div>
           </div>
-        </div>
-
-        {/* Traceable Evidence Chain & Audit Log */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+        </div>        {/* Traceable Evidence Chain, Audit Log, and Live WebSocket Stream */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px' }}>
           {/* Evidence Chain Panel */}
           <div className="glass-panel" style={{ padding: '20px' }}>
             <h4 style={{ margin: '0 0 14px 0', fontSize: '14px', fontWeight: 700, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
@@ -770,6 +803,58 @@ export const DecisionCockpit: React.FC<DecisionCockpitProps> = ({
                   </span>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Live WebSocket Event Stream Panel */}
+          <div className="glass-panel" style={{ padding: '20px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
+              <h4 style={{ margin: 0, fontSize: '14px', fontWeight: 700, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Zap size={14} color="#A78BFA" /> Live Event Stream
+              </h4>
+              <span className="mono" style={{ fontSize: '10px', color: connectionStatus === 'CONNECTED' ? '#4ADE80' : '#F87171', fontWeight: 700 }}>
+                {realtimeEvents.length} events
+              </span>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '220px', overflowY: 'auto' }}>
+              {realtimeEvents.length === 0 ? (
+                <div style={{ fontSize: '11px', color: 'var(--text-secondary)', fontStyle: 'italic', textAlign: 'center', padding: '20px 0' }}>
+                  Awaiting real-time WebSocket events...
+                </div>
+              ) : (
+                realtimeEvents.map((evt) => (
+                  <div
+                    key={evt.event_id}
+                    style={{
+                      padding: '8px 12px',
+                      borderRadius: '6px',
+                      background: 'var(--bg-canvas)',
+                      border: `1px solid ${evt.severity === 'CRITICAL' || evt.severity === 'HIGH' ? 'rgba(239, 68, 68, 0.4)' : 'var(--border-subtle)'}`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span className="mono" style={{ fontSize: '10px', fontWeight: 700, background: 'rgba(139, 92, 246, 0.2)', color: '#A78BFA', padding: '1px 4px', borderRadius: '3px' }}>
+                          #{evt.sequence}
+                        </span>
+                        <span className="mono" style={{ fontSize: '11px', fontWeight: 700, color: evt.severity === 'CRITICAL' || evt.severity === 'HIGH' ? '#F87171' : 'var(--text-primary)' }}>
+                          {evt.event_type}
+                        </span>
+                      </div>
+                      <div style={{ fontSize: '10px', color: 'var(--text-secondary)', marginTop: '2px' }}>
+                        Stage: {evt.stage || 'GLOBAL'} • Src: {evt.source}
+                      </div>
+                    </div>
+                    <span className="mono" style={{ fontSize: '9px', color: 'var(--text-secondary)' }}>
+                      {new Date(evt.timestamp).toLocaleTimeString()}
+                    </span>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>

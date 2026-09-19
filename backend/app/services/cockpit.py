@@ -30,6 +30,8 @@ from app.services.coordinator import CoordinatorService
 from app.services.adversary import AdversaryService
 from app.services.planner import PlannerService
 from app.services.verification import VerificationService
+from app.realtime.event_bus import event_bus
+from app.schemas.events import EventType, EventSeverity
 
 
 class CockpitService:
@@ -113,6 +115,14 @@ class CockpitService:
         )
 
         self._sessions[session.session_id] = session
+
+        event_bus.publish_sync(
+            EventType.SESSION_CREATED,
+            payload={"preset": preset, "seed": seed, "health_score": summary.network_health_score},
+            session_id=session.session_id,
+            stage=DecisionStage.OBSERVING.value,
+        )
+
         return session
 
     def get_session(self, session_id: str) -> Optional[DecisionSession]:
@@ -141,6 +151,15 @@ class CockpitService:
         updated_plan = session.planner_report
         updated_verif = session.verification_report
         new_errors = list(session.errors)
+
+        stage_val = target_stage.value if hasattr(target_stage, "value") else str(target_stage)
+
+        event_bus.publish_sync(
+            EventType.STAGE_STARTED,
+            payload={"stage": stage_val},
+            session_id=session.session_id,
+            stage=stage_val,
+        )
 
         try:
             if target_stage == DecisionStage.ANALYZING_RISK:
@@ -325,7 +344,7 @@ class CockpitService:
         audit_evt = AuditEvent(
             actor="CockpitService",
             stage=target_stage,
-            action=f"STAGE_{target_stage.value}_COMPLETED" if new_stage_record and new_stage_record.status == DecisionStageStatus.COMPLETED else f"STAGE_{target_stage.value}_FAILED",
+            action=f"STAGE_{stage_val}_COMPLETED" if new_stage_record and new_stage_record.status == DecisionStageStatus.COMPLETED else f"STAGE_{stage_val}_FAILED",
             details={"duration_ms": new_stage_record.duration_ms if new_stage_record else 0.0},
         )
 
@@ -340,6 +359,23 @@ class CockpitService:
                 "updated_at": datetime.now(timezone.utc),
             }
         )
+
+        # Publish STAGE_COMPLETED / STAGE_FAILED event
+        if new_stage_record and new_stage_record.status == DecisionStageStatus.COMPLETED:
+            event_bus.publish_sync(
+                EventType.STAGE_COMPLETED,
+                payload={"stage": stage_val, "duration_ms": new_stage_record.duration_ms, "summary": new_stage_record.summary},
+                session_id=session.session_id,
+                stage=stage_val,
+            )
+        else:
+            event_bus.publish_sync(
+                EventType.STAGE_FAILED,
+                payload={"stage": stage_val, "error": new_stage_record.summary if new_stage_record else "Unknown error"},
+                session_id=session.session_id,
+                stage=stage_val,
+                severity=EventSeverity.CRITICAL,
+            )
 
         # Assert zero state mutation on live repositories
         snap_after = self.world_repo.get_snapshot()
@@ -445,6 +481,20 @@ class CockpitService:
         assert risk_after.node_risks == risk_before.node_risks, "CRITICAL SAFETY: RiskRepository mutated during record_approval"
 
         self._sessions[session.session_id] = session
+
+        event_bus.publish_sync(
+            EventType.DECISION_APPROVED,
+            payload={"plan_id": plan_id, "plan_name": plan_name, "approver": approver, "rationale": rationale},
+            session_id=session.session_id,
+            stage=DecisionStage.APPROVED.value,
+        )
+        event_bus.publish_sync(
+            EventType.SESSION_COMPLETED,
+            payload={"workflow_status": "COMPLETED", "final_decision": "APPROVED", "plan_id": plan_id},
+            session_id=session.session_id,
+            stage=DecisionStage.APPROVED.value,
+        )
+
         return session
 
     def record_rejection(
@@ -458,7 +508,8 @@ class CockpitService:
         plan_name = plan_id
         if session.coordination_result:
             for cp in session.coordination_result.candidate_plans:
-                if cp.plan_id == plan_id:
+                c_id = getattr(cp, "candidate_id", getattr(cp, "plan_id", ""))
+                if c_id == plan_id or getattr(cp, "plan_id", "") == plan_id:
                     plan_name = cp.name
                     break
 
@@ -474,7 +525,7 @@ class CockpitService:
             actor=approver,
             stage=DecisionStage.REJECTED,
             action="PLAN_REJECTED",
-            details={"plan_id": plan_id, "rationale": rationale},
+            details={"plan_id": plan_id, "plan_name": plan_name, "rationale": rationale},
         )
 
         session = session.model_copy(
@@ -488,6 +539,15 @@ class CockpitService:
         )
 
         self._sessions[session.session_id] = session
+
+        event_bus.publish_sync(
+            EventType.DECISION_REJECTED,
+            payload={"plan_id": plan_id, "plan_name": plan_name, "approver": approver, "rationale": rationale},
+            session_id=session.session_id,
+            stage=DecisionStage.REJECTED.value,
+            severity=EventSeverity.HIGH,
+        )
+
         return session
 
     def reset_session(self, session_id: str) -> DecisionSession:

@@ -213,6 +213,26 @@
 | P10-011 | Integration into Specialist War Room & Navbar (`SpecialistWarRoom.tsx`, `Navbar.tsx`, `App.tsx`) | P10-010 | DONE |
 | P10-012 | Documentation (`docs/DECISION_COCKPIT_SPEC.md`, ADR-023) | P10-011 | DONE |
 
+## Phase 11 — Real-Time Intelligence & Live Operational Event Layer [COMPLETED]
+
+| ID | Description | Dependencies | Status |
+|----|-------------|-------------|--------|
+| P11-001 | Event Pydantic v2 Schemas & Envelope (`backend/app/schemas/events.py`) | Phase 10 complete | DONE |
+| P11-002 | Async In-Process EventBus (`backend/app/realtime/event_bus.py`) | P11-001 | DONE |
+| P11-003 | WebSocket Manager (`backend/app/realtime/websocket_manager.py`) | P11-002 | DONE |
+| P11-004 | WebSocket API Router (`backend/app/api/websocket.py` - `/ws`, `/ws/{session_id}`) | P11-003 | DONE |
+| P11-005 | Event Replay & Bounded Memory Catch-Up Buffer | P11-002 | DONE |
+| P11-006 | Cockpit & Domain Service Event Producers | P11-004 | DONE |
+| P11-007 | Frontend TypeScript Event Types (`types/events.ts`) | P11-001 | DONE |
+| P11-008 | Frontend Realtime WebSocket Client (`api/websocket.ts`) | P11-007 | DONE |
+| P11-009 | Real-Time React Store (`store/realtimeStore.ts`) | P11-008 | DONE |
+| P11-010 | Event Toast Container Component (`EventToastContainer.tsx`) | P11-009 | DONE |
+| P11-011 | Live Cockpit Timeline & Real-Time Event Log Drawer (`DecisionCockpit.tsx`) | P11-009 | DONE |
+| P11-012 | Live 2D/3D Reactive Risk Score Updates (`World2DView.tsx`, `World3DView.tsx`, `App.tsx`) | P11-009 | DONE |
+| P11-013 | Backend Unit & Integration Test Suite (`backend/tests/test_realtime.py` - 107/107 PASS) | P11-006 | DONE |
+| P11-014 | State Mutation Safety Verification (`assert world_before == world_after`) | P11-013 | DONE |
+| P11-015 | Documentation & ADR Updates (`docs/WEBSOCKET_SPEC.md`, ADR-024) | P11-014 | DONE |
+
 
 ## Phase 11 — Evaluation Harness
 

@@ -557,7 +557,30 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 10 — Decision Cockpit & End-to-End Intelligence Console Complete*
+## ADR-024: Real-Time Intelligence & Live Operational Event Infrastructure
+
+**Date**: 2026-09-19  
+**Status**: ACCEPTED  
+**Phase**: 11  
+
+**Context**: FULFILL-X requires live event streaming to broadcast operational stage progress, risk map updates, agent completions, adversary findings, and decision approvals to connected frontend clients without turning the event layer into an authoritative second source of truth.
+
+**Decision**:
+1. **In-Process Asynchronous EventBus**: Implement `EventBus` managing sequence numbering (`sequence`), session filtering, bounded memory catch-up replay (`deque(maxlen=100)`), and zero domain-state side effects.
+2. **WebSocket Connection Manager**: Implement `WebSocketManager` handling `/ws` and `/ws/{session_id}` client handshakes, session broadcasting, auto-reconnect support, and stale connection recovery.
+3. **Observational Safety Boundary**: Real-time event producers across `Cockpit`, `Risk`, `Specialist`, `Coordinator`, `Adversary`, `Planner`, and `Verification` layers strictly observe lifecycle transitions. Publishing events **never** mutates live `WorldRepository` or `RiskRepository` state (`assert world_before == world_after` & `assert risk_before == risk_after`).
+4. **Frontend Realtime Client & Store**: Implement `RealtimeWebSocketClient` with exponential backoff reconnects, sequence ordering, and duplicate frame filtering; backed by a React hook store (`useRealtimeStore()`).
+5. **Live Reactive UI**: Drive Decision Cockpit connection status pills, reactive stage timeline execution indicators, live event stream logs, 2D/3D visual risk state updates, and `EventToastContainer` notifications.
+
+**Rationale**:
+- Provides instant real-time operational visibility while ensuring the backend domain repositories remain 100% authoritative and secure.
+
+**Consequences**:
+- End-to-end intelligence workflow is live, event-driven, 100% reproducible, and resilient to socket disconnects.
+
+---
+
+*Last updated: Phase 11 — Real-Time Intelligence & Live Operational Event Layer Complete*
 
 
 
