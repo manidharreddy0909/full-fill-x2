@@ -39,6 +39,8 @@ import {
 } from '../../api/cockpitApi';
 import { EvidenceDrawer } from './EvidenceDrawer';
 import { useRealtimeStore, realtimeStore } from '../../store/realtimeStore';
+import { evaluationApi } from '../../api/evaluation';
+import { EvaluationReport } from '../../types/evaluation';
 
 interface DecisionCockpitProps {
   isOpen: boolean;
@@ -76,6 +78,13 @@ export const DecisionCockpit: React.FC<DecisionCockpitProps> = ({
 
   // Real-time Event Store
   const { connectionStatus, events: realtimeEvents, stageStatus: rtStageStatus } = useRealtimeStore();
+
+  // System Evaluation State
+  const [evalReport, setEvalReport] = useState<EvaluationReport | null>(null);
+
+  useEffect(() => {
+    evaluationApi.getReport().then(setEvalReport).catch(() => {});
+  }, []);
 
   useEffect(() => {
     if (isOpen && !session) {
@@ -342,7 +351,7 @@ export const DecisionCockpit: React.FC<DecisionCockpitProps> = ({
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(5, 1fr)',
+              gridTemplateColumns: 'repeat(6, 1fr)',
               gap: '16px',
             }}
           >
@@ -429,6 +438,39 @@ export const DecisionCockpit: React.FC<DecisionCockpitProps> = ({
               </div>
               <div style={{ fontSize: '11px', color: 'var(--text-secondary)', marginTop: '4px' }}>
                 Zero state mutation verified
+              </div>
+            </div>
+
+            {/* Phase 12 SYSTEM EVALUATION Panel */}
+            <div className="glass-panel" style={{ padding: '12px 16px' }}>
+              <div style={{ fontSize: '11px', color: 'var(--text-secondary)', fontWeight: 600, marginBottom: '4px' }}>
+                SYSTEM EVALUATION
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', fontSize: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ color: 'var(--text-secondary)' }}>Risk Detection</span>
+                  <span className="mono font-bold" style={{ color: '#5B93F6' }}>
+                    {evalReport?.summary ? `${Math.round(evalReport.summary.risk_detection * 100)}%` : '—'}
+                  </span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ color: 'var(--text-secondary)' }}>Plan Feasibility</span>
+                  <span className="mono font-bold" style={{ color: '#2ECC71' }}>
+                    {evalReport?.summary ? `${Math.round(evalReport.summary.plan_feasibility * 100)}%` : '—'}
+                  </span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ color: 'var(--text-secondary)' }}>Adversarial Cover</span>
+                  <span className="mono font-bold" style={{ color: '#A78BFA' }}>
+                    {evalReport?.summary ? `${Math.round(evalReport.summary.adversarial_coverage * 100)}%` : '—'}
+                  </span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ color: 'var(--text-secondary)' }}>Verification</span>
+                  <span className="mono font-bold" style={{ color: '#F59E0B' }}>
+                    {evalReport?.summary ? `${Math.round(evalReport.summary.verification_accuracy * 100)}%` : '—'}
+                  </span>
+                </div>
               </div>
             </div>
           </div>

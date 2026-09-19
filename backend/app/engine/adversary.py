@@ -48,7 +48,13 @@ class AttackTargetingStrategy:
         risk_map = risk_map or {}
 
         def _get_score(entity_id: str, default_val: float) -> float:
-            v = risk_map.get(entity_id)
+            if risk_map is None:
+                return float(default_val)
+            v = None
+            if hasattr(risk_map, "node_risks"):
+                v = risk_map.node_risks.get(entity_id) or getattr(risk_map, "edge_risks", {}).get(entity_id)
+            elif isinstance(risk_map, dict):
+                v = risk_map.get(entity_id)
             if v is None:
                 return float(default_val)
             if hasattr(v, "composite"):

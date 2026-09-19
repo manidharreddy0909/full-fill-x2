@@ -292,7 +292,39 @@
 | P11-015 | Documentation & ADR Updates | DONE | `docs/WEBSOCKET_SPEC.md` & `ADR-024` added to `DECISION_LOG.md`; `API_CATALOG.md` updated PASS | TBD |
 | P11-016 | Final Verification | DONE | Backend pytest 107/107 PASS & Frontend production build PASS PASS | TBD |
 
+---
 
+## Phase 12 — Evaluation Harness & Benchmark Suite
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P12-001 | Evaluation Pydantic Schemas (`backend/app/schemas/evaluation.py`) | DONE | Typed Pydantic models for `EvaluationRun`, `BenchmarkScenario`, `GroundTruth`, `MetricResult`, `EvaluationSummary`, `EvaluationReport`, `BenchmarkComparison` PASS | TBD |
+| P12-002 | Deterministic Ground Truth Model | DONE | Explicit deterministic expected outcomes for scenarios without LLM dependency PASS | TBD |
+| P12-003 | Benchmark Scenario Registry (`backend/app/evaluation/scenarios.py`) | DONE | 8 registered scenarios (`Supplier Disruption`, `Port Closure`, `Demand Spike`, `Transport Delay`, `Warehouse Capacity`, `Compound Disruption`, `Multi-Node Failure`, `Adversarial Stress`) PASS | TBD |
+| P12-004 | Quantitative Metric Engine (`backend/app/evaluation/metrics.py`) | DONE | 10 quantitative metrics ($F_1$, IoU, validity, feasibility, robustness, accuracy, completeness) PASS | TBD |
+| P12-005 | Evaluation Runner (`backend/app/evaluation/runner.py`) | DONE | Isolated sandbox snapshot execution across entire pipeline PASS | TBD |
+| P12-006 | Evaluation Isolation Strategy | DONE | Guarantees zero state mutation on production `WorldRepository` or `RiskRepository` PASS | TBD |
+| P12-007 | Benchmark Repository (`backend/app/repository/evaluation.py`) | DONE | Bounded in-memory store (`save_run`, `get_run`, `list_runs`, `save_report`) PASS | TBD |
+| P12-008 | Evaluation Service (`backend/app/services/evaluation.py`) | DONE | High-level orchestrator with real-time WebSocket event emissions PASS | TBD |
+| P12-009 | Evaluation REST API Router (`backend/app/api/evaluation.py`) | DONE | `/api/evaluation/status`, `/scenarios`, `/run`, `/run-all`, `/runs`, `/report`, `/compare` PASS | TBD |
+| P12-010 | Detailed Evaluation Summary Structure | DONE | Complete 11-field metric summary structure PASS | TBD |
+| P12-011 | Deterministic Reproducibility Tests | DONE | Identical seed and configuration produce identical metrics PASS | TBD |
+| P12-012 | Regression Baseline Thresholds (`backend/app/evaluation/baseline.py`) | DONE | Empirical metric thresholds and baseline compliance check PASS | TBD |
+| P12-013 | Benchmark Comparison Engine | DONE | `compare_runs` calculates exact metric deltas and relative changes PASS | TBD |
+| P12-014 | Frontend Evaluation API Client (`frontend/src/api/evaluation.ts`) | DONE | Strongly-typed async client for evaluation endpoints PASS | TBD |
+| P12-015 | Evaluation Store (`frontend/src/store/evaluationStore.ts`) | DONE | React store tracking status, scenarios, runs, report, loading, and error states PASS | TBD |
+| P12-016 | Functional Evaluation Dashboard (`EvaluationDashboard.tsx`) | DONE | Glassmorphic UI displaying controls, metric cards, scenario table, and detailed run inspector PASS | TBD |
+| P12-017 | Precise Metric Visualizations | DONE | Metric progress bars, scenario comparisons, baseline vs current indicators PASS | TBD |
+| P12-018 | Decision Cockpit Integration (`DecisionCockpit.tsx`) | DONE | Live "SYSTEM EVALUATION" metrics drawer panel connected directly to backend API PASS | TBD |
+| P12-019 | Real-Time Evaluation Events | DONE | Emits `EVALUATION_STARTED`, `SCENARIO_STARTED`, `METRIC_CALCULATED`, `EVALUATION_COMPLETED` PASS | TBD |
+| P12-020 | Evaluation Security & Safety Boundary | DONE | Controlled registry, zero arbitrary code execution, isolated snapshots PASS | TBD |
+| P12-021 | Comprehensive Test Suite (`backend/tests/test_evaluation.py`) | DONE | 11 unit & integration tests; 118/118 total backend pytest PASS PASS | TBD |
+| P12-022 | Full Regression & Frontend Build | DONE | All 118 backend pytest tests PASS; `npm run build` PASS PASS | TBD |
+| P12-023 | Benchmark Demonstration | DONE | Executed 8 benchmark scenarios, overall score measured 60.7% PASS | TBD |
+| P12-024 | Specifications & Documentation Updates | DONE | Created `docs/EVALUATION_SPEC.md`, updated `DECISION_LOG.md` (ADR-025), `API_CATALOG.md`, `MASTER_PLAN.md`, `ARCHITECTURE.md`, `TODO.md` PASS | TBD |
+| P12-025 | Machine-Readable Benchmark Artifacts | DONE | `artifacts/evaluation/latest_report.json` and `latest_report.md` generated PASS | TBD |
+| P12-026 | Code Quality & Architecture Compliance | DONE | Strict adherence to determinism, isolation, safety, typing, immutability PASS | TBD |
+| P12-027 | Final Verification | DONE | Backend pytest 118/118 PASS & Frontend production build PASS PASS | TBD |
 
 ---
 

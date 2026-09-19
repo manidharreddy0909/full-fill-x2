@@ -13,6 +13,7 @@ from app.api.planner import router as planner_router
 from app.api.verification import router as verification_router
 from app.api.cockpit import router as cockpit_router
 from app.api.websocket import router as websocket_router
+from app.api.evaluation import router as evaluation_router
 from app.schemas.world import ApiResponse
 
 api_router = APIRouter()
@@ -27,6 +28,7 @@ api_router.include_router(planner_router)
 api_router.include_router(verification_router)
 api_router.include_router(cockpit_router)
 api_router.include_router(websocket_router)
+api_router.include_router(evaluation_router)
 
 
 

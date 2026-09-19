@@ -5,7 +5,7 @@ while keeping the deterministic VerificationEngine fully authoritative over stat
 """
 
 import logging
-from typing import List, Optional
+from typing import List, Optional, Any
 
 from app.agents.base import BaseAgent
 from app.engine.verification import VerificationEngine
@@ -20,8 +20,6 @@ from app.schemas.agent import (
 from app.schemas.coordinator import CandidatePlan
 from app.schemas.signal import Signal
 from app.schemas.verification import VerificationReport, VerificationStatus
-
-from app.services.ai import AIService
 
 logger = logging.getLogger("fulfillx.agents.verification")
 
@@ -52,7 +50,7 @@ class VerificationAgent(BaseAgent):
         AgentActionType.FC_REALLOCATION,
     ]
 
-    def __init__(self, ai_service: AIService | None = None):
+    def __init__(self, ai_service: Any | None = None):
         super().__init__(ai_service=ai_service)
         self.verification_engine = VerificationEngine()
 

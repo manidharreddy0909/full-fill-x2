@@ -52,8 +52,8 @@ SPECIALIST AGENTS → ADVERSARY → MULTI-OBJECTIVE PLAN → VERIFY → MEMORY
 | 08 | Frontend Core | PLANNED | React + TS + Vite + Tailwind scaffold |
 | 09 | 3D World Model UI | PLANNED | React Three Fiber visualization |
 | 10 | All 12 Screens | PLANNED | Full UI implementation |
-| 11 | Evaluation Harness | PLANNED | Deterministic benchmarks |
-| 12 | AWS Deployment | PLANNED | ECS Fargate + RDS + ElastiCache |
+| 11 | Real-Time Intelligence & Events | COMPLETE | In-process EventBus + WebSockets |
+| 12 | Evaluation Harness & Benchmark Suite | COMPLETE | Deterministic benchmarks & quantitative metrics |
 | 13 | Demo Polish | PLANNED | Scripted demo, rehearsal, documentation |
 
 ---

@@ -1,0 +1,1390 @@
+{
+  "report_id": "report-7c7b98af",
+  "benchmark_id": "BENCHMARK-V1",
+  "timestamp": "2026-09-19T12:15:18.293002+00:00",
+  "configuration": {
+    "scenarios_count": 8
+  },
+  "scenarios_evaluated": 8,
+  "summary": {
+    "overall_score": 0.607,
+    "risk_detection": 0.8321,
+    "risk_localization": 0.4923,
+    "scenario_validity": 1.0,
+    "agent_validity": 0.0,
+    "coordination_quality": 0.8,
+    "adversarial_coverage": 0.1042,
+    "plan_feasibility": 1.0,
+    "plan_robustness": 0.85,
+    "verification_accuracy": 0.0,
+    "transparency_completeness": 1.0,
+    "execution_time_seconds": 0.8
+  },
+  "runs": [
+    {
+      "run_id": "run-scenario-01-aefd5284",
+      "benchmark_id": "BENCHMARK-V1",
+      "scenario_id": "SCENARIO-01",
+      "seed": 42,
+      "started_at": "2026-09-19T12:15:17.488370+00:00",
+      "completed_at": "2026-09-19T12:15:18.192477+00:00",
+      "status": "COMPLETED",
+      "configuration": {
+        "seed": 42,
+        "isolated": true
+      },
+      "metrics": {
+        "risk_detection": {
+          "metric_name": "risk_detection",
+          "value": 1.0,
+          "raw_counts": {
+            "true_positives": 2,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "risk_detection_rate": 1.0
+          },
+          "description": "F1 score for risk detection (TP: 2, FP: 0, FN: 0).",
+          "status": "PASS"
+        },
+        "risk_localization": {
+          "metric_name": "risk_localization",
+          "value": 0.4,
+          "raw_counts": {
+            "predicted_affected_nodes": [
+              "cz-001",
+              "sup-001",
+              "wh-001",
+              "fc-001"
+            ],
+            "ground_truth_affected_nodes": [
+              "port-001",
+              "sup-001",
+              "wh-001"
+            ],
+            "intersection_count": 2,
+            "union_count": 5,
+            "iou_jaccard_score": 0.4
+          },
+          "description": "Jaccard IoU similarity for affected node localization (2/5).",
+          "status": "WARN"
+        },
+        "scenario_validity": {
+          "metric_name": "scenario_validity",
+          "value": 1.0,
+          "raw_counts": {
+            "valid_scenario_count": 1,
+            "invalid_scenario_count": 0,
+            "constraint_violations": 0,
+            "affected_entities_existing": true,
+            "scenario_validity_rate": 1.0
+          },
+          "description": "Scenario structural schema and entity existence validation.",
+          "status": "PASS"
+        },
+        "agent_validity": {
+          "metric_name": "agent_validity",
+          "value": 0.0,
+          "raw_counts": {
+            "valid_proposals": 0,
+            "invalid_proposals": 6,
+            "total_proposals": 6,
+            "agent_validity_rate": 0.0,
+            "target_validity_rate": 0.0,
+            "action_validity_rate": 0.0,
+            "schema_validity_rate": 0.0
+          },
+          "description": "Agent proposal structural and entity validity (0/6).",
+          "status": "FAIL"
+        },
+        "coordination_quality": {
+          "metric_name": "coordination_quality",
+          "value": 0.8,
+          "raw_counts": {
+            "agreements_detected": 3,
+            "conflicts_detected": 2,
+            "known_conflicts": 1,
+            "missed_conflicts": 1,
+            "conflict_precision": 0.0,
+            "conflict_recall": 0.0,
+            "coordination_f1": 0.8
+          },
+          "description": "Coordinator agreement and conflict resolution quality score.",
+          "status": "PASS"
+        },
+        "adversarial_coverage": {
+          "metric_name": "adversarial_coverage",
+          "value": 0.5,
+          "raw_counts": {
+            "attack_types_executed": 8,
+            "vulnerabilities_found": 4,
+            "known_vulnerabilities": 2,
+            "missed_vulnerabilities": 1,
+            "adversarial_coverage": 0.5
+          },
+          "description": "Red-team adversarial vulnerability coverage (1/2).",
+          "status": "PASS"
+        },
+        "plan_feasibility": {
+          "metric_name": "plan_feasibility",
+          "value": 1.0,
+          "raw_counts": {
+            "feasible_plans": 3,
+            "infeasible_plans": 0,
+            "total_plans": 3,
+            "hard_constraint_violations": 0,
+            "soft_constraint_violations": 0,
+            "plan_feasibility_rate": 1.0
+          },
+          "description": "Candidate plan hard-constraint feasibility rate (3/3).",
+          "status": "PASS"
+        },
+        "plan_robustness": {
+          "metric_name": "plan_robustness",
+          "value": 0.85,
+          "raw_counts": {
+            "baseline_score": 0.85,
+            "stressed_score": 0.7,
+            "degradation": 0.15,
+            "recovery_score": 0.85
+          },
+          "description": "Plan score resilience under stress (Baseline: 0.85, Stressed: 0.70).",
+          "status": "PASS"
+        },
+        "verification_accuracy": {
+          "metric_name": "verification_accuracy",
+          "value": 0.0,
+          "raw_counts": {
+            "correctly_verified": 0,
+            "incorrectly_verified": 1,
+            "false_accept": 0,
+            "false_reject": 1,
+            "verification_accuracy": 0.0,
+            "actual_status": "CONDITIONAL",
+            "expected_status": "VERIFIED"
+          },
+          "description": "Sandbox verification status accuracy (Actual: CONDITIONAL, Expected: VERIFIED).",
+          "status": "FAIL"
+        },
+        "transparency_completeness": {
+          "metric_name": "transparency_completeness",
+          "value": 1.0,
+          "raw_counts": {
+            "present_fields": 6,
+            "total_required_fields": 6,
+            "missing_fields": [],
+            "transparency_completeness": 1.0
+          },
+          "description": "Decision payload auditability and transparency structural completeness (6/6).",
+          "status": "PASS"
+        }
+      },
+      "artifacts": {
+        "predicted_risk_nodes": [
+          "sup-001",
+          "wh-001"
+        ],
+        "candidate_plans_count": 3,
+        "verification_status": "CONDITIONAL"
+      },
+      "error_message": null
+    },
+    {
+      "run_id": "run-scenario-02-777734c2",
+      "benchmark_id": "BENCHMARK-V1",
+      "scenario_id": "SCENARIO-02",
+      "seed": 101,
+      "started_at": "2026-09-19T12:15:18.192477+00:00",
+      "completed_at": "2026-09-19T12:15:18.205183+00:00",
+      "status": "COMPLETED",
+      "configuration": {
+        "seed": 101,
+        "isolated": true
+      },
+      "metrics": {
+        "risk_detection": {
+          "metric_name": "risk_detection",
+          "value": 0.6667,
+          "raw_counts": {
+            "true_positives": 1,
+            "false_positives": 0,
+            "false_negatives": 1,
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6667,
+            "risk_detection_rate": 0.5
+          },
+          "description": "F1 score for risk detection (TP: 1, FP: 0, FN: 1).",
+          "status": "WARN"
+        },
+        "risk_localization": {
+          "metric_name": "risk_localization",
+          "value": 0.3333,
+          "raw_counts": {
+            "predicted_affected_nodes": [
+              "port-002"
+            ],
+            "ground_truth_affected_nodes": [
+              "port-002",
+              "wh-002",
+              "wh-001"
+            ],
+            "intersection_count": 1,
+            "union_count": 3,
+            "iou_jaccard_score": 0.3333
+          },
+          "description": "Jaccard IoU similarity for affected node localization (1/3).",
+          "status": "FAIL"
+        },
+        "scenario_validity": {
+          "metric_name": "scenario_validity",
+          "value": 1.0,
+          "raw_counts": {
+            "valid_scenario_count": 1,
+            "invalid_scenario_count": 0,
+            "constraint_violations": 0,
+            "affected_entities_existing": true,
+            "scenario_validity_rate": 1.0
+          },
+          "description": "Scenario structural schema and entity existence validation.",
+          "status": "PASS"
+        },
+        "agent_validity": {
+          "metric_name": "agent_validity",
+          "value": 0.0,
+          "raw_counts": {
+            "valid_proposals": 0,
+            "invalid_proposals": 6,
+            "total_proposals": 6,
+            "agent_validity_rate": 0.0,
+            "target_validity_rate": 0.0,
+            "action_validity_rate": 0.0,
+            "schema_validity_rate": 0.0
+          },
+          "description": "Agent proposal structural and entity validity (0/6).",
+          "status": "FAIL"
+        },
+        "coordination_quality": {
+          "metric_name": "coordination_quality",
+          "value": 0.8,
+          "raw_counts": {
+            "agreements_detected": 5,
+            "conflicts_detected": 1,
+            "known_conflicts": 1,
+            "missed_conflicts": 1,
+            "conflict_precision": 0.0,
+            "conflict_recall": 0.0,
+            "coordination_f1": 0.8
+          },
+          "description": "Coordinator agreement and conflict resolution quality score.",
+          "status": "PASS"
+        },
+        "adversarial_coverage": {
+          "metric_name": "adversarial_coverage",
+          "value": 0.0,
+          "raw_counts": {
+            "attack_types_executed": 8,
+            "vulnerabilities_found": 4,
+            "known_vulnerabilities": 2,
+            "missed_vulnerabilities": 2,
+            "adversarial_coverage": 0.0
+          },
+          "description": "Red-team adversarial vulnerability coverage (0/2).",
+          "status": "WARN"
+        },
+        "plan_feasibility": {
+          "metric_name": "plan_feasibility",
+          "value": 1.0,
+          "raw_counts": {
+            "feasible_plans": 3,
+            "infeasible_plans": 0,
+            "total_plans": 3,
+            "hard_constraint_violations": 0,
+            "soft_constraint_violations": 0,
+            "plan_feasibility_rate": 1.0
+          },
+          "description": "Candidate plan hard-constraint feasibility rate (3/3).",
+          "status": "PASS"
+        },
+        "plan_robustness": {
+          "metric_name": "plan_robustness",
+          "value": 0.85,
+          "raw_counts": {
+            "baseline_score": 0.85,
+            "stressed_score": 0.7,
+            "degradation": 0.15,
+            "recovery_score": 0.85
+          },
+          "description": "Plan score resilience under stress (Baseline: 0.85, Stressed: 0.70).",
+          "status": "PASS"
+        },
+        "verification_accuracy": {
+          "metric_name": "verification_accuracy",
+          "value": 0.0,
+          "raw_counts": {
+            "correctly_verified": 0,
+            "incorrectly_verified": 1,
+            "false_accept": 0,
+            "false_reject": 1,
+            "verification_accuracy": 0.0,
+            "actual_status": "CONDITIONAL",
+            "expected_status": "VERIFIED"
+          },
+          "description": "Sandbox verification status accuracy (Actual: CONDITIONAL, Expected: VERIFIED).",
+          "status": "FAIL"
+        },
+        "transparency_completeness": {
+          "metric_name": "transparency_completeness",
+          "value": 1.0,
+          "raw_counts": {
+            "present_fields": 6,
+            "total_required_fields": 6,
+            "missing_fields": [],
+            "transparency_completeness": 1.0
+          },
+          "description": "Decision payload auditability and transparency structural completeness (6/6).",
+          "status": "PASS"
+        }
+      },
+      "artifacts": {
+        "predicted_risk_nodes": [
+          "port-002"
+        ],
+        "candidate_plans_count": 3,
+        "verification_status": "CONDITIONAL"
+      },
+      "error_message": null
+    },
+    {
+      "run_id": "run-scenario-03-9eba83b3",
+      "benchmark_id": "BENCHMARK-V1",
+      "scenario_id": "SCENARIO-03",
+      "seed": 202,
+      "started_at": "2026-09-19T12:15:18.205183+00:00",
+      "completed_at": "2026-09-19T12:15:18.219543+00:00",
+      "status": "COMPLETED",
+      "configuration": {
+        "seed": 202,
+        "isolated": true
+      },
+      "metrics": {
+        "risk_detection": {
+          "metric_name": "risk_detection",
+          "value": 0.6667,
+          "raw_counts": {
+            "true_positives": 1,
+            "false_positives": 0,
+            "false_negatives": 1,
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6667,
+            "risk_detection_rate": 0.5
+          },
+          "description": "F1 score for risk detection (TP: 1, FP: 0, FN: 1).",
+          "status": "WARN"
+        },
+        "risk_localization": {
+          "metric_name": "risk_localization",
+          "value": 0.3333,
+          "raw_counts": {
+            "predicted_affected_nodes": [
+              "cz-001"
+            ],
+            "ground_truth_affected_nodes": [
+              "cz-001",
+              "wh-003",
+              "fc-001"
+            ],
+            "intersection_count": 1,
+            "union_count": 3,
+            "iou_jaccard_score": 0.3333
+          },
+          "description": "Jaccard IoU similarity for affected node localization (1/3).",
+          "status": "FAIL"
+        },
+        "scenario_validity": {
+          "metric_name": "scenario_validity",
+          "value": 1.0,
+          "raw_counts": {
+            "valid_scenario_count": 1,
+            "invalid_scenario_count": 0,
+            "constraint_violations": 0,
+            "affected_entities_existing": true,
+            "scenario_validity_rate": 1.0
+          },
+          "description": "Scenario structural schema and entity existence validation.",
+          "status": "PASS"
+        },
+        "agent_validity": {
+          "metric_name": "agent_validity",
+          "value": 0.0,
+          "raw_counts": {
+            "valid_proposals": 0,
+            "invalid_proposals": 6,
+            "total_proposals": 6,
+            "agent_validity_rate": 0.0,
+            "target_validity_rate": 0.0,
+            "action_validity_rate": 0.0,
+            "schema_validity_rate": 0.0
+          },
+          "description": "Agent proposal structural and entity validity (0/6).",
+          "status": "FAIL"
+        },
+        "coordination_quality": {
+          "metric_name": "coordination_quality",
+          "value": 0.8,
+          "raw_counts": {
+            "agreements_detected": 4,
+            "conflicts_detected": 2,
+            "known_conflicts": 1,
+            "missed_conflicts": 1,
+            "conflict_precision": 0.0,
+            "conflict_recall": 0.0,
+            "coordination_f1": 0.8
+          },
+          "description": "Coordinator agreement and conflict resolution quality score.",
+          "status": "PASS"
+        },
+        "adversarial_coverage": {
+          "metric_name": "adversarial_coverage",
+          "value": 0.0,
+          "raw_counts": {
+            "attack_types_executed": 8,
+            "vulnerabilities_found": 4,
+            "known_vulnerabilities": 2,
+            "missed_vulnerabilities": 2,
+            "adversarial_coverage": 0.0
+          },
+          "description": "Red-team adversarial vulnerability coverage (0/2).",
+          "status": "WARN"
+        },
+        "plan_feasibility": {
+          "metric_name": "plan_feasibility",
+          "value": 1.0,
+          "raw_counts": {
+            "feasible_plans": 3,
+            "infeasible_plans": 0,
+            "total_plans": 3,
+            "hard_constraint_violations": 0,
+            "soft_constraint_violations": 0,
+            "plan_feasibility_rate": 1.0
+          },
+          "description": "Candidate plan hard-constraint feasibility rate (3/3).",
+          "status": "PASS"
+        },
+        "plan_robustness": {
+          "metric_name": "plan_robustness",
+          "value": 0.85,
+          "raw_counts": {
+            "baseline_score": 0.85,
+            "stressed_score": 0.7,
+            "degradation": 0.15,
+            "recovery_score": 0.85
+          },
+          "description": "Plan score resilience under stress (Baseline: 0.85, Stressed: 0.70).",
+          "status": "PASS"
+        },
+        "verification_accuracy": {
+          "metric_name": "verification_accuracy",
+          "value": 0.0,
+          "raw_counts": {
+            "correctly_verified": 0,
+            "incorrectly_verified": 1,
+            "false_accept": 0,
+            "false_reject": 1,
+            "verification_accuracy": 0.0,
+            "actual_status": "CONDITIONAL",
+            "expected_status": "VERIFIED"
+          },
+          "description": "Sandbox verification status accuracy (Actual: CONDITIONAL, Expected: VERIFIED).",
+          "status": "FAIL"
+        },
+        "transparency_completeness": {
+          "metric_name": "transparency_completeness",
+          "value": 1.0,
+          "raw_counts": {
+            "present_fields": 6,
+            "total_required_fields": 6,
+            "missing_fields": [],
+            "transparency_completeness": 1.0
+          },
+          "description": "Decision payload auditability and transparency structural completeness (6/6).",
+          "status": "PASS"
+        }
+      },
+      "artifacts": {
+        "predicted_risk_nodes": [
+          "cz-001"
+        ],
+        "candidate_plans_count": 3,
+        "verification_status": "CONDITIONAL"
+      },
+      "error_message": null
+    },
+    {
+      "run_id": "run-scenario-04-bca51083",
+      "benchmark_id": "BENCHMARK-V1",
+      "scenario_id": "SCENARIO-04",
+      "seed": 303,
+      "started_at": "2026-09-19T12:15:18.219543+00:00",
+      "completed_at": "2026-09-19T12:15:18.233356+00:00",
+      "status": "COMPLETED",
+      "configuration": {
+        "seed": 303,
+        "isolated": true
+      },
+      "metrics": {
+        "risk_detection": {
+          "metric_name": "risk_detection",
+          "value": 0.6667,
+          "raw_counts": {
+            "true_positives": 1,
+            "false_positives": 0,
+            "false_negatives": 1,
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6667,
+            "risk_detection_rate": 0.5
+          },
+          "description": "F1 score for risk detection (TP: 1, FP: 0, FN: 1).",
+          "status": "WARN"
+        },
+        "risk_localization": {
+          "metric_name": "risk_localization",
+          "value": 0.4,
+          "raw_counts": {
+            "predicted_affected_nodes": [
+              "cz-001",
+              "sup-002",
+              "wh-001",
+              "fc-001"
+            ],
+            "ground_truth_affected_nodes": [
+              "port-001",
+              "sup-002",
+              "wh-001"
+            ],
+            "intersection_count": 2,
+            "union_count": 5,
+            "iou_jaccard_score": 0.4
+          },
+          "description": "Jaccard IoU similarity for affected node localization (2/5).",
+          "status": "WARN"
+        },
+        "scenario_validity": {
+          "metric_name": "scenario_validity",
+          "value": 1.0,
+          "raw_counts": {
+            "valid_scenario_count": 1,
+            "invalid_scenario_count": 0,
+            "constraint_violations": 0,
+            "affected_entities_existing": true,
+            "scenario_validity_rate": 1.0
+          },
+          "description": "Scenario structural schema and entity existence validation.",
+          "status": "PASS"
+        },
+        "agent_validity": {
+          "metric_name": "agent_validity",
+          "value": 0.0,
+          "raw_counts": {
+            "valid_proposals": 0,
+            "invalid_proposals": 6,
+            "total_proposals": 6,
+            "agent_validity_rate": 0.0,
+            "target_validity_rate": 0.0,
+            "action_validity_rate": 0.0,
+            "schema_validity_rate": 0.0
+          },
+          "description": "Agent proposal structural and entity validity (0/6).",
+          "status": "FAIL"
+        },
+        "coordination_quality": {
+          "metric_name": "coordination_quality",
+          "value": 0.8,
+          "raw_counts": {
+            "agreements_detected": 4,
+            "conflicts_detected": 1,
+            "known_conflicts": 1,
+            "missed_conflicts": 1,
+            "conflict_precision": 0.0,
+            "conflict_recall": 0.0,
+            "coordination_f1": 0.8
+          },
+          "description": "Coordinator agreement and conflict resolution quality score.",
+          "status": "PASS"
+        },
+        "adversarial_coverage": {
+          "metric_name": "adversarial_coverage",
+          "value": 0.0,
+          "raw_counts": {
+            "attack_types_executed": 8,
+            "vulnerabilities_found": 4,
+            "known_vulnerabilities": 2,
+            "missed_vulnerabilities": 2,
+            "adversarial_coverage": 0.0
+          },
+          "description": "Red-team adversarial vulnerability coverage (0/2).",
+          "status": "WARN"
+        },
+        "plan_feasibility": {
+          "metric_name": "plan_feasibility",
+          "value": 1.0,
+          "raw_counts": {
+            "feasible_plans": 3,
+            "infeasible_plans": 0,
+            "total_plans": 3,
+            "hard_constraint_violations": 0,
+            "soft_constraint_violations": 0,
+            "plan_feasibility_rate": 1.0
+          },
+          "description": "Candidate plan hard-constraint feasibility rate (3/3).",
+          "status": "PASS"
+        },
+        "plan_robustness": {
+          "metric_name": "plan_robustness",
+          "value": 0.85,
+          "raw_counts": {
+            "baseline_score": 0.85,
+            "stressed_score": 0.7,
+            "degradation": 0.15,
+            "recovery_score": 0.85
+          },
+          "description": "Plan score resilience under stress (Baseline: 0.85, Stressed: 0.70).",
+          "status": "PASS"
+        },
+        "verification_accuracy": {
+          "metric_name": "verification_accuracy",
+          "value": 0.0,
+          "raw_counts": {
+            "correctly_verified": 0,
+            "incorrectly_verified": 1,
+            "false_accept": 0,
+            "false_reject": 1,
+            "verification_accuracy": 0.0,
+            "actual_status": "CONDITIONAL",
+            "expected_status": "VERIFIED"
+          },
+          "description": "Sandbox verification status accuracy (Actual: CONDITIONAL, Expected: VERIFIED).",
+          "status": "FAIL"
+        },
+        "transparency_completeness": {
+          "metric_name": "transparency_completeness",
+          "value": 1.0,
+          "raw_counts": {
+            "present_fields": 6,
+            "total_required_fields": 6,
+            "missing_fields": [],
+            "transparency_completeness": 1.0
+          },
+          "description": "Decision payload auditability and transparency structural completeness (6/6).",
+          "status": "PASS"
+        }
+      },
+      "artifacts": {
+        "predicted_risk_nodes": [
+          "sup-002"
+        ],
+        "candidate_plans_count": 3,
+        "verification_status": "CONDITIONAL"
+      },
+      "error_message": null
+    },
+    {
+      "run_id": "run-scenario-05-ce631399",
+      "benchmark_id": "BENCHMARK-V1",
+      "scenario_id": "SCENARIO-05",
+      "seed": 404,
+      "started_at": "2026-09-19T12:15:18.233356+00:00",
+      "completed_at": "2026-09-19T12:15:18.248504+00:00",
+      "status": "COMPLETED",
+      "configuration": {
+        "seed": 404,
+        "isolated": true
+      },
+      "metrics": {
+        "risk_detection": {
+          "metric_name": "risk_detection",
+          "value": 1.0,
+          "raw_counts": {
+            "true_positives": 2,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "risk_detection_rate": 1.0
+          },
+          "description": "F1 score for risk detection (TP: 2, FP: 0, FN: 0).",
+          "status": "PASS"
+        },
+        "risk_localization": {
+          "metric_name": "risk_localization",
+          "value": 0.5,
+          "raw_counts": {
+            "predicted_affected_nodes": [
+              "cz-001",
+              "wh-001",
+              "fc-001"
+            ],
+            "ground_truth_affected_nodes": [
+              "fc-002",
+              "wh-001",
+              "fc-001"
+            ],
+            "intersection_count": 2,
+            "union_count": 4,
+            "iou_jaccard_score": 0.5
+          },
+          "description": "Jaccard IoU similarity for affected node localization (2/4).",
+          "status": "WARN"
+        },
+        "scenario_validity": {
+          "metric_name": "scenario_validity",
+          "value": 1.0,
+          "raw_counts": {
+            "valid_scenario_count": 1,
+            "invalid_scenario_count": 0,
+            "constraint_violations": 0,
+            "affected_entities_existing": true,
+            "scenario_validity_rate": 1.0
+          },
+          "description": "Scenario structural schema and entity existence validation.",
+          "status": "PASS"
+        },
+        "agent_validity": {
+          "metric_name": "agent_validity",
+          "value": 0.0,
+          "raw_counts": {
+            "valid_proposals": 0,
+            "invalid_proposals": 6,
+            "total_proposals": 6,
+            "agent_validity_rate": 0.0,
+            "target_validity_rate": 0.0,
+            "action_validity_rate": 0.0,
+            "schema_validity_rate": 0.0
+          },
+          "description": "Agent proposal structural and entity validity (0/6).",
+          "status": "FAIL"
+        },
+        "coordination_quality": {
+          "metric_name": "coordination_quality",
+          "value": 0.8,
+          "raw_counts": {
+            "agreements_detected": 4,
+            "conflicts_detected": 2,
+            "known_conflicts": 1,
+            "missed_conflicts": 1,
+            "conflict_precision": 0.0,
+            "conflict_recall": 0.0,
+            "coordination_f1": 0.8
+          },
+          "description": "Coordinator agreement and conflict resolution quality score.",
+          "status": "PASS"
+        },
+        "adversarial_coverage": {
+          "metric_name": "adversarial_coverage",
+          "value": 0.0,
+          "raw_counts": {
+            "attack_types_executed": 8,
+            "vulnerabilities_found": 4,
+            "known_vulnerabilities": 1,
+            "missed_vulnerabilities": 1,
+            "adversarial_coverage": 0.0
+          },
+          "description": "Red-team adversarial vulnerability coverage (0/1).",
+          "status": "WARN"
+        },
+        "plan_feasibility": {
+          "metric_name": "plan_feasibility",
+          "value": 1.0,
+          "raw_counts": {
+            "feasible_plans": 3,
+            "infeasible_plans": 0,
+            "total_plans": 3,
+            "hard_constraint_violations": 0,
+            "soft_constraint_violations": 0,
+            "plan_feasibility_rate": 1.0
+          },
+          "description": "Candidate plan hard-constraint feasibility rate (3/3).",
+          "status": "PASS"
+        },
+        "plan_robustness": {
+          "metric_name": "plan_robustness",
+          "value": 0.85,
+          "raw_counts": {
+            "baseline_score": 0.85,
+            "stressed_score": 0.7,
+            "degradation": 0.15,
+            "recovery_score": 0.85
+          },
+          "description": "Plan score resilience under stress (Baseline: 0.85, Stressed: 0.70).",
+          "status": "PASS"
+        },
+        "verification_accuracy": {
+          "metric_name": "verification_accuracy",
+          "value": 0.0,
+          "raw_counts": {
+            "correctly_verified": 0,
+            "incorrectly_verified": 1,
+            "false_accept": 0,
+            "false_reject": 1,
+            "verification_accuracy": 0.0,
+            "actual_status": "CONDITIONAL",
+            "expected_status": "VERIFIED"
+          },
+          "description": "Sandbox verification status accuracy (Actual: CONDITIONAL, Expected: VERIFIED).",
+          "status": "FAIL"
+        },
+        "transparency_completeness": {
+          "metric_name": "transparency_completeness",
+          "value": 1.0,
+          "raw_counts": {
+            "present_fields": 6,
+            "total_required_fields": 6,
+            "missing_fields": [],
+            "transparency_completeness": 1.0
+          },
+          "description": "Decision payload auditability and transparency structural completeness (6/6).",
+          "status": "PASS"
+        }
+      },
+      "artifacts": {
+        "predicted_risk_nodes": [
+          "wh-001",
+          "fc-001"
+        ],
+        "candidate_plans_count": 3,
+        "verification_status": "CONDITIONAL"
+      },
+      "error_message": null
+    },
+    {
+      "run_id": "run-scenario-06-ff4b2e66",
+      "benchmark_id": "BENCHMARK-V1",
+      "scenario_id": "SCENARIO-06",
+      "seed": 505,
+      "started_at": "2026-09-19T12:15:18.248504+00:00",
+      "completed_at": "2026-09-19T12:15:18.262009+00:00",
+      "status": "COMPLETED",
+      "configuration": {
+        "seed": 505,
+        "isolated": true
+      },
+      "metrics": {
+        "risk_detection": {
+          "metric_name": "risk_detection",
+          "value": 1.0,
+          "raw_counts": {
+            "true_positives": 3,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "risk_detection_rate": 1.0
+          },
+          "description": "F1 score for risk detection (TP: 3, FP: 0, FN: 0).",
+          "status": "PASS"
+        },
+        "risk_localization": {
+          "metric_name": "risk_localization",
+          "value": 0.8,
+          "raw_counts": {
+            "predicted_affected_nodes": [
+              "port-002",
+              "sup-001",
+              "wh-001",
+              "fc-001",
+              "cz-001"
+            ],
+            "ground_truth_affected_nodes": [
+              "port-002",
+              "sup-001",
+              "wh-001",
+              "fc-001"
+            ],
+            "intersection_count": 4,
+            "union_count": 5,
+            "iou_jaccard_score": 0.8
+          },
+          "description": "Jaccard IoU similarity for affected node localization (4/5).",
+          "status": "PASS"
+        },
+        "scenario_validity": {
+          "metric_name": "scenario_validity",
+          "value": 1.0,
+          "raw_counts": {
+            "valid_scenario_count": 1,
+            "invalid_scenario_count": 0,
+            "constraint_violations": 0,
+            "affected_entities_existing": true,
+            "scenario_validity_rate": 1.0
+          },
+          "description": "Scenario structural schema and entity existence validation.",
+          "status": "PASS"
+        },
+        "agent_validity": {
+          "metric_name": "agent_validity",
+          "value": 0.0,
+          "raw_counts": {
+            "valid_proposals": 0,
+            "invalid_proposals": 6,
+            "total_proposals": 6,
+            "agent_validity_rate": 0.0,
+            "target_validity_rate": 0.0,
+            "action_validity_rate": 0.0,
+            "schema_validity_rate": 0.0
+          },
+          "description": "Agent proposal structural and entity validity (0/6).",
+          "status": "FAIL"
+        },
+        "coordination_quality": {
+          "metric_name": "coordination_quality",
+          "value": 0.8,
+          "raw_counts": {
+            "agreements_detected": 4,
+            "conflicts_detected": 2,
+            "known_conflicts": 1,
+            "missed_conflicts": 1,
+            "conflict_precision": 0.0,
+            "conflict_recall": 0.0,
+            "coordination_f1": 0.8
+          },
+          "description": "Coordinator agreement and conflict resolution quality score.",
+          "status": "PASS"
+        },
+        "adversarial_coverage": {
+          "metric_name": "adversarial_coverage",
+          "value": 0.3333,
+          "raw_counts": {
+            "attack_types_executed": 8,
+            "vulnerabilities_found": 4,
+            "known_vulnerabilities": 3,
+            "missed_vulnerabilities": 2,
+            "adversarial_coverage": 0.3333
+          },
+          "description": "Red-team adversarial vulnerability coverage (1/3).",
+          "status": "WARN"
+        },
+        "plan_feasibility": {
+          "metric_name": "plan_feasibility",
+          "value": 1.0,
+          "raw_counts": {
+            "feasible_plans": 3,
+            "infeasible_plans": 0,
+            "total_plans": 3,
+            "hard_constraint_violations": 0,
+            "soft_constraint_violations": 0,
+            "plan_feasibility_rate": 1.0
+          },
+          "description": "Candidate plan hard-constraint feasibility rate (3/3).",
+          "status": "PASS"
+        },
+        "plan_robustness": {
+          "metric_name": "plan_robustness",
+          "value": 0.85,
+          "raw_counts": {
+            "baseline_score": 0.85,
+            "stressed_score": 0.7,
+            "degradation": 0.15,
+            "recovery_score": 0.85
+          },
+          "description": "Plan score resilience under stress (Baseline: 0.85, Stressed: 0.70).",
+          "status": "PASS"
+        },
+        "verification_accuracy": {
+          "metric_name": "verification_accuracy",
+          "value": 0.0,
+          "raw_counts": {
+            "correctly_verified": 0,
+            "incorrectly_verified": 1,
+            "false_accept": 0,
+            "false_reject": 1,
+            "verification_accuracy": 0.0,
+            "actual_status": "CONDITIONAL",
+            "expected_status": "VERIFIED"
+          },
+          "description": "Sandbox verification status accuracy (Actual: CONDITIONAL, Expected: VERIFIED).",
+          "status": "FAIL"
+        },
+        "transparency_completeness": {
+          "metric_name": "transparency_completeness",
+          "value": 1.0,
+          "raw_counts": {
+            "present_fields": 6,
+            "total_required_fields": 6,
+            "missing_fields": [],
+            "transparency_completeness": 1.0
+          },
+          "description": "Decision payload auditability and transparency structural completeness (6/6).",
+          "status": "PASS"
+        }
+      },
+      "artifacts": {
+        "predicted_risk_nodes": [
+          "sup-001",
+          "port-002",
+          "wh-001"
+        ],
+        "candidate_plans_count": 3,
+        "verification_status": "CONDITIONAL"
+      },
+      "error_message": null
+    },
+    {
+      "run_id": "run-scenario-07-3082480d",
+      "benchmark_id": "BENCHMARK-V1",
+      "scenario_id": "SCENARIO-07",
+      "seed": 606,
+      "started_at": "2026-09-19T12:15:18.263020+00:00",
+      "completed_at": "2026-09-19T12:15:18.277775+00:00",
+      "status": "COMPLETED",
+      "configuration": {
+        "seed": 606,
+        "isolated": true
+      },
+      "metrics": {
+        "risk_detection": {
+          "metric_name": "risk_detection",
+          "value": 0.8571,
+          "raw_counts": {
+            "true_positives": 3,
+            "false_positives": 1,
+            "false_negatives": 0,
+            "precision": 0.75,
+            "recall": 1.0,
+            "f1": 0.8571,
+            "risk_detection_rate": 1.0
+          },
+          "description": "F1 score for risk detection (TP: 3, FP: 1, FN: 0).",
+          "status": "PASS"
+        },
+        "risk_localization": {
+          "metric_name": "risk_localization",
+          "value": 0.5714,
+          "raw_counts": {
+            "predicted_affected_nodes": [
+              "port-001",
+              "wh-001",
+              "fc-001",
+              "cz-001",
+              "sup-002",
+              "wh-002"
+            ],
+            "ground_truth_affected_nodes": [
+              "port-001",
+              "wh-001",
+              "fc-003",
+              "sup-002",
+              "wh-002"
+            ],
+            "intersection_count": 4,
+            "union_count": 7,
+            "iou_jaccard_score": 0.5714
+          },
+          "description": "Jaccard IoU similarity for affected node localization (4/7).",
+          "status": "WARN"
+        },
+        "scenario_validity": {
+          "metric_name": "scenario_validity",
+          "value": 1.0,
+          "raw_counts": {
+            "valid_scenario_count": 1,
+            "invalid_scenario_count": 0,
+            "constraint_violations": 0,
+            "affected_entities_existing": true,
+            "scenario_validity_rate": 1.0
+          },
+          "description": "Scenario structural schema and entity existence validation.",
+          "status": "PASS"
+        },
+        "agent_validity": {
+          "metric_name": "agent_validity",
+          "value": 0.0,
+          "raw_counts": {
+            "valid_proposals": 0,
+            "invalid_proposals": 6,
+            "total_proposals": 6,
+            "agent_validity_rate": 0.0,
+            "target_validity_rate": 0.0,
+            "action_validity_rate": 0.0,
+            "schema_validity_rate": 0.0
+          },
+          "description": "Agent proposal structural and entity validity (0/6).",
+          "status": "FAIL"
+        },
+        "coordination_quality": {
+          "metric_name": "coordination_quality",
+          "value": 0.8,
+          "raw_counts": {
+            "agreements_detected": 4,
+            "conflicts_detected": 2,
+            "known_conflicts": 1,
+            "missed_conflicts": 1,
+            "conflict_precision": 0.0,
+            "conflict_recall": 0.0,
+            "coordination_f1": 0.8
+          },
+          "description": "Coordinator agreement and conflict resolution quality score.",
+          "status": "PASS"
+        },
+        "adversarial_coverage": {
+          "metric_name": "adversarial_coverage",
+          "value": 0.0,
+          "raw_counts": {
+            "attack_types_executed": 8,
+            "vulnerabilities_found": 4,
+            "known_vulnerabilities": 2,
+            "missed_vulnerabilities": 2,
+            "adversarial_coverage": 0.0
+          },
+          "description": "Red-team adversarial vulnerability coverage (0/2).",
+          "status": "WARN"
+        },
+        "plan_feasibility": {
+          "metric_name": "plan_feasibility",
+          "value": 1.0,
+          "raw_counts": {
+            "feasible_plans": 3,
+            "infeasible_plans": 0,
+            "total_plans": 3,
+            "hard_constraint_violations": 0,
+            "soft_constraint_violations": 0,
+            "plan_feasibility_rate": 1.0
+          },
+          "description": "Candidate plan hard-constraint feasibility rate (3/3).",
+          "status": "PASS"
+        },
+        "plan_robustness": {
+          "metric_name": "plan_robustness",
+          "value": 0.85,
+          "raw_counts": {
+            "baseline_score": 0.85,
+            "stressed_score": 0.7,
+            "degradation": 0.15,
+            "recovery_score": 0.85
+          },
+          "description": "Plan score resilience under stress (Baseline: 0.85, Stressed: 0.70).",
+          "status": "PASS"
+        },
+        "verification_accuracy": {
+          "metric_name": "verification_accuracy",
+          "value": 0.0,
+          "raw_counts": {
+            "correctly_verified": 0,
+            "incorrectly_verified": 1,
+            "false_accept": 0,
+            "false_reject": 1,
+            "verification_accuracy": 0.0,
+            "actual_status": "CONDITIONAL",
+            "expected_status": "VERIFIED"
+          },
+          "description": "Sandbox verification status accuracy (Actual: CONDITIONAL, Expected: VERIFIED).",
+          "status": "FAIL"
+        },
+        "transparency_completeness": {
+          "metric_name": "transparency_completeness",
+          "value": 1.0,
+          "raw_counts": {
+            "present_fields": 6,
+            "total_required_fields": 6,
+            "missing_fields": [],
+            "transparency_completeness": 1.0
+          },
+          "description": "Decision payload auditability and transparency structural completeness (6/6).",
+          "status": "PASS"
+        }
+      },
+      "artifacts": {
+        "predicted_risk_nodes": [
+          "sup-002",
+          "port-001",
+          "wh-001",
+          "wh-002"
+        ],
+        "candidate_plans_count": 3,
+        "verification_status": "CONDITIONAL"
+      },
+      "error_message": null
+    },
+    {
+      "run_id": "run-scenario-08-2b7b2d8d",
+      "benchmark_id": "BENCHMARK-V1",
+      "scenario_id": "SCENARIO-08",
+      "seed": 707,
+      "started_at": "2026-09-19T12:15:18.277775+00:00",
+      "completed_at": "2026-09-19T12:15:18.293002+00:00",
+      "status": "COMPLETED",
+      "configuration": {
+        "seed": 707,
+        "isolated": true
+      },
+      "metrics": {
+        "risk_detection": {
+          "metric_name": "risk_detection",
+          "value": 0.8,
+          "raw_counts": {
+            "true_positives": 2,
+            "false_positives": 0,
+            "false_negatives": 1,
+            "precision": 1.0,
+            "recall": 0.6667,
+            "f1": 0.8,
+            "risk_detection_rate": 0.6667
+          },
+          "description": "F1 score for risk detection (TP: 2, FP: 0, FN: 1).",
+          "status": "PASS"
+        },
+        "risk_localization": {
+          "metric_name": "risk_localization",
+          "value": 0.6,
+          "raw_counts": {
+            "predicted_affected_nodes": [
+              "cz-001",
+              "sup-001",
+              "wh-001",
+              "fc-001"
+            ],
+            "ground_truth_affected_nodes": [
+              "port-001",
+              "sup-001",
+              "wh-001",
+              "fc-001"
+            ],
+            "intersection_count": 3,
+            "union_count": 5,
+            "iou_jaccard_score": 0.6
+          },
+          "description": "Jaccard IoU similarity for affected node localization (3/5).",
+          "status": "PASS"
+        },
+        "scenario_validity": {
+          "metric_name": "scenario_validity",
+          "value": 1.0,
+          "raw_counts": {
+            "valid_scenario_count": 1,
+            "invalid_scenario_count": 0,
+            "constraint_violations": 0,
+            "affected_entities_existing": true,
+            "scenario_validity_rate": 1.0
+          },
+          "description": "Scenario structural schema and entity existence validation.",
+          "status": "PASS"
+        },
+        "agent_validity": {
+          "metric_name": "agent_validity",
+          "value": 0.0,
+          "raw_counts": {
+            "valid_proposals": 0,
+            "invalid_proposals": 6,
+            "total_proposals": 6,
+            "agent_validity_rate": 0.0,
+            "target_validity_rate": 0.0,
+            "action_validity_rate": 0.0,
+            "schema_validity_rate": 0.0
+          },
+          "description": "Agent proposal structural and entity validity (0/6).",
+          "status": "FAIL"
+        },
+        "coordination_quality": {
+          "metric_name": "coordination_quality",
+          "value": 0.8,
+          "raw_counts": {
+            "agreements_detected": 3,
+            "conflicts_detected": 2,
+            "known_conflicts": 1,
+            "missed_conflicts": 1,
+            "conflict_precision": 0.0,
+            "conflict_recall": 0.0,
+            "coordination_f1": 0.8
+          },
+          "description": "Coordinator agreement and conflict resolution quality score.",
+          "status": "PASS"
+        },
+        "adversarial_coverage": {
+          "metric_name": "adversarial_coverage",
+          "value": 0.0,
+          "raw_counts": {
+            "attack_types_executed": 8,
+            "vulnerabilities_found": 4,
+            "known_vulnerabilities": 3,
+            "missed_vulnerabilities": 3,
+            "adversarial_coverage": 0.0
+          },
+          "description": "Red-team adversarial vulnerability coverage (0/3).",
+          "status": "WARN"
+        },
+        "plan_feasibility": {
+          "metric_name": "plan_feasibility",
+          "value": 1.0,
+          "raw_counts": {
+            "feasible_plans": 3,
+            "infeasible_plans": 0,
+            "total_plans": 3,
+            "hard_constraint_violations": 0,
+            "soft_constraint_violations": 0,
+            "plan_feasibility_rate": 1.0
+          },
+          "description": "Candidate plan hard-constraint feasibility rate (3/3).",
+          "status": "PASS"
+        },
+        "plan_robustness": {
+          "metric_name": "plan_robustness",
+          "value": 0.85,
+          "raw_counts": {
+            "baseline_score": 0.85,
+            "stressed_score": 0.7,
+            "degradation": 0.15,
+            "recovery_score": 0.85
+          },
+          "description": "Plan score resilience under stress (Baseline: 0.85, Stressed: 0.70).",
+          "status": "PASS"
+        },
+        "verification_accuracy": {
+          "metric_name": "verification_accuracy",
+          "value": 0.0,
+          "raw_counts": {
+            "correctly_verified": 0,
+            "incorrectly_verified": 1,
+            "false_accept": 0,
+            "false_reject": 1,
+            "verification_accuracy": 0.0,
+            "actual_status": "CONDITIONAL",
+            "expected_status": "VERIFIED"
+          },
+          "description": "Sandbox verification status accuracy (Actual: CONDITIONAL, Expected: VERIFIED).",
+          "status": "FAIL"
+        },
+        "transparency_completeness": {
+          "metric_name": "transparency_completeness",
+          "value": 1.0,
+          "raw_counts": {
+            "present_fields": 6,
+            "total_required_fields": 6,
+            "missing_fields": [],
+            "transparency_completeness": 1.0
+          },
+          "description": "Decision payload auditability and transparency structural completeness (6/6).",
+          "status": "PASS"
+        }
+      },
+      "artifacts": {
+        "predicted_risk_nodes": [
+          "sup-001",
+          "wh-001"
+        ],
+        "candidate_plans_count": 3,
+        "verification_status": "CONDITIONAL"
+      },
+      "error_message": null
+    }
+  ],
+  "metrics_detail": {},
+  "recommendations": [
+    "Maintain deterministic baseline threshold checks.",
+    "Expand adversarial stress vector scenarios in future iterations."
+  ]
+}

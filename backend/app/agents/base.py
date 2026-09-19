@@ -20,7 +20,6 @@ from app.schemas.agent import (
     AgentResultStatus,
 )
 from app.schemas.world import WorldStateSnapshot
-from app.services.ai import AIService
 
 logger = logging.getLogger("fulfillx.agents")
 
@@ -40,8 +39,12 @@ class BaseAgent(ABC):
     allowed_action_types: list[AgentActionType]
     timeout_seconds: float = 30.0
 
-    def __init__(self, ai_service: AIService | None = None):
-        self.ai_service = ai_service or AIService()
+    def __init__(self, ai_service: Any | None = None):
+        if ai_service is None:
+            from app.services.ai import AIService
+            self.ai_service = AIService()
+        else:
+            self.ai_service = ai_service
 
     @abstractmethod
     def build_prompt(self, input: AgentInput) -> str:

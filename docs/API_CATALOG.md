@@ -746,13 +746,70 @@ as a multi-dimensional object. The corrected response uses `NodeRiskScores`.
 
 ---
 
-### WS /ws/{session_id}
+---
+
+## 17. Evaluation Harness & Benchmark Endpoints (Phase 12)
+
+### GET /api/evaluation/status
 | Field | Value |
 |-------|-------|
-| **Purpose** | Session-filtered WebSocket stream with automatic catch-up replay of recent session events |
-| **Protocol** | `ws://` / `wss://` |
-| **Replay Behavior** | Automatically streams past `EventEnvelope` items from session replay log upon handshake |
-| **Frontend** | Decision Cockpit Live Header Status & Event Stream Drawer |
+| **Purpose** | Retrieve evaluation harness status, total scenarios registered, and latest overall score |
+| **Response 200** | `EvaluationStatusResponse` |
+| **Frontend** | Evaluation Dashboard & Cockpit summary bar |
+
+---
+
+### GET /api/evaluation/scenarios
+| Field | Value |
+|-------|-------|
+| **Purpose** | List all 8 registered benchmark scenarios and ground truths |
+| **Response 200** | `List[BenchmarkScenario]` |
+| **Frontend** | Evaluation Dashboard scenario selector |
+
+---
+
+### POST /api/evaluation/run
+| Field | Value |
+|-------|-------|
+| **Purpose** | Execute a single benchmark scenario on isolated graph state |
+| **Request** | `{ "scenario_id": "SCENARIO-01", "seed": 42 }` |
+| **Response 200** | `EvaluationRun` |
+| **Frontend** | Evaluation Dashboard ("Run Selected Scenario" button) |
+
+---
+
+### POST /api/evaluation/run-all
+| Field | Value |
+|-------|-------|
+| **Purpose** | Run complete benchmark suite across all 8 registered scenarios |
+| **Request** | `{ "benchmark_id": "BENCHMARK-V1" }` |
+| **Response 200** | `EvaluationReport` |
+| **Frontend** | Evaluation Dashboard ("Run Full Benchmark Suite" button) |
+
+---
+
+### GET /api/evaluation/runs
+| Field | Value |
+|-------|-------|
+| **Purpose** | List historical benchmark evaluation runs |
+| **Response 200** | `List[EvaluationRun]` |
+
+---
+
+### GET /api/evaluation/report
+| Field | Value |
+|-------|-------|
+| **Purpose** | Retrieve latest benchmark evaluation report |
+| **Response 200** | `EvaluationReport` |
+
+---
+
+### POST /api/evaluation/compare
+| Field | Value |
+|-------|-------|
+| **Purpose** | Compare baseline evaluation run against target evaluation run |
+| **Request** | `{ "baseline_run_id": "run-01", "target_run_id": "run-02" }` |
+| **Response 200** | `BenchmarkComparison` |
 
 
 

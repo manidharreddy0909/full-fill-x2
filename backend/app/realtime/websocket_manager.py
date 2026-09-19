@@ -5,6 +5,7 @@ stale connection cleanup, and integration with EventBus.
 """
 import logging
 import json
+import asyncio
 from typing import Dict, Set, Optional, List
 from fastapi import WebSocket, WebSocketDisconnect
 from app.schemas.events import EventEnvelope, EventType, EventSeverity

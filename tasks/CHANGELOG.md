@@ -3,6 +3,39 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.13.0] — 2026-09-19 — Phase 12: Evaluation Harness & Benchmark Suite
+
+### Added
+
+**Backend Evaluation Infrastructure (`backend/app/schemas/`, `evaluation/`, `repository/`, `services/`, `api/`)**
+- `backend/app/schemas/evaluation.py` — Strongly-typed Pydantic v2 schemas: `EvaluationRunStatus`, `MetricType`, `GroundTruth`, `BenchmarkScenario`, `MetricResult`, `EvaluationRun`, `EvaluationSummary`, `EvaluationReport`, `MetricDelta`, and `BenchmarkComparison`.
+- `backend/app/evaluation/scenarios.py` — `BenchmarkScenarioRegistry` containing 8 deterministic, reproducible scenarios (`SCENARIO-01` through `SCENARIO-08`) with explicit ground-truth expectations.
+- `backend/app/evaluation/metrics.py` — `MetricEngine` implementing 10 quantitative formulas ($F_1$, IoU localization, scenario validity, agent proposal validity, coordination agreement/conflict quality, adversarial coverage, plan feasibility, plan robustness, verification accuracy, transparency completeness).
+- `backend/app/evaluation/baseline.py` — `RegressionBaseline` defining empirical metric thresholds and compliance evaluation.
+- `backend/app/evaluation/runner.py` — `EvaluationRunner` orchestrating deterministic pipeline execution on isolated supply network graph snapshot copies.
+- `backend/app/repository/evaluation.py` — `EvaluationRepository` bounded in-memory store for evaluation runs, reports, and comparisons.
+- `backend/app/services/evaluation.py` — `EvaluationService` orchestrating execution, report generation, comparisons, and emitting real-time events (`EVALUATION_STARTED`, `SCENARIO_STARTED`, `METRIC_CALCULATED`, `EVALUATION_COMPLETED`).
+- `backend/app/api/evaluation.py` — Typed FastAPI REST router: `GET /api/evaluation/status`, `GET /api/evaluation/scenarios`, `POST /api/evaluation/run`, `POST /api/evaluation/run-all`, `GET /api/evaluation/runs`, `GET /api/evaluation/runs/{run_id}`, `GET /api/evaluation/report`, `POST /api/evaluation/compare`. Registered in `backend/app/api/router.py`.
+
+**Backend Evaluation Test Suite (`backend/tests/test_evaluation.py`)**
+- 11 comprehensive unit and integration tests covering schemas, ground-truth model, scenario registry, metric engine formulas, runner isolation, determinism, repository operations, baseline compliance, comparison engine, REST API endpoints, and production state mutation safety assertions (`118/118 total backend pytest PASS`).
+
+**Frontend Evaluation Dashboard UI (`frontend/src/`)**
+- `frontend/src/types/evaluation.ts` — TypeScript definitions matching backend evaluation models.
+- `frontend/src/api/evaluation.ts` — Strongly-typed fetch API client for evaluation endpoints.
+- `frontend/src/store/evaluationStore.ts` — React hook store (`useEvaluationStore()`) managing status, scenarios, runs, report, loading, and error states.
+- `frontend/src/components/evaluation/EvaluationDashboard.tsx` — Functional glassmorphic dashboard with benchmark controls (scenario dropdown, seed input, Run, Run All), metric card grid (10 core metrics with baseline badges), scenario results matrix, and detailed run inspect modal.
+- `frontend/src/components/cockpit/DecisionCockpit.tsx` — Live "SYSTEM EVALUATION" metrics drawer panel fetching real-time benchmark scores.
+- Integrated into `Navbar.tsx` and `App.tsx` with dedicated "Evaluation Suite" navigation button. `npm run build` PASS.
+
+**Documentation & Artifacts**
+- Added `docs/EVALUATION_SPEC.md` specification.
+- Added `ADR-025: Deterministic Evaluation Harness & Quantitative Benchmark Architecture` to `docs/DECISION_LOG.md`.
+- Updated `docs/API_CATALOG.md` (Section 17), `docs/MASTER_PLAN.md`, `docs/ARCHITECTURE.md`, `tasks/TODO.md`, `tasks/IN_PROGRESS.md`, `tasks/DONE.md`.
+- Machine-readable benchmark report artifacts generated in `artifacts/evaluation/latest_report.json` and `artifacts/evaluation/latest_report.md`.
+
+---
+
 ## [0.12.0] — 2026-09-19 — Phase 11: Real-Time Intelligence & Live Operational Event Layer
 
 ### Added

@@ -18,6 +18,7 @@ import { RiskExplorer } from './components/risk/RiskExplorer';
 import { SignalInjectorModal } from './components/risk/SignalInjectorModal';
 import { SpecialistWarRoom } from './components/agents/SpecialistWarRoom';
 import { DecisionCockpit } from './components/cockpit/DecisionCockpit';
+import { EvaluationDashboard } from './components/evaluation/EvaluationDashboard';
 import { EventToastContainer } from './components/common/EventToastContainer';
 import { useRealtimeStore } from './store/realtimeStore';
 import { CandidatePlan } from './types/coordinator';
@@ -40,6 +41,7 @@ export const App: React.FC = () => {
   const [injectorTargetId, setInjectorTargetId] = useState<string | null>(null);
   const [isWarRoomOpen, setIsWarRoomOpen] = useState<boolean>(false);
   const [isCockpitOpen, setIsCockpitOpen] = useState<boolean>(false);
+  const [isEvaluationOpen, setIsEvaluationOpen] = useState<boolean>(false);
   const [previewCandidatePlan, setPreviewCandidatePlan] = useState<CandidatePlan | null>(null);
 
   const loadWorldAndRiskData = useCallback(async () => {
@@ -185,6 +187,7 @@ export const App: React.FC = () => {
         onOpenInjector={() => handleOpenInjector()}
         onOpenWarRoom={() => setIsWarRoomOpen(true)}
         onOpenCockpit={() => setIsCockpitOpen(true)}
+        onOpenEvaluation={() => setIsEvaluationOpen(!isEvaluationOpen)}
       />
 
       {/* World Summary Bar */}
@@ -192,7 +195,9 @@ export const App: React.FC = () => {
 
       {/* Main View Area */}
       <main style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
-        {loading ? (
+        {isEvaluationOpen ? (
+          <EvaluationDashboard />
+        ) : loading ? (
           <div style={{ display: 'flex', height: '100%', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)' }}>
             <div className="mono">Loading FULFILL-X World State & Deterministic Risk Engine...</div>
           </div>

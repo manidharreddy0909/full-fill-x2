@@ -14,6 +14,7 @@ interface NavbarProps {
   onOpenInjector?: () => void;
   onOpenWarRoom?: () => void;
   onOpenCockpit?: () => void;
+  onOpenEvaluation?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -29,6 +30,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenInjector,
   onOpenWarRoom,
   onOpenCockpit,
+  onOpenEvaluation,
 }) => {
   const getHealthColor = (score: number) => {
     if (score >= 0.85) return 'var(--color-healthy)';
@@ -237,6 +239,30 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
             >
               <Cpu size={15} color="#A78BFA" /> Decision Cockpit
+            </button>
+          )}
+
+          {/* Evaluation Harness Button */}
+          {onOpenEvaluation && (
+            <button
+              onClick={onOpenEvaluation}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '6px 14px',
+                borderRadius: '6px',
+                background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(5, 150, 105, 0.25) 100%)',
+                border: '1px solid #10B981',
+                color: '#34D399',
+                fontWeight: 700,
+                fontSize: '12px',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                boxShadow: '0 0 12px rgba(16, 185, 129, 0.2)',
+              }}
+            >
+              <Sparkles size={15} color="#34D399" /> Evaluation Suite
             </button>
           )}
 

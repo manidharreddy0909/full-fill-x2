@@ -580,7 +580,31 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 11 — Real-Time Intelligence & Live Operational Event Layer Complete*
+## ADR-025: Evaluation Harness & Deterministic Benchmark Architecture
+
+**Date**: 2026-09-19  
+**Status**: ACCEPTED  
+**Phase**: 12  
+
+**Context**: FULFILL-X required a deterministic, quantitative, reproducible evaluation system capable of scoring risk detection, risk localization, scenario validity, agent proposal validity, coordination quality, adversarial coverage, plan feasibility, plan robustness, verification accuracy, and transparency completeness without modifying live production world or risk state.
+
+**Decision**:
+1. **Deterministic Ground Truth Model**: Define non-LLM, rule-based expected outcomes (`GroundTruth`) for all 8 benchmark scenarios (`SCENARIO-01` through `SCENARIO-08`).
+2. **State Isolation Guarantee**: Execute all benchmark evaluation runs against deep snapshot copies (`isolated_graph`), leaving live `WorldRepository` and `RiskRepository` state 100% unmutated (`assert nodes_before == nodes_after`).
+3. **Quantitative Metrics Engine**: Implement 10 quantitative, non-subjective metric calculators backed by exact formulas ($F_1$ score, Jaccard IoU, schema checks, feasibility pass rates).
+4. **Reproducibility**: Guarantee 100% identical quantitative metric results when re-running scenarios with identical `(benchmark_id, seed, scenario_id, configuration)`.
+5. **Real-time Event Integration**: Broadcast `EVALUATION_STARTED`, `SCENARIO_STARTED`, `METRIC_CALCULATED`, `EVALUATION_COMPLETED` observational events via the Phase 11 `EventBus`.
+6. **Functional Dashboard & Decision Cockpit Integration**: Expose REST endpoints `/api/evaluation/*`, build an interactive Evaluation Dashboard in the frontend, and surface real-time quantitative metrics inside the Decision Cockpit summary bar.
+
+**Rationale**:
+- Provides quantifiable, authoritative verification of FULFILL-X's supply chain resilience capabilities with zero reliance on subjective LLM self-evaluation.
+
+**Consequences**:
+- System performance is quantitatively measurable, reproducible, and baseline-compliant across all benchmark disruption vectors.
+
+---
+
+*Last updated: Phase 12 — Evaluation Harness & Benchmark Suite Complete*
 
 
 

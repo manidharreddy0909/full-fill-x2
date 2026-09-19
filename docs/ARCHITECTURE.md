@@ -257,6 +257,19 @@ All Mermaid diagram source files are in `diagrams/`:
 - `aws-architecture.mmd` — AWS service topology
 - `deployment-flow.mmd` — CI/CD pipeline
 
+## 10. Evaluation Harness Architecture (Phase 12)
+
+```mermaid
+graph TD
+    Registry["Benchmark Registry (8 Scenarios)"] --> GT["Ground Truth (Deterministic)"]
+    GT --> Runner["Evaluation Runner (Isolated Snapshot)"]
+    Runner --> Pipeline["FULFILL-X Pipeline Execution"]
+    Pipeline --> Outputs["Observed Outputs"]
+    Outputs --> Metrics["Metric Engine (10 Quantitative Formulas)"]
+    Metrics --> Report["Evaluation Report & Baseline"]
+    Report --> Dashboard["Evaluation Dashboard & Decision Cockpit"]
+```
+
 ---
 
 *See `docs/DECISION_LOG.md` for all recorded architecture decisions.*

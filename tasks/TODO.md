@@ -234,16 +234,34 @@
 | P11-015 | Documentation & ADR Updates (`docs/WEBSOCKET_SPEC.md`, ADR-024) | P11-014 | DONE |
 
 
-## Phase 11 — Evaluation Harness
+## Phase 12 — Evaluation Harness & Benchmark Suite [COMPLETED]
 
 | ID | Description | Dependencies | Status |
 |----|-------------|-------------|--------|
-| P11-001 | Implement 5 benchmark scenarios (B001–B005) | P05, P06 | PLANNED |
-| P11-002 | Implement EvaluationEngine.run_suite() | P11-001 | PLANNED |
-| P11-003 | Implement all evaluation metrics | P11-002 | PLANNED |
-| P11-004 | Verify: benchmark with seed=42 produces deterministic results | P11-003 | PLANNED |
-| P11-005 | Verify: B002 (demo scenario) passes all assertions | P11-004 | PLANNED |
-| P11-006 | Commit P11 | P11-005 | PLANNED |
+| P12-001 | Evaluation Pydantic Schemas (`backend/app/schemas/evaluation.py`) | Phase 11 complete | DONE |
+| P12-002 | Ground Truth Model & Expected Outcomes (`backend/app/schemas/evaluation.py`) | P12-001 | DONE |
+| P12-003 | Benchmark Scenario Registry (8 Scenarios) (`backend/app/evaluation/scenarios.py`) | P12-002 | DONE |
+| P12-004 | Quantitative Metric Calculation Engine (10 Metrics) (`backend/app/evaluation/metrics.py`) | P12-003 | DONE |
+| P12-005 | Evaluation Runner on Isolated Graph Snapshots (`backend/app/evaluation/runner.py`) | P12-004 | DONE |
+| P12-006 | State Isolation & Immutability Guarantee (`assert nodes_before == nodes_after`) | P12-005 | DONE |
+| P12-007 | In-Memory Bounded Evaluation Repository (`backend/app/repository/evaluation.py`) | P12-005 | DONE |
+| P12-008 | Evaluation Service (`backend/app/services/evaluation.py`) | P12-007 | DONE |
+| P12-009 | Evaluation REST API Router (`backend/app/api/evaluation.py`) | P12-008 | DONE |
+| P12-010 | Summary Score & Documented Weighted Formula | P12-008 | DONE |
+| P12-011 | Deterministic Reproducibility Guarantee | P12-008 | DONE |
+| P12-012 | Regression Baseline Thresholds (`backend/app/evaluation/baseline.py`) | P12-008 | DONE |
+| P12-013 | Benchmark Run Comparison Engine (`compare_runs`) | P12-008 | DONE |
+| P12-014 | Frontend TypeScript Types & API Client (`types/evaluation.ts`, `api/evaluation.ts`) | P12-009 | DONE |
+| P12-015 | Frontend Evaluation Reactive Store (`store/evaluationStore.ts`) | P12-014 | DONE |
+| P12-016 | Functional Evaluation Dashboard Component (`EvaluationDashboard.tsx`) | P12-015 | DONE |
+| P12-017 | Metric Visualizations & Comparison Table | P12-016 | DONE |
+| P12-018 | Decision Cockpit System Evaluation Integration (`DecisionCockpit.tsx`) | P12-016 | DONE |
+| P12-019 | Real-Time Event Integration (`EVALUATION_STARTED`, `METRIC_CALCULATED`, etc.) | P12-008 | DONE |
+| P12-020 | Safety & Security Controls | P12-009 | DONE |
+| P12-021 | Comprehensive Backend Test Suite (`backend/tests/test_evaluation.py` - 118/118 PASS) | P12-020 | DONE |
+| P12-022 | Full Regression (`pytest` 118/118 PASS & `npm run build` PASS) | P12-021 | DONE |
+| P12-023 | Machine-Readable Benchmark Evidence Artifacts (`artifacts/evaluation/latest_report.*`) | P12-022 | DONE |
+| P12-024 | Documentation (`docs/EVALUATION_SPEC.md`, ADR-025) | P12-023 | DONE |
 
 ## Phase 12 — AWS Deployment
 
