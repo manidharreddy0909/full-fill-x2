@@ -44,6 +44,7 @@ class EventBus:
         stage: Optional[str] = None,
         source: str = "system",
         severity: EventSeverity = EventSeverity.INFO,
+        organization_id: str = "org-fulfillx-default",
     ) -> EventEnvelope:
         """
         Publish an event envelope.
@@ -60,6 +61,7 @@ class EventBus:
         envelope = EventEnvelope(
             event_type=event_type,
             payload=payload,
+            organization_id=organization_id,
             session_id=session_id,
             stage=stage,
             source=source,

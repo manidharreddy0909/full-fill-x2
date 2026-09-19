@@ -18,6 +18,8 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import Mapped, mapped_column
 from app.db.session import Base
+from app.models.identity import UserModel, OrganizationModel, MembershipModel, UserStatus, OrganizationStatus, SystemRole
+
 
 
 def utc_now() -> datetime:
@@ -28,6 +30,7 @@ class WorldSnapshotModel(Base):
     __tablename__ = "world_snapshots"
 
     snapshot_id: Mapped[str] = mapped_column(String(64), primary_key=True, default=lambda: str(uuid.uuid4()))
+    organization_id: Mapped[str] = mapped_column(String(64), nullable=False, default="org-fulfillx-default", index=True)
     seed: Mapped[int] = mapped_column(Integer, nullable=False, default=42)
     preset: Mapped[str] = mapped_column(String(32), nullable=False, default="healthy")
     total_nodes: Mapped[int] = mapped_column(Integer, nullable=False)
@@ -46,6 +49,7 @@ class SignalModel(Base):
     __tablename__ = "signals"
 
     id: Mapped[str] = mapped_column(String(64), primary_key=True, default=lambda: str(uuid.uuid4()))
+    organization_id: Mapped[str] = mapped_column(String(64), nullable=False, default="org-fulfillx-default", index=True)
     signal_type: Mapped[str] = mapped_column(String(64), nullable=False)
     severity: Mapped[str] = mapped_column(String(32), nullable=False)
     title: Mapped[str] = mapped_column(String(256), nullable=False)
@@ -72,6 +76,7 @@ class RiskSnapshotModel(Base):
     __tablename__ = "risk_snapshots"
 
     id: Mapped[str] = mapped_column(String(64), primary_key=True, default=lambda: str(uuid.uuid4()))
+    organization_id: Mapped[str] = mapped_column(String(64), nullable=False, default="org-fulfillx-default", index=True)
     world_seed: Mapped[int] = mapped_column(Integer, nullable=False, default=42)
     risk_level: Mapped[str] = mapped_column(String(32), nullable=False)
     average_risk: Mapped[float] = mapped_column(Float, nullable=False)
@@ -176,10 +181,16 @@ class AuditEventModel(Base):
     __tablename__ = "audit_events"
 
     id: Mapped[str] = mapped_column(String(64), primary_key=True, default=lambda: str(uuid.uuid4()))
+    organization_id: Mapped[str] = mapped_column(String(64), nullable=False, default="org-fulfillx-default", index=True)
     session_id: Mapped[Optional[str]] = mapped_column(String(64), nullable=True, index=True)
     actor: Mapped[str] = mapped_column(String(128), nullable=False)
+    actor_user_id: Mapped[Optional[str]] = mapped_column(String(64), nullable=True, index=True)
     stage: Mapped[str] = mapped_column(String(64), nullable=False)
     action: Mapped[str] = mapped_column(String(128), nullable=False)
+    resource_type: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
+    resource_id: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
+    result: Mapped[str] = mapped_column(String(32), nullable=False, default="SUCCESS")
+    client_ip: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
     details: Mapped[Dict[str, Any]] = mapped_column(JSON, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, nullable=False)
 
@@ -188,6 +199,7 @@ class EventHistoryModel(Base):
     __tablename__ = "event_history"
 
     id: Mapped[str] = mapped_column(String(64), primary_key=True, default=lambda: str(uuid.uuid4()))
+    organization_id: Mapped[str] = mapped_column(String(64), nullable=False, default="org-fulfillx-default", index=True)
     event_type: Mapped[str] = mapped_column(String(64), nullable=False, index=True)
     sequence: Mapped[int] = mapped_column(Integer, nullable=False)
     session_id: Mapped[Optional[str]] = mapped_column(String(64), nullable=True, index=True)

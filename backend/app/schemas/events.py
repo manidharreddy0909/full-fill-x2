@@ -75,6 +75,7 @@ class EventEnvelope(BaseModel):
     event_id: str = Field(default_factory=lambda: f"evt-{uuid.uuid4().hex[:10]}")
     event_type: EventType
     timestamp: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    organization_id: str = Field(default="org-fulfillx-default")
     session_id: Optional[str] = None
     stage: Optional[str] = None
     source: str = "system"

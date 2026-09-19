@@ -1,7 +1,8 @@
 import React from 'react';
-import { Activity, ShieldAlert, RefreshCw, Cpu, Layers, Box, Bot, Sparkles, LayoutDashboard, Database } from 'lucide-react';
+import { Activity, ShieldAlert, RefreshCw, Cpu, Layers, Box, Bot, Sparkles, LayoutDashboard, Database, Shield, Lock } from 'lucide-react';
+import { useAuthStore } from '../../store/authStore';
 
-export type ProductTab = 'COMMAND' | 'WORLD' | 'INTELLIGENCE' | 'RESPONSE' | 'DECISION' | 'EVALUATION' | 'DEMO' | 'DATA';
+export type ProductTab = 'COMMAND' | 'WORLD' | 'INTELLIGENCE' | 'RESPONSE' | 'DECISION' | 'EVALUATION' | 'DEMO' | 'DATA' | 'SECURITY';
 
 interface NavbarProps {
   activeTab: ProductTab;
@@ -16,6 +17,7 @@ interface NavbarProps {
   onSeedChange: (preset: string, seed: number) => void;
   onReset: () => void;
   onOpenInjector?: () => void;
+  onOpenAuthGateway?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -31,7 +33,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSeedChange,
   onReset,
   onOpenInjector,
+  onOpenAuthGateway,
 }) => {
+  const { user, userRole, isAuthenticated } = useAuthStore();
+
   const getHealthColor = (score: number) => {
     if (score >= 0.85) return 'var(--color-healthy)';
     if (score >= 0.6) return 'var(--color-warning)';
@@ -47,6 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { tab: 'EVALUATION', label: 'Evaluation', icon: <Activity size={14} /> },
     { tab: 'DEMO', label: 'Demo Mode', icon: <Sparkles size={14} /> },
     { tab: 'DATA', label: 'Data Platform', icon: <Database size={14} /> },
+    { tab: 'SECURITY', label: 'Security', icon: <Shield size={14} /> },
   ];
 
   return (
@@ -196,6 +202,32 @@ export const Navbar: React.FC<NavbarProps> = ({
               <ShieldAlert size={14} /> Inject Signal
             </button>
           )}
+
+          {/* User Account / Identity Gateway Pill */}
+          <button
+            onClick={onOpenAuthGateway}
+            title="Click to authenticate or switch identity gateway"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              background: 'rgba(6, 182, 212, 0.12)',
+              padding: '5px 10px',
+              borderRadius: '6px',
+              border: '1px solid rgba(6, 182, 212, 0.3)',
+              cursor: 'pointer',
+            }}
+          >
+            <Shield size={14} color="#06B6D4" />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: 1 }}>
+              <span className="mono" style={{ fontSize: '10px', fontWeight: 700, color: '#06B6D4' }}>
+                {user ? user.display_name.split(' ')[0] : 'GUEST'}
+              </span>
+              <span className="mono" style={{ fontSize: '8px', color: '#A5F3FC' }}>
+                ROLE: {userRole || 'OWNER'}
+              </span>
+            </div>
+          </button>
 
           {/* AI Provider Pill */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '5px', background: 'rgba(139, 92, 246, 0.12)', padding: '5px 10px', borderRadius: '6px', border: '1px solid rgba(139, 92, 246, 0.3)' }}>

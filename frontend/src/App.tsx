@@ -23,6 +23,8 @@ import { DemoMode } from './components/demo/DemoMode';
 import { CommandCenter } from './components/command/CommandCenter';
 import { IntelligencePanel } from './components/intelligence/IntelligencePanel';
 import { DataFoundation } from './components/data/DataFoundation';
+import { SecurityConsole } from './components/security/SecurityConsole';
+import { IdentityGateway } from './components/auth/IdentityGateway';
 import { EventToastContainer } from './components/common/EventToastContainer';
 import { useRealtimeStore } from './store/realtimeStore';
 import { CandidatePlan } from './types/coordinator';
@@ -46,6 +48,7 @@ export const App: React.FC = () => {
   const [injectorTargetId, setInjectorTargetId] = useState<string | null>(null);
   const [isWarRoomOpen, setIsWarRoomOpen] = useState<boolean>(false);
   const [isCockpitOpen, setIsCockpitOpen] = useState<boolean>(false);
+  const [isAuthGatewayOpen, setIsAuthGatewayOpen] = useState<boolean>(false);
   const [previewCandidatePlan, setPreviewCandidatePlan] = useState<CandidatePlan | null>(null);
 
   const loadWorldAndRiskData = useCallback(async () => {
@@ -189,6 +192,7 @@ export const App: React.FC = () => {
         onSeedChange={handleSeedChange}
         onReset={handleReset}
         onOpenInjector={() => handleOpenInjector()}
+        onOpenAuthGateway={() => setIsAuthGatewayOpen(true)}
       />
 
       {/* World Summary Bar */}
@@ -223,6 +227,8 @@ export const App: React.FC = () => {
           <DemoMode />
         ) : activeTab === 'DATA' ? (
           <DataFoundation />
+        ) : activeTab === 'SECURITY' ? (
+          <SecurityConsole />
         ) : activeTab === 'RESPONSE' ? (
           <div className="max-w-7xl mx-auto p-6">
             <SpecialistWarRoom
@@ -305,6 +311,15 @@ export const App: React.FC = () => {
             onClose={() => setIsCockpitOpen(false)}
             onPreviewCandidate={(cand) => setPreviewCandidatePlan(cand)}
           />
+        )}
+
+        {/* Identity Gateway Modal */}
+        {isAuthGatewayOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-md">
+            <div className="w-full max-w-md">
+              <IdentityGateway onClose={() => setIsAuthGatewayOpen(false)} />
+            </div>
+          </div>
         )}
       </main>
     </div>

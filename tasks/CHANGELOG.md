@@ -3,6 +3,34 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.3.0] — 2026-09-19 — Phase 3: Identity + Enterprise Security (Free-First / Local-First / Zero-Trust)
+
+### Added
+
+**Zero-Trust Identity & Tenant Isolation Engine (`backend/app/models/identity.py`, `backend/app/schemas/auth.py`, `backend/app/services/auth.py`)**
+- Persistent SQLAlchemy 2.0 ORM identity models (`UserModel`, `OrganizationModel`, `MembershipModel`) and Alembic migration `002_identity_and_tenancy.py`.
+- Row-level `organization_id` tenant scoping columns added across all 9 persistent domain tables.
+- Cryptographic password hashing using standard library PBKDF2-HMAC-SHA256 (100,000 iterations) and HMAC-SHA256 JWT access/refresh token management with in-memory revocation blacklist.
+
+**Authoritative RBAC Policy Matrix & Security Context (`backend/app/core/security.py`, `backend/app/api/deps.py`, `backend/app/api/auth.py`)**
+- Authoritative RBAC policy matrix mapping 6 system roles (`OWNER`, `ADMIN`, `OPERATOR`, `ANALYST`, `VIEWER`, `AUDITOR`) to 30 explicit permissions.
+- FastAPI dependency injection (`get_security_context`, `require_permission`, `require_role`) and REST API router registered under `/api/auth/*`.
+
+**Boundary Security, Rate Limiter & Tenant WebSockets (`backend/app/core/rate_limit.py`, `backend/app/realtime/`, `backend/app/main.py`)**
+- `SlidingWindowRateLimiter` sliding window rate limiter (120 req/min).
+- HTTP Security Headers (`nosniff`, `DENY`, `1; mode=block`).
+- Tenant-aware WebSocket connection token verification and `EventEnvelope.organization_id` streaming filter.
+
+**Cinematic Frontend Experience & Security Workspace (`frontend/src/components/auth/IdentityGateway.tsx`, `frontend/src/components/security/SecurityConsole.tsx`, `Navbar.tsx`, `App.tsx`)**
+- `IdentityGateway.tsx` login/register modal and `SecurityConsole.tsx` enterprise security workspace.
+- Registered top-level `SECURITY` workspace tab and User Account status pill in Navbar.
+
+**Comprehensive Specifications & Test Suite (`docs/`, `backend/tests/`)**
+- Authored `IDENTITY_ARCHITECTURE.md`, `AUTHORIZATION_MODEL.md`, `SECURITY_MODEL.md`, `THREAT_MODEL.md`, `SESSION_SECURITY.md`, `COGNITO_ADAPTER.md`, `SECURITY_OPERATIONS.md`, and `ADR-033`.
+- Authored unit & security test suites `backend/tests/test_auth.py` and `backend/tests/test_security_rbac.py` (9/9 PASS, 165/165 full backend PASS).
+
+---
+
 ## [1.2.0] — 2026-09-19 — Phase 2: Real Data Platform (Free-First / Local-First)
 
 ### Added

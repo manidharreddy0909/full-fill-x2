@@ -771,9 +771,32 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 **Consequences**:
 - Phase 2 Real Data Platform is fully implemented, tested, and integrated.
 
+## ADR-033: Enterprise Zero-Trust Identity & RBAC Architecture
+
+**Date**: 2026-09-19  
+**Status**: ACCEPTED  
+**Phase**: 3 (Identity & Enterprise Security)  
+
+**Context**: FULFILL-X required enterprise-grade Zero-Trust authentication, multi-tenant data isolation, role-based access control (RBAC), sliding window rate limiting, and security header enforcement built on a Free-First local-first paradigm with optional AWS Cognito SaaS adapter support.
+
+**Decision**:
+1. **Persistent Identity & Tenant ERD**: Defined `UserModel`, `OrganizationModel`, and `MembershipModel` with Alembic migration `002_identity_and_tenancy.py`. Added indexed `organization_id` row-level scoping columns to all 9 persistent domain tables.
+2. **Cryptographic Auth Engine**: Standardized on PBKDF2-HMAC-SHA256 (100,000 iterations) password hashing and HMAC-SHA256 JWT token lifecycle with in-memory revocation blacklist.
+3. **Authoritative RBAC Policy Matrix**: Mapped 6 System Roles (`OWNER`, `ADMIN`, `OPERATOR`, `ANALYST`, `VIEWER`, `AUDITOR`) to 30 granular permissions enforced via FastAPI router dependencies (`get_security_context`, `require_permission`, `require_role`).
+4. **Tenant-Aware EventBus & WebSocket**: Augmented `EventEnvelope` with `organization_id` and added connection token verification & tenant event filtering to WebSockets.
+5. **Boundary Defenses**: Implemented `SlidingWindowRateLimiter` (120 req/min) and enforced HTTP security headers (`nosniff`, `DENY`, `1; mode=block`).
+6. **Frontend Experience & Security Workspace**: Built `IdentityGateway.tsx` login/provisioning modal, `SecurityConsole.tsx` enterprise workspace, and registered `SECURITY` top-level navigation tab.
+7. **Free-First Adapter Architecture**: Created `LocalIdentityProvider` default and `CognitoIdentityProvider` optional adapter. Authored comprehensive Phase 3 specifications (`IDENTITY_ARCHITECTURE.md`, `AUTHORIZATION_MODEL.md`, `SECURITY_MODEL.md`, `THREAT_MODEL.md`, `SESSION_SECURITY.md`, `COGNITO_ADAPTER.md`, `SECURITY_OPERATIONS.md`).
+
+**Rationale**:
+- Enforces strict enterprise zero-trust security and tenant isolation while remaining 100% functional and testable locally without external paid cloud identity subscriptions.
+
+**Consequences**:
+- Phase 3 Identity & Enterprise Security is fully completed, verified, tested, and documented.
+
 ---
 
-*Last updated: Phase 2 — Real Data Platform Complete*
+*Last updated: Phase 3 — Identity & Enterprise Security Complete*
 
 
 

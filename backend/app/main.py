@@ -99,6 +99,9 @@ async def correlation_and_logging_middleware(request: Request, call_next: Callab
         
         response.headers["X-Request-ID"] = request_id
         response.headers["X-Application-Version"] = settings.APP_VERSION
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["X-Frame-Options"] = "DENY"
+        response.headers["X-XSS-Protection"] = "1; mode=block"
         
         logger.info(
             f"event=request_completed request_id={request_id} method={request.method} "
