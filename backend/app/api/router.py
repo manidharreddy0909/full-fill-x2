@@ -21,6 +21,7 @@ from app.api.ingestion import router as ingestion_router
 from app.api.auth import router as auth_router
 from app.api.observability import router as observability_router
 from app.api.ml import router as ml_router
+from app.api.graph import router as graph_router
 from app.core.metrics import metrics_registry
 from app.schemas.world import ApiResponse
 
@@ -44,6 +45,7 @@ api_router.include_router(data_router)
 api_router.include_router(ingestion_router)
 api_router.include_router(observability_router)
 api_router.include_router(ml_router)
+api_router.include_router(graph_router)
 
 
 @api_router.get("/metrics", tags=["Observability & Telemetry"])

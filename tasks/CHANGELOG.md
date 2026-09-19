@@ -3,6 +3,32 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.7.0] — 2026-09-20 — Phase 7: Graph Neural Networks & Causal Intelligence Platform
+
+### Added
+
+**Graph ML Engine & Feature Extractor (`backend/app/graph/`)**
+- `GraphMLAdapter` converting World Model snapshots to NetworkX `DiGraph` and PyTorch Geometric tensor representations.
+- `GraphFeatureExtractor` producing 22D node feature vectors and 4D edge feature vectors adhering to `graph_feature_schema_version = "1.0.0"`.
+
+**CPU-Native GNN Models, Baselines & Registry (`backend/app/graph/models/`, `training.py`, `registry.py`)**
+- `GraphSAGEPredictor` 2-layer message-passing neural network with automated `NetworkXGNNFallback` fallback.
+- `GraphModelTrainer` evaluating GNN models against 3 baselines (Deterministic Risk Engine, Network Centrality, Phase 6 non-graph ML) with `is_gnn_preferred` safeguards.
+- `LocalGraphModelRegistry` managing model lifecycles with SHA-256 checksum verification and instant rollback.
+
+**Disruption Propagation, Causal Intelligence & Counterfactual Engine (`backend/app/graph/propagation.py`, `causal.py`, `counterfactual.py`)**
+- `PropagationEngine` tracing multi-hop downstream reachability up to 4 hops with path decay probabilities and impact severity levels.
+- `CausalHypothesisGenerator` linking root causes to downstream targets with explicit evidence support and assumption tracking.
+- `CounterfactualEngine` running sandboxed `do(node.capacity = X)` simulations calculating `risk_delta`, `service_delta`, and `cost_delta`.
+
+**REST API, Security RBAC & Realtime Integration (`backend/app/api/graph.py`, `auth.py`, `security.py`, `events.py`)**
+- Alembic migration `006_gnn_causal_intelligence.py` creating graph and causal tables.
+- 14 RBAC permissions (`GRAPH_*`, `GNN_*`, `CAUSAL_*`) and 10 realtime event types registered.
+- REST endpoints under `/api/graph/*`, `/api/gnn/*`, `/api/causal/*`.
+
+**Cinematic Graph Intelligence Operations Workspace (`frontend/src/components/graph/GraphIntelligence.tsx`)**
+- Premium frontend workspace featuring Network Topology Explorer, Disruption Propagation Visualizer, Causal Explorer, and What-If Counterfactual Sandbox. Registered under top-level `GRAPH INTELLIGENCE` tab.
+
 ## [1.6.0] — 2026-09-20 — Phase 6: Predictive AI / ML Platform (Free-First / Local-First / Deterministic / Explainable)
 
 ### Added

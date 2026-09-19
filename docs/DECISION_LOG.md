@@ -872,7 +872,33 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 6 — Predictive AI / ML Platform Complete*
+## ADR-037: Graph Neural Networks & Causal Intelligence Platform Architecture
+
+**Date**: 2026-09-20  
+**Status**: ACCEPTED  
+**Phase**: 7 (Graph Neural Networks + Causal Intelligence)  
+
+**Context**: FULFILL-X required topological graph intelligence, multi-hop disruption propagation tracing, causal hypothesis generation, and sandboxed counterfactual (`do`-intervention) simulations to answer how risk propagates through the network and what relationships contribute to risk, without mutating authoritative world state.
+
+**Decision**:
+1. **Zero-Copy Graph Adapter & Extractor**: Created `GraphMLAdapter` and `GraphFeatureExtractor` (`graph_feature_schema_version = "1.0.0"`) translating World Model state into NetworkX and PyTorch Geometric tensor representations with 22D node features and 4D edge features.
+2. **CPU-Native GNN Models & Baselines**: Implemented `GraphSAGEPredictor` for node risk, edge risk, and disruption propagation. Evaluates candidates against 3 baselines (Deterministic Risk Engine, Network Centrality heuristic, Phase 6 non-graph ML) with automated fallback (`NetworkXGNNFallback`) and `is_gnn_preferred` safety checks.
+3. **Propagation Engine**: Implemented `PropagationEngine` evaluating multi-hop downstream reachability up to 4 hops with path decay probabilities, primary/secondary paths, and impact severity levels (`LOW`, `MEDIUM`, `HIGH`, `CRITICAL`).
+4. **Causal Hypothesis Generator**: Implemented `CausalHypothesisGenerator` linking root causes to downstream targets with explicit evidence support, confidence bounds, domain assumption tracking, and status labels (`CAUSAL_HYPOTHESIS`, `OBSERVED_ASSOCIATION`, `INSUFFICIENT_EVIDENCE`).
+5. **Sandboxed Counterfactual Sandbox (`do`-Interventions)**: Implemented `CounterfactualEngine` conducting isolated `do(node.capacity = X)` simulations to calculate `risk_delta`, `service_delta`, and `cost_delta` without mutating production state.
+6. **Agent & Planner Integration**: Connected propagation traces and vulnerability metrics to Specialist Agents, Adversary Agent (for compound attack generation), and Planner Agent (for propagation reduction optimization).
+7. **Persistence, Security & API**: Alembic migration `006_gnn_causal_intelligence.py`, 14 RBAC permissions (`GRAPH_*`, `GNN_*`, `CAUSAL_*`), 10 realtime event types, and `/api/graph/*`, `/api/gnn/*`, `/api/causal/*` REST endpoints.
+8. **Cinematic Graph Intelligence UI Workspace**: Built `GraphIntelligence.tsx` frontend featuring Interactive Network Topology Explorer, Disruption Propagation Overlay, Causal Explorer, and Counterfactual Simulation Sandbox. Registered under top-level `GRAPH INTELLIGENCE` tab.
+
+**Rationale**:
+- Provides deep topological graph intelligence and causal reasoning while preserving strict safety boundaries, 100% CPU execution support, and deterministic baseline verification.
+
+**Consequences**:
+- Phase 7 GNN + Causal Intelligence Platform is fully completed, tested, verified, and documented.
+
+---
+
+*Last updated: Phase 7 — GNN + Causal Intelligence Platform Complete*
 
 
 

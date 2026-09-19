@@ -38,6 +38,9 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.ALERTS_READ, Permission.ALERTS_MANAGE,
         Permission.METRICS_READ, Permission.TRACES_READ, Permission.EVENTS_INSPECT,
         Permission.ML_READ, Permission.ML_TRAIN, Permission.ML_EVALUATE, Permission.ML_ACTIVATE, Permission.ML_RETIRE, Permission.ML_PREDICT, Permission.ML_MANAGE,
+        Permission.GRAPH_READ, Permission.GRAPH_ANALYZE,
+        Permission.GNN_READ, Permission.GNN_TRAIN, Permission.GNN_EVALUATE, Permission.GNN_ACTIVATE, Permission.GNN_RETIRE, Permission.GNN_PREDICT, Permission.GNN_MANAGE,
+        Permission.CAUSAL_READ, Permission.CAUSAL_ANALYZE, Permission.CAUSAL_COUNTERFACTUAL, Permission.CAUSAL_MANAGE,
         Permission.SYSTEM_ADMIN,
     ],
     SystemRole.OPERATOR: [
@@ -56,6 +59,7 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.OBSERVABILITY_READ, Permission.ALERTS_READ, Permission.ALERTS_MANAGE,
         Permission.METRICS_READ, Permission.TRACES_READ, Permission.EVENTS_INSPECT,
         Permission.ML_READ, Permission.ML_TRAIN, Permission.ML_PREDICT, Permission.ML_EVALUATE,
+        Permission.GRAPH_READ, Permission.GRAPH_ANALYZE, Permission.GNN_READ, Permission.GNN_PREDICT, Permission.CAUSAL_READ, Permission.CAUSAL_COUNTERFACTUAL,
     ],
     SystemRole.ANALYST: [
         Permission.WORLD_READ,
@@ -73,6 +77,7 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.OBSERVABILITY_READ, Permission.ALERTS_READ,
         Permission.METRICS_READ, Permission.TRACES_READ, Permission.EVENTS_INSPECT,
         Permission.ML_READ, Permission.ML_PREDICT, Permission.ML_EVALUATE,
+        Permission.GRAPH_READ, Permission.GRAPH_ANALYZE, Permission.GNN_READ, Permission.GNN_PREDICT, Permission.CAUSAL_READ, Permission.CAUSAL_ANALYZE, Permission.CAUSAL_COUNTERFACTUAL,
     ],
     SystemRole.VIEWER: [
         Permission.WORLD_READ,
@@ -88,6 +93,7 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.ORGANIZATION_READ,
         Permission.OBSERVABILITY_READ, Permission.ALERTS_READ, Permission.METRICS_READ,
         Permission.ML_READ,
+        Permission.GRAPH_READ, Permission.GNN_READ, Permission.CAUSAL_READ,
     ],
     SystemRole.AUDITOR: [
         Permission.WORLD_READ,
@@ -103,6 +109,7 @@ ROLE_PERMISSIONS_MAP: Dict[SystemRole, List[Permission]] = {
         Permission.ORGANIZATION_READ, Permission.USERS_READ,
         Permission.AUDIT_READ,
         Permission.ML_READ,
+        Permission.GRAPH_READ, Permission.GNN_READ, Permission.CAUSAL_READ,
         Permission.OBSERVABILITY_READ, Permission.ALERTS_READ,
         Permission.METRICS_READ, Permission.TRACES_READ, Permission.EVENTS_INSPECT,
     ],
