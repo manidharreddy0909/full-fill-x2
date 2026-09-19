@@ -3,6 +3,38 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.4.0] — 2026-09-19 — Phase 4: Real-World Data + Supply-Chain Integrations (Free-First / Local-First / Open-Data-First)
+
+### Added
+
+**Vendor-Neutral Open Data Adapters & Ingestion Architecture (`backend/app/adapters/`, `backend/app/services/ingestion.py`)**
+- Abstract `DataSourceAdapter` protocol contract and dynamic `AdapterRegistry` supporting `LIVE`, `HYBRID`, and `OFFLINE` (Seed 42) modes.
+- Open-Meteo Weather API adapter (`OpenMeteoWeatherAdapter`), USGS Earthquake GeoJSON adapter (`USGSEarthquakeAdapter`), OpenStreetMap/Ports geospatial adapter (`OpenStreetMapPortAdapter`), and RSS Weak-Signal Intelligence feed adapter (`RSSWeakSignalAdapter`).
+- Free-First policy: 100% open APIs / local deterministic fallback fixtures without requiring paid API keys.
+
+**Canonical Data Models & Row-Level Tenant Persistence (`backend/app/models/data_ingestion.py`, `backend/alembic/versions/003_real_world_data.py`)**
+- Pydantic v2 schemas (`ExternalObservation`, `ExternalSignal`, `EntityResolutionCandidate`, `DataQualityReport`, `IngestionRunSummary`) and 8 SQLAlchemy 2.0 ORM tables.
+- Alembic migration `003_real_world_data.py` with multi-tenant row-level `organization_id` scoping.
+
+**Data Quality Engine & Deterministic Entity Resolution (`backend/app/services/data_quality.py`, `backend/app/services/entity_resolution.py`)**
+- `DataQualityEngine` calculating completeness ($S_c$), validity ($S_v$), freshness ($S_f$), and duplicate ($S_d$) metric scores into composite reports ($S_{\text{overall}}$).
+- `EntityResolutionService` mapping external entities/locations to canonical supply chain graph nodes via exact alias matching, name matching, and Haversine spatial proximity matching ($\le 50\text{ km}$).
+
+**Data Replay Engine, Ingestion Scheduler & REST API Router (`backend/app/services/data_replay.py`, `backend/app/services/scheduler.py`, `backend/app/api/ingestion.py`)**
+- `DataReplayService` for offline historical replay benchmarking ($100\%$ determinism verified).
+- `IngestionScheduler` background loop for periodic polling.
+- REST API router registered under `/api/data/*` using Phase 3 `SecurityContext` & RBAC permissions (`Permission.DATA_IMPORT`).
+
+**Cinematic Data Fabric Workspace (`frontend/src/components/data/DataFabric.tsx`, `App.tsx`, `Navbar.tsx`)**
+- `DataFabric.tsx` workspace featuring Source Observatory, Live Ingestion Stream, Data Quality Inspector, Entity Resolution Workspace, Provenance Explorer, and Storage view.
+- Connected `DataFabric` into main `App.tsx` navigation under `DATA` workspace tab.
+
+**Comprehensive Specifications & Test Suite (`docs/`, `backend/tests/`)**
+- Authored `DATA_INTEGRATION_ARCHITECTURE.md`, `DATA_SOURCES.md`, `DATA_ADAPTER_SPEC.md`, `DATA_QUALITY_SPEC.md`, `ENTITY_RESOLUTION_SPEC.md`, `DATA_REPLAY_SPEC.md`, `DATA_SECURITY.md`, `DATA_OPERATIONS.md`, `DATA_API.md`, and `ADR-034`.
+- Authored unit test suites `backend/tests/test_data_adapters.py` and `backend/tests/test_data_ingestion.py` (8/8 PASS, 173/173 full backend PASS).
+
+---
+
 ## [1.3.0] — 2026-09-19 — Phase 3: Identity + Enterprise Security (Free-First / Local-First / Zero-Trust)
 
 ### Added

@@ -17,6 +17,7 @@ from app.api.health import router as health_router
 from app.api.evaluation import router as evaluation_router
 from app.api.demo import router as demo_router
 from app.api.data import router as data_router
+from app.api.ingestion import router as ingestion_router
 from app.api.auth import router as auth_router
 from app.schemas.world import ApiResponse
 
@@ -37,6 +38,7 @@ api_router.include_router(websocket_router)
 api_router.include_router(evaluation_router)
 api_router.include_router(demo_router)
 api_router.include_router(data_router)
+api_router.include_router(ingestion_router)
 
 
 

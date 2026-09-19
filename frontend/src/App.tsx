@@ -22,7 +22,7 @@ import { EvaluationDashboard } from './components/evaluation/EvaluationDashboard
 import { DemoMode } from './components/demo/DemoMode';
 import { CommandCenter } from './components/command/CommandCenter';
 import { IntelligencePanel } from './components/intelligence/IntelligencePanel';
-import { DataFoundation } from './components/data/DataFoundation';
+import { DataFabric } from './components/data/DataFabric';
 import { SecurityConsole } from './components/security/SecurityConsole';
 import { IdentityGateway } from './components/auth/IdentityGateway';
 import { EventToastContainer } from './components/common/EventToastContainer';
@@ -226,7 +226,7 @@ export const App: React.FC = () => {
         ) : activeTab === 'DEMO' ? (
           <DemoMode />
         ) : activeTab === 'DATA' ? (
-          <DataFoundation />
+          <DataFabric />
         ) : activeTab === 'SECURITY' ? (
           <SecurityConsole />
         ) : activeTab === 'RESPONSE' ? (

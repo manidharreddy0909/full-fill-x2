@@ -796,7 +796,32 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 3 — Identity & Enterprise Security Complete*
+## ADR-034: Real-World Data Integration Architecture
+
+**Date**: 2026-09-19  
+**Status**: ACCEPTED  
+**Phase**: 4 (Real-World Data & Supply-Chain Integrations)  
+
+**Context**: FULFILL-X required a production-grade, open-data-first real-world data ingestion engine connecting external environmental, seismic, maritime port, and news weak-signal feeds into the deterministic World Model and Risk Engine, strictly following the Free-First principle without requiring paid API credentials.
+
+**Decision**:
+1. **Vendor-Neutral Data Adapters (`DataSourceAdapter`)**: Standardized open adapters (`OpenMeteoWeatherAdapter`, `USGSEarthquakeAdapter`, `OpenStreetMapPortAdapter`, `RSSWeakSignalAdapter`) managed via singleton `AdapterRegistry` with support for `LIVE`, `HYBRID`, and `OFFLINE` (Seed 42) modes.
+2. **Canonical Models & Persistent Schema**: Defined `ExternalObservation`, `ExternalSignal`, `EntityResolutionCandidate`, `DataQualityReport`, and `IngestionRunSummary` with 8 ORM tables in `backend/app/models/data_ingestion.py` and Alembic migration `003_real_world_data.py` under row-level `organization_id` multi-tenant scoping.
+3. **Data Quality Engine**: Built `DataQualityEngine` calculating completeness ($S_c$), validity ($S_v$), freshness ($S_f$), and duplicate ($S_d$) scores into composite report metrics ($S_{\text{overall}}$).
+4. **Deterministic Entity Resolution**: Implemented `EntityResolutionService` executing exact alias lookup, graph node name matching, and Haversine spatial proximity matching ($\le 50\text{ km}$).
+5. **Real-Time Data Fabric Workspace**: Created `DataFabric.tsx` frontend featuring Source Observatory, Live Ingestion Stream, Data Quality Inspector, Entity Resolution Workspace, Provenance Explorer, and Storage view.
+6. **Data Replay & Background Scheduler**: Added `DataReplayService` for offline replay benchmarking and `IngestionScheduler` for periodic polling. Authored Phase 4 specification docs (`DATA_INTEGRATION_ARCHITECTURE.md`, `DATA_SOURCES.md`, `DATA_ADAPTER_SPEC.md`, `DATA_QUALITY_SPEC.md`, `ENTITY_RESOLUTION_SPEC.md`, `DATA_REPLAY_SPEC.md`, `DATA_SECURITY.md`, `DATA_OPERATIONS.md`, `DATA_API.md`).
+
+**Rationale**:
+- Provides real-world environmental and supply chain intelligence to FULFILL-X while maintaining 100% determinism, security isolation, and zero paid API dependencies.
+
+**Consequences**:
+- Phase 4 Real-World Data & Supply-Chain Integrations is fully completed, tested, verified, and documented.
+
+---
+
+*Last updated: Phase 4 — Real-World Data & Supply-Chain Integrations Complete*
+
 
 
 
