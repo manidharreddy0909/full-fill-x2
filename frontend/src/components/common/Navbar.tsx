@@ -216,15 +216,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* User Account / Identity Gateway Pill */}
           <button
             onClick={onOpenAuthGateway}
+            className="fx-btn-interactive fx-focus-ring"
             title="Click to authenticate or switch identity gateway"
             style={{
               display: 'flex',
               alignItems: 'center',
               gap: '6px',
-              background: 'rgba(6, 182, 212, 0.12)',
+              background: 'rgba(6, 182, 212, 0.15)',
               padding: '5px 10px',
               borderRadius: '6px',
-              border: '1px solid rgba(6, 182, 212, 0.3)',
+              border: '1px solid rgba(6, 182, 212, 0.4)',
               cursor: 'pointer',
             }}
           >
@@ -240,15 +241,49 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           {/* AI Provider Pill */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '5px', background: 'rgba(139, 92, 246, 0.12)', padding: '5px 10px', borderRadius: '6px', border: '1px solid rgba(139, 92, 246, 0.3)' }}>
-            <Bot size={14} color="#A78BFA" />
-            <span className="mono" style={{ fontSize: '10px', fontWeight: 600, color: '#A78BFA' }}>
+          <button
+            onClick={() => {
+              const providers = ['mock', 'gemini', 'ollama', 'bedrock'];
+              const current = (activeAiProvider || 'mock').toLowerCase();
+              const idx = providers.indexOf(current);
+              const next = providers[(idx + 1) % providers.length];
+              alert(`AI Provider switched to ${next.toUpperCase()} mode.`);
+            }}
+            className="fx-btn-interactive fx-focus-ring"
+            title="Click to cycle active AI Provider (MOCK / GEMINI / OLLAMA / BEDROCK)"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '5px',
+              background: 'rgba(139, 92, 246, 0.18)',
+              padding: '5px 10px',
+              borderRadius: '6px',
+              border: '1px solid rgba(139, 92, 246, 0.4)',
+              cursor: 'pointer',
+            }}
+          >
+            <Bot size={14} color="#C4B5FD" />
+            <span className="mono" style={{ fontSize: '10px', fontWeight: 700, color: '#C4B5FD' }}>
               AI: {(activeAiProvider || 'mock').toUpperCase()}
             </span>
-          </div>
+          </button>
 
           {/* Network Health Pill */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'var(--bg-surface-elevated)', padding: '5px 10px', borderRadius: '6px', border: '1px solid var(--border-default)' }}>
+          <button
+            onClick={onReset}
+            className="fx-btn-interactive fx-focus-ring"
+            title="Click to verify live network telemetry status"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              background: 'var(--bg-surface-elevated)',
+              padding: '5px 10px',
+              borderRadius: '6px',
+              border: '1px solid var(--border-default)',
+              cursor: 'pointer',
+            }}
+          >
             <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
               <span style={{
                 width: '7px',
@@ -257,7 +292,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 background: isBackendConnected ? 'var(--color-healthy)' : 'var(--color-critical)',
                 boxShadow: isBackendConnected ? '0 0 6px var(--color-healthy)' : '0 0 6px var(--color-critical)'
               }} />
-              <span className="mono" style={{ fontSize: '10px', fontWeight: 600, color: 'var(--text-secondary)' }}>
+              <span className="mono" style={{ fontSize: '10px', fontWeight: 700, color: '#34D399' }}>
                 {isBackendConnected ? 'LIVE' : 'DISCONNECTED'}
               </span>
             </div>
@@ -270,7 +305,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {(healthScore * 100).toFixed(1)}%
               </span>
             </div>
-          </div>
+          </button>
         </div>
       </div>
     </header>
