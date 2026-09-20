@@ -1,14 +1,14 @@
 /**
- * CockpitWorkspace — Autonomous Pipeline Orchestrator
- * Phase 13A: Visual Transformation
+ * CockpitWorkspace — Autonomous Pipeline Orchestrator & Decision Control
+ * Phase 13C: Response & Decision Visualization
  *
  * Design: Command flight deck aesthetic, stage timeline rail with glowing status rings,
- * real-time stage execution timeline, Candidate Plan approval card stack, Framer Motion entrance.
+ * real-time stage execution timeline, PlanComparisonMatrix integration with REAL Approve/Reject actions.
  */
 
 import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   fetchCockpitStatus,
   createCockpitSession,
@@ -19,10 +19,10 @@ import {
 } from '../../api/cockpitApi';
 import { useVisualEnvironmentStore } from '../../store/visualEnvironmentStore';
 import { StatusPill } from '../../visual/telemetry/StatusPill';
+import { PlanComparisonMatrix } from '../../visual/response/PlanComparisonMatrix';
 import {
   Activity, Cpu, Play, CheckCircle2, XCircle, ChevronRight,
-  RefreshCw, BarChart3, Clock, ShieldCheck, AlertTriangle, Gavel,
-  Sparkles, Layers, ArrowRight
+  RefreshCw, BarChart3, Clock, ShieldCheck, AlertTriangle, Gavel
 } from 'lucide-react';
 import { DecisionSession, DecisionStage, DecisionStageRecord } from '../../types/cockpit';
 
@@ -265,142 +265,41 @@ export const CockpitWorkspace: React.FC = () => {
         </motion.div>
       )}
 
-      {/* Main Execution View */}
+      {/* Main Execution & Plan Comparison View */}
       {activeSession && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left 2 Columns: Stage Execution Timeline */}
-          <div className="lg:col-span-2 flex flex-col gap-3.5">
-            {activeSession.timeline.stages.map((stageRec) => (
-              <motion.div
-                key={stageRec.stage}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="p-4 rounded-xl bg-[#090d16]/90 border backdrop-blur-xl shadow-lg transition-all hover:border-cyan-500/30"
-                style={{ borderColor: `${stageStatusColor(stageRec.status)}33` }}
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="font-mono text-xs font-bold text-slate-200 tracking-wide uppercase">
-                    {stageRec.stage.replace(/_/g, ' ')}
-                  </span>
-                  <span
-                    className="px-2.5 py-0.5 rounded text-[10px] font-bold font-mono tracking-wider border shadow-sm"
-                    style={{
-                      color: stageStatusColor(stageRec.status),
-                      background: `${stageStatusColor(stageRec.status)}15`,
-                      borderColor: `${stageStatusColor(stageRec.status)}40`,
-                    }}
-                  >
-                    {stageRec.status}
-                  </span>
-                </div>
-                <p className="text-xs text-slate-300 font-sans leading-relaxed">{stageRec.summary}</p>
-                {stageRec.errors.length > 0 && (
-                  <div className="mt-2 space-y-1">
-                    {stageRec.errors.map((err, i) => (
-                      <div key={i} className="text-[10px] font-mono text-red-400 flex items-center gap-1">
-                        <AlertTriangle className="w-3 h-3 text-red-400 shrink-0" />
-                        <span>{err}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </motion.div>
-            ))}
+        <div className="flex flex-col gap-6">
+          {/* Multi-Objective Candidate Plan Comparison Matrix */}
+          <PlanComparisonMatrix
+            plans={candidatePlans}
+            onApprovePlan={(planId) => approveMutation.mutate({ sessionId: activeSession.session_id, planId })}
+            onRejectPlan={(planId) => rejectMutation.mutate({ sessionId: activeSession.session_id, planId })}
+            isPending={isRunning}
+          />
 
-            {activeSession.timeline.stages.length === 0 && (
-              <div className="text-center text-slate-500 font-mono text-xs py-12 bg-[#090d16]/50 rounded-xl border border-slate-800">
-                Advance the pipeline to see real-time stage execution records.
+          {/* Approval Decision Card */}
+          {activeSession.approval_decision && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className={`p-4 rounded-xl border backdrop-blur-xl shadow-2xl ${
+                activeSession.approval_decision.status === 'APPROVED'
+                  ? 'bg-emerald-950/30 border-emerald-500/40'
+                  : 'bg-red-950/30 border-red-500/40'
+              }`}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <Gavel className={`w-4 h-4 ${activeSession.approval_decision.status === 'APPROVED' ? 'text-emerald-400' : 'text-red-400'}`} />
+                <span className={`font-mono font-bold text-sm uppercase ${activeSession.approval_decision.status === 'APPROVED' ? 'text-emerald-300' : 'text-red-300'}`}>
+                  {activeSession.approval_decision.status}
+                </span>
               </div>
-            )}
-          </div>
-
-          {/* Right Column: Reconciled Plans & Approvals */}
-          <div className="flex flex-col gap-4">
-            <div className="p-5 rounded-xl bg-[#090d16]/90 border border-cyan-500/20 backdrop-blur-xl shadow-2xl flex flex-col gap-3">
-              <h3 className="font-mono font-bold text-xs uppercase tracking-wider border-b border-slate-800 pb-2.5 text-slate-200 flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-cyan-400" />
-                <span>Candidate Plans ({candidatePlans.length})</span>
-              </h3>
-
-              <div className="space-y-3 max-h-96 overflow-y-auto">
-                {candidatePlans.map((plan: any) => (
-                  <div key={plan.candidate_id} className="p-3.5 rounded-lg bg-[#030712]/90 border border-slate-800 flex flex-col gap-2 hover:border-cyan-500/30 transition-all">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <div className="text-[10px] font-mono text-cyan-400">{plan.candidate_id}</div>
-                        <div className="text-sm font-bold text-white font-sans">{plan.name}</div>
-                      </div>
-                      <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded shrink-0 border ${
-                        plan.status === 'APPROVED' ? 'bg-emerald-950 text-emerald-400 border-emerald-800' :
-                        plan.status === 'REJECTED' ? 'bg-red-950 text-red-400 border-red-800' :
-                        'bg-slate-800 text-slate-300 border-slate-700'
-                      }`}>{plan.status}</span>
-                    </div>
-
-                    <p className="text-[11px] text-slate-400 font-sans leading-relaxed">{plan.description}</p>
-
-                    <div className="flex gap-3 text-[10px] font-mono pt-1">
-                      <span className="text-slate-400">Cost: <strong className="text-emerald-400">${plan.estimated_total_cost?.toLocaleString()}</strong></span>
-                      <span className="text-slate-400">Delay: <strong className="text-amber-400">+{plan.estimated_max_delay_hours}h</strong></span>
-                    </div>
-
-                    {activeSession.current_stage === 'READY_FOR_APPROVAL' &&
-                     plan.status !== 'APPROVED' && plan.status !== 'REJECTED' && (
-                      <div className="flex gap-2 pt-2">
-                        <button
-                          onClick={() => approveMutation.mutate({ sessionId: activeSession.session_id, planId: plan.candidate_id })}
-                          disabled={isRunning}
-                          className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white text-[11px] font-mono font-bold transition-all shadow-md shadow-emerald-900/30"
-                        >
-                          <CheckCircle2 className="w-3.5 h-3.5" />
-                          <span>APPROVE</span>
-                        </button>
-                        <button
-                          onClick={() => rejectMutation.mutate({ sessionId: activeSession.session_id, planId: plan.candidate_id })}
-                          disabled={isRunning}
-                          className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded bg-red-700 hover:bg-red-600 disabled:opacity-50 text-white text-[11px] font-mono font-bold transition-all shadow-md shadow-red-900/30"
-                        >
-                          <XCircle className="w-3.5 h-3.5" />
-                          <span>REJECT</span>
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                ))}
-
-                {candidatePlans.length === 0 && (
-                  <div className="text-center text-slate-500 font-mono text-xs py-8">
-                    Advance pipeline to generate candidate plans.
-                  </div>
-                )}
+              <div className="font-mono text-[11px] text-slate-300 space-y-1">
+                <div>Plan: <strong className="text-white">{activeSession.approval_decision.plan_name}</strong></div>
+                <div>Approver: <strong className="text-cyan-300">{activeSession.approval_decision.approver}</strong></div>
+                <div className="text-slate-400 font-sans mt-1">{activeSession.approval_decision.rationale}</div>
               </div>
-            </div>
-
-            {/* Approval Decision Card */}
-            {activeSession.approval_decision && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className={`p-4 rounded-xl border backdrop-blur-xl shadow-2xl ${
-                  activeSession.approval_decision.status === 'APPROVED'
-                    ? 'bg-emerald-950/30 border-emerald-500/40'
-                    : 'bg-red-950/30 border-red-500/40'
-                }`}
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <Gavel className={`w-4 h-4 ${activeSession.approval_decision.status === 'APPROVED' ? 'text-emerald-400' : 'text-red-400'}`} />
-                  <span className={`font-mono font-bold text-sm uppercase ${activeSession.approval_decision.status === 'APPROVED' ? 'text-emerald-300' : 'text-red-300'}`}>
-                    {activeSession.approval_decision.status}
-                  </span>
-                </div>
-                <div className="font-mono text-[11px] text-slate-300 space-y-1">
-                  <div>Plan: <strong className="text-white">{activeSession.approval_decision.plan_name}</strong></div>
-                  <div>Approver: <strong className="text-cyan-300">{activeSession.approval_decision.approver}</strong></div>
-                  <div className="text-slate-400 font-sans mt-1">{activeSession.approval_decision.rationale}</div>
-                </div>
-              </motion.div>
-            )}
-          </div>
+            </motion.div>
+          )}
         </div>
       )}
 
