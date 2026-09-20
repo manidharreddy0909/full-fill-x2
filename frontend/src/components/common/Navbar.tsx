@@ -103,6 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               return (
                 <button
                   key={tab}
+                  className="fx-btn-interactive fx-focus-ring"
                   onClick={() => setActiveTab(tab)}
                   style={{
                     display: 'flex',

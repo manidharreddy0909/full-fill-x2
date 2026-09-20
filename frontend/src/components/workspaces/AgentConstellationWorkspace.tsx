@@ -181,7 +181,7 @@ export const AgentConstellationWorkspace: React.FC = () => {
 
       {/* Main Content Area: 2D Table vs 3D Spatial Canvas */}
       {viewMode === '2D' ? (
-        <div className="relative z-10 p-6 pt-24 max-w-6xl mx-auto overflow-y-auto max-h-[calc(100vh-70px)] space-y-6">
+        <div className="relative z-10 p-6 pt-4 max-w-6xl mx-auto overflow-y-auto max-h-[calc(100vh-140px)] space-y-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}

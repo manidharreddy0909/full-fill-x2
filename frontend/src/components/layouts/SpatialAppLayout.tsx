@@ -37,7 +37,7 @@ export const SpatialAppLayout: React.FC = () => {
     const path = location.pathname;
     if (path.startsWith('/world')) return 'WORLD';
     if (path.startsWith('/intelligence/gnn')) return 'GRAPH_INTELLIGENCE';
-    if (path.startsWith('/intelligence/causal')) return 'GRAPH_INTELLIGENCE';
+    if (path.startsWith('/intelligence/causal')) return 'PREDICTIVE_ML';
     if (path.startsWith('/intelligence')) return 'INTELLIGENCE';
     if (path.startsWith('/response')) return 'RESPONSE';
     if (path.startsWith('/decision')) return 'DECISION';
@@ -57,6 +57,7 @@ export const SpatialAppLayout: React.FC = () => {
         navigate('/command');
         break;
       case 'WORLD':
+      case 'DATA':
         navigate('/world');
         break;
       case 'INTELLIGENCE':
@@ -65,10 +66,14 @@ export const SpatialAppLayout: React.FC = () => {
       case 'GRAPH_INTELLIGENCE':
         navigate('/intelligence/gnn');
         break;
+      case 'PREDICTIVE_ML':
+        navigate('/intelligence/causal');
+        break;
       case 'RESPONSE':
         navigate('/response/war-room');
         break;
       case 'DECISION':
+      case 'DEMO':
         navigate('/decision/cockpit');
         break;
       case 'SIMULATION':
@@ -88,6 +93,10 @@ export const SpatialAppLayout: React.FC = () => {
         break;
       case 'GOVERNANCE':
         navigate('/governance/policies');
+        break;
+      case 'SECURITY':
+        setAuthGatewayOpen(true);
+        navigate('/governance/resilience');
         break;
       default:
         navigate('/command');
