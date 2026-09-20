@@ -44,62 +44,63 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   const navItems: { tab: ProductTab; label: string; icon: React.ReactNode }[] = [
-    { tab: 'COMMAND', label: 'Command', icon: <LayoutDashboard size={14} /> },
+    { tab: 'COMMAND', label: 'Command Center', icon: <LayoutDashboard size={14} /> },
+    { tab: 'INTELLIGENCE', label: 'Intelligence Swarm', icon: <ShieldAlert size={14} /> },
+    { tab: 'DECISION', label: 'Decision Cockpit', icon: <Cpu size={14} /> },
     { tab: 'WORLD', label: 'Digital Twin', icon: <Box size={14} /> },
-    { tab: 'INTELLIGENCE', label: 'Intelligence', icon: <ShieldAlert size={14} /> },
     { tab: 'RESPONSE', label: 'War Room', icon: <Bot size={14} /> },
-    { tab: 'DECISION', label: 'Cockpit', icon: <Cpu size={14} /> },
-    { tab: 'EVALUATION', label: 'Evaluation', icon: <Activity size={14} /> },
-    { tab: 'DEMO', label: 'Demo Mode', icon: <Sparkles size={14} /> },
-    { tab: 'DATA', label: 'Data Platform', icon: <Database size={14} /> },
-    { tab: 'SECURITY', label: 'Security', icon: <Shield size={14} /> },
+    { tab: 'SECURITY', label: 'Security & Policy', icon: <Shield size={14} /> },
     { tab: 'OBSERVABILITY', label: 'Observability', icon: <Radio size={14} /> },
+  ];
+
+  const secondaryNavItems: { tab: ProductTab; label: string; icon: React.ReactNode }[] = [
+    { tab: 'DATA', label: 'Data Platform', icon: <Database size={14} /> },
+    { tab: 'EVALUATION', label: 'System Evaluation', icon: <Activity size={14} /> },
     { tab: 'PREDICTIVE_ML', label: 'Predictive ML', icon: <Brain size={14} /> },
     { tab: 'GRAPH_INTELLIGENCE', label: 'Graph GNN', icon: <GitFork size={14} /> },
     { tab: 'SIMULATION', label: 'Monte Carlo Twin', icon: <Layers size={14} /> },
     { tab: 'RESILIENCE_AGENTS', label: 'Resilience Agents', icon: <Bot size={14} /> },
     { tab: 'RESILIENCE_OS', label: 'Resilience OS', icon: <Cpu size={14} /> },
     { tab: 'GOVERNANCE', label: 'Governance', icon: <Shield size={14} /> },
+    { tab: 'DEMO', label: 'Demo Mode', icon: <Sparkles size={14} /> },
   ];
 
+  const [isMoreOpen, setIsMoreOpen] = React.useState(false);
+
   return (
-    <header className="glass-panel" style={{ borderRadius: 0, borderTop: 0, borderLeft: 0, borderRight: 0, padding: '10px 20px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+    <header className="glass-panel relative z-50" style={{ borderRadius: 0, borderTop: 0, borderLeft: 0, borderRight: 0, padding: '8px 16px', position: 'relative', zIndex: 100 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'nowrap', gap: '12px' }}>
         {/* Brand & Version */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <div style={{
-              width: '32px',
-              height: '32px',
+              width: '30px',
+              height: '30px',
               borderRadius: '6px',
-              background: 'linear-gradient(135deg, #5B93F6 0%, #3B82F6 100%)',
+              background: 'linear-gradient(135deg, #00f0ff 0%, #3b82f6 100%)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: 'var(--shadow-glow-blue)'
+              boxShadow: '0 0 12px rgba(0,240,255,0.4)'
             }}>
-              <Cpu size={20} color="#FFFFFF" />
+              <Cpu size={18} color="#030712" />
             </div>
             <div>
-              <div style={{ fontSize: '18px', fontWeight: 800, letterSpacing: '0.5px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                FULFILL<span style={{ color: 'var(--text-accent)' }}>-X</span>
-                <span className="mono" style={{ fontSize: '10px', background: 'rgba(16, 185, 129, 0.15)', color: '#34D399', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(16, 185, 129, 0.4)' }}>
-                  v1.0.0
+              <div style={{ fontSize: '16px', fontWeight: 800, letterSpacing: '0.5px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                FULFILL<span style={{ color: '#00f0ff' }}>-X</span>
+                <span className="mono" style={{ fontSize: '10px', background: 'rgba(16, 185, 129, 0.15)', color: '#34D399', padding: '1px 5px', borderRadius: '4px', border: '1px solid rgba(16, 185, 129, 0.4)' }}>
+                  v1.0
                 </span>
-              </div>
-              <div style={{ fontSize: '10px', color: 'var(--text-secondary)' }}>
-                Fulfillment Resilience Intelligence Platform
               </div>
             </div>
           </div>
 
-          <div style={{ height: '24px', width: '1px', background: 'var(--border-default)' }} />
+          <div style={{ height: '20px', width: '1px', background: 'rgba(255,255,255,0.15)' }} />
 
-          {/* Product Navigation Tabs */}
-          <nav style={{ display: 'flex', alignItems: 'center', background: 'rgba(3, 7, 18, 0.95)', padding: '4px 6px', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.1)', gap: '4px', overflowX: 'auto', maxWidth: '100%' }}>
+          {/* Core Product Navigation Tabs */}
+          <nav style={{ display: 'flex', alignItems: 'center', background: 'rgba(3, 7, 18, 0.95)', padding: '3px 5px', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.1)', gap: '3px' }}>
             {navItems.map(({ tab, label, icon }) => {
               const isActive = activeTab === tab;
-              const isDemo = tab === 'DEMO';
               return (
                 <button
                   key={tab}
@@ -109,22 +110,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                     display: 'flex',
                     alignItems: 'center',
                     gap: '5px',
-                    padding: '5px 10px',
-                    borderRadius: '6px',
-                    border: isActive ? '1px solid rgba(91, 147, 246, 0.4)' : '1px solid transparent',
-                    background: isActive
-                      ? isDemo
-                        ? 'linear-gradient(135deg, rgba(245, 158, 11, 0.3) 0%, rgba(217, 119, 6, 0.3) 100%)'
-                        : 'rgba(17, 28, 42, 0.9)'
-                      : 'transparent',
-                    color: isActive ? (isDemo ? '#FBBF24' : '#67E8F9') : '#94A3B8',
+                    padding: '5px 9px',
+                    borderRadius: '5px',
+                    border: isActive ? '1px solid rgba(0, 240, 255, 0.5)' : '1px solid transparent',
+                    background: isActive ? 'rgba(0, 240, 255, 0.12)' : 'transparent',
+                    color: isActive ? '#00f0ff' : '#94A3B8',
                     fontWeight: isActive ? 700 : 500,
                     cursor: 'pointer',
                     fontSize: '11px',
                     fontFamily: 'var(--font-mono)',
                     whiteSpace: 'nowrap',
                     transition: 'all 0.15s ease',
-                    boxShadow: isActive ? '0 0 12px rgba(6, 182, 212, 0.2)' : 'none',
+                    boxShadow: isActive ? '0 0 10px rgba(0, 240, 255, 0.25)' : 'none',
                   }}
                 >
                   {icon}
@@ -132,6 +129,76 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </button>
               );
             })}
+
+            {/* More Tools Dropdown */}
+            <div style={{ position: 'relative' }}>
+              <button
+                onClick={() => setIsMoreOpen(!isMoreOpen)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  padding: '5px 9px',
+                  borderRadius: '5px',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: isMoreOpen ? 'rgba(255,255,255,0.1)' : 'transparent',
+                  color: '#cbd5e1',
+                  fontSize: '11px',
+                  fontFamily: 'var(--font-mono)',
+                  cursor: 'pointer',
+                }}
+              >
+                <Layers size={13} />
+                <span>More Tools ▼</span>
+              </button>
+
+              {isMoreOpen && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '36px',
+                    right: 0,
+                    zIndex: 9999,
+                    background: '#090d16',
+                    border: '1px solid rgba(0, 240, 255, 0.4)',
+                    borderRadius: '8px',
+                    padding: '8px',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.95), 0 0 20px rgba(0, 240, 255, 0.25)',
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(2, 170px)',
+                    gap: '6px',
+                  }}
+                  onMouseLeave={() => setIsMoreOpen(false)}
+                >
+                  {secondaryNavItems.map(({ tab, label, icon }) => (
+                    <button
+                      key={tab}
+                      onClick={() => {
+                        setActiveTab(tab);
+                        setIsMoreOpen(false);
+                      }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        padding: '6px 8px',
+                        borderRadius: '4px',
+                        border: 'none',
+                        background: activeTab === tab ? 'rgba(0, 240, 255, 0.15)' : 'transparent',
+                        color: activeTab === tab ? '#00f0ff' : '#94a3b8',
+                        fontSize: '11px',
+                        fontFamily: 'var(--font-mono)',
+                        cursor: 'pointer',
+                        textAlign: 'left',
+                      }}
+                    >
+                      {icon}
+                      <span style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>{label}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </nav>
         </div>
 

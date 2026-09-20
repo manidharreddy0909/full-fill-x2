@@ -243,6 +243,12 @@ class MultiAgentResilienceService:
             candidate_actions=candidate_actions,
         )
 
+    def list_datasets(self, organization_id: str = "org-fulfillx-default") -> List[LearningDataset]:
+        return self.learning_pipeline.list_datasets(organization_id=organization_id)
+
+    def list_challengers(self, organization_id: str = "org-fulfillx-default") -> List[ChallengerModelRecord]:
+        return self.learning_pipeline.list_challengers(organization_id=organization_id)
+
     def _publish_event(self, event_type: EventType, payload: dict):
         try:
             import asyncio

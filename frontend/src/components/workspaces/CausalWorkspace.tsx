@@ -36,9 +36,9 @@ export const CausalWorkspace: React.FC = () => {
   const counterfactualMutation = useMutation<CounterfactualRun, Error, CausalHypothesis>({
     mutationFn: (hyp) =>
       runCounterfactualSimulation({
-        target_node_id: hyp.target_effect_node_id,
-        do_action: 'SUPPLIER_SWITCH',
-        parameters: { root_cause: hyp.root_cause_node_id },
+        target_node_id: hyp.effect_node_id || hyp.cause_node_id || 'wh-001',
+        parameter_overrides: { capacity: 80.0, utilization: 0.40 },
+        horizon_hours: 24,
       }),
   });
 
@@ -98,10 +98,10 @@ export const CausalWorkspace: React.FC = () => {
       {/* Primary Structural Causal DAG Visual Primitive */}
       {primaryHypothesis && (
         <CausalDAGPrimitive
-          rootCauseNodeId={primaryHypothesis.root_cause_node_id}
-          targetEffectNodeId={primaryHypothesis.target_effect_node_id}
-          mechanismSummary={primaryHypothesis.description}
-          evidenceStatus={primaryHypothesis.evidence_status}
+          rootCauseNodeId={primaryHypothesis.cause_node_id}
+          targetEffectNodeId={primaryHypothesis.effect_node_id}
+          mechanismSummary={primaryHypothesis.assumptions?.join('; ') || 'Causal mechanism active'}
+          evidenceStatus={primaryHypothesis.causal_status}
           confidenceScore={primaryHypothesis.confidence}
           counterfactualResult={counterfactualMutation.data}
         />
@@ -129,15 +129,17 @@ export const CausalWorkspace: React.FC = () => {
                 <div className="flex items-center gap-2 font-bold text-purple-300">
                   <span>{hyp.hypothesis_id}</span>
                   <span className="text-slate-500">•</span>
-                  <span className="text-slate-300">{hyp.root_cause_node_id} → {hyp.target_effect_node_id}</span>
+                  <span className="text-slate-300">{hyp.cause_node_id} → {hyp.effect_node_id}</span>
                 </div>
                 <StatusPill
-                  color={hyp.evidence_status === 'SANDBOX_COUNTERFACTUAL' ? '#34d399' : hyp.evidence_status === 'HIGH_CONFIDENCE_HYPOTHESIS' ? '#a855f7' : '#fbbf24'}
-                  label={hyp.evidence_status.replace(/_/g, ' ')}
+                  color={hyp.causal_status === 'SUPPORTED_BY_EXPERIMENT' ? '#34d399' : hyp.causal_status === 'CAUSAL_HYPOTHESIS' ? '#a855f7' : '#fbbf24'}
+                  label={(hyp.causal_status || 'HYPOTHESIS').replace(/_/g, ' ')}
                 />
               </div>
 
-              <p className="text-xs text-slate-200 font-sans leading-relaxed">{hyp.description}</p>
+              <p className="text-xs text-slate-200 font-sans leading-relaxed">
+                Path: {hyp.propagation_path?.join(' → ') || 'Direct relationship'}. Assumptions: {hyp.assumptions?.join(', ') || 'None'}.
+              </p>
 
               <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-900 text-xs font-mono">
                 <span className="text-slate-400">

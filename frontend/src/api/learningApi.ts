@@ -106,8 +106,8 @@ export async function fetchChallengerModels(): Promise<ChallengerModelRecord[]> 
 export async function trainChallengerModel(
   datasetName: string = 'DemandOutcomeDataset',
   modelName: string = 'DemandForecastModel'
-): Promise<{ run_result: LearningRunResult; challenger: ChallengerModelRecord }> {
-  const resp = await fetch(`${API_BASE}/learning/retrain-challenger`, {
+): Promise<{ learning_run: LearningRunResult; challenger: ChallengerModelRecord }> {
+  const resp = await fetch(`${API_BASE}/learning/train`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ dataset_name: datasetName, model_name: modelName }),
@@ -121,7 +121,7 @@ export async function activateChallengerModel(
   approvedBy: string = 'Head of AI Operations',
   reason: string = 'Validated lower MAE baseline improvement'
 ): Promise<ChallengerModelRecord> {
-  const resp = await fetch(`${API_BASE}/learning/activate-challenger`, {
+  const resp = await fetch(`${API_BASE}/learning/candidates/activate`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -137,8 +137,8 @@ export async function activateChallengerModel(
 export async function rollbackModel(
   modelName: string = 'DemandForecastModel',
   approvedBy: string = 'Head of Operations'
-): Promise<{ status: string; active_version: string }> {
-  const resp = await fetch(`${API_BASE}/learning/rollback-model`, {
+): Promise<{ status: string; model_name: string; reverted_to_model_id: string }> {
+  const resp = await fetch(`${API_BASE}/learning/rollback`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ model_name: modelName, approved_by: approvedBy }),
@@ -151,7 +151,7 @@ export async function evaluatePolicy(
   situation: Record<string, any> = {},
   candidateActions: Record<string, any>[] = []
 ): Promise<PolicyEvaluationRecord> {
-  const resp = await fetch(`${API_BASE}/learning/evaluate-policy`, {
+  const resp = await fetch(`${API_BASE}/learning/policies/evaluate`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ situation, candidate_actions: candidateActions }),

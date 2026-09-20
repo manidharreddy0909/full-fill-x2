@@ -50,12 +50,18 @@ def get_signal_by_id(signal_id: UUID) -> ApiResponse[Signal]:
 from app.realtime.event_bus import event_bus
 from app.schemas.events import EventType, EventSeverity
 
+import logging
+logger = logging.getLogger("fulfillx.api.signals")
+
 @router.post("", response_model=ApiResponse[Signal], status_code=status.HTTP_201_CREATED)
 def inject_signal(req: SignalCreateRequest) -> ApiResponse[Signal]:
     """Inject a new weak signal into the Risk Engine."""
     sig = service.inject_signal(req)
     try:
         risk_map = service.get_risk_map()
+        node_risk_obj = risk_map.node_risks.get(sig.target_node_id)
+        comp_val = getattr(node_risk_obj, "composite", 0.8) if node_risk_obj else 0.8
+
         event_bus.publish_sync(
             EventType.SIGNAL_DETECTED,
             payload={
@@ -72,11 +78,11 @@ def inject_signal(req: SignalCreateRequest) -> ApiResponse[Signal]:
                 "network_health": risk_map.network_health,
                 "node_risks_count": len(risk_map.node_risks),
                 "node_id": sig.target_node_id,
-                "composite_risk": risk_map.node_risks.get(sig.target_node_id, {}).get("composite", 0.8) if isinstance(risk_map.node_risks.get(sig.target_node_id), dict) else getattr(risk_map.node_risks.get(sig.target_node_id), "composite", 0.8),
+                "composite_risk": comp_val,
             },
         )
-    except Exception:
-        pass
+    except Exception as err:
+        logger.warning(f"Error publishing signal events: {err}")
     return ApiResponse(data=sig)
 
 

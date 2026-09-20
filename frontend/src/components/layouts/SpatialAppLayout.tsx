@@ -6,15 +6,19 @@ import { SignalInjectorModal } from '../risk/SignalInjectorModal';
 import { IdentityGateway } from '../auth/IdentityGateway';
 import { useAppShellStore } from '../../store/appShellStore';
 import { useVisualEnvironmentStore } from '../../store/visualEnvironmentStore';
+import { Global3DParticleCanvas } from '../../visual/environment/Global3DParticleCanvas';
 import { seedWorld, resetWorld } from '../../api/worldApi';
 import { resetRisk, injectSignal } from '../../api/riskApi';
 import { SignalCreateRequest } from '../../types/risk';
 import { useQueryClient } from '@tanstack/react-query';
 
+import { useRealtimeStore } from '../../store/realtimeStore';
+
 export const SpatialAppLayout: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const queryClient = useQueryClient();
+  const realtimeState = useRealtimeStore();
 
   const {
     selectedNodeId,
@@ -31,6 +35,13 @@ export const SpatialAppLayout: React.FC = () => {
   } = useAppShellStore();
 
   const { viewMode, setViewMode } = useVisualEnvironmentStore();
+
+  // Establish global WebSocket connection for real-time telemetry events
+  React.useEffect(() => {
+    import('../../api/websocket').then(({ realtimeClient }) => {
+      realtimeClient.connect();
+    });
+  }, []);
 
   // Map route pathname to ProductTab
   const getActiveTab = (): ProductTab => {
@@ -140,7 +151,10 @@ export const SpatialAppLayout: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen w-screen bg-[#050911] overflow-hidden">
+    <div className="flex flex-col h-screen w-screen bg-[#030712] overflow-hidden relative">
+      {/* Dynamic 3D Floating Particle Constellation & Perspective Cyber Grid Canvas */}
+      <Global3DParticleCanvas />
+
       {/* Realtime Toast Notifications Container */}
       <EventToastContainer />
 
@@ -152,7 +166,7 @@ export const SpatialAppLayout: React.FC = () => {
         setViewMode={setViewMode}
         activePreset={activePreset}
         activeSeed={activeSeed}
-        healthScore={0.94}
+        healthScore={realtimeState.networkHealth || 0.94}
         isBackendConnected={isBackendConnected}
         activeAiProvider="mock"
         onSeedChange={handleSeedChange}
@@ -177,7 +191,7 @@ export const SpatialAppLayout: React.FC = () => {
         {/* Identity Gateway Modal */}
         {isAuthGatewayOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-md">
-            <div className="w-full max-w-md">
+            <div className="w-[440px] max-w-full">
               <IdentityGateway onClose={() => setAuthGatewayOpen(false)} />
             </div>
           </div>

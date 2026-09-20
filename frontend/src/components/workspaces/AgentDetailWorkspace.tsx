@@ -126,13 +126,17 @@ export const AgentDetailWorkspace: React.FC<AgentDetailWorkspaceProps> = ({ agen
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: 30 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 30 }}
-      transition={{ duration: 0.35 }}
-      className="absolute top-4 right-4 z-30 w-[440px] max-h-[calc(100vh-80px)] overflow-y-auto p-5 rounded-2xl bg-[#090d16]/95 border border-purple-500/30 backdrop-blur-2xl shadow-2xl text-slate-100 flex flex-col gap-4 font-sans"
-    >
+    <>
+      {/* Semi-transparent backdrop overlay */}
+      <div className="fixed inset-0 z-40 bg-black/40 backdrop-blur-xs" onClick={onClose} />
+
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: 50 }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        className="fixed top-[60px] right-0 bottom-0 z-50 w-[480px] max-w-full overflow-y-auto p-6 bg-[#080d17]/98 border-l border-cyan-500/40 backdrop-blur-2xl shadow-2xl text-slate-100 flex flex-col gap-4 font-sans scrollbar-thin scrollbar-thumb-cyan-500/30"
+      >
       {/* Header */}
       <div className="flex items-center justify-between pb-3 border-b border-purple-500/20">
         <div className="flex items-center gap-3">
@@ -206,5 +210,6 @@ export const AgentDetailWorkspace: React.FC<AgentDetailWorkspaceProps> = ({ agen
       {/* Institutional Memory Timeline */}
       <AgentMemoryTimeline memories={memories} />
     </motion.div>
+    </>
   );
 };

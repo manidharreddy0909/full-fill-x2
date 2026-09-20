@@ -167,3 +167,9 @@ class ContinuousLearningPipeline:
             self.challengers[prev_active_id].status = ChallengerStatus.ACTIVE
 
         return prev_active_id
+
+    def list_datasets(self, organization_id: str = "org-fulfillx-default") -> List[LearningDataset]:
+        return [ds for ds in self.datasets.values() if ds.organization_id == organization_id or not ds.organization_id]
+
+    def list_challengers(self, organization_id: str = "org-fulfillx-default") -> List[ChallengerModelRecord]:
+        return [c for c in self.challengers.values() if c.organization_id == organization_id or not c.organization_id]

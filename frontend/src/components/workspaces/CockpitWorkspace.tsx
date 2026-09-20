@@ -250,15 +250,30 @@ export const CockpitWorkspace: React.FC = () => {
             })}
           </div>
 
-          {/* Session Metadata Strip */}
-          <div className="flex flex-wrap gap-5 pt-3 border-t border-slate-800 mt-3 font-mono text-xs">
-            <span className="text-slate-400">Session ID: <strong className="text-cyan-300">{activeSession.session_id.slice(-8)}</strong></span>
-            <span className="text-slate-400">Current Stage: <strong className="text-blue-400">{activeSession.current_stage}</strong></span>
-            <span className="text-slate-400">Status: <strong className="text-slate-200">{activeSession.workflow_status}</strong></span>
+          {/* Session Metadata Badges */}
+          <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-slate-800/80 mt-3 font-mono text-xs">
+            <div className="px-3 py-1 rounded-md bg-[#030712] border border-cyan-500/30 text-slate-300 flex items-center gap-1.5 shadow-sm">
+              <span className="text-slate-400 text-[11px]">Session ID:</span>
+              <strong className="text-cyan-300 font-bold">{activeSession.session_id.slice(-8)}</strong>
+            </div>
+            <div className="px-3 py-1 rounded-md bg-[#030712] border border-blue-500/30 text-slate-300 flex items-center gap-1.5 shadow-sm">
+              <span className="text-slate-400 text-[11px]">Current Stage:</span>
+              <strong className="text-blue-400 font-bold">{activeSession.current_stage}</strong>
+            </div>
+            <div className="px-3 py-1 rounded-md bg-[#030712] border border-purple-500/30 text-slate-300 flex items-center gap-1.5 shadow-sm">
+              <span className="text-slate-400 text-[11px]">Status:</span>
+              <strong className="text-purple-300 font-bold">{activeSession.workflow_status}</strong>
+            </div>
             {activeSession.summary && (
               <>
-                <span className="text-slate-400">Health Index: <strong className="text-emerald-400">{(activeSession.summary.network_health_score * 100).toFixed(1)}%</strong></span>
-                <span className="text-slate-400">Critical Risks: <strong className="text-red-400">{activeSession.summary.critical_risk_count}</strong></span>
+                <div className="px-3 py-1 rounded-md bg-[#030712] border border-emerald-500/30 text-slate-300 flex items-center gap-1.5 shadow-sm">
+                  <span className="text-slate-400 text-[11px]">Health Index:</span>
+                  <strong className="text-emerald-400 font-bold">{(activeSession.summary.network_health_score * 100).toFixed(1)}%</strong>
+                </div>
+                <div className="px-3 py-1 rounded-md bg-[#030712] border border-amber-500/30 text-slate-300 flex items-center gap-1.5 shadow-sm">
+                  <span className="text-slate-400 text-[11px]">Critical Risks:</span>
+                  <strong className="text-amber-400 font-bold">{activeSession.summary.active_disruption_count}</strong>
+                </div>
               </>
             )}
           </div>

@@ -14,7 +14,7 @@ import { StatusPill } from '../telemetry/StatusPill';
 
 export interface GNNNodeData {
   id: string;
-  name: string;
+  name?: string;
   node_type?: string;
   risk_score?: number;
   criticality?: number;

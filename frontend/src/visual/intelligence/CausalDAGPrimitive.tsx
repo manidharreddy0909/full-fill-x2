@@ -22,7 +22,7 @@ export interface CausalDAGPrimitiveProps {
   rootCauseNodeId: string;
   targetEffectNodeId: string;
   mechanismSummary: string;
-  evidenceStatus: 'SANDBOX_COUNTERFACTUAL' | 'HIGH_CONFIDENCE_HYPOTHESIS' | 'OBSERVED_ASSOCIATION';
+  evidenceStatus: string;
   confidenceScore: number;
   counterfactualResult?: any;
 }

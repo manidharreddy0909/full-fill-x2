@@ -100,7 +100,7 @@ class GraphPlatformService:
             pred = model.predict_node_risk(features, target_node_id, horizon_hours)
 
             # Publish GNN Prediction Event
-            self.event_bus.publish(
+            self.event_bus.publish_sync(
                 EventType.GNN_PREDICTION_CREATED,
                 {
                     "prediction_id": pred.prediction_id,
@@ -127,7 +127,7 @@ class GraphPlatformService:
             )
 
             # Publish Propagation Event
-            self.event_bus.publish(
+            self.event_bus.publish_sync(
                 EventType.GRAPH_PROPAGATION_DETECTED,
                 {
                     "trace_id": trace.trace_id,
@@ -149,7 +149,7 @@ class GraphPlatformService:
             hypotheses = self.causal_generator.generate_hypotheses(snap, trace)
 
             for h in hypotheses:
-                self.event_bus.publish(
+                self.event_bus.publish_sync(
                     EventType.CAUSAL_HYPOTHESIS_CREATED,
                     {
                         "hypothesis_id": h.hypothesis_id,
@@ -169,7 +169,7 @@ class GraphPlatformService:
             snap = self.get_current_graph_snapshot()
             cf_run = self.counterfactual_engine.run_counterfactual(snap, request)
 
-            self.event_bus.publish(
+            self.event_bus.publish_sync(
                 EventType.COUNTERFACTUAL_COMPLETED,
                 {
                     "run_id": cf_run.run_id,

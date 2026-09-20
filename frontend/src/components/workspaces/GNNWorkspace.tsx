@@ -70,7 +70,7 @@ export const GNNWorkspace: React.FC = () => {
   const nodes = snapshot?.nodes || [];
   const prediction = predictMutation.data;
   const propagation = propagateMutation.data;
-  const trajectoryNodes = propagation?.trajectory?.map((t) => t.node_id) || [];
+  const trajectoryNodes = propagation?.primary_path?.path_nodes || propagation?.affected_nodes || [];
 
   return (
     <motion.div
@@ -108,7 +108,7 @@ export const GNNWorkspace: React.FC = () => {
           >
             {nodes.map((n) => (
               <option key={n.id} value={n.id}>
-                {n.id} — {n.name}
+                {n.id} ({n.type})
               </option>
             ))}
           </select>
@@ -152,7 +152,7 @@ export const GNNWorkspace: React.FC = () => {
                 <div className="p-4 rounded-lg bg-[#030712]/90 border border-slate-800 flex flex-col gap-1 text-center">
                   <div className="text-[10px] font-mono text-slate-400 uppercase">PREDICTED RISK SCORE</div>
                   <div className="text-2xl font-bold font-mono text-cyan-400">
-                    {(prediction.predicted_risk_score * 100).toFixed(1)}%
+                    {((prediction.predicted_risk || 0) * 100).toFixed(1)}%
                   </div>
                   <div className="text-[9px] font-mono text-slate-500">24h Horizon</div>
                 </div>
@@ -160,7 +160,7 @@ export const GNNWorkspace: React.FC = () => {
                 <div className="p-4 rounded-lg bg-[#030712]/90 border border-slate-800 flex flex-col gap-1 text-center">
                   <div className="text-[10px] font-mono text-slate-400 uppercase">95% CONFIDENCE LOWER</div>
                   <div className="text-xl font-bold font-mono text-emerald-400">
-                    {(prediction.confidence_lower_95 * 100).toFixed(1)}%
+                    {((prediction.lower_bound_95 || 0) * 100).toFixed(1)}%
                   </div>
                   <div className="text-[9px] font-mono text-slate-500">Lower Bound</div>
                 </div>
@@ -168,7 +168,7 @@ export const GNNWorkspace: React.FC = () => {
                 <div className="p-4 rounded-lg bg-[#030712]/90 border border-slate-800 flex flex-col gap-1 text-center">
                   <div className="text-[10px] font-mono text-slate-400 uppercase">95% CONFIDENCE UPPER</div>
                   <div className="text-xl font-bold font-mono text-amber-400">
-                    {(prediction.confidence_upper_95 * 100).toFixed(1)}%
+                    {((prediction.upper_bound_95 || 0) * 100).toFixed(1)}%
                   </div>
                   <div className="text-[9px] font-mono text-slate-500">Upper Bound</div>
                 </div>
@@ -196,7 +196,7 @@ export const GNNWorkspace: React.FC = () => {
                 <span>Multihop Propagation Trace</span>
               </h2>
               {propagation && (
-                <StatusPill color="#fbbf24" label={`${propagation.total_affected_nodes} IMPACTED`} />
+                <StatusPill color="#fbbf24" label={`${propagation.affected_nodes?.length || 0} IMPACTED`} />
               )}
             </div>
 
@@ -210,10 +210,10 @@ export const GNNWorkspace: React.FC = () => {
                 </div>
 
                 <div className="space-y-1.5 max-h-40 overflow-y-auto">
-                  {propagation.trajectory.map((step) => (
-                    <div key={step.step} className="p-2 rounded bg-[#030712]/60 border border-slate-900 flex justify-between text-[10px]">
-                      <span className="text-slate-300">Step {step.step}: <strong>{step.node_name}</strong></span>
-                      <span className="text-amber-400">+{step.time_offset_hours}h (+{(step.cumulative_impact * 100).toFixed(0)}%)</span>
+                  {propagation.affected_nodes?.map((nodeId, idx) => (
+                    <div key={nodeId} className="p-2 rounded bg-[#030712]/60 border border-slate-900 flex justify-between text-[10px]">
+                      <span className="text-slate-300">Step {idx + 1}: <strong>{nodeId}</strong></span>
+                      <span className="text-amber-400">Impact: {propagation.expected_impact || 'MEDIUM'}</span>
                     </div>
                   ))}
                 </div>

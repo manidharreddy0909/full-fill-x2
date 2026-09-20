@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   /* Color Palette — FULFILL-X Design System */
   --bg-canvas: #080d14;
@@ -522,5 +526,48 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(6, 182, 212, 0.1);
 }
+
+/* ─── Universal Button & Form Control Hardening ─── */
+button {
+  background-color: rgba(9, 13, 22, 0.85);
+  color: #f1f5f9;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+button:hover:not(:disabled) {
+  border-color: rgba(6, 182, 212, 0.6);
+  box-shadow: 0 0 14px rgba(6, 182, 212, 0.25);
+  filter: brightness(1.15);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* Select & Dropdown Styling */
+select, input, textarea {
+  background-color: #090f1d !important;
+  color: #f1f5f9 !important;
+  border: 1px solid rgba(6, 182, 212, 0.35) !important;
+  border-radius: 8px !important;
+  font-family: var(--font-mono) !important;
+  outline: none !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+}
+
+select:focus, input:focus, textarea:focus {
+  border-color: rgba(34, 211, 238, 0.8) !important;
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+}
+
+option {
+  background-color: #090f1d !important;
+  color: #f1f5f9 !important;
+  padding: 8px 12px !important;
+}
+
 
 

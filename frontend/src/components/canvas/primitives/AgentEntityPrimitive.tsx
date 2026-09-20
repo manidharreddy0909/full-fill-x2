@@ -108,11 +108,11 @@ export const AgentEntityPrimitive: React.FC<AgentEntityPrimitiveProps> = ({
       )}
 
       {/* Accessible 2D/3D HTML Label Overlay */}
-      <Html position={[0, isCoordinator ? 1.8 : 1.2, 0]} center distanceFactor={20} style={{ pointerEvents: 'none' }}>
-        <div className="flex flex-col items-center bg-slate-950/85 px-2.5 py-1 rounded-lg border border-slate-700/80 backdrop-blur-md whitespace-nowrap shadow-lg">
-          <span className="font-mono text-[10px] font-bold text-slate-200">{name}</span>
+      <Html position={[0, isCoordinator ? 1.4 : 0.9, 0]} center zIndexRange={[10, 0]} style={{ pointerEvents: 'none' }}>
+        <div className="flex flex-col items-center bg-[#060b14]/90 px-2 py-0.5 rounded-md border border-cyan-500/30 backdrop-blur-md whitespace-nowrap shadow-md">
+          <span className="font-mono text-[9px] font-bold text-slate-200">{name}</span>
           <span
-            className="text-[9px] font-mono px-1.5 py-0.2 rounded font-semibold uppercase mt-0.5"
+            className="text-[8px] font-mono px-1 py-0.2 rounded font-semibold uppercase mt-0.5"
             style={{ backgroundColor: `${statusColor}22`, color: statusColor, border: `1px solid ${statusColor}66` }}
           >
             {visualState}

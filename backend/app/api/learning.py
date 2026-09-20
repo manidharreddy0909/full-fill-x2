@@ -255,3 +255,23 @@ def evaluate_policy(
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Permission LEARNING_EVALUATE required")
     svc = MultiAgentResilienceService.get_instance()
     return svc.evaluate_policy(situation=body.situation, candidate_actions=body.candidate_actions)
+
+
+@router.get("/learning/datasets", response_model=List[LearningDataset])
+def list_learning_datasets(
+    context: SecurityContext = Depends(get_security_context),
+) -> List[LearningDataset]:
+    if not context.has_permission(Permission.LEARNING_TRAIN):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Permission LEARNING_TRAIN required")
+    svc = MultiAgentResilienceService.get_instance()
+    return svc.list_datasets(organization_id=context.organization_id)
+
+
+@router.get("/learning/challengers", response_model=List[ChallengerModelRecord])
+def list_challenger_models(
+    context: SecurityContext = Depends(get_security_context),
+) -> List[ChallengerModelRecord]:
+    if not context.has_permission(Permission.LEARNING_TRAIN):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Permission LEARNING_TRAIN required")
+    svc = MultiAgentResilienceService.get_instance()
+    return svc.list_challengers(organization_id=context.organization_id)

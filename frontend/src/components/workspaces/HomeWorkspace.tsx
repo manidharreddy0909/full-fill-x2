@@ -265,7 +265,7 @@ export const HomeWorkspace: React.FC = () => {
               }}
             >
               FULFILL
-              <span style={{ color: '#5b93f6' }}>-X</span>
+              <span style={{ color: '#00f0ff' }}>-X</span>
             </h1>
             <h1
               style={{
@@ -276,21 +276,21 @@ export const HomeWorkspace: React.FC = () => {
                 marginBottom: '16px',
               }}
             >
-              <span className="gradient-text-blue-cyan">
-                Autonomous Resilience
+              <span className="gradient-text-blue-cyan" style={{ background: 'linear-gradient(135deg, #00f0ff 0%, #00d2ff 45%, #34d399 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                Autonomous Resilience OS
               </span>
             </h1>
             <h2
               style={{
                 fontSize: 'clamp(1rem, 2vw, 1.25rem)',
                 fontWeight: 400,
-                color: 'rgba(170,195,225,0.65)',
+                color: 'rgba(170,195,225,0.75)',
                 lineHeight: 1.5,
-                marginBottom: '32px',
+                marginBottom: '28px',
                 letterSpacing: '-0.01em',
               }}
             >
-              Fulfillment Resilience Intelligence &amp; Supply Network Operating System.
+              Fulfillment Resilience Intelligence &amp; Autonomous Supply Operating System.
               <br />
               Predictive disruption · GNN causal inference · Multi-agent swarm deliberation.
             </h2>
