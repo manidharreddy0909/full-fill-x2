@@ -1,0 +1,133 @@
+{
+  "scenario": "DEMO-05",
+  "seed": 42,
+  "start_time": "2026-09-20T18:04:00Z",
+  "end_time": "2026-09-20T18:09:15Z",
+  "duration_seconds": 315,
+  "backend_status": "ONLINE",
+  "frontend_status": "ONLINE",
+  "websocket_status": "CONNECTED",
+  "acts": [
+    {
+      "act": 1,
+      "name": "OBSERVE",
+      "route": "/command",
+      "duration_seconds": 25,
+      "status": "PASS",
+      "evidence": "command_final.png"
+    },
+    {
+      "act": 2,
+      "name": "DETECT",
+      "route": "/command",
+      "duration_seconds": 20,
+      "status": "PASS",
+      "evidence": "risk_detection_final.png"
+    },
+    {
+      "act": 3,
+      "name": "UNDERSTAND",
+      "route": "/world",
+      "duration_seconds": 25,
+      "status": "PASS",
+      "evidence": "world_model_final.png"
+    },
+    {
+      "act": 4,
+      "name": "SPECIALIST AGENTS",
+      "route": "/intelligence",
+      "duration_seconds": 30,
+      "status": "PASS",
+      "evidence": "agents_final.png"
+    },
+    {
+      "act": 5,
+      "name": "ADVERSARIAL CHALLENGE",
+      "route": "/response/adversary",
+      "duration_seconds": 25,
+      "status": "PASS",
+      "evidence": "adversary_final.png"
+    },
+    {
+      "act": 6,
+      "name": "DECISION",
+      "route": "/decision/cockpit",
+      "duration_seconds": 25,
+      "status": "PASS",
+      "evidence": "decision_final.png"
+    },
+    {
+      "act": 7,
+      "name": "VERIFICATION",
+      "route": "/decision/verification",
+      "duration_seconds": 20,
+      "status": "PASS",
+      "evidence": "verification_final.png"
+    },
+    {
+      "act": 8,
+      "name": "DIGITAL TWIN",
+      "route": "/simulation/twin",
+      "duration_seconds": 25,
+      "status": "PASS",
+      "evidence": "digital_twin_final.png"
+    },
+    {
+      "act": 9,
+      "name": "MONTE CARLO",
+      "route": "/simulation/twin",
+      "duration_seconds": 20,
+      "status": "PASS",
+      "evidence": "monte_carlo_final.png"
+    },
+    {
+      "act": 10,
+      "name": "SAFE EXECUTION AUTHORIZATION",
+      "route": "/decision/cockpit",
+      "duration_seconds": 20,
+      "status": "PASS",
+      "evidence": "authorization_final.png"
+    },
+    {
+      "act": 11,
+      "name": "OBSERVABILITY",
+      "route": "/observability/events",
+      "duration_seconds": 20,
+      "status": "PASS",
+      "evidence": "observability_final.png"
+    },
+    {
+      "act": 12,
+      "name": "LEARNING",
+      "route": "/learning/deliberate",
+      "duration_seconds": 20,
+      "status": "PASS",
+      "evidence": "learning_final.png"
+    },
+    {
+      "act": 13,
+      "name": "GOVERNANCE",
+      "route": "/governance/resilience",
+      "duration_seconds": 20,
+      "status": "PASS",
+      "evidence": "governance_final.png"
+    },
+    {
+      "act": 14,
+      "name": "EVALUATION",
+      "route": "/evaluation",
+      "duration_seconds": 20,
+      "status": "PASS",
+      "evidence": "evaluation_final.png"
+    }
+  ],
+  "metrics": {
+    "network_health_initial": 0.94,
+    "active_agents": 7,
+    "candidate_plans": 3,
+    "selected_plan": "PLAN-RESILIENCE-01",
+    "safety_plane_status": "ENFORCED",
+    "monte_carlo_trials": 1000,
+    "evaluation_score": 0.942
+  }
+}
