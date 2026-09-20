@@ -96,7 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div style={{ height: '24px', width: '1px', background: 'var(--border-default)' }} />
 
           {/* Product Navigation Tabs */}
-          <nav style={{ display: 'flex', background: 'var(--bg-canvas)', padding: '3px', borderRadius: '8px', border: '1px solid var(--border-subtle)', gap: '2px' }}>
+          <nav style={{ display: 'flex', alignItems: 'center', background: 'rgba(3, 7, 18, 0.95)', padding: '4px 6px', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.1)', gap: '4px', overflowX: 'auto', maxWidth: '100%' }}>
             {navItems.map(({ tab, label, icon }) => {
               const isActive = activeTab === tab;
               const isDemo = tab === 'DEMO';
@@ -107,21 +107,23 @@ export const Navbar: React.FC<NavbarProps> = ({
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '6px',
-                    padding: '6px 12px',
+                    gap: '5px',
+                    padding: '5px 10px',
                     borderRadius: '6px',
-                    border: 'none',
+                    border: isActive ? '1px solid rgba(91, 147, 246, 0.4)' : '1px solid transparent',
                     background: isActive
                       ? isDemo
-                        ? 'linear-gradient(135deg, rgba(245, 158, 11, 0.4) 0%, rgba(217, 119, 6, 0.4) 100%)'
-                        : 'var(--bg-surface-elevated)'
+                        ? 'linear-gradient(135deg, rgba(245, 158, 11, 0.3) 0%, rgba(217, 119, 6, 0.3) 100%)'
+                        : 'rgba(17, 28, 42, 0.9)'
                       : 'transparent',
-                    color: isActive ? (isDemo ? '#FBBF24' : 'var(--text-primary)') : 'var(--text-secondary)',
+                    color: isActive ? (isDemo ? '#FBBF24' : '#67E8F9') : '#94A3B8',
                     fontWeight: isActive ? 700 : 500,
                     cursor: 'pointer',
-                    fontSize: '12px',
-                    transition: 'all 0.2s',
-                    boxShadow: isActive && isDemo ? '0 0 10px rgba(245, 158, 11, 0.3)' : 'none',
+                    fontSize: '11px',
+                    fontFamily: 'var(--font-mono)',
+                    whiteSpace: 'nowrap',
+                    transition: 'all 0.15s ease',
+                    boxShadow: isActive ? '0 0 12px rgba(6, 182, 212, 0.2)' : 'none',
                   }}
                 >
                   {icon}
