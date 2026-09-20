@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type SpatialEnvironmentMode = 'HOME' | 'COMMAND' | 'WORLD' | 'RISK' | 'INTELLIGENCE' | 'GOVERNANCE';
+export type SpatialEnvironmentMode = 'HOME' | 'COMMAND' | 'WORLD' | 'RISK' | 'INTELLIGENCE' | 'GOVERNANCE' | 'DECISION' | 'OBSERVABILITY' | 'RESPONSE' | 'SIMULATION' | 'LEARNING' | 'EVALUATION';
 export type ViewMode2D3D = '2D' | '3D';
 
 export interface PerformanceMetrics {

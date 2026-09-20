@@ -3,8 +3,6 @@ import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { Navbar, ProductTab } from '../common/Navbar';
 import { EventToastContainer } from '../common/EventToastContainer';
 import { SignalInjectorModal } from '../risk/SignalInjectorModal';
-import { SpecialistWarRoom } from '../agents/SpecialistWarRoom';
-import { DecisionCockpit } from '../cockpit/DecisionCockpit';
 import { IdentityGateway } from '../auth/IdentityGateway';
 import { useAppShellStore } from '../../store/appShellStore';
 import { useVisualEnvironmentStore } from '../../store/visualEnvironmentStore';
@@ -25,14 +23,10 @@ export const SpatialAppLayout: React.FC = () => {
     isBackendConnected,
     isInjectorOpen,
     injectorTargetId,
-    isWarRoomOpen,
-    isCockpitOpen,
     isAuthGatewayOpen,
     setActivePresetAndSeed,
     closeInjector,
     openInjector,
-    setWarRoomOpen,
-    setCockpitOpen,
     setAuthGatewayOpen,
   } = useAppShellStore();
 
@@ -42,7 +36,14 @@ export const SpatialAppLayout: React.FC = () => {
   const getActiveTab = (): ProductTab => {
     const path = location.pathname;
     if (path.startsWith('/world')) return 'WORLD';
-    if (path.startsWith('/intelligence/risk')) return 'INTELLIGENCE';
+    if (path.startsWith('/intelligence')) return 'INTELLIGENCE';
+    if (path.startsWith('/response')) return 'RESPONSE';
+    if (path.startsWith('/decision')) return 'DECISION';
+    if (path.startsWith('/simulation')) return 'SIMULATION';
+    if (path.startsWith('/learning')) return 'RESILIENCE_AGENTS';
+    if (path.startsWith('/observability')) return 'OBSERVABILITY';
+    if (path.startsWith('/governance')) return 'RESILIENCE_OS';
+    if (path.startsWith('/evaluation')) return 'EVALUATION';
     if (path.startsWith('/command')) return 'COMMAND';
     return 'COMMAND';
   };
@@ -56,7 +57,31 @@ export const SpatialAppLayout: React.FC = () => {
         navigate('/world');
         break;
       case 'INTELLIGENCE':
-        navigate('/intelligence/risk');
+        navigate('/intelligence');
+        break;
+      case 'RESPONSE':
+        navigate('/response/war-room');
+        break;
+      case 'DECISION':
+        navigate('/decision/cockpit');
+        break;
+      case 'SIMULATION':
+        navigate('/simulation/twin');
+        break;
+      case 'RESILIENCE_AGENTS':
+        navigate('/learning/deliberate');
+        break;
+      case 'OBSERVABILITY':
+        navigate('/observability/events');
+        break;
+      case 'RESILIENCE_OS':
+        navigate('/governance/resilience');
+        break;
+      case 'EVALUATION':
+        navigate('/evaluation');
+        break;
+      case 'GOVERNANCE':
+        navigate('/governance/policies');
         break;
       default:
         navigate('/command');
@@ -133,23 +158,6 @@ export const SpatialAppLayout: React.FC = () => {
           initialTargetNodeId={injectorTargetId}
           onInject={handleInjectSignal}
         />
-
-        {/* Specialist War Room Modal */}
-        {isWarRoomOpen && (
-          <SpecialistWarRoom
-            isOpen={isWarRoomOpen}
-            onClose={() => setWarRoomOpen(false)}
-            selectedNodeId={selectedNodeId}
-          />
-        )}
-
-        {/* Decision Cockpit Modal */}
-        {isCockpitOpen && (
-          <DecisionCockpit
-            isOpen={isCockpitOpen}
-            onClose={() => setCockpitOpen(false)}
-          />
-        )}
 
         {/* Identity Gateway Modal */}
         {isAuthGatewayOpen && (
