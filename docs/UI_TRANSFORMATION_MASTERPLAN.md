@@ -97,6 +97,8 @@ The architecture for the spatial UI transformation is documented across 15 dedic
 - **Phase 13D-2 — Learning, Observability, Governance & Evaluation**: COMPLETE (`/learning/deliberate`, `/observability/events`, `/governance/resilience`, `/governance/policies`, `/evaluation` transformed into high-trust operational control rooms with real REST APIs, WebSocket feeds, and zero mock data).
 - **Phase 13E — Global Cinematic Polish & Product Cohesion**: COMPLETE (Unified all 16 major workspace routes into a single, living Autonomous Operations OS experience with coherent obsidian design tokens, logical tab groupings, meaningful motion, and zero mock data).
 - **Phase 13F — Full Product QA, Integration Validation & Failure-Hunt**: COMPLETE (Full product QA, API coverage audit, determinism verification, 249/249 backend tests passing, 0 TypeScript errors, browser E2E verification complete).
+- **Phase 13G — End-to-End Demo, Judge Journey & Product Story Validation**: COMPLETE (Canonical demo scenario DEMO-05 with seed=42 verified across all 13 Acts of the judge journey, operator runbook, claims audit, 249/249 backend tests passing, 0 TypeScript errors, browser E2E verification complete).
+
 
 
 
