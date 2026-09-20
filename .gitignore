@@ -1,4 +1,19 @@
-# Python
+# FULFILL-X Master Repository Git Ignore
+
+# Environment & Secret Protection
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+!*.tfvars.example
+!.env.production.example
+
+# Python Runtime & Virtual Environments
 __pycache__/
 *.py[cod]
 *.pyo
@@ -8,40 +23,25 @@ __pycache__/
 *.egg-info/
 dist/
 build/
-eggs/
-parts/
-var/
 sdist/
-develop-eggs/
-.installed.cfg
-lib/
-lib64/
-*.so
 .venv/
 venv/
 env/
 ENV/
 
-# Node / Frontend
+# Node.js & Frontend Build Outputs
 node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/build/
 .pnp
 .pnp.js
 .npm
 .yarn/
-frontend/dist/
-frontend/.vite/
-frontend/build/
 *.tgz
 
-# Environment & secrets
-.env
-.env.*
-!.env.example
-*.pem
-*.key
-secrets/
-
-# IDE
+# IDE & OS Configuration
 .vscode/
 .idea/
 *.swp
@@ -49,7 +49,7 @@ secrets/
 .DS_Store
 Thumbs.db
 
-# Testing & coverage
+# Testing, Code Quality & Coverage
 .coverage
 coverage/
 htmlcov/
@@ -57,26 +57,20 @@ htmlcov/
 .mypy_cache/
 .ruff_cache/
 
-# Docker
-.docker/
+# Terraform & AWS Artifacts
+infra/terraform/.terraform/
+infra/terraform/*.tfstate
+infra/terraform/*.tfstate.backup
+infra/terraform/*.tfvars
+!infra/terraform/*.tfvars.example
+infrastructure/cdk.out/
+infrastructure/.cdk.staging/
 
-# Logs
+# Application Logs & Temporary Data
 *.log
 logs/
-
-# Data (large files)
 data/raw/
 data/cache/
 *.parquet
 *.arrow
-
-# AWS / CDK
-infrastructure/cdk.out/
-infrastructure/.cdk.staging/
-
-# Terraform
-infrastructure/.terraform/
-*.tfstate
-*.tfstate.backup
-*.tfvars
-!*.tfvars.example
+artifacts/scratch/
