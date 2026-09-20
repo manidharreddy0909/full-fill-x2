@@ -83,9 +83,24 @@ This matrix maps every existing frontend component file in `frontend/src/compone
 
 ---
 
-## 4. EXACT NEXT IMPLEMENTATION TASK
+## 4. PHASE 12.1 IMPLEMENTATION STATUS (COMPLETED)
 
-With the 15 master architectural blueprints created and validated:
+**Phase 12.1 — Dynamic Spatial UI Foundation + First Vertical Slice** is fully implemented, verified, and committed:
 
-**Next Task (Phase 12 Phase 1 Execution):**
-Install missing open-source packages in `frontend/package.json` (`@tanstack/react-query`, `framer-motion`, `zustand`), create the client-side router, and establish the `SpatialAppLayout` and shared `SpatialCanvasViewport`.
+1. **Package & Routing Infrastructure:** `@tanstack/react-query`, `zustand`, `framer-motion`, `three`, `@react-three/fiber`, `@react-three/drei`, `lucide-react` validated & compiled cleanly.
+2. **Core Spatial Shell:** `SpatialAppLayout`, `SpatialCanvasViewport` with WebGL context error boundary & 2D fallback, `CameraController` with smooth lerp & reduced motion support, `Navbar` with workspace tab navigation and seed selector.
+3. **Home Workspace (`/`):** Procedural particle constellation canvas (`ProceduralHomeParticles`), identity header, ENTER OS interaction, live environment HUD status footer.
+4. **Command Vertical Slice (`/command`):** Consumes authentic backend API endpoints (`GET /api/world/summary`, `GET /api/world`, `GET /api/risks`), rendering composite health (95%), total node counts (23), disrupted nodes, live node matrix, and threat/war room/cockpit triggers.
+5. **Real Node Interaction (`/world/node/:id`):** Deep node selection, dynamic URL routing, camera target focusing, `NodeInspectorWorkspace` drawer displaying inventory levels, lead times, risk score breakdown, upstream suppliers, downstream targets, and action triggers.
+6. **Real Risk Visualization (`/intelligence/risk`):** Consumes `/api/risks`, supports `recalculateRisk` and `resetRisk` backend mutations, Criticality Ranking Table with band filters (`ALL`, `CRITICAL`, `HIGH`, `MEDIUM`, `LOW`), 3D risk heatmap pulse primitives (`RiskPulsePrimitive`).
+7. **Realtime WebSocket Integration:** `RealtimeWebSocketClient` connected to `/api/events/ws/{session_id}` with sequence ordering, duplicate protection, auto-reconnect, and real-time store updates (`realtimeStore`).
+8. **Accessibility & Degraded States:** 2D SVG layout toggle (`World2DView`), screen-reader readable tables, keyboard navigation, WebGL error boundary fallback, reduced motion preference detection.
+9. **Verification & Tests:** `npm run build` compiled 2159 modules cleanly without errors; full backend pytest regression suite passed 249/249 tests.
+
+---
+
+## 5. EXACT NEXT IMPLEMENTATION TASK
+
+**Next Task (Phase 12 Phase 2 / Phase 3 Scaling):**
+Scale the migration to remaining Phase 3 operational workspaces (`/intelligence/gnn`, `/intelligence/causal`) and Phase 4 autonomous resilience workspaces (`/response/war-room`, `/response/adversary`, `/response/scenarios`, `/decision/*`).
+
