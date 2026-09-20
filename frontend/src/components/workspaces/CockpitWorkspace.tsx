@@ -305,14 +305,30 @@ export const CockpitWorkspace: React.FC = () => {
 
       {/* Standby State */}
       {!activeSession && !isRunning && (
-        <div className="flex flex-col items-center justify-center py-28 gap-4 text-slate-500 font-mono text-sm">
-          <div className="w-16 h-16 rounded-2xl bg-cyan-950/40 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shadow-inner">
+        <div className="flex flex-col items-center justify-center py-24 gap-5 text-slate-500 font-mono text-sm">
+          <div className="w-16 h-16 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shadow-xl shadow-cyan-950/50">
             <Cpu className="w-8 h-8" />
           </div>
           <div className="text-center max-w-md">
             <div className="text-base font-bold text-white mb-1">Decision Cockpit Ready</div>
-            <div className="text-xs text-slate-400 font-sans">
-              Initiate a new pipeline session above to launch full multi-agent observation, risk analysis, adversarial stress testing, and plan reconciliation.
+            <div className="text-xs text-slate-400 font-sans leading-relaxed mb-4">
+              Initiate a new pipeline session below to launch full multi-agent observation, risk analysis, adversarial stress testing, and plan reconciliation.
+            </div>
+            <div className="flex items-center justify-center gap-3">
+              <button
+                onClick={() => createMutation.mutate({ preset: 'healthy', seed: 42 })}
+                className="fx-btn-interactive px-4 py-2.5 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs font-mono font-bold transition-all shadow-lg shadow-cyan-900/30 flex items-center gap-2"
+              >
+                <Play className="w-3.5 h-3.5" />
+                <span>INITIALIZE BASELINE PIPELINE</span>
+              </button>
+              <button
+                onClick={() => createMutation.mutate({ preset: 'double_punch', seed: 42 })}
+                className="fx-btn-interactive px-4 py-2.5 rounded-lg bg-gradient-to-r from-amber-600 to-red-600 hover:from-amber-500 hover:to-red-500 text-white text-xs font-mono font-bold transition-all shadow-lg shadow-amber-900/30 flex items-center gap-2"
+              >
+                <AlertTriangle className="w-3.5 h-3.5" />
+                <span>INITIALIZE CRISIS PIPELINE</span>
+              </button>
             </div>
           </div>
         </div>
