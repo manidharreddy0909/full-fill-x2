@@ -281,3 +281,209 @@ body {
 .overflow-y-auto { overflow-y: auto; }
 .pointer-events-none { pointer-events: none; }
 .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+
+/* ════════════════════════════════════════════════════════════════════
+   FULFILL-X VISUAL SYSTEM — Phase 13A
+   Cinematic Visual Foundation
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ─── Extended Color Semantics ─────────────────────────────────── */
+:root {
+  --color-risk-critical: #e8503a;
+  --color-risk-high:     #fb923c;
+  --color-risk-medium:   #38bdf8;
+  --color-risk-low:      #34c77b;
+  --color-intelligence:  #7c3aed;
+  --color-decision:      #3b82f6;
+  --color-simulation:    #06b6d4;
+  --color-governance:    #a78bfa;
+
+  --depth-atmosphere: 0;
+  --depth-world:      5;
+  --depth-midground:  10;
+  --depth-foreground: 20;
+  --depth-overlay:    50;
+
+  --panel-radius: 12px;
+  --panel-blur: 14px;
+}
+
+/* ─── Animation Keyframes ─────────────────────────────────────── */
+
+@keyframes fx-scanline {
+  0%   { top: -2px; opacity: 0; }
+  5%   { opacity: 0.6; }
+  95%  { opacity: 0.4; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@keyframes fx-dot-pulse {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%       { transform: scale(1.5); opacity: 0.7; }
+}
+
+@keyframes fx-glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px  currentColor; }
+  50%       { box-shadow: 0 0 24px currentColor; }
+}
+
+@keyframes fx-fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fx-slide-in-left {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fx-slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fx-ticker-scroll {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes fx-risk-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(232, 80, 58, 0.6); }
+  70%  { box-shadow: 0 0 0 12px rgba(232, 80, 58, 0); }
+  100% { box-shadow: 0 0 0 0   rgba(232, 80, 58, 0); }
+}
+
+@keyframes fx-healthy-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(52, 199, 123, 0.5); }
+  70%  { box-shadow: 0 0 0 10px rgba(52, 199, 123, 0); }
+  100% { box-shadow: 0 0 0 0   rgba(52, 199, 123, 0); }
+}
+
+@keyframes fx-gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ─── Utility Animation Classes ──────────────────────────────── */
+
+.fx-fade-in-up {
+  animation: fx-fade-in-up 0.5s ease both;
+}
+
+.fx-slide-left {
+  animation: fx-slide-in-left 0.4s ease both;
+}
+
+.fx-slide-right {
+  animation: fx-slide-in-right 0.4s ease both;
+}
+
+.fx-risk-pulse {
+  animation: fx-risk-pulse 2s infinite ease-in-out;
+}
+
+.fx-healthy-pulse {
+  animation: fx-healthy-pulse 2.5s infinite ease-in-out;
+}
+
+.fx-glow-pulse {
+  animation: fx-glow-pulse 2s infinite ease-in-out;
+}
+
+/* ─── Gradient Text ──────────────────────────────────────────── */
+
+.gradient-text-blue-cyan {
+  background: linear-gradient(135deg, #60a5fa 0%, #22d3ee 50%, #34d399 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: fx-gradient-shift 6s ease infinite;
+}
+
+.gradient-text-violet {
+  background: linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #7c3aed 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── Premium Glass Panels ────────────────────────────────────── */
+
+.glass-default {
+  background: rgba(13, 21, 32, 0.82);
+  backdrop-filter: blur(var(--panel-blur));
+  -webkit-backdrop-filter: blur(var(--panel-blur));
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: var(--panel-radius);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+}
+
+.glass-critical {
+  background: rgba(30, 5, 5, 0.85);
+  backdrop-filter: blur(var(--panel-blur));
+  -webkit-backdrop-filter: blur(var(--panel-blur));
+  border: 1px solid rgba(232,80,58,0.35);
+  border-radius: var(--panel-radius);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 0 20px rgba(232,80,58,0.12);
+}
+
+.glass-intelligence {
+  background: rgba(15, 5, 30, 0.85);
+  backdrop-filter: blur(var(--panel-blur));
+  -webkit-backdrop-filter: blur(var(--panel-blur));
+  border: 1px solid rgba(124,58,237,0.35);
+  border-radius: var(--panel-radius);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 0 20px rgba(124,58,237,0.12);
+}
+
+/* ─── Event Ticker ─────────────────────────────────────────── */
+
+.event-ticker-track {
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+  animation: fx-ticker-scroll 40s linear infinite;
+}
+
+/* ─── Node Risk Cards ─────────────────────────────────────── */
+
+.node-card-healthy  { background: rgba(5,18,10,0.7);  border-color: rgba(52,199,123,0.25); }
+.node-card-warning  { background: rgba(20,12,3,0.7);  border-color: rgba(245,166,35,0.35); }
+.node-card-critical { background: rgba(25,4,4,0.7);   border-color: rgba(232,80,58,0.4);  }
+
+/* ─── Prefers Reduced Motion ─────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .fx-fade-in-up,
+  .fx-slide-left,
+  .fx-slide-right {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .gradient-text-blue-cyan {
+    animation: none;
+  }
+
+  .event-ticker-track {
+    animation: none;
+  }
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .hide-on-mobile { display: none !important; }
+}
+

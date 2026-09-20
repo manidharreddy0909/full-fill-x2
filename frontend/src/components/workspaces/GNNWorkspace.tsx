@@ -1,5 +1,14 @@
+/**
+ * GNNWorkspace — Graph Intelligence Laboratory
+ * Phase 13B: Intelligence Visualization
+ *
+ * Design: Mathematical graph neural network view, 95% confidence risk prediction bounds,
+ * graph propagation path tracer, node centrality feature matrix, GNNGraphPrimitive.
+ */
+
 import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
+import { motion } from 'framer-motion';
 import {
   fetchGraphSnapshot,
   fetchGraphFeatures,
@@ -9,7 +18,12 @@ import {
   PropagationTrace,
 } from '../../api/graphIntelligenceApi';
 import { useVisualEnvironmentStore } from '../../store/visualEnvironmentStore';
-import { Activity, Network, Zap, Cpu, ArrowRight, ShieldCheck, AlertTriangle } from 'lucide-react';
+import { StatusPill } from '../../visual/telemetry/StatusPill';
+import { GNNGraphPrimitive } from '../../visual/intelligence/GNNGraphPrimitive';
+import {
+  Activity, Network, Zap, Cpu, ArrowRight, ShieldCheck, AlertTriangle,
+  BarChart2, Share2, Layers
+} from 'lucide-react';
 
 export const GNNWorkspace: React.FC = () => {
   const { setEnvironmentMode } = useVisualEnvironmentStore();
@@ -46,9 +60,9 @@ export const GNNWorkspace: React.FC = () => {
 
   if (isSnapshotLoading) {
     return (
-      <div className="flex h-[calc(100vh-60px)] items-center justify-center text-slate-400 font-mono text-xs">
-        <Activity className="w-4 h-4 animate-spin mr-2 text-cyan-400" />
-        <span>Loading GNN Latent Space & Graph Centrality Features...</span>
+      <div className="flex h-[calc(100vh-60px)] items-center justify-center bg-[#030712] text-cyan-400 font-mono text-xs">
+        <Activity className="w-5 h-5 animate-spin mr-3 text-cyan-400" />
+        <span>INITIALIZING GRAPH NEURAL NETWORK LATENT MATRIX...</span>
       </div>
     );
   }
@@ -56,28 +70,41 @@ export const GNNWorkspace: React.FC = () => {
   const nodes = snapshot?.nodes || [];
   const prediction = predictMutation.data;
   const propagation = propagateMutation.data;
+  const trajectoryNodes = propagation?.trajectory?.map((t) => t.node_id) || [];
 
   return (
-    <div className="relative min-h-[calc(100vh-60px)] p-6 text-slate-100 flex flex-col gap-6 bg-[#040813]">
-      {/* Top Header Controls */}
-      <div className="p-5 rounded-xl bg-slate-900/85 border border-slate-800 backdrop-blur-md flex flex-wrap items-center justify-between gap-4 shadow-xl">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-cyan-950/80 border border-cyan-800/80 flex items-center justify-center text-cyan-400">
-            <Cpu className="w-5 h-5" />
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+      className="relative min-h-[calc(100vh-60px)] p-6 text-slate-100 flex flex-col gap-6 bg-[#030712] font-sans"
+    >
+      {/* Header Controls HUD Bar */}
+      <div className="p-5 rounded-xl bg-[#090d16]/90 border border-cyan-500/20 backdrop-blur-xl flex flex-wrap items-center justify-between gap-4 shadow-2xl">
+        <div className="flex items-center gap-3.5">
+          <div className="w-11 h-11 rounded-lg bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shadow-inner">
+            <Network className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-base font-bold text-white">GNN Graph Intelligence & Predictive Risk Engine</h1>
-            <p className="text-xs text-slate-400">Phase 7 Graph Neural Networks node risk prediction with 95% confidence bounds</p>
+            <div className="flex items-center gap-2">
+              <h1 className="text-base font-bold text-white tracking-tight font-mono uppercase">
+                Graph Intelligence Laboratory (GNN)
+              </h1>
+              <StatusPill color="#38bdf8" label="GNN LATENT MATRIX" pulse />
+            </div>
+            <p className="text-xs text-slate-400 font-mono mt-0.5">
+              Node Risk Prediction · 95% Confidence Interval Bounds · Multihop Propagation Analysis
+            </p>
           </div>
         </div>
 
         {/* Target Node Selector */}
-        <div className="flex items-center gap-2 font-mono text-xs bg-slate-950 p-2 rounded-lg border border-slate-800">
-          <span className="text-slate-400">Target Node:</span>
+        <div className="flex items-center gap-2 font-mono text-xs bg-[#030712] p-2 rounded-lg border border-cyan-500/30">
+          <span className="text-slate-400 font-bold">TARGET NODE:</span>
           <select
             value={selectedTargetNode}
             onChange={(e) => setSelectedTargetNode(e.target.value)}
-            className="bg-slate-900 text-cyan-300 font-bold px-2.5 py-1 rounded border border-slate-700 outline-none"
+            className="bg-[#090d16] text-cyan-300 font-bold px-3 py-1.5 rounded border border-cyan-500/40 outline-none cursor-pointer hover:border-cyan-400 transition-all"
           >
             {nodes.map((n) => (
               <option key={n.id} value={n.id}>
@@ -88,137 +115,144 @@ export const GNNWorkspace: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Grid */}
+      {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1">
-        {/* Left Column: GNN Risk Prediction & 95% Confidence Bounds */}
-        <div className="lg:col-span-2 p-5 rounded-xl bg-slate-900/85 border border-slate-800 backdrop-blur-md flex flex-col gap-5 shadow-xl">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-            <span className="font-semibold text-sm text-slate-200 flex items-center gap-2">
-              <Zap className="w-4 h-4 text-cyan-400" />
-              <span>GNN Prediction Output ({selectedTargetNode})</span>
-            </span>
-            {predictMutation.isPending && (
-              <span className="text-xs font-mono text-cyan-400 flex items-center gap-1">
-                <Activity className="w-3.5 h-3.5 animate-spin" />
-                <span>Running Inference...</span>
+        {/* Left Column (2 Cols): Mathematical Graph & Risk Prediction */}
+        <div className="lg:col-span-2 flex flex-col gap-6">
+          {/* Mathematical GNN Graph Visual Primitive */}
+          <GNNGraphPrimitive
+            nodes={nodes}
+            selectedNodeId={selectedTargetNode}
+            onSelectNode={(id) => setSelectedTargetNode(id)}
+            propagationPath={trajectoryNodes}
+          />
+
+          {/* GNN Risk Prediction output with 95% Confidence bounds */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="p-5 rounded-xl bg-[#090d16]/90 border border-cyan-500/20 backdrop-blur-xl shadow-2xl flex flex-col gap-4"
+          >
+            <div className="flex items-center justify-between border-b border-slate-800 pb-2.5">
+              <span className="font-mono text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
+                <Zap className="w-4 h-4 text-cyan-400" />
+                <span>GNN Predictive Risk Output ({selectedTargetNode})</span>
               </span>
+              {predictMutation.isPending && (
+                <div className="flex items-center gap-1.5 text-[10px] font-mono text-cyan-400">
+                  <Activity className="w-3.5 h-3.5 animate-spin" />
+                  <span>COMPUTING LATENT INFERENCE...</span>
+                </div>
+              )}
+            </div>
+
+            {prediction ? (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="p-4 rounded-lg bg-[#030712]/90 border border-slate-800 flex flex-col gap-1 text-center">
+                  <div className="text-[10px] font-mono text-slate-400 uppercase">PREDICTED RISK SCORE</div>
+                  <div className="text-2xl font-bold font-mono text-cyan-400">
+                    {(prediction.predicted_risk_score * 100).toFixed(1)}%
+                  </div>
+                  <div className="text-[9px] font-mono text-slate-500">24h Horizon</div>
+                </div>
+
+                <div className="p-4 rounded-lg bg-[#030712]/90 border border-slate-800 flex flex-col gap-1 text-center">
+                  <div className="text-[10px] font-mono text-slate-400 uppercase">95% CONFIDENCE LOWER</div>
+                  <div className="text-xl font-bold font-mono text-emerald-400">
+                    {(prediction.confidence_lower_95 * 100).toFixed(1)}%
+                  </div>
+                  <div className="text-[9px] font-mono text-slate-500">Lower Bound</div>
+                </div>
+
+                <div className="p-4 rounded-lg bg-[#030712]/90 border border-slate-800 flex flex-col gap-1 text-center">
+                  <div className="text-[10px] font-mono text-slate-400 uppercase">95% CONFIDENCE UPPER</div>
+                  <div className="text-xl font-bold font-mono text-amber-400">
+                    {(prediction.confidence_upper_95 * 100).toFixed(1)}%
+                  </div>
+                  <div className="text-[9px] font-mono text-slate-500">Upper Bound</div>
+                </div>
+              </div>
+            ) : (
+              <div className="text-center text-slate-500 font-mono text-xs py-8">
+                Select a target node above to run GNN predictive risk bounds.
+              </div>
             )}
-          </div>
+          </motion.div>
+        </div>
 
-          {prediction ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono">
-              <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800">
-                <div className="text-[10px] text-slate-400 uppercase">Predicted Risk Score</div>
-                <div className="text-3xl font-bold text-cyan-400 mt-1">
-                  {(prediction.predicted_risk_score * 100).toFixed(1)}%
+        {/* Right Column: Propagation Trace & Centrality Matrix */}
+        <div className="flex flex-col gap-6">
+          {/* Graph Propagation Path Trace */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="p-5 rounded-xl bg-[#090d16]/90 border border-cyan-500/20 backdrop-blur-xl shadow-2xl flex flex-col gap-3"
+          >
+            <div className="flex items-center justify-between border-b border-slate-800 pb-2.5">
+              <h2 className="font-mono font-bold text-xs uppercase tracking-wider text-slate-200 flex items-center gap-2">
+                <Share2 className="w-4 h-4 text-amber-400" />
+                <span>Multihop Propagation Trace</span>
+              </h2>
+              {propagation && (
+                <StatusPill color="#fbbf24" label={`${propagation.total_affected_nodes} IMPACTED`} />
+              )}
+            </div>
+
+            {propagation ? (
+              <div className="space-y-3 font-mono text-xs">
+                <div className="p-3 rounded-lg bg-[#030712]/90 border border-slate-800 flex flex-col gap-1">
+                  <span className="text-[10px] text-slate-400">PROPAGATION TRAJECTORY</span>
+                  <div className="text-amber-300 font-bold text-xs leading-relaxed">
+                    {trajectoryNodes.join(' → ')}
+                  </div>
                 </div>
-                <div className="text-[10px] text-slate-500 mt-1">24-Hour Horizon</div>
-              </div>
 
-              <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800">
-                <div className="text-[10px] text-slate-400 uppercase">Confidence Interval (95%)</div>
-                <div className="text-sm font-bold text-slate-200 mt-2">
-                  [{(prediction.confidence_lower_95 * 100).toFixed(1)}%, {(prediction.confidence_upper_95 * 100).toFixed(1)}%]
-                </div>
-                <div className="text-[10px] text-slate-500 mt-1">Bounded Variational Range</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800">
-                <div className="text-[10px] text-slate-400 uppercase">Top Risk Contributors</div>
-                <div className="flex flex-wrap gap-1 mt-2">
-                  {prediction.top_risk_contributors.map((contrib) => (
-                    <span key={contrib} className="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-amber-400">
-                      {contrib}
-                    </span>
+                <div className="space-y-1.5 max-h-40 overflow-y-auto">
+                  {propagation.trajectory.map((step) => (
+                    <div key={step.step} className="p-2 rounded bg-[#030712]/60 border border-slate-900 flex justify-between text-[10px]">
+                      <span className="text-slate-300">Step {step.step}: <strong>{step.node_name}</strong></span>
+                      <span className="text-amber-400">+{step.time_offset_hours}h (+{(step.cumulative_impact * 100).toFixed(0)}%)</span>
+                    </div>
                   ))}
                 </div>
               </div>
-            </div>
-          ) : (
-            <div className="p-8 text-center text-slate-500 font-mono text-xs">No prediction data available.</div>
-          )}
-
-          {/* Disruption Propagation Trajectory Table */}
-          <div className="pt-2">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-800 text-xs font-semibold text-slate-300">
-              <span className="flex items-center gap-1.5">
-                <Network className="w-4 h-4 text-purple-400" />
-                <span>Multi-Hop Disruption Propagation Trajectory</span>
-              </span>
-              <span className="text-[10px] font-mono text-slate-400">
-                Max Depth: {propagation?.max_depth ?? 4} | Affected Nodes: {propagation?.total_affected_nodes ?? 0}
-              </span>
-            </div>
-
-            {propagation && propagation.trajectory.length > 0 ? (
-              <div className="overflow-y-auto max-h-52 mt-3">
-                <table className="w-full text-left font-mono text-xs">
-                  <thead>
-                    <tr className="border-b border-slate-800 text-slate-400 text-[10px] uppercase">
-                      <th className="py-2">Hop Step</th>
-                      <th className="py-2">Node ID</th>
-                      <th className="py-2">Node Name</th>
-                      <th className="py-2">Cumulative Impact</th>
-                      <th className="py-2 text-right">Offset (Hours)</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-800/60">
-                    {propagation.trajectory.map((step) => (
-                      <tr key={`${step.step}-${step.node_id}`} className="hover:bg-slate-800/40">
-                        <td className="py-2 text-purple-400 font-bold">Step {step.step}</td>
-                        <td className="py-2 text-slate-200 font-bold">{step.node_id}</td>
-                        <td className="py-2 text-slate-300">{step.node_name}</td>
-                        <td className="py-2 text-red-400">{(step.cumulative_impact * 100).toFixed(1)}%</td>
-                        <td className="py-2 text-right text-slate-400">+{step.time_offset_hours}h</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
             ) : (
-              <div className="p-4 text-center text-slate-500 font-mono text-xs">No propagation trajectory trace found.</div>
+              <div className="text-center text-slate-500 font-mono text-xs py-8">
+                Select a target node to compute multihop propagation.
+              </div>
             )}
-          </div>
-        </div>
+          </motion.div>
 
-        {/* Right Column: Node Centrality & Graph Features */}
-        <div className="p-5 rounded-xl bg-slate-900/85 border border-slate-800 backdrop-blur-md flex flex-col gap-4 shadow-xl">
-          <h3 className="font-semibold text-sm border-b border-slate-800 pb-2 text-slate-200 flex items-center gap-1.5">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>Graph Centrality & Topology Features</span>
-          </h3>
+          {/* Graph Centrality Features Matrix */}
+          {features && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="p-5 rounded-xl bg-[#090d16]/90 border border-cyan-500/20 backdrop-blur-xl shadow-2xl flex flex-col gap-3"
+            >
+              <h2 className="font-mono font-bold text-xs uppercase tracking-wider border-b border-slate-800 pb-2.5 text-slate-200 flex items-center gap-2">
+                <BarChart2 className="w-4 h-4 text-emerald-400" />
+                <span>Graph Centrality Matrix</span>
+              </h2>
 
-          <div className="space-y-3 font-mono text-xs">
-            <div className="p-3 rounded bg-slate-950 border border-slate-800 flex justify-between items-center">
-              <span className="text-slate-400">Degree Centrality:</span>
-              <span className="font-bold text-cyan-400">
-                {(features?.degree_centrality?.[selectedTargetNode] ?? 0.0).toFixed(3)}
-              </span>
-            </div>
-
-            <div className="p-3 rounded bg-slate-950 border border-slate-800 flex justify-between items-center">
-              <span className="text-slate-400">Betweenness Centrality:</span>
-              <span className="font-bold text-purple-400">
-                {(features?.betweenness_centrality?.[selectedTargetNode] ?? 0.0).toFixed(3)}
-              </span>
-            </div>
-
-            <div className="p-3 rounded bg-slate-950 border border-slate-800 flex justify-between items-center">
-              <span className="text-slate-400">Eigenvector Centrality:</span>
-              <span className="font-bold text-emerald-400">
-                {(features?.eigenvector_centrality?.[selectedTargetNode] ?? 0.0).toFixed(3)}
-              </span>
-            </div>
-
-            <div className="p-3 rounded bg-slate-950 border border-slate-800 flex justify-between items-center">
-              <span className="text-slate-400">Clustering Coefficient:</span>
-              <span className="font-bold text-amber-400">
-                {(features?.clustering_coefficients?.[selectedTargetNode] ?? 0.0).toFixed(3)}
-              </span>
-            </div>
-          </div>
+              <div className="space-y-2 font-mono text-xs max-h-56 overflow-y-auto pr-1">
+                {Object.keys(features.degree_centrality || {}).map((id) => (
+                  <div key={id} className="p-2.5 rounded bg-[#030712]/90 border border-slate-800 flex items-center justify-between text-[11px]">
+                    <span className="font-bold text-slate-200">{id}</span>
+                    <div className="flex gap-3 text-[10px]">
+                      <span>Degree: <strong className="text-cyan-400">{(features.degree_centrality[id] || 0).toFixed(2)}</strong></span>
+                      <span>Betweenness: <strong className="text-emerald-400">{(features.betweenness_centrality?.[id] || 0).toFixed(2)}</strong></span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

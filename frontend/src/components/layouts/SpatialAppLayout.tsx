@@ -36,13 +36,16 @@ export const SpatialAppLayout: React.FC = () => {
   const getActiveTab = (): ProductTab => {
     const path = location.pathname;
     if (path.startsWith('/world')) return 'WORLD';
+    if (path.startsWith('/intelligence/gnn')) return 'GRAPH_INTELLIGENCE';
+    if (path.startsWith('/intelligence/causal')) return 'GRAPH_INTELLIGENCE';
     if (path.startsWith('/intelligence')) return 'INTELLIGENCE';
     if (path.startsWith('/response')) return 'RESPONSE';
     if (path.startsWith('/decision')) return 'DECISION';
     if (path.startsWith('/simulation')) return 'SIMULATION';
     if (path.startsWith('/learning')) return 'RESILIENCE_AGENTS';
     if (path.startsWith('/observability')) return 'OBSERVABILITY';
-    if (path.startsWith('/governance')) return 'RESILIENCE_OS';
+    if (path.startsWith('/governance/resilience')) return 'RESILIENCE_OS';
+    if (path.startsWith('/governance/policies')) return 'GOVERNANCE';
     if (path.startsWith('/evaluation')) return 'EVALUATION';
     if (path.startsWith('/command')) return 'COMMAND';
     return 'COMMAND';
@@ -58,6 +61,9 @@ export const SpatialAppLayout: React.FC = () => {
         break;
       case 'INTELLIGENCE':
         navigate('/intelligence');
+        break;
+      case 'GRAPH_INTELLIGENCE':
+        navigate('/intelligence/gnn');
         break;
       case 'RESPONSE':
         navigate('/response/war-room');

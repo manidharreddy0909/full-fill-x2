@@ -1,4 +1,16 @@
-import React, { useEffect } from 'react';
+/**
+ * WorldWorkspace — 3D Digital Twin
+ * Phase 13A: Visual Transformation
+ *
+ * Enhancements:
+ * - WorldNodePrimitive: risk-mapped glow, aura, selection beam
+ * - FlowEdgePrimitive: directional flow particles, disruption pulse
+ * - SceneAtmosphere: fog + calibrated lighting (via SpatialCanvasViewport)
+ * - Selected path emphasis: highlight edges connected to selected node
+ * - AtmosphereLayer CSS background
+ * - Enhanced HUD
+ */
+import React, { useEffect, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchWorldSnapshot } from '../../api/worldApi';
@@ -8,10 +20,13 @@ import { useAppShellStore } from '../../store/appShellStore';
 import { useRealtimeStore } from '../../store/realtimeStore';
 import { World2DView } from '../world/World2DView';
 import { SpatialCanvasViewport } from '../canvas/SpatialCanvasViewport';
-import { SpatialNodePrimitive } from '../canvas/primitives/SpatialNodePrimitive';
-import { SpatialEdgePrimitive } from '../canvas/primitives/SpatialEdgePrimitive';
+import { WorldNodePrimitive } from '../../visual/nodes/WorldNodePrimitive';
+import { FlowEdgePrimitive } from '../../visual/edges/FlowEdgePrimitive';
 import { NodeInspectorWorkspace } from './NodeInspectorWorkspace';
-import { Activity, Layers, Compass } from 'lucide-react';
+import { AtmosphereLayer } from '../../visual/atmosphere/AtmosphereLayer';
+import { StatusPill } from '../../visual/telemetry/StatusPill';
+import { COLOR, riskColor } from '../../visual/tokens';
+import { Activity, Layers, Compass, AlertTriangle, Network } from 'lucide-react';
 
 export const WorldWorkspace: React.FC = () => {
   const { id: routeNodeId } = useParams<{ id?: string }>();
@@ -40,18 +55,48 @@ export const WorldWorkspace: React.FC = () => {
     queryFn: fetchRiskMap,
   });
 
-  const nodes = snapshot?.nodes || [];
-  const edges = snapshot?.edges || [];
+  const nodes = snapshot?.nodes ?? [];
+  const edges = snapshot?.edges ?? [];
 
-  // Node Selection Handler
+  // Enrich nodes with real composite risk
+  const enrichedNodes = useMemo(() =>
+    nodes.map((n) => {
+      const rtRisk = nodeRisks[n.id]?.composite;
+      const composite = rtRisk ?? riskMap?.node_risks[n.id]?.composite ?? n.risk_scores.composite;
+      const isDisrupted = n.is_disrupted || composite >= 0.5;
+      return { ...n, composite, isDisrupted };
+    }),
+    [nodes, nodeRisks, riskMap]
+  );
+
+  // Derive set of edge IDs connected to the selected node (for path emphasis)
+  const highlightedEdgeIds = useMemo(() => {
+    if (!selectedNodeId) return new Set<string>();
+    const ids = new Set<string>();
+    edges.forEach((e) => {
+      if (e.source_node_id === selectedNodeId || e.target_node_id === selectedNodeId) {
+        ids.add(e.id);
+      }
+    });
+    return ids;
+  }, [selectedNodeId, edges]);
+
+  // Summary stats for HUD
+  const disruptedCount = enrichedNodes.filter((n) => n.isDisrupted).length;
+  const avgRisk = enrichedNodes.length > 0
+    ? enrichedNodes.reduce((acc, n) => acc + n.composite, 0) / enrichedNodes.length
+    : 0;
+
   const handleSelectNode = (nodeId: string | null) => {
     setSelectedNodeId(nodeId);
     if (nodeId) {
       navigate(`/world/node/${nodeId}`);
-      // Find node coordinates for camera focus
       const n = nodes.find((item) => item.id === nodeId);
-      if (n && n.position) {
-        setCameraTarget([n.position.x, n.position.y + 5, n.position.z + 12], [n.position.x, n.position.y, n.position.z]);
+      if (n?.position) {
+        setCameraTarget(
+          [n.position.x, n.position.y + 6, n.position.z + 14],
+          [n.position.x, n.position.y, n.position.z]
+        );
       }
     } else {
       navigate('/world');
@@ -60,32 +105,165 @@ export const WorldWorkspace: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="flex h-[calc(100vh-60px)] items-center justify-center text-slate-400 font-mono text-xs">
+      <div
+        className="flex h-[calc(100vh-60px)] items-center justify-center"
+        style={{ background: '#040813' }}
+      >
         <Activity className="w-4 h-4 animate-spin mr-2 text-blue-400" />
-        <span>Loading 3D Supply Chain Topology Mesh...</span>
+        <span className="text-slate-400 font-mono text-xs">
+          Loading 3D Supply Chain Digital Twin...
+        </span>
       </div>
     );
   }
 
   return (
-    <div className="relative h-[calc(100vh-60px)] w-full overflow-hidden bg-slate-950">
-      {/* View Mode & HUD Controls Overlay */}
-      <div className="absolute top-4 left-4 z-20 flex items-center gap-3 bg-slate-900/85 p-2 rounded-xl border border-slate-800 backdrop-blur-md">
-        <button
-          onClick={() => setViewMode(viewMode === '3D' ? '2D' : '3D')}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-600/30 border border-blue-500/50 text-blue-300 text-xs font-mono font-medium hover:bg-blue-600/50 transition-all"
-        >
-          <Compass className="w-3.5 h-3.5" />
-          <span>Switch to {viewMode === '3D' ? '2D SVG' : '3D WebGL'} View</span>
-        </button>
+    <div
+      className="relative overflow-hidden"
+      style={{ height: 'calc(100vh - 60px)', background: '#040813' }}
+    >
+      <AtmosphereLayer mode="WORLD" />
 
-        <span className="text-[11px] font-mono text-slate-400">
-          Nodes: <strong className="text-slate-200">{nodes.length}</strong> | Edges:{' '}
-          <strong className="text-slate-200">{edges.length}</strong>
-        </span>
+      {/* ── View Mode Toggle + HUD ── */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '14px',
+          left: '14px',
+          zIndex: 20,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '8px',
+        }}
+      >
+        {/* View toggle */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            padding: '6px 10px',
+            borderRadius: '10px',
+            background: 'rgba(7,15,28,0.88)',
+            border: '1px solid rgba(255,255,255,0.09)',
+            backdropFilter: 'blur(12px)',
+          }}
+        >
+          <button
+            onClick={() => setViewMode(viewMode === '3D' ? '2D' : '3D')}
+            style={{
+              display: 'flex', alignItems: 'center', gap: '6px',
+              padding: '5px 10px', borderRadius: '6px',
+              background: 'rgba(52,199,123,0.1)', border: '1px solid rgba(52,199,123,0.3)',
+              color: '#34d399', fontSize: '11px', fontFamily: 'var(--font-mono)', fontWeight: 600,
+              cursor: 'pointer', transition: 'all 0.15s',
+            }}
+          >
+            {viewMode === '3D' ? <Layers size={12} /> : <Compass size={12} />}
+            <span>{viewMode === '3D' ? '2D Map' : '3D Twin'}</span>
+          </button>
+
+          <div style={{ width: '1px', height: '16px', background: 'rgba(255,255,255,0.08)' }} />
+
+          <span style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#3d5168' }}>
+            {nodes.length}N · {edges.length}E
+          </span>
+        </div>
+
+        {/* Status pills */}
+        <StatusPill
+          color={avgRisk >= 0.5 ? COLOR.critical : avgRisk >= 0.25 ? '#f5a623' : COLOR.healthy}
+          label="Avg Risk"
+          value={`${(avgRisk * 100).toFixed(1)}%`}
+          size="sm"
+        />
+        {disruptedCount > 0 && (
+          <StatusPill
+            color={COLOR.critical}
+            label="Disrupted"
+            value={disruptedCount}
+            pulse
+            size="sm"
+          />
+        )}
       </div>
 
-      {/* Main Visualizer: 2D SVG or 3D WebGL Canvas */}
+      {/* ── Selected node legend (top-right) ── */}
+      {selectedNodeId && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '14px',
+            right: '14px',
+            zIndex: 20,
+            padding: '8px 12px',
+            borderRadius: '8px',
+            background: 'rgba(7,15,28,0.90)',
+            border: '1px solid rgba(91,147,246,0.35)',
+            backdropFilter: 'blur(12px)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+          }}
+        >
+          <Network size={12} color={COLOR.info} />
+          <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#7aabf8' }}>
+            {selectedNodeId}
+          </span>
+          <button
+            onClick={() => handleSelectNode(null)}
+            style={{
+              fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#3d5168',
+              background: 'transparent', border: 'none', cursor: 'pointer',
+            }}
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
+      {/* ── Disruption legend (bottom-left) ── */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '14px',
+          left: '14px',
+          zIndex: 20,
+          padding: '8px 12px',
+          borderRadius: '8px',
+          background: 'rgba(7,15,28,0.80)',
+          border: '1px solid rgba(255,255,255,0.07)',
+          backdropFilter: 'blur(10px)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px',
+        }}
+      >
+        {[
+          { color: COLOR.healthy,  label: 'Healthy' },
+          { color: COLOR.info,     label: 'Low Risk' },
+          { color: '#fb923c',      label: 'Warning' },
+          { color: COLOR.critical, label: 'Critical' },
+        ].map(({ color, label }) => (
+          <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: color, boxShadow: `0 0 5px ${color}` }} />
+            <span style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#4a5c72' }}>{label}</span>
+          </div>
+        ))}
+        {disruptedCount > 0 && (
+          <>
+            <div style={{ width: '1px', height: '14px', background: 'rgba(255,255,255,0.08)' }} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+              <AlertTriangle size={11} color={COLOR.critical} />
+              <span style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#f87171', fontWeight: 700 }}>
+                {disruptedCount} disrupted
+              </span>
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* ── Main Visualizer ── */}
       {viewMode === '2D' ? (
         <World2DView
           nodes={nodes}
@@ -94,49 +272,56 @@ export const WorldWorkspace: React.FC = () => {
           onSelectNode={handleSelectNode}
         />
       ) : (
-        <SpatialCanvasViewport>
-          {/* Render 3D Nodes */}
-          {nodes.map((n) => {
+        <SpatialCanvasViewport showGrid showStars starCount={150}>
+          {/* Enhanced nodes */}
+          {enrichedNodes.map((n) => {
             const pos: [number, number, number] = n.position
               ? [n.position.x, n.position.y, n.position.z]
               : [0, 0, 0];
-            const composite = nodeRisks[n.id]?.composite ?? riskMap?.node_risks[n.id]?.composite ?? n.risk_scores.composite;
-
             return (
-              <SpatialNodePrimitive
+              <WorldNodePrimitive
                 key={n.id}
                 id={n.id}
                 label={n.name}
                 nodeType={n.type}
                 position={pos}
-                riskScore={composite}
-                isDisrupted={n.is_disrupted || composite >= 0.5}
+                riskScore={n.composite}
+                isDisrupted={n.isDisrupted}
                 isSelected={selectedNodeId === n.id}
                 onSelect={handleSelectNode}
               />
             );
           })}
 
-          {/* Render 3D Edges */}
+          {/* Enhanced edges with flow + path emphasis */}
           {edges.map((e) => {
             const src = nodes.find((n) => n.id === e.source_node_id);
             const tgt = nodes.find((n) => n.id === e.target_node_id);
             if (!src || !tgt || !src.position || !tgt.position) return null;
 
+            const srcEnriched = enrichedNodes.find((n) => n.id === e.source_node_id);
+            const tgtEnriched = enrichedNodes.find((n) => n.id === e.target_node_id);
+            const capacity = 1 - Math.max(
+              srcEnriched?.composite ?? 0,
+              tgtEnriched?.composite ?? 0
+            );
+
             return (
-              <SpatialEdgePrimitive
+              <FlowEdgePrimitive
                 key={e.id}
                 id={e.id}
                 sourcePos={[src.position.x, src.position.y, src.position.z]}
                 targetPos={[tgt.position.x, tgt.position.y, tgt.position.z]}
                 isDisrupted={e.is_disrupted}
+                isHighlighted={highlightedEdgeIds.has(e.id)}
+                capacity={capacity}
               />
             );
           })}
         </SpatialCanvasViewport>
       )}
 
-      {/* Node Inspector Drawer when a node is selected */}
+      {/* ── Node Inspector Drawer ── */}
       {selectedNodeId && (
         <NodeInspectorWorkspace
           nodeId={selectedNodeId}
