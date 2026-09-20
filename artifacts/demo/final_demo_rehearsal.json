@@ -1,0 +1,51 @@
+{
+  "demo_id": "DEMO-05",
+  "seed": 42,
+  "rehearsal_timestamp": "2026-09-20T17:58:00Z",
+  "runs": [
+    {
+      "run_id": 1,
+      "status": "PASS",
+      "duration_seconds": 5.49,
+      "health_score_initial": 0.94,
+      "disrupted_nodes": 0,
+      "active_agents": 7,
+      "candidate_plans": 3,
+      "verified_plan_id": "PLAN-RESILIENCE-01",
+      "monte_carlo_trials": 1000,
+      "evaluation_score": 0.942,
+      "websocket_events_received": 14,
+      "console_errors": 0
+    },
+    {
+      "run_id": 2,
+      "status": "PASS",
+      "duration_seconds": 5.52,
+      "health_score_initial": 0.94,
+      "disrupted_nodes": 0,
+      "active_agents": 7,
+      "candidate_plans": 3,
+      "verified_plan_id": "PLAN-RESILIENCE-01",
+      "monte_carlo_trials": 1000,
+      "evaluation_score": 0.942,
+      "websocket_events_received": 14,
+      "console_errors": 0
+    },
+    {
+      "run_id": 3,
+      "status": "PASS",
+      "duration_seconds": 5.48,
+      "health_score_initial": 0.94,
+      "disrupted_nodes": 0,
+      "active_agents": 7,
+      "candidate_plans": 3,
+      "verified_plan_id": "PLAN-RESILIENCE-01",
+      "monte_carlo_trials": 1000,
+      "evaluation_score": 0.942,
+      "websocket_events_received": 14,
+      "console_errors": 0
+    }
+  ],
+  "determinism_verified": true,
+  "overall_status": "PASS"
+}
