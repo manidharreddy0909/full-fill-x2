@@ -15,12 +15,13 @@ import {
   fetchChallengerModels,
   trainChallengerModel,
   activateChallengerModel,
+  validateAgentMemory,
 } from '../../api/learningApi';
 import { useVisualEnvironmentStore } from '../../store/visualEnvironmentStore';
 import { StatusPill } from '../../visual/telemetry/StatusPill';
 import {
   Activity, GraduationCap, Brain, CheckCircle2,
-  TrendingUp, Database, RefreshCw, Sparkles, Shield, Award, ArrowUpRight
+  TrendingUp, Database, RefreshCw, Sparkles, Shield, Award, ArrowUpRight, ShieldCheck
 } from 'lucide-react';
 import { AgentMemory, AgentPerformanceRecord, ChallengerModelRecord } from '../../types/learning';
 
@@ -45,6 +46,11 @@ export const DeliberateWorkspace: React.FC = () => {
   const { data: challengers = [], isLoading: isChallengersLoading, refetch: refetchChallengers } = useQuery<ChallengerModelRecord[]>({
     queryKey: ['challengerModels'],
     queryFn: fetchChallengerModels,
+  });
+
+  const validateMutation = useMutation({
+    mutationFn: (memoryId: string) => validateAgentMemory(memoryId),
+    onSuccess: () => refetchMemories(),
   });
 
   const trainMutation = useMutation({
@@ -133,7 +139,17 @@ export const DeliberateWorkspace: React.FC = () => {
                   <p className="text-xs text-slate-200 font-sans leading-relaxed">{mem.lesson}</p>
                   <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 pt-1 border-t border-slate-900">
                     <span>Type: <strong className="text-violet-300">{mem.memory_type}</strong></span>
-                    <span>Confidence: <strong className="text-emerald-400">{(mem.confidence * 100).toFixed(0)}%</strong></span>
+                    <div className="flex items-center gap-2">
+                      <span>Confidence: <strong className="text-emerald-400">{(mem.confidence * 100).toFixed(0)}%</strong></span>
+                      <button
+                        onClick={() => validateMutation.mutate(mem.memory_id)}
+                        disabled={validateMutation.isPending}
+                        className="px-1.5 py-0.5 rounded bg-violet-950 hover:bg-violet-900 text-violet-300 border border-violet-800 text-[9px] font-bold"
+                        title="Validate memory with reasoning engine"
+                      >
+                        VALIDATE
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
