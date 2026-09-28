@@ -40,6 +40,7 @@ import {
 } from 'lucide-react';
 import { TruthTag } from '../common/TruthTag';
 import { EvidenceCard } from '../common/EvidenceCard';
+import { WhyDecisionChangedHeroCard } from './WhyDecisionChangedHeroCard';
 import {
   DecisionEvidence,
   DecisionAuthorizationStatus,
@@ -435,6 +436,17 @@ export const DecisionEvidencePanel: React.FC<DecisionEvidencePanelProps> = ({
           >
             {/* Left Column: Converged Evidence Synthesis (7 Cols) */}
             <div className="lg:col-span-7 flex flex-col gap-6">
+              {/* Phase 6F-6I Section 83: "WHY DID THE DECISION CHANGE?" Hero Card */}
+              <WhyDecisionChangedHeroCard
+                previousStrategyName="Immediate Supplier Substitution (EXP-012)"
+                previousOutcome="Succeeded in Incident #1 (Fast recovery under nominal demand)"
+                learnedCondition="Supplier Spare Capacity >= 40.0% & Lead Time <= 72h"
+                currentObservedValue="Supplier Spare Capacity = 38.0% (Capacity boundary breach detected)"
+                transferVerdict={evidence.transfer.status}
+                activeDecisionVerdict="Previous substitution strategy REJECTED to avoid boundary failure"
+                alternativeStrategyName={selectedStrategy.name}
+              />
+
               {/* Hindsight & Boundary Alert Summary Card */}
               <div className="p-4 rounded-xl bg-[#090d16]/90 border border-blue-500/25 backdrop-blur-xl shadow-xl">
                 <div className="flex items-center justify-between mb-3">
