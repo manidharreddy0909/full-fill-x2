@@ -2,7 +2,30 @@
  
  All significant changes to the project are documented here.
  Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
- ## [2.2.0] — 2026-09-28 — Phase 6F: Decision Convergence & Safety Clearance
+ ## [2.3.0] — 2026-09-28 — Phase 6G, 6H & 6I: Deep Intelligence, Extraordinary Demo & Final Hardening
+
+### Added & Integrated
+- **Deep Intelligence Progressive Disclosure Bridges (`DeepDecisionLinkCard.tsx`)**: Created universal progressive disclosure bridges linking GNN, Causal, Predictive ML, Simulation Digital Twin, War Room, Adversary Lab, and Risk Engine directly to the Decision Clearance Cockpit.
+- **7 Deep Intelligence Workspaces Upgraded**:
+  - `GNNWorkspace.tsx`: Displays cascade impact score, topological propagation depth, and downstream risk bridge.
+  - `CausalWorkspace.tsx`: Displays counterfactual `do(X)` risk reduction, attenuation rate, and structural causality bridge.
+  - `PredictiveIntelligence.tsx`: Displays disruption probability and PSI drift telemetry bridge.
+  - `DigitalTwinWorkspace.tsx`: Displays Monte Carlo P50 service level and stochastic confidence bridge.
+  - `WarRoomWorkspace.tsx`: Displays specialist swarm deliberation consensus and coordinator reconciliation bridge.
+  - `AdversaryWorkspace.tsx`: Displays attack vector probing counts, critical boundary thresholds, and stress-test envelope bridge.
+  - `RiskWorkspace.tsx`: Displays network composite fragility, decay factors, and risk propagation bridge.
+- **Extraordinary Demo System**: Verified and regenerated multi-step deterministic competition demonstration artifacts (`artifacts/demo/demo_report.json` and `artifacts/demo/demo_report.md`) covering all 12 stages from nominal observation to outcome retention.
+- **Master Documentation**: Published `docs/PHASE_6G_6H_6I_FINAL_COMPLETION.md`.
+
+### Verified
+- `tsc --noEmit`: 0 errors.
+- `npm run build`: Production bundle built in 11.57s (2,622 modules transformed, 0 errors).
+- `pytest`: 313/313 tests PASS (100% pass rate in 98.31s).
+- Live runtime daemons confirmed: FastAPI (`http://127.0.0.1:8000`), Vite Dev Server (`http://127.0.0.1:5173`).
+
+---
+
+## [2.2.0] — 2026-09-28 — Phase 6F: Decision Convergence & Safety Clearance
 
 ### Added & Integrated
 - **Authoritative Decision Evidence Model**: Created `frontend/src/types/decisionEvidence.ts` synthesizing Incident context, Hindsight recalled memories, Resilience Genome invariants, Recovery Skill preconditions, Transferability evaluation, Deep Intelligence studio summaries, Strategy candidate matrices, Governance policies, Deterministic verification, and Outcome feedback.

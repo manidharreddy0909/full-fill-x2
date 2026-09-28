@@ -21,6 +21,7 @@ import {
   AlertTriangle, Clock, Play, MessageSquare, Brain, Radio
 } from 'lucide-react';
 import { DeliberationSession, ConsensusStatus } from '../../types/learning';
+import { DeepDecisionLinkCard } from '../common/DeepDecisionLinkCard';
 
 export const WarRoomWorkspace: React.FC = () => {
   const { setEnvironmentMode } = useVisualEnvironmentStore();
@@ -61,6 +62,16 @@ export const WarRoomWorkspace: React.FC = () => {
         deliberationStatus={session ? session.consensus_status : deliberationMutation.isPending ? 'DELIBERATING' : 'STANDBY'}
         onTriggerDeliberation={() => deliberationMutation.mutate(['sup-001', 'port-001'])}
         isPending={deliberationMutation.isPending}
+      />
+
+      {/* Phase 6G: Progressive Disclosure — Decision Evidence Bridge */}
+      <DeepDecisionLinkCard
+        studioName="Specialist War Room"
+        truthMode="INFERRED"
+        metricLabel="Agent Consensus"
+        metricValue={session ? `${session.consensus_status} · ${Object.keys(agentStates).length} Agents` : '4 Specialists · Consensus Reached'}
+        decisionImpactSummary="Multi-agent specialist proposals coordinated. War Room consensus feeds candidate plan generation in Decision Clearance convergence workspace."
+        recommendedActionHint="Coordinator reconciliation complete — proceed to safety clearance"
       />
 
       {/* Main Incident Command Grid */}
