@@ -513,7 +513,30 @@
 
 ---
 
+## Phase 2A — Hindsight Experiential Memory
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P2A-001 | Hindsight adapter package (`backend/app/hindsight/`) | DONE | Package importable, all modules present | TBD |
+| P2A-002 | ProvenanceMetadata with TruthStatus safety guard | DONE | `validate_simulation_boundary()` raises on OBSERVED+is_simulation | TBD |
+| P2A-003 | ExperienceRecorder (retain) | DONE | `test_retain_experience` PASSED | TBD |
+| P2A-004 | ExperienceRetriever (recall) | DONE | `test_recall_relevant_experience` PASSED | TBD |
+| P2A-005 | ReflectionEngine & Genome synthesis | DONE | `test_reflect_extract_conditions_and_boundaries` PASSED | TBD |
+| P2A-006 | Contradiction detection in Genome | DONE | `test_contradiction_preservation` PASSED | TBD |
+| P2A-007 | TransferEvaluator — TRANSFERABLE path | DONE | `test_transfer_success` PASSED | TBD |
+| P2A-008 | TransferEvaluator — boundary breach (materially different capacity) | DONE | `test_transfer_failure_boundary_breach` PASSED | TBD |
+| P2A-009 | TransferEvaluator — UNKNOWN with insufficient evidence | DONE | `test_transfer_unknown_when_insufficient_evidence` PASSED | TBD |
+| P2A-010 | Governance cannot be bypassed gate | DONE | `test_governance_cannot_be_bypassed` PASSED | TBD |
+| P2A-011 | Canonical Vertical Slice — closed learning loop | DONE | `test_canonical_vertical_slice_before_and_after` PASSED; executed_strategy="Emergency Inventory Draw (Warehouse C Reserves)" | TBD |
+| P2A-012 | REST endpoints (retain/recall/reflect/transfer/canonical_loop) | DONE | `hindsight_router` registered in `api/router.py` | TBD |
+| P2A-013 | pytest.ini asyncio_mode=auto configuration | DONE | 10 passed in 2.19s with no warnings | TBD |
+
+**Full test run result:** `10 passed in 2.19s`
+
+---
+
 *Commit hashes to be filled in after `git commit` completes.*
+
 
 
 

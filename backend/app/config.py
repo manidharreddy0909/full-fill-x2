@@ -42,5 +42,12 @@ class Settings(BaseModel):
     WS_MAX_CONNECTIONS_PER_SESSION: int = int(os.getenv("WS_MAX_CONNECTIONS_PER_SESSION", "50"))
     MAX_REQUEST_BODY_BYTES: int = int(os.getenv("MAX_REQUEST_BODY_BYTES", "10485760"))  # 10MB
 
+    # Hindsight Experiential Memory Platform Settings
+    HINDSIGHT_ENDPOINT: str = os.getenv("HINDSIGHT_ENDPOINT", "http://localhost:8888")
+    HINDSIGHT_API_KEY: str = os.getenv("HINDSIGHT_API_KEY", "")
+    HINDSIGHT_MODE: str = os.getenv("HINDSIGHT_MODE", "mock").lower()  # "cloud", "self_hosted", or "mock"
+    HINDSIGHT_TENANT_ID: str = os.getenv("HINDSIGHT_TENANT_ID", "default_tenant")
+    HINDSIGHT_RECALL_CONFIDENCE_THRESHOLD: float = float(os.getenv("HINDSIGHT_RECALL_CONFIDENCE_THRESHOLD", "0.5"))
+
 
 settings = Settings()
