@@ -35,9 +35,9 @@ class AuthStore {
       ],
     },
     organization: {
-      id: 'org-fulfillx-default',
-      name: 'FULFILL-X Autonomous Systems',
-      slug: 'fulfillx-default',
+      id: 'org-enterprise-default',
+      name: 'Autonomous Resilience Systems',
+      slug: 'resilience-default',
       created_at: new Date().toISOString(),
       member_count: 12,
     },

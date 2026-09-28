@@ -569,5 +569,544 @@ option {
   padding: 8px 12px !important;
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   PHASE 1 — EXPERIENTIAL RESILIENCE INTELLIGENCE PLATFORM
+   Design System Extension
+   All tokens below are additive — nothing existing is removed.
+═══════════════════════════════════════════════════════════════════════════ */
 
+:root {
+  /* ─── Experience Memory Tokens ─── */
+  --exp-observed:     #34c77b;    /* Directly observed outcome */
+  --exp-simulated:    #38bdf8;    /* Simulation-derived */
+  --exp-derived:      #a78bfa;    /* Derived from related experiences */
+  --exp-inferred:     #f5a623;    /* Inferred / estimated */
+  --exp-hypothesis:   #64748b;    /* Unverified hypothesis */
+  --exp-stale:        #3d5168;    /* Confidence degraded due to age */
+  --exp-success:      #34c77b;
+  --exp-failure:      #e8503a;
+  --exp-partial:      #f5a623;
+
+  /* ─── Transfer Intelligence Tokens ─── */
+  --transfer-yes:     #34c77b;    /* Fully transferable */
+  --transfer-partial: #f5a623;    /* Partially transferable */
+  --transfer-no:      #e8503a;    /* Non-transferable */
+  --transfer-unknown: #64748b;    /* Unknown transferability */
+
+  /* ─── Genome Tokens ─── */
+  --genome-success-cond: #34c77b;
+  --genome-failure-bound: #e8503a;
+  --genome-evidence:     #38bdf8;
+  --genome-confidence:   #a78bfa;
+  --genome-validated:    #34c77b;
+  --genome-candidate:    #f5a623;
+
+  /* ─── Skill Evolution Tokens ─── */
+  --skill-discovered:  #64748b;
+  --skill-candidate:   #f5a623;
+  --skill-simulated:   #38bdf8;
+  --skill-challenged:  #fb923c;
+  --skill-validated:   #a78bfa;
+  --skill-active:      #34c77b;
+  --skill-modified:    #06b6d4;
+  --skill-retired:     #3d5168;
+
+  /* ─── Adaptive Autonomy Tokens ─── */
+  --auth-auto:         #34c77b;
+  --auth-monitor:      #38bdf8;
+  --auth-approval:     #f5a623;
+  --auth-blocked:      #e8503a;
+
+  /* ─── Sidebar Layout ─── */
+  --sidebar-width:     224px;
+  --sidebar-collapsed: 56px;
+  --topbar-height:     52px;
+
+  /* ─── Knowledge State Colors ─── */
+  --known:     #34c77b;
+  --probable:  #38bdf8;
+  --uncertain: #f5a623;
+  --unknown:   #64748b;
+}
+
+/* ─── Sidebar Navigation ─────────────────────────────────────────────── */
+
+.ri-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: rgba(5, 9, 18, 0.97);
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  flex-direction: column;
+  z-index: 200;
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.ri-sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border-radius: 7px;
+  margin: 1px 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: #4a5c72;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ri-sidebar-nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #8ab4d4;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.ri-sidebar-nav-item.active {
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+.ri-sidebar-section-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #2a3d52;
+  padding: 6px 22px 3px;
+  margin-top: 4px;
+}
+
+/* ─── Top Bar ─────────────────────────────────────────────────────────── */
+
+.ri-topbar {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width);
+  right: 0;
+  height: var(--topbar-height);
+  background: rgba(4, 8, 16, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 100;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.ri-main-content {
+  margin-left: var(--sidebar-width);
+  padding-top: var(--topbar-height);
+  min-height: 100vh;
+  background: #040810;
+}
+
+/* ─── Experience Memory Card ─────────────────────────────────────────── */
+
+.exp-memory-card {
+  background: rgba(7, 14, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 14px;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.exp-memory-card:hover {
+  border-color: rgba(56, 189, 248, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.exp-memory-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 10px 10px 0 0;
+}
+
+.exp-memory-card.success::before { background: linear-gradient(90deg, var(--exp-success), transparent); }
+.exp-memory-card.failure::before { background: linear-gradient(90deg, var(--exp-failure), transparent); }
+.exp-memory-card.partial::before { background: linear-gradient(90deg, var(--exp-partial), transparent); }
+
+/* ─── Provenance Badge ───────────────────────────────────────────────── */
+
+.provenance-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.provenance-badge.observed  { background: rgba(52,199,123,0.15);  color: var(--exp-observed);   border: 1px solid rgba(52,199,123,0.3); }
+.provenance-badge.simulated { background: rgba(56,189,248,0.12);  color: var(--exp-simulated);  border: 1px solid rgba(56,189,248,0.25); }
+.provenance-badge.derived   { background: rgba(167,139,250,0.12); color: var(--exp-derived);    border: 1px solid rgba(167,139,250,0.25); }
+.provenance-badge.inferred  { background: rgba(245,166,35,0.12);  color: var(--exp-inferred);   border: 1px solid rgba(245,166,35,0.25); }
+.provenance-badge.hypothesis{ background: rgba(100,116,139,0.12); color: var(--exp-hypothesis); border: 1px solid rgba(100,116,139,0.2); }
+.provenance-badge.stale     { background: rgba(61,81,104,0.12);   color: var(--exp-stale);      border: 1px solid rgba(61,81,104,0.2); }
+
+/* ─── Transfer State Badge ───────────────────────────────────────────── */
+
+.transfer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.transfer-badge.transferable    { background: rgba(52,199,123,0.15); color: #34c77b; border: 1px solid rgba(52,199,123,0.35); }
+.transfer-badge.partial         { background: rgba(245,166,35,0.12); color: #f5a623; border: 1px solid rgba(245,166,35,0.3); }
+.transfer-badge.non-transferable{ background: rgba(232,80,58,0.12);  color: #e8503a; border: 1px solid rgba(232,80,58,0.3); }
+.transfer-badge.unknown         { background: rgba(100,116,139,0.1); color: #64748b; border: 1px solid rgba(100,116,139,0.2); }
+
+/* ─── Genome Component ───────────────────────────────────────────────── */
+
+.genome-card {
+  background: rgba(7, 14, 26, 0.9);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: 10px;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.genome-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at top right, rgba(124, 58, 237, 0.04), transparent 60%);
+  pointer-events: none;
+}
+
+.genome-condition {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.genome-condition.success { background: rgba(52,199,123,0.08);  border-left: 2px solid rgba(52,199,123,0.5);  color: #34c77b; }
+.genome-condition.failure { background: rgba(232,80,58,0.08);   border-left: 2px solid rgba(232,80,58,0.5);   color: #e8503a; }
+
+/* ─── Skill Evolution Track ──────────────────────────────────────────── */
+
+.skill-track-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.skill-track-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.15);
+  transition: all 0.2s ease;
+}
+
+.skill-track-dot.active-state {
+  width: 14px;
+  height: 14px;
+  box-shadow: 0 0 10px currentColor;
+}
+
+/* ─── Adaptive Autonomy Level ────────────────────────────────────────── */
+
+.autonomy-level {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid;
+}
+
+.autonomy-level.auto     { background: rgba(52,199,123,0.1);  color: #34c77b; border-color: rgba(52,199,123,0.3); }
+.autonomy-level.monitor  { background: rgba(56,189,248,0.1);  color: #38bdf8; border-color: rgba(56,189,248,0.3); }
+.autonomy-level.approval { background: rgba(245,166,35,0.1);  color: #f5a623; border-color: rgba(245,166,35,0.3); }
+.autonomy-level.blocked  { background: rgba(232,80,58,0.1);   color: #e8503a; border-color: rgba(232,80,58,0.3); }
+
+/* ─── Confidence Bar ─────────────────────────────────────────────────── */
+
+.confidence-bar-track {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.confidence-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Knowledge Zone ─────────────────────────────────────────────────── */
+
+.knowledge-zone {
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid;
+}
+
+.knowledge-zone.known     { background: rgba(52,199,123,0.08);  color: var(--known);    border-color: rgba(52,199,123,0.2); }
+.knowledge-zone.probable  { background: rgba(56,189,248,0.08);  color: var(--probable); border-color: rgba(56,189,248,0.2); }
+.knowledge-zone.uncertain { background: rgba(245,166,35,0.08);  color: var(--uncertain);border-color: rgba(245,166,35,0.2); }
+.knowledge-zone.unknown   { background: rgba(100,116,139,0.08); color: var(--unknown);  border-color: rgba(100,116,139,0.15); }
+
+/* ─── Before → After Learning Delta ─────────────────────────────────── */
+
+.learning-delta-before {
+  background: rgba(7, 14, 26, 0.8);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  border-radius: 8px;
+  padding: 12px;
+  position: relative;
+}
+
+.learning-delta-after {
+  background: rgba(7, 14, 26, 0.8);
+  border: 1px solid rgba(52, 199, 123, 0.25);
+  border-radius: 8px;
+  padding: 12px;
+  position: relative;
+}
+
+.learning-delta-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  color: #4a5c72;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ─── Strategy Card ──────────────────────────────────────────────────── */
+
+.strategy-card {
+  background: rgba(7, 14, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.strategy-card:hover {
+  border-color: rgba(91, 147, 246, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 12px rgba(91, 147, 246, 0.08);
+}
+
+.strategy-card.recommended {
+  border-color: rgba(52, 199, 123, 0.3);
+}
+
+.strategy-card.recommended::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #34c77b, transparent);
+}
+
+/* ─── Challenge Dimension Card ───────────────────────────────────────── */
+
+.challenge-dim {
+  padding: 8px 12px;
+  border-radius: 7px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(7, 14, 26, 0.6);
+  color: #4a5c72;
+  transition: all 0.15s ease;
+}
+
+.challenge-dim:hover {
+  border-color: rgba(232, 80, 58, 0.3);
+  color: #e8503a;
+  background: rgba(232, 80, 58, 0.06);
+}
+
+.challenge-dim.active {
+  border-color: rgba(232, 80, 58, 0.5);
+  color: #e8503a;
+  background: rgba(232, 80, 58, 0.1);
+}
+
+/* ─── Platform Section Header ────────────────────────────────────────── */
+
+.platform-section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 14px;
+}
+
+.platform-section-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #7a90aa;
+}
+
+/* ─── System Status Dot ──────────────────────────────────────────────── */
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-dot.operational { background: #34c77b; box-shadow: 0 0 6px rgba(52,199,123,0.7); animation: pulse-green-anim 2.5s infinite; }
+.status-dot.warning     { background: #f5a623; box-shadow: 0 0 6px rgba(245,166,35,0.7); }
+.status-dot.critical    { background: #e8503a; box-shadow: 0 0 6px rgba(232,80,58,0.7); animation: pulse-red-anim 2s infinite; }
+.status-dot.inactive    { background: #3d5168; }
+
+/* ─── Freshness Indicator ────────────────────────────────────────────── */
+
+.freshness-fresh    { color: #34c77b; }
+.freshness-recent   { color: #38bdf8; }
+.freshness-aging    { color: #f5a623; }
+.freshness-stale    { color: #e8503a; }
+
+/* ─── Dashboard Grid ─────────────────────────────────────────────────── */
+
+.ri-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.ri-dashboard-grid .col-span-2 { grid-column: span 2; }
+.ri-dashboard-grid .col-span-3 { grid-column: span 3; }
+
+@media (max-width: 1400px) {
+  .ri-dashboard-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ri-dashboard-grid .col-span-2 { grid-column: span 2; }
+  .ri-dashboard-grid .col-span-3 { grid-column: span 2; }
+}
+
+@media (max-width: 1024px) {
+  .ri-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .ri-dashboard-grid .col-span-2,
+  .ri-dashboard-grid .col-span-3 { grid-column: span 1; }
+  .ri-sidebar { width: var(--sidebar-collapsed); }
+  .ri-topbar  { left: var(--sidebar-collapsed); }
+  .ri-main-content { margin-left: var(--sidebar-collapsed); }
+}
+
+/* ─── Animations for Intelligence Platform ───────────────────────────── */
+
+@keyframes ri-memory-enter {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes ri-genome-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4); }
+  70%  { box-shadow: 0 0 0 8px rgba(124, 58, 237, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
+}
+
+@keyframes ri-knowledge-flow {
+  0%   { opacity: 0.4; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+@keyframes ri-confidence-breathe {
+  0%   { opacity: 0.8; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+@keyframes ri-slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ri-delta-reveal {
+  from { opacity: 0; width: 0; }
+  to   { opacity: 1; width: 100%; }
+}
+
+.ri-animate-enter    { animation: ri-slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.ri-animate-memory   { animation: ri-memory-enter 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.ri-animate-genome   { animation: ri-genome-pulse 3s ease-in-out infinite; }
+.ri-knowledge-flow   { animation: ri-knowledge-flow 3s ease-in-out infinite; }
+.ri-confidence-anim  { animation: ri-confidence-breathe 2s ease-in-out infinite; }
 

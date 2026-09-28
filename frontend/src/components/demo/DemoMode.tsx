@@ -193,7 +193,7 @@ export const DemoMode: React.FC = () => {
               </span>
             </div>
             <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight">
-              FULFILL-X Guided Judge Demonstration Console
+              Enterprise Resilience Demonstration Console
             </h1>
             <p className="text-xs md:text-sm text-slate-300 mt-1 max-w-2xl">
               100% deterministic, step-by-step presentation harness orchestrating World Model, Risk Engine, Multi-Agent Specialists, Adversarial Testing, Verification, Human Decision Gate, and Benchmark Evaluation.

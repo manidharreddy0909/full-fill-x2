@@ -105,8 +105,8 @@ export const SecurityConsole: React.FC = () => {
 
             <div className="rounded-lg border border-slate-800 bg-slate-950/80 p-3">
               <div className="text-[10px] font-mono text-slate-400">ORGANIZATION TENANT ID</div>
-              <div className="mt-1 font-semibold text-emerald-400 text-sm">{organization?.name || 'FULFILL-X Autonomous'}</div>
-              <div className="text-xs text-slate-400 font-mono">{user?.organization_id || 'org-fulfillx-default'}</div>
+              <div className="mt-1 font-semibold text-emerald-400 text-sm">{organization?.name || 'Autonomous Enterprise'}</div>
+              <div className="text-xs text-slate-400 font-mono">{user?.organization_id || 'org-enterprise-default'}</div>
             </div>
 
             <div className="rounded-lg border border-slate-800 bg-slate-950/80 p-3">

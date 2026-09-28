@@ -104,7 +104,7 @@ export const ResilienceOSWorkspace: React.FC = () => {
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <Cpu size={32} color="#38BDF8" />
             <h1 style={{ fontSize: '26px', fontWeight: 800, margin: 0, letterSpacing: '-0.5px', color: '#F8FAFC' }}>
-              FULFILL-X RESILIENCE OS
+              AUTONOMOUS RESILIENCE OS
             </h1>
             <span
               style={{

@@ -87,9 +87,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
             <div>
               <div style={{ fontSize: '16px', fontWeight: 800, letterSpacing: '0.5px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                FULFILL<span style={{ color: '#00f0ff' }}>-X</span>
+                RESILIENCE<span style={{ color: '#00f0ff' }}> OS</span>
                 <span className="mono" style={{ fontSize: '10px', background: 'rgba(16, 185, 129, 0.15)', color: '#34D399', padding: '1px 5px', borderRadius: '4px', border: '1px solid rgba(16, 185, 129, 0.4)' }}>
-                  v1.0
+                  v2.0
                 </span>
               </div>
             </div>

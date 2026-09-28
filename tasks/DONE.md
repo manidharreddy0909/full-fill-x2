@@ -493,6 +493,26 @@
 
 ---
 
+## Phase 18 / Phase 1 — Experiential Resilience Intelligence Platform & Enterprise Product Shell Transformation
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P01-UI-001 | Extended Design System Tokens & Semantic Classes (`frontend/src/index.css`) | DONE | 540 lines of additive CSS tokens for intelligence, memory, transferability, genomes, and knowledge zones | TBD |
+| P01-UI-002 | New Enterprise Product Shell Layout (`ResilienceIntelligenceLayout.tsx`) | DONE | Full enterprise sidebar + topbar, 14 functional areas, zero internal hackathon terms | TBD |
+| P01-UI-003 | Primary Resilience Intelligence Dashboard (`ResilienceDashboard.tsx`) | DONE | Live world metrics, risk maps, trust gate, memory, genome, transfer, arena, learning delta | TBD |
+| P01-UI-004 | Experience Memory Workspace (`ExperienceMemoryWorkspace.tsx`) | DONE | Persistent operational experiences, provenance filtering, evidence indicators, outcomes | TBD |
+| P01-UI-005 | Resilience Genome Workspace (`ResilienceGenomeWorkspace.tsx`) | DONE | Learned success conditions, failure boundaries, evidence tracking, contradiction detection | TBD |
+| P01-UI-006 | Transfer Intelligence Workspace (`TransferIntelligenceWorkspace.tsx`) | DONE | Transferability assessment matrix, condition evaluations, boundary checks, recommendations | TBD |
+| P01-UI-007 | Strategy Arena Workspace (`StrategyArenaWorkspace.tsx`) | DONE | Multi-candidate evaluation, challenge stress results, adaptive autonomy levels, trust gates | TBD |
+| P01-UI-008 | UI-Facing Intelligence Data Contracts (`types/intelligence.ts`) | DONE | TypeScript types for Experience, Genome, TransferAssessment, Skill, StrategyCandidate, Governance | TBD |
+| P01-UI-009 | Reusable Intelligence Component Library (`src/components/intelligence/`) | DONE | 16 modular components exported: BadgesAndGates, ConditionsAndBoundaries, IntelligenceCards | TBD |
+| P01-UI-010 | Product Language Audit & Brand Sanitization | DONE | Eliminated user-facing FULFILL-X, Judge, and hackathon terminology across components and index.html | TBD |
+| P01-UI-011 | Existing Route & Workspace Preservation (`App.tsx`) | DONE | All 17 previous routes and workspaces kept intact and accessible under new shell | TBD |
+| P01-UI-012 | Zero Backend Mutation Safety | DONE | Verified `git status`: backend code, agents, simulation, ML, and models completely untouched | TBD |
+| P01-UI-013 | System Build & Type Verification | DONE | `tsc --noEmit` PASS (0 errors), `npm run build` PASS (0 errors, 14.68s) | TBD |
+
+---
+
 *Commit hashes to be filled in after `git commit` completes.*
 
 

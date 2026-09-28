@@ -56,7 +56,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
               </span>
             </div>
             <h1 className="text-2xl lg:text-3xl font-black text-white tracking-tight">
-              FULFILL-X Fulfillment Resilience Intelligence
+              Enterprise Fulfillment Resilience Intelligence
             </h1>
             <p className="text-xs lg:text-sm text-slate-300 mt-1 max-w-2xl">
               Real-time supply network monitoring, multi-agent AI risk mitigation, adversary stress testing, and verified decision authorization.
@@ -69,7 +69,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
               className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs flex items-center space-x-2 shadow-lg shadow-amber-950/50 cursor-pointer transition-all"
             >
               <Sparkles className="w-4 h-4" />
-              <span>Judge Demo Console</span>
+              <span>Guided Demo Console</span>
             </button>
             <button
               onClick={onOpenCockpit}
