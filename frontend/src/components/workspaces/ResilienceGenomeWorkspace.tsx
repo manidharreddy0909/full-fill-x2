@@ -8,10 +8,12 @@
  * Now: UI architecture with demo fixtures.
  */
 import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { GitBranch, CheckCircle2, AlertTriangle, BarChart3, Clock, ChevronRight, Zap, Brain } from 'lucide-react';
+import { listGenomes } from '../../api/hindsightApi';
 
-// ─── Demo Fixture ─────────────────────────────────────────────────────────────
+// ─── Demo Fixture (Fallback when backend returns no genomes) ──────────────────
 
 const GENOMES = [
   {
@@ -108,8 +110,40 @@ const STATUS_CONFIG = {
 
 export const ResilienceGenomeWorkspace: React.FC = () => {
   const [selected, setSelected] = useState('gen-001');
-  const genome = GENOMES.find((g) => g.id === selected) ?? GENOMES[0];
-  const statusCfg = STATUS_CONFIG[genome.status];
+
+  const { data: apiGenomes = [] } = useQuery({
+    queryKey: ['hindsightGenomes'],
+    queryFn: listGenomes,
+    staleTime: 15000,
+  });
+
+  const displayGenomes = apiGenomes.length > 0
+    ? apiGenomes.map((ag) => ({
+        id: ag.genome_id,
+        strategy: ag.strategy_name,
+        description: ag.description || 'Learned operational resilience strategy',
+        status: (ag.status === 'VALIDATED' ? 'VALIDATED' : ag.status === 'DEPRECATED' ? 'RETIRED' : 'CANDIDATE') as keyof typeof STATUS_CONFIG,
+        confidence: ag.confidence ?? 0.8,
+        freshness: new Date(ag.last_reflected_at || Date.now()).toLocaleTimeString(),
+        successConditions: ag.success_conditions?.map((sc) => ({
+          text: sc.text,
+          evidenceCount: sc.evidence_count ?? 1,
+          strength: sc.confidence ?? 0.8,
+        })) ?? [],
+        failureBoundaries: ag.failure_boundaries?.map((fb) => ({
+          text: fb.text,
+          discoveredBy: fb.boundary_id || 'memory',
+          strength: fb.confidence ?? 0.8,
+        })) ?? [],
+        supportingEvidence: ag.supporting_evidence_ids?.length ?? 0,
+        contradictingEvidence: ag.contradicting_evidence_ids?.length ?? 0,
+        appliedCount: 0,
+        successRate: ag.confidence ?? 0.8,
+      }))
+    : GENOMES;
+
+  const genome = displayGenomes.find((g) => g.id === selected) ?? displayGenomes[0];
+  const statusCfg = STATUS_CONFIG[genome?.status ?? 'CANDIDATE'];
 
   return (
     <div style={{ padding: '20px', background: '#040810', minHeight: 'calc(100vh - 52px)' }}>
@@ -136,8 +170,8 @@ export const ResilienceGenomeWorkspace: React.FC = () => {
             Resilience Strategies
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-            {GENOMES.map((g) => {
-              const cfg = STATUS_CONFIG[g.status];
+            {displayGenomes.map((g) => {
+              const cfg = STATUS_CONFIG[g.status] ?? STATUS_CONFIG['CANDIDATE'];
               return (
                 <button key={g.id} onClick={() => setSelected(g.id)} style={{
                   padding: '12px 14px', borderRadius: '9px',

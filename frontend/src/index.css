@@ -765,10 +765,63 @@ option {
 
 .provenance-badge.observed  { background: rgba(52,199,123,0.15);  color: var(--exp-observed);   border: 1px solid rgba(52,199,123,0.3); }
 .provenance-badge.simulated { background: rgba(56,189,248,0.12);  color: var(--exp-simulated);  border: 1px solid rgba(56,189,248,0.25); }
+.provenance-badge.predicted { background: rgba(139,92,246,0.15);  color: #c4b5fd;               border: 1px solid rgba(139,92,246,0.35); }
 .provenance-badge.derived   { background: rgba(167,139,250,0.12); color: var(--exp-derived);    border: 1px solid rgba(167,139,250,0.25); }
 .provenance-badge.inferred  { background: rgba(245,166,35,0.12);  color: var(--exp-inferred);   border: 1px solid rgba(245,166,35,0.25); }
+.provenance-badge.learned   { background: rgba(167,139,250,0.15); color: #d8b4fe;               border: 1px solid rgba(167,139,250,0.35); }
 .provenance-badge.hypothesis{ background: rgba(100,116,139,0.12); color: var(--exp-hypothesis); border: 1px solid rgba(100,116,139,0.2); }
 .provenance-badge.stale     { background: rgba(61,81,104,0.12);   color: var(--exp-stale);      border: 1px solid rgba(61,81,104,0.2); }
+
+/* ─── Epistemic Truth Tag (Phase 6B) ─────────────────────────────────── */
+
+.truth-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  transition: all 0.15s ease;
+}
+
+.truth-tag.observed {
+  background: rgba(52, 199, 123, 0.12);
+  color: #34c77b;
+  border: 1px solid rgba(52, 199, 123, 0.35);
+  box-shadow: 0 0 8px rgba(52, 199, 123, 0.1);
+}
+
+.truth-tag.simulated {
+  background: rgba(6, 182, 212, 0.12);
+  color: #06b6d4;
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.1);
+}
+
+.truth-tag.predicted {
+  background: rgba(139, 92, 246, 0.12);
+  color: #a78bfa;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.1);
+}
+
+.truth-tag.inferred {
+  background: rgba(245, 166, 35, 0.12);
+  color: #f5a623;
+  border: 1px solid rgba(245, 166, 35, 0.35);
+  box-shadow: 0 0 8px rgba(245, 166, 35, 0.1);
+}
+
+.truth-tag.learned {
+  background: rgba(192, 132, 252, 0.12);
+  color: #c084fc;
+  border: 1px solid rgba(192, 132, 252, 0.35);
+  box-shadow: 0 0 8px rgba(192, 132, 252, 0.1);
+}
 
 /* ─── Transfer State Badge ───────────────────────────────────────────── */
 

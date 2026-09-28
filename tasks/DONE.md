@@ -611,7 +611,47 @@
 
 ---
 
-*Commit hashes to be filled in after `git commit` completes.*
+## Phase 6B — Shared Design System Primitives [COMPLETE]
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P06-B-001 | Truth & Epistemic semantic tokens in `visual/tokens.ts` (`TruthMode`, `truthColor()`, `COLOR.truth`) | DONE | `tsc --noEmit` 0 errors | TBD |
+| P06-B-002 | `.truth-tag` CSS classes in `index.css` (OBSERVED, SIMULATED, PREDICTED, INFERRED, LEARNED) | DONE | `tsc --noEmit` 0 errors | TBD |
+| P06-B-003 | Added `predicted` and `learned` variants to `.provenance-badge` | DONE | `tsc --noEmit` 0 errors | TBD |
+| P06-B-004 | `TruthTag.tsx` component — epistemic provenance badge with icons from lucide-react | DONE | `tsc --noEmit` 0 errors | TBD |
+| P06-B-005 | `EvidenceCard.tsx` component — decision provenance grounding: memory, genome, challenge pass rate, boundary guard | DONE | `tsc --noEmit` 0 errors | TBD |
+
+---
+
+## Phase 6C — Global Resilience Context Store & ContextBar [COMPLETE]
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P06-C-001 | `store/incidentContextStore.ts` — Zustand cross-workspace incident thread (incident, node, strategy, memory IDs, genome, boundary alert, adversary/verification/governance states, truth mode, learning feedback) | DONE | `tsc --noEmit` 0 errors | TBD |
+| P06-C-002 | `api/hindsightApi.ts` — Real REST client for `/api/experiences`, `/api/genomes`, `/api/experiences/recall`, `/api/experiences/retain`, `/api/experiences/reflect`, `/api/hindsight/status` | DONE | `tsc --noEmit` 0 errors | TBD |
+| P06-C-003 | `components/common/ContextBar.tsx` — Global situational awareness strip; incident thread, severity, node, strategy, memory IDs, truth tag, cross-studio deep links with `?node=` param | DONE | `tsc --noEmit` 0 errors | TBD |
+| P06-C-004 | `ResilienceIntelligenceLayout.tsx` — Mount ContextBar between header and main content | DONE | `tsc --noEmit` 0 errors | TBD |
+| P06-C-005 | `GNNWorkspace.tsx` — Read `node` URL param and sync with `incidentContextStore.selectedNodeId` on mount | DONE | `tsc --noEmit` 0 errors | TBD |
+| P06-C-006 | `CausalWorkspace.tsx` — Read `node` URL param and sync with `incidentContextStore.selectedNodeId` on mount | DONE | `tsc --noEmit` 0 errors | TBD |
+
+---
+
+## Phase 6D — Unified Resilience Command Center & Real Data Wiring [COMPLETE]
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P06-D-001 | `CommandWorkspace.tsx` — Evolved to 3-tab unified orchestration surface: ORCHESTRATION (7-question structure), TOPOLOGY (preserved node matrix), INTELLIGENCE (9-studio synthesis links) | DONE | `tsc --noEmit` 0 errors, `npm run build` 2620 modules PASS | TBD |
+| P06-D-002 | `CommandWorkspace.tsx` — Q1 WHAT IS HAPPENING: Live incident context from `incidentContextStore`, affected nodes, symptoms | DONE | Build PASS | TBD |
+| P06-D-003 | `CommandWorkspace.tsx` — Q2 WHY IS IT HAPPENING: GNN propagation, Causal DAG, Agent consensus deep links with `?node=` param | DONE | Build PASS | TBD |
+| P06-D-004 | `CommandWorkspace.tsx` — Q4 & Q5 WHAT CAN WE DO & WILL IT WORK: Recalled episode from real `/api/experiences`, Failure Boundary Guard from `boundaryAlert`, Candidate strategy, Genome link | DONE | Build PASS | TBD |
+| P06-D-005 | `CommandWorkspace.tsx` — Q6 IS IT SAFE: 5-stage clearance pipeline (Candidate → Adversary → Verification → Policy → Autonomy gate) with visual status | DONE | Build PASS | TBD |
+| P06-D-006 | `CommandWorkspace.tsx` — Q7 WHAT DID WE LEARN: Prediction-vs-actual, retained memory ID, boundary reinforcement from `lastOutcomeLearning` | DONE | Build PASS | TBD |
+| P06-D-007 | `CommandWorkspace.tsx` — Real queries: `/api/hindsight/status`, `/api/experiences`, `/api/genomes` for live Hindsight stats and memory display | DONE | Build PASS | TBD |
+| P06-D-008 | `ExperienceMemoryWorkspace.tsx` — Wired to real `/api/experiences` (with demo fixtures as deterministic fallback) | DONE | Build PASS | TBD |
+| P06-D-009 | `ResilienceGenomeWorkspace.tsx` — Wired to real `/api/genomes` (with demo fixtures as deterministic fallback) | DONE | Build PASS | TBD |
+| P06-D-010 | Phase 6B+6C+6D full TypeScript verification: `tsc --noEmit` — 0 errors | DONE | 0 TypeScript errors PASS | TBD |
+| P06-D-011 | Phase 6B+6C+6D production build: `npm run build` — 2620 modules, 0 errors, 7.15s | DONE | ✓ built in 7.15s PASS | TBD |
+| P06-D-012 | Backend regression verification: 64/64 pytest PASS (hindsight, hindsight_eval, challenge, skills) | DONE | 64/64 PASS | TBD |
 
 
 

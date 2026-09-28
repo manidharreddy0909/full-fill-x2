@@ -1,7 +1,7 @@
 {
-  "experiment_id": "exp-ab-f46bd1df",
+  "experiment_id": "exp-ab-ea42c763",
   "title": "Hindsight Learning Evaluation (Memoryless vs Hindsight)",
-  "created_at": "2026-09-28T12:10:21.255695+00:00",
+  "created_at": "2026-09-28T14:29:27.222036+00:00",
   "scenario_count": 30,
   "seed": 42,
   "memoryless_metrics": {
@@ -516,7 +516,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 2,
@@ -563,7 +563,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 3,
@@ -610,7 +610,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 4,
@@ -657,7 +657,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 5,
@@ -704,7 +704,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 6,
@@ -751,7 +751,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 7,
@@ -798,7 +798,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 8,
@@ -845,7 +845,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 9,
@@ -892,7 +892,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 10,
@@ -938,7 +938,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 11,
@@ -985,7 +985,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 12,
@@ -1032,7 +1032,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 13,
@@ -1079,7 +1079,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 14,
@@ -1126,7 +1126,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 15,
@@ -1173,7 +1173,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 16,
@@ -1220,7 +1220,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 17,
@@ -1267,7 +1267,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 18,
@@ -1314,7 +1314,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 19,
@@ -1361,7 +1361,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 20,
@@ -1408,7 +1408,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 21,
@@ -1455,7 +1455,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 22,
@@ -1502,7 +1502,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 23,
@@ -1549,7 +1549,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 24,
@@ -1596,7 +1596,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 25,
@@ -1643,7 +1643,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 26,
@@ -1690,7 +1690,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 27,
@@ -1737,7 +1737,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 28,
@@ -1783,7 +1783,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 29,
@@ -1830,7 +1830,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     },
     {
       "episode_index": 30,
@@ -1877,7 +1877,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "Memoryless mode: zero historical recall"
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218293+00:00"
     }
   ],
   "episodes_hindsight": [
@@ -1931,7 +1931,7 @@
         "recalled_experience_ids": [],
         "evidence_summary": "First episode or nominal operation without boundary breach."
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218811+00:00"
     },
     {
       "episode_index": 2,
@@ -1945,7 +1945,7 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0"
+        "eval-exp-001-a394"
       ],
       "relevant_evidence": [
         {
@@ -1983,11 +1983,11 @@
         "decision_changed": false,
         "outcome_improved": false,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0"
+          "eval-exp-001-a394"
         ],
         "evidence_summary": "First episode or nominal operation without boundary breach."
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218811+00:00"
     },
     {
       "episode_index": 3,
@@ -2001,8 +2001,8 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543"
       ],
       "relevant_evidence": [
         {
@@ -2040,12 +2040,12 @@
         "decision_changed": false,
         "outcome_improved": false,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543"
         ],
         "evidence_summary": "Recalled evidence confirmed nominal envelope."
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218811+00:00"
     },
     {
       "episode_index": 4,
@@ -2059,9 +2059,9 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e"
       ],
       "relevant_evidence": [
         {
@@ -2099,13 +2099,13 @@
         "decision_changed": true,
         "outcome_improved": true,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e"
         ],
         "evidence_summary": "Recalled 3 prior episodes. Failure boundary avoidance triggered."
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218811+00:00"
     },
     {
       "episode_index": 5,
@@ -2119,10 +2119,10 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460"
       ],
       "relevant_evidence": [
         {
@@ -2160,14 +2160,14 @@
         "decision_changed": true,
         "outcome_improved": true,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460"
         ],
         "evidence_summary": "Recalled 4 prior episodes. Failure boundary avoidance triggered."
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218811+00:00"
     },
     {
       "episode_index": 6,
@@ -2181,11 +2181,11 @@
         "route_health": "DISRUPTED"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc"
       ],
       "relevant_evidence": [
         {
@@ -2223,15 +2223,15 @@
         "decision_changed": false,
         "outcome_improved": false,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc"
         ],
         "evidence_summary": "Recalled evidence confirmed nominal envelope."
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218811+00:00"
     },
     {
       "episode_index": 7,
@@ -2245,12 +2245,12 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf"
       ],
       "relevant_evidence": [
         {
@@ -2288,16 +2288,16 @@
         "decision_changed": false,
         "outcome_improved": false,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf"
         ],
         "evidence_summary": "Recalled evidence confirmed nominal envelope."
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218811+00:00"
     },
     {
       "episode_index": 8,
@@ -2311,13 +2311,13 @@
         "route_health": "DEGRADED"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f"
       ],
       "relevant_evidence": [
         {
@@ -2355,17 +2355,17 @@
         "decision_changed": false,
         "outcome_improved": false,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f"
         ],
         "evidence_summary": "Recalled evidence confirmed nominal envelope."
       },
-      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+      "executed_at": "2026-09-28T14:29:27.218811+00:00"
     },
     {
       "episode_index": 9,
@@ -2379,14 +2379,14 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8"
       ],
       "relevant_evidence": [
         {
@@ -2424,18 +2424,18 @@
         "decision_changed": false,
         "outcome_improved": false,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8"
         ],
         "evidence_summary": "Recalled evidence confirmed nominal envelope."
       },
-      "executed_at": "2026-09-28T12:10:21.249111+00:00"
+      "executed_at": "2026-09-28T14:29:27.219365+00:00"
     },
     {
       "episode_index": 10,
@@ -2448,15 +2448,15 @@
         "historical_prior_coverage": 0.0
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f"
       ],
       "relevant_evidence": [
         {
@@ -2494,19 +2494,19 @@
         "decision_changed": true,
         "outcome_improved": false,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f"
         ],
         "evidence_summary": "Novel condition recognized from memory sparsity."
       },
-      "executed_at": "2026-09-28T12:10:21.249111+00:00"
+      "executed_at": "2026-09-28T14:29:27.219365+00:00"
     },
     {
       "episode_index": 11,
@@ -2520,16 +2520,16 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd"
       ],
       "relevant_evidence": [
         {
@@ -2567,20 +2567,20 @@
         "decision_changed": true,
         "outcome_improved": true,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd"
         ],
         "evidence_summary": "Recalled 10 prior episodes. Failure boundary avoidance triggered."
       },
-      "executed_at": "2026-09-28T12:10:21.249111+00:00"
+      "executed_at": "2026-09-28T14:29:27.219365+00:00"
     },
     {
       "episode_index": 12,
@@ -2594,17 +2594,17 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9"
       ],
       "relevant_evidence": [
         {
@@ -2642,21 +2642,21 @@
         "decision_changed": true,
         "outcome_improved": true,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9"
         ],
         "evidence_summary": "Recalled 11 prior episodes. Failure boundary avoidance triggered."
       },
-      "executed_at": "2026-09-28T12:10:21.249111+00:00"
+      "executed_at": "2026-09-28T14:29:27.219365+00:00"
     },
     {
       "episode_index": 13,
@@ -2670,18 +2670,18 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061"
       ],
       "relevant_evidence": [
         {
@@ -2719,22 +2719,22 @@
         "decision_changed": true,
         "outcome_improved": true,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061"
         ],
         "evidence_summary": "Recalled 12 prior episodes. Failure boundary avoidance triggered."
       },
-      "executed_at": "2026-09-28T12:10:21.249111+00:00"
+      "executed_at": "2026-09-28T14:29:27.219365+00:00"
     },
     {
       "episode_index": 14,
@@ -2748,19 +2748,19 @@
         "route_health": "DEGRADED"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06"
       ],
       "relevant_evidence": [
         {
@@ -2798,23 +2798,23 @@
         "decision_changed": false,
         "outcome_improved": false,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06"
         ],
         "evidence_summary": "Recalled evidence confirmed nominal envelope."
       },
-      "executed_at": "2026-09-28T12:10:21.249111+00:00"
+      "executed_at": "2026-09-28T14:29:27.219365+00:00"
     },
     {
       "episode_index": 15,
@@ -2828,20 +2828,20 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d",
-        "eval-exp-014-7419"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06",
+        "eval-exp-014-18cc"
       ],
       "relevant_evidence": [
         {
@@ -2879,24 +2879,24 @@
         "decision_changed": true,
         "outcome_improved": true,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d",
-          "eval-exp-014-7419"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06",
+          "eval-exp-014-18cc"
         ],
         "evidence_summary": "Recalled 14 prior episodes. Failure boundary avoidance triggered."
       },
-      "executed_at": "2026-09-28T12:10:21.249111+00:00"
+      "executed_at": "2026-09-28T14:29:27.219901+00:00"
     },
     {
       "episode_index": 16,
@@ -2910,21 +2910,21 @@
         "route_health": "DOWN"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d",
-        "eval-exp-014-7419",
-        "eval-exp-015-fb4f"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06",
+        "eval-exp-014-18cc",
+        "eval-exp-015-3ab7"
       ],
       "relevant_evidence": [
         {
@@ -2962,25 +2962,25 @@
         "decision_changed": false,
         "outcome_improved": false,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d",
-          "eval-exp-014-7419",
-          "eval-exp-015-fb4f"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06",
+          "eval-exp-014-18cc",
+          "eval-exp-015-3ab7"
         ],
         "evidence_summary": "Recalled evidence confirmed nominal envelope."
       },
-      "executed_at": "2026-09-28T12:10:21.249111+00:00"
+      "executed_at": "2026-09-28T14:29:27.219901+00:00"
     },
     {
       "episode_index": 17,
@@ -2994,22 +2994,22 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d",
-        "eval-exp-014-7419",
-        "eval-exp-015-fb4f",
-        "eval-exp-016-d962"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06",
+        "eval-exp-014-18cc",
+        "eval-exp-015-3ab7",
+        "eval-exp-016-a149"
       ],
       "relevant_evidence": [
         {
@@ -3047,26 +3047,26 @@
         "decision_changed": true,
         "outcome_improved": true,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d",
-          "eval-exp-014-7419",
-          "eval-exp-015-fb4f",
-          "eval-exp-016-d962"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06",
+          "eval-exp-014-18cc",
+          "eval-exp-015-3ab7",
+          "eval-exp-016-a149"
         ],
         "evidence_summary": "Recalled 16 prior episodes. Failure boundary avoidance triggered."
       },
-      "executed_at": "2026-09-28T12:10:21.250767+00:00"
+      "executed_at": "2026-09-28T14:29:27.219901+00:00"
     },
     {
       "episode_index": 18,
@@ -3080,23 +3080,23 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d",
-        "eval-exp-014-7419",
-        "eval-exp-015-fb4f",
-        "eval-exp-016-d962",
-        "eval-exp-017-2494"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06",
+        "eval-exp-014-18cc",
+        "eval-exp-015-3ab7",
+        "eval-exp-016-a149",
+        "eval-exp-017-5169"
       ],
       "relevant_evidence": [
         {
@@ -3134,27 +3134,27 @@
         "decision_changed": true,
         "outcome_improved": true,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d",
-          "eval-exp-014-7419",
-          "eval-exp-015-fb4f",
-          "eval-exp-016-d962",
-          "eval-exp-017-2494"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06",
+          "eval-exp-014-18cc",
+          "eval-exp-015-3ab7",
+          "eval-exp-016-a149",
+          "eval-exp-017-5169"
         ],
         "evidence_summary": "Recalled 17 prior episodes. Failure boundary avoidance triggered."
       },
-      "executed_at": "2026-09-28T12:10:21.250767+00:00"
+      "executed_at": "2026-09-28T14:29:27.219901+00:00"
     },
     {
       "episode_index": 19,
@@ -3168,24 +3168,24 @@
         "route_health": "DEGRADED"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d",
-        "eval-exp-014-7419",
-        "eval-exp-015-fb4f",
-        "eval-exp-016-d962",
-        "eval-exp-017-2494",
-        "eval-exp-018-52ae"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06",
+        "eval-exp-014-18cc",
+        "eval-exp-015-3ab7",
+        "eval-exp-016-a149",
+        "eval-exp-017-5169",
+        "eval-exp-018-465e"
       ],
       "relevant_evidence": [
         {
@@ -3223,28 +3223,28 @@
         "decision_changed": false,
         "outcome_improved": false,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d",
-          "eval-exp-014-7419",
-          "eval-exp-015-fb4f",
-          "eval-exp-016-d962",
-          "eval-exp-017-2494",
-          "eval-exp-018-52ae"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06",
+          "eval-exp-014-18cc",
+          "eval-exp-015-3ab7",
+          "eval-exp-016-a149",
+          "eval-exp-017-5169",
+          "eval-exp-018-465e"
         ],
         "evidence_summary": "Recalled evidence confirmed nominal envelope."
       },
-      "executed_at": "2026-09-28T12:10:21.250767+00:00"
+      "executed_at": "2026-09-28T14:29:27.220435+00:00"
     },
     {
       "episode_index": 20,
@@ -3258,25 +3258,25 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d",
-        "eval-exp-014-7419",
-        "eval-exp-015-fb4f",
-        "eval-exp-016-d962",
-        "eval-exp-017-2494",
-        "eval-exp-018-52ae",
-        "eval-exp-019-cad6"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06",
+        "eval-exp-014-18cc",
+        "eval-exp-015-3ab7",
+        "eval-exp-016-a149",
+        "eval-exp-017-5169",
+        "eval-exp-018-465e",
+        "eval-exp-019-53b0"
       ],
       "relevant_evidence": [
         {
@@ -3314,29 +3314,29 @@
         "decision_changed": true,
         "outcome_improved": true,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d",
-          "eval-exp-014-7419",
-          "eval-exp-015-fb4f",
-          "eval-exp-016-d962",
-          "eval-exp-017-2494",
-          "eval-exp-018-52ae",
-          "eval-exp-019-cad6"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06",
+          "eval-exp-014-18cc",
+          "eval-exp-015-3ab7",
+          "eval-exp-016-a149",
+          "eval-exp-017-5169",
+          "eval-exp-018-465e",
+          "eval-exp-019-53b0"
         ],
         "evidence_summary": "Recalled 19 prior episodes. Failure boundary avoidance triggered."
       },
-      "executed_at": "2026-09-28T12:10:21.250767+00:00"
+      "executed_at": "2026-09-28T14:29:27.220435+00:00"
     },
     {
       "episode_index": 21,
@@ -3350,26 +3350,26 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d",
-        "eval-exp-014-7419",
-        "eval-exp-015-fb4f",
-        "eval-exp-016-d962",
-        "eval-exp-017-2494",
-        "eval-exp-018-52ae",
-        "eval-exp-019-cad6",
-        "eval-exp-020-65b7"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06",
+        "eval-exp-014-18cc",
+        "eval-exp-015-3ab7",
+        "eval-exp-016-a149",
+        "eval-exp-017-5169",
+        "eval-exp-018-465e",
+        "eval-exp-019-53b0",
+        "eval-exp-020-a4ad"
       ],
       "relevant_evidence": [
         {
@@ -3407,30 +3407,30 @@
         "decision_changed": false,
         "outcome_improved": false,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d",
-          "eval-exp-014-7419",
-          "eval-exp-015-fb4f",
-          "eval-exp-016-d962",
-          "eval-exp-017-2494",
-          "eval-exp-018-52ae",
-          "eval-exp-019-cad6",
-          "eval-exp-020-65b7"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06",
+          "eval-exp-014-18cc",
+          "eval-exp-015-3ab7",
+          "eval-exp-016-a149",
+          "eval-exp-017-5169",
+          "eval-exp-018-465e",
+          "eval-exp-019-53b0",
+          "eval-exp-020-a4ad"
         ],
         "evidence_summary": "Recalled evidence confirmed nominal envelope."
       },
-      "executed_at": "2026-09-28T12:10:21.252409+00:00"
+      "executed_at": "2026-09-28T14:29:27.220435+00:00"
     },
     {
       "episode_index": 22,
@@ -3444,27 +3444,27 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d",
-        "eval-exp-014-7419",
-        "eval-exp-015-fb4f",
-        "eval-exp-016-d962",
-        "eval-exp-017-2494",
-        "eval-exp-018-52ae",
-        "eval-exp-019-cad6",
-        "eval-exp-020-65b7",
-        "eval-exp-021-5b5d"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06",
+        "eval-exp-014-18cc",
+        "eval-exp-015-3ab7",
+        "eval-exp-016-a149",
+        "eval-exp-017-5169",
+        "eval-exp-018-465e",
+        "eval-exp-019-53b0",
+        "eval-exp-020-a4ad",
+        "eval-exp-021-d43e"
       ],
       "relevant_evidence": [
         {
@@ -3502,31 +3502,31 @@
         "decision_changed": false,
         "outcome_improved": false,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d",
-          "eval-exp-014-7419",
-          "eval-exp-015-fb4f",
-          "eval-exp-016-d962",
-          "eval-exp-017-2494",
-          "eval-exp-018-52ae",
-          "eval-exp-019-cad6",
-          "eval-exp-020-65b7",
-          "eval-exp-021-5b5d"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06",
+          "eval-exp-014-18cc",
+          "eval-exp-015-3ab7",
+          "eval-exp-016-a149",
+          "eval-exp-017-5169",
+          "eval-exp-018-465e",
+          "eval-exp-019-53b0",
+          "eval-exp-020-a4ad",
+          "eval-exp-021-d43e"
         ],
         "evidence_summary": "Recalled evidence confirmed nominal envelope."
       },
-      "executed_at": "2026-09-28T12:10:21.252409+00:00"
+      "executed_at": "2026-09-28T14:29:27.220435+00:00"
     },
     {
       "episode_index": 23,
@@ -3540,28 +3540,28 @@
         "route_health": "DOWN"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d",
-        "eval-exp-014-7419",
-        "eval-exp-015-fb4f",
-        "eval-exp-016-d962",
-        "eval-exp-017-2494",
-        "eval-exp-018-52ae",
-        "eval-exp-019-cad6",
-        "eval-exp-020-65b7",
-        "eval-exp-021-5b5d",
-        "eval-exp-022-e2c9"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06",
+        "eval-exp-014-18cc",
+        "eval-exp-015-3ab7",
+        "eval-exp-016-a149",
+        "eval-exp-017-5169",
+        "eval-exp-018-465e",
+        "eval-exp-019-53b0",
+        "eval-exp-020-a4ad",
+        "eval-exp-021-d43e",
+        "eval-exp-022-2699"
       ],
       "relevant_evidence": [
         {
@@ -3599,32 +3599,32 @@
         "decision_changed": false,
         "outcome_improved": false,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d",
-          "eval-exp-014-7419",
-          "eval-exp-015-fb4f",
-          "eval-exp-016-d962",
-          "eval-exp-017-2494",
-          "eval-exp-018-52ae",
-          "eval-exp-019-cad6",
-          "eval-exp-020-65b7",
-          "eval-exp-021-5b5d",
-          "eval-exp-022-e2c9"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06",
+          "eval-exp-014-18cc",
+          "eval-exp-015-3ab7",
+          "eval-exp-016-a149",
+          "eval-exp-017-5169",
+          "eval-exp-018-465e",
+          "eval-exp-019-53b0",
+          "eval-exp-020-a4ad",
+          "eval-exp-021-d43e",
+          "eval-exp-022-2699"
         ],
         "evidence_summary": "Recalled evidence confirmed nominal envelope."
       },
-      "executed_at": "2026-09-28T12:10:21.252409+00:00"
+      "executed_at": "2026-09-28T14:29:27.220968+00:00"
     },
     {
       "episode_index": 24,
@@ -3638,29 +3638,29 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d",
-        "eval-exp-014-7419",
-        "eval-exp-015-fb4f",
-        "eval-exp-016-d962",
-        "eval-exp-017-2494",
-        "eval-exp-018-52ae",
-        "eval-exp-019-cad6",
-        "eval-exp-020-65b7",
-        "eval-exp-021-5b5d",
-        "eval-exp-022-e2c9",
-        "eval-exp-023-0dff"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06",
+        "eval-exp-014-18cc",
+        "eval-exp-015-3ab7",
+        "eval-exp-016-a149",
+        "eval-exp-017-5169",
+        "eval-exp-018-465e",
+        "eval-exp-019-53b0",
+        "eval-exp-020-a4ad",
+        "eval-exp-021-d43e",
+        "eval-exp-022-2699",
+        "eval-exp-023-4791"
       ],
       "relevant_evidence": [
         {
@@ -3698,33 +3698,33 @@
         "decision_changed": true,
         "outcome_improved": true,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d",
-          "eval-exp-014-7419",
-          "eval-exp-015-fb4f",
-          "eval-exp-016-d962",
-          "eval-exp-017-2494",
-          "eval-exp-018-52ae",
-          "eval-exp-019-cad6",
-          "eval-exp-020-65b7",
-          "eval-exp-021-5b5d",
-          "eval-exp-022-e2c9",
-          "eval-exp-023-0dff"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06",
+          "eval-exp-014-18cc",
+          "eval-exp-015-3ab7",
+          "eval-exp-016-a149",
+          "eval-exp-017-5169",
+          "eval-exp-018-465e",
+          "eval-exp-019-53b0",
+          "eval-exp-020-a4ad",
+          "eval-exp-021-d43e",
+          "eval-exp-022-2699",
+          "eval-exp-023-4791"
         ],
         "evidence_summary": "Recalled 23 prior episodes. Failure boundary avoidance triggered."
       },
-      "executed_at": "2026-09-28T12:10:21.252409+00:00"
+      "executed_at": "2026-09-28T14:29:27.220968+00:00"
     },
     {
       "episode_index": 25,
@@ -3738,30 +3738,30 @@
         "stock_level_pct": 0.3
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d",
-        "eval-exp-014-7419",
-        "eval-exp-015-fb4f",
-        "eval-exp-016-d962",
-        "eval-exp-017-2494",
-        "eval-exp-018-52ae",
-        "eval-exp-019-cad6",
-        "eval-exp-020-65b7",
-        "eval-exp-021-5b5d",
-        "eval-exp-022-e2c9",
-        "eval-exp-023-0dff",
-        "eval-exp-024-feee"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06",
+        "eval-exp-014-18cc",
+        "eval-exp-015-3ab7",
+        "eval-exp-016-a149",
+        "eval-exp-017-5169",
+        "eval-exp-018-465e",
+        "eval-exp-019-53b0",
+        "eval-exp-020-a4ad",
+        "eval-exp-021-d43e",
+        "eval-exp-022-2699",
+        "eval-exp-023-4791",
+        "eval-exp-024-f025"
       ],
       "relevant_evidence": [
         {
@@ -3799,34 +3799,34 @@
         "decision_changed": true,
         "outcome_improved": true,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d",
-          "eval-exp-014-7419",
-          "eval-exp-015-fb4f",
-          "eval-exp-016-d962",
-          "eval-exp-017-2494",
-          "eval-exp-018-52ae",
-          "eval-exp-019-cad6",
-          "eval-exp-020-65b7",
-          "eval-exp-021-5b5d",
-          "eval-exp-022-e2c9",
-          "eval-exp-023-0dff",
-          "eval-exp-024-feee"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06",
+          "eval-exp-014-18cc",
+          "eval-exp-015-3ab7",
+          "eval-exp-016-a149",
+          "eval-exp-017-5169",
+          "eval-exp-018-465e",
+          "eval-exp-019-53b0",
+          "eval-exp-020-a4ad",
+          "eval-exp-021-d43e",
+          "eval-exp-022-2699",
+          "eval-exp-023-4791",
+          "eval-exp-024-f025"
         ],
         "evidence_summary": "Recalled 24 prior episodes. Failure boundary avoidance triggered."
       },
-      "executed_at": "2026-09-28T12:10:21.252409+00:00"
+      "executed_at": "2026-09-28T14:29:27.220968+00:00"
     },
     {
       "episode_index": 26,
@@ -3840,31 +3840,31 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d",
-        "eval-exp-014-7419",
-        "eval-exp-015-fb4f",
-        "eval-exp-016-d962",
-        "eval-exp-017-2494",
-        "eval-exp-018-52ae",
-        "eval-exp-019-cad6",
-        "eval-exp-020-65b7",
-        "eval-exp-021-5b5d",
-        "eval-exp-022-e2c9",
-        "eval-exp-023-0dff",
-        "eval-exp-024-feee",
-        "eval-exp-025-11ea"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06",
+        "eval-exp-014-18cc",
+        "eval-exp-015-3ab7",
+        "eval-exp-016-a149",
+        "eval-exp-017-5169",
+        "eval-exp-018-465e",
+        "eval-exp-019-53b0",
+        "eval-exp-020-a4ad",
+        "eval-exp-021-d43e",
+        "eval-exp-022-2699",
+        "eval-exp-023-4791",
+        "eval-exp-024-f025",
+        "eval-exp-025-f390"
       ],
       "relevant_evidence": [
         {
@@ -3902,35 +3902,35 @@
         "decision_changed": true,
         "outcome_improved": true,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d",
-          "eval-exp-014-7419",
-          "eval-exp-015-fb4f",
-          "eval-exp-016-d962",
-          "eval-exp-017-2494",
-          "eval-exp-018-52ae",
-          "eval-exp-019-cad6",
-          "eval-exp-020-65b7",
-          "eval-exp-021-5b5d",
-          "eval-exp-022-e2c9",
-          "eval-exp-023-0dff",
-          "eval-exp-024-feee",
-          "eval-exp-025-11ea"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06",
+          "eval-exp-014-18cc",
+          "eval-exp-015-3ab7",
+          "eval-exp-016-a149",
+          "eval-exp-017-5169",
+          "eval-exp-018-465e",
+          "eval-exp-019-53b0",
+          "eval-exp-020-a4ad",
+          "eval-exp-021-d43e",
+          "eval-exp-022-2699",
+          "eval-exp-023-4791",
+          "eval-exp-024-f025",
+          "eval-exp-025-f390"
         ],
         "evidence_summary": "Recalled 25 prior episodes. Failure boundary avoidance triggered."
       },
-      "executed_at": "2026-09-28T12:10:21.254044+00:00"
+      "executed_at": "2026-09-28T14:29:27.221502+00:00"
     },
     {
       "episode_index": 27,
@@ -3944,32 +3944,32 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d",
-        "eval-exp-014-7419",
-        "eval-exp-015-fb4f",
-        "eval-exp-016-d962",
-        "eval-exp-017-2494",
-        "eval-exp-018-52ae",
-        "eval-exp-019-cad6",
-        "eval-exp-020-65b7",
-        "eval-exp-021-5b5d",
-        "eval-exp-022-e2c9",
-        "eval-exp-023-0dff",
-        "eval-exp-024-feee",
-        "eval-exp-025-11ea",
-        "eval-exp-026-dfd3"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06",
+        "eval-exp-014-18cc",
+        "eval-exp-015-3ab7",
+        "eval-exp-016-a149",
+        "eval-exp-017-5169",
+        "eval-exp-018-465e",
+        "eval-exp-019-53b0",
+        "eval-exp-020-a4ad",
+        "eval-exp-021-d43e",
+        "eval-exp-022-2699",
+        "eval-exp-023-4791",
+        "eval-exp-024-f025",
+        "eval-exp-025-f390",
+        "eval-exp-026-02e8"
       ],
       "relevant_evidence": [
         {
@@ -4007,36 +4007,36 @@
         "decision_changed": false,
         "outcome_improved": false,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d",
-          "eval-exp-014-7419",
-          "eval-exp-015-fb4f",
-          "eval-exp-016-d962",
-          "eval-exp-017-2494",
-          "eval-exp-018-52ae",
-          "eval-exp-019-cad6",
-          "eval-exp-020-65b7",
-          "eval-exp-021-5b5d",
-          "eval-exp-022-e2c9",
-          "eval-exp-023-0dff",
-          "eval-exp-024-feee",
-          "eval-exp-025-11ea",
-          "eval-exp-026-dfd3"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06",
+          "eval-exp-014-18cc",
+          "eval-exp-015-3ab7",
+          "eval-exp-016-a149",
+          "eval-exp-017-5169",
+          "eval-exp-018-465e",
+          "eval-exp-019-53b0",
+          "eval-exp-020-a4ad",
+          "eval-exp-021-d43e",
+          "eval-exp-022-2699",
+          "eval-exp-023-4791",
+          "eval-exp-024-f025",
+          "eval-exp-025-f390",
+          "eval-exp-026-02e8"
         ],
         "evidence_summary": "Recalled evidence confirmed nominal envelope."
       },
-      "executed_at": "2026-09-28T12:10:21.254044+00:00"
+      "executed_at": "2026-09-28T14:29:27.221502+00:00"
     },
     {
       "episode_index": 28,
@@ -4049,33 +4049,33 @@
         "capacity": 0.15
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d",
-        "eval-exp-014-7419",
-        "eval-exp-015-fb4f",
-        "eval-exp-016-d962",
-        "eval-exp-017-2494",
-        "eval-exp-018-52ae",
-        "eval-exp-019-cad6",
-        "eval-exp-020-65b7",
-        "eval-exp-021-5b5d",
-        "eval-exp-022-e2c9",
-        "eval-exp-023-0dff",
-        "eval-exp-024-feee",
-        "eval-exp-025-11ea",
-        "eval-exp-026-dfd3",
-        "eval-exp-027-3c3b"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06",
+        "eval-exp-014-18cc",
+        "eval-exp-015-3ab7",
+        "eval-exp-016-a149",
+        "eval-exp-017-5169",
+        "eval-exp-018-465e",
+        "eval-exp-019-53b0",
+        "eval-exp-020-a4ad",
+        "eval-exp-021-d43e",
+        "eval-exp-022-2699",
+        "eval-exp-023-4791",
+        "eval-exp-024-f025",
+        "eval-exp-025-f390",
+        "eval-exp-026-02e8",
+        "eval-exp-027-4078"
       ],
       "relevant_evidence": [
         {
@@ -4113,37 +4113,37 @@
         "decision_changed": true,
         "outcome_improved": false,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d",
-          "eval-exp-014-7419",
-          "eval-exp-015-fb4f",
-          "eval-exp-016-d962",
-          "eval-exp-017-2494",
-          "eval-exp-018-52ae",
-          "eval-exp-019-cad6",
-          "eval-exp-020-65b7",
-          "eval-exp-021-5b5d",
-          "eval-exp-022-e2c9",
-          "eval-exp-023-0dff",
-          "eval-exp-024-feee",
-          "eval-exp-025-11ea",
-          "eval-exp-026-dfd3",
-          "eval-exp-027-3c3b"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06",
+          "eval-exp-014-18cc",
+          "eval-exp-015-3ab7",
+          "eval-exp-016-a149",
+          "eval-exp-017-5169",
+          "eval-exp-018-465e",
+          "eval-exp-019-53b0",
+          "eval-exp-020-a4ad",
+          "eval-exp-021-d43e",
+          "eval-exp-022-2699",
+          "eval-exp-023-4791",
+          "eval-exp-024-f025",
+          "eval-exp-025-f390",
+          "eval-exp-026-02e8",
+          "eval-exp-027-4078"
         ],
         "evidence_summary": "Novel condition recognized from memory sparsity."
       },
-      "executed_at": "2026-09-28T12:10:21.254044+00:00"
+      "executed_at": "2026-09-28T14:29:27.221502+00:00"
     },
     {
       "episode_index": 29,
@@ -4157,34 +4157,34 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d",
-        "eval-exp-014-7419",
-        "eval-exp-015-fb4f",
-        "eval-exp-016-d962",
-        "eval-exp-017-2494",
-        "eval-exp-018-52ae",
-        "eval-exp-019-cad6",
-        "eval-exp-020-65b7",
-        "eval-exp-021-5b5d",
-        "eval-exp-022-e2c9",
-        "eval-exp-023-0dff",
-        "eval-exp-024-feee",
-        "eval-exp-025-11ea",
-        "eval-exp-026-dfd3",
-        "eval-exp-027-3c3b",
-        "eval-exp-028-5151"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06",
+        "eval-exp-014-18cc",
+        "eval-exp-015-3ab7",
+        "eval-exp-016-a149",
+        "eval-exp-017-5169",
+        "eval-exp-018-465e",
+        "eval-exp-019-53b0",
+        "eval-exp-020-a4ad",
+        "eval-exp-021-d43e",
+        "eval-exp-022-2699",
+        "eval-exp-023-4791",
+        "eval-exp-024-f025",
+        "eval-exp-025-f390",
+        "eval-exp-026-02e8",
+        "eval-exp-027-4078",
+        "eval-exp-028-683a"
       ],
       "relevant_evidence": [
         {
@@ -4222,38 +4222,38 @@
         "decision_changed": true,
         "outcome_improved": true,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d",
-          "eval-exp-014-7419",
-          "eval-exp-015-fb4f",
-          "eval-exp-016-d962",
-          "eval-exp-017-2494",
-          "eval-exp-018-52ae",
-          "eval-exp-019-cad6",
-          "eval-exp-020-65b7",
-          "eval-exp-021-5b5d",
-          "eval-exp-022-e2c9",
-          "eval-exp-023-0dff",
-          "eval-exp-024-feee",
-          "eval-exp-025-11ea",
-          "eval-exp-026-dfd3",
-          "eval-exp-027-3c3b",
-          "eval-exp-028-5151"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06",
+          "eval-exp-014-18cc",
+          "eval-exp-015-3ab7",
+          "eval-exp-016-a149",
+          "eval-exp-017-5169",
+          "eval-exp-018-465e",
+          "eval-exp-019-53b0",
+          "eval-exp-020-a4ad",
+          "eval-exp-021-d43e",
+          "eval-exp-022-2699",
+          "eval-exp-023-4791",
+          "eval-exp-024-f025",
+          "eval-exp-025-f390",
+          "eval-exp-026-02e8",
+          "eval-exp-027-4078",
+          "eval-exp-028-683a"
         ],
         "evidence_summary": "Recalled 28 prior episodes. Failure boundary avoidance triggered."
       },
-      "executed_at": "2026-09-28T12:10:21.254044+00:00"
+      "executed_at": "2026-09-28T14:29:27.222036+00:00"
     },
     {
       "episode_index": 30,
@@ -4267,35 +4267,35 @@
         "route_health": "NORMAL"
       },
       "recalled_experiences": [
-        "eval-exp-001-98f0",
-        "eval-exp-002-0f72",
-        "eval-exp-003-6472",
-        "eval-exp-004-f7f5",
-        "eval-exp-005-7541",
-        "eval-exp-006-5f47",
-        "eval-exp-007-a05a",
-        "eval-exp-008-c920",
-        "eval-exp-009-28ad",
-        "eval-exp-010-4cbd",
-        "eval-exp-011-f7fe",
-        "eval-exp-012-7773",
-        "eval-exp-013-1e5d",
-        "eval-exp-014-7419",
-        "eval-exp-015-fb4f",
-        "eval-exp-016-d962",
-        "eval-exp-017-2494",
-        "eval-exp-018-52ae",
-        "eval-exp-019-cad6",
-        "eval-exp-020-65b7",
-        "eval-exp-021-5b5d",
-        "eval-exp-022-e2c9",
-        "eval-exp-023-0dff",
-        "eval-exp-024-feee",
-        "eval-exp-025-11ea",
-        "eval-exp-026-dfd3",
-        "eval-exp-027-3c3b",
-        "eval-exp-028-5151",
-        "eval-exp-029-d01a"
+        "eval-exp-001-a394",
+        "eval-exp-002-6543",
+        "eval-exp-003-836e",
+        "eval-exp-004-2460",
+        "eval-exp-005-54cc",
+        "eval-exp-006-42bf",
+        "eval-exp-007-f03f",
+        "eval-exp-008-24b8",
+        "eval-exp-009-972f",
+        "eval-exp-010-40fd",
+        "eval-exp-011-90b9",
+        "eval-exp-012-a061",
+        "eval-exp-013-bd06",
+        "eval-exp-014-18cc",
+        "eval-exp-015-3ab7",
+        "eval-exp-016-a149",
+        "eval-exp-017-5169",
+        "eval-exp-018-465e",
+        "eval-exp-019-53b0",
+        "eval-exp-020-a4ad",
+        "eval-exp-021-d43e",
+        "eval-exp-022-2699",
+        "eval-exp-023-4791",
+        "eval-exp-024-f025",
+        "eval-exp-025-f390",
+        "eval-exp-026-02e8",
+        "eval-exp-027-4078",
+        "eval-exp-028-683a",
+        "eval-exp-029-822a"
       ],
       "relevant_evidence": [
         {
@@ -4333,39 +4333,39 @@
         "decision_changed": true,
         "outcome_improved": true,
         "recalled_experience_ids": [
-          "eval-exp-001-98f0",
-          "eval-exp-002-0f72",
-          "eval-exp-003-6472",
-          "eval-exp-004-f7f5",
-          "eval-exp-005-7541",
-          "eval-exp-006-5f47",
-          "eval-exp-007-a05a",
-          "eval-exp-008-c920",
-          "eval-exp-009-28ad",
-          "eval-exp-010-4cbd",
-          "eval-exp-011-f7fe",
-          "eval-exp-012-7773",
-          "eval-exp-013-1e5d",
-          "eval-exp-014-7419",
-          "eval-exp-015-fb4f",
-          "eval-exp-016-d962",
-          "eval-exp-017-2494",
-          "eval-exp-018-52ae",
-          "eval-exp-019-cad6",
-          "eval-exp-020-65b7",
-          "eval-exp-021-5b5d",
-          "eval-exp-022-e2c9",
-          "eval-exp-023-0dff",
-          "eval-exp-024-feee",
-          "eval-exp-025-11ea",
-          "eval-exp-026-dfd3",
-          "eval-exp-027-3c3b",
-          "eval-exp-028-5151",
-          "eval-exp-029-d01a"
+          "eval-exp-001-a394",
+          "eval-exp-002-6543",
+          "eval-exp-003-836e",
+          "eval-exp-004-2460",
+          "eval-exp-005-54cc",
+          "eval-exp-006-42bf",
+          "eval-exp-007-f03f",
+          "eval-exp-008-24b8",
+          "eval-exp-009-972f",
+          "eval-exp-010-40fd",
+          "eval-exp-011-90b9",
+          "eval-exp-012-a061",
+          "eval-exp-013-bd06",
+          "eval-exp-014-18cc",
+          "eval-exp-015-3ab7",
+          "eval-exp-016-a149",
+          "eval-exp-017-5169",
+          "eval-exp-018-465e",
+          "eval-exp-019-53b0",
+          "eval-exp-020-a4ad",
+          "eval-exp-021-d43e",
+          "eval-exp-022-2699",
+          "eval-exp-023-4791",
+          "eval-exp-024-f025",
+          "eval-exp-025-f390",
+          "eval-exp-026-02e8",
+          "eval-exp-027-4078",
+          "eval-exp-028-683a",
+          "eval-exp-029-822a"
         ],
         "evidence_summary": "Recalled 29 prior episodes. Failure boundary avoidance triggered."
       },
-      "executed_at": "2026-09-28T12:10:21.254044+00:00"
+      "executed_at": "2026-09-28T14:29:27.222036+00:00"
     }
   ],
   "statistical_summary": {

@@ -1,7 +1,44 @@
 # FULFILL-X — Changelog
-
-All significant changes to the project are documented here.
-Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+ 
+ All significant changes to the project are documented here.
+ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+ 
++## [2.0.0] — 2026-09-28 — Phase 6B + 6C + 6D: Shared Design System, Global Resilience Context & Unified Command Center
++
++### Added
++
++**Epistemic Truth Design System (Phase 6B)**
++- `frontend/src/visual/tokens.ts`: Epistemic color palette `COLOR.truth` (`observed`, `simulated`, `predicted`, `inferred`, `learned`), `TruthMode` type, and `truthColor` resolver.
++- `frontend/src/index.css`: Added `.truth-tag` styling classes and badges.
++- `frontend/src/components/common/TruthTag.tsx`: Standardized epistemic provenance indicator with Lucide icons.
++- `frontend/src/components/common/EvidenceCard.tsx`: Reusable decision grounding card linking strategy choices to memory provenance, genome IDs, challenge validation rates, and boundary guards.
++
++**Global Resilience Context & Situational Awareness (Phase 6C)**
++- `frontend/src/store/incidentContextStore.ts`: Cross-workspace Zustand store maintaining situational awareness across active incident signature, impacted node, selected strategy, recalled memories, genome versions, truth mode, and boundary alerts.
++- `frontend/src/api/hindsightApi.ts`: REST API client for Hindsight services (`/api/hindsight/status`, `/api/experiences`, `/api/genomes`, `/api/reflect`).
++- `frontend/src/components/common/ContextBar.tsx`: Global operational awareness strip mounted under topbar across all 26 workspaces.
++- `frontend/src/components/layouts/ResilienceIntelligenceLayout.tsx`: Mounted `<ContextBar />` globally.
++- `frontend/src/components/workspaces/GNNWorkspace.tsx` & `CausalWorkspace.tsx`: Integrated `useSearchParams` (`?node=`) and store synchronization for cross-workspace deep linking.
++
++**Unified Command Center & Live Data Wiring (Phase 6D)**
++- `frontend/src/components/workspaces/CommandWorkspace.tsx`: 3-tab operational cockpit structuring 7 canonical questions:
++  1. What is happening? (Active Disruption & Impact)
++  2. Why is it happening? (Causal Root Cause)
++  3. What could happen next? (GNN Multi-Hop Cascade)
++  4. What can we do? (Strategy Arena & Recalled Memories)
++  5. Will it work? (Counterfactual Challenge Probing)
++  6. Is it safe? (Adaptive Governance & Verification)
++  7. What did we learn? (Genome Evolution & Delta)
++- `frontend/src/components/workspaces/ExperienceMemoryWorkspace.tsx`: Live query integration with `listExperiences()`.
++- `frontend/src/components/workspaces/ResilienceGenomeWorkspace.tsx`: Live query integration with `listGenomes()`.
++
++### Verified
++- `tsc --noEmit`: 0 TypeScript errors.
++- `npm run build`: Production bundle built in 7.15s (2,620 modules, 0 errors).
++- `pytest`: 64/64 passing in 3.42s across all core suites.
++- All 26 workspaces and 31 routes intact and functional.
++
++---
 
 ## [1.9.0] — 2026-09-28 — Phase 5: Hindsight Learning Evaluation & Measurable Improvement
 

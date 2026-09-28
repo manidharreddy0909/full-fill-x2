@@ -17,6 +17,8 @@ import {
   GraphPrediction,
   PropagationTrace,
 } from '../../api/graphIntelligenceApi';
+import { useSearchParams } from 'react-router-dom';
+import { useIncidentContextStore } from '../../store/incidentContextStore';
 import { useVisualEnvironmentStore } from '../../store/visualEnvironmentStore';
 import { StatusPill } from '../../visual/telemetry/StatusPill';
 import { GNNGraphPrimitive } from '../../visual/intelligence/GNNGraphPrimitive';
@@ -26,12 +28,20 @@ import {
 } from 'lucide-react';
 
 export const GNNWorkspace: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const contextNodeId = useIncidentContextStore((s) => s.selectedNodeId);
+  const setSelectedNodeInContext = useIncidentContextStore((s) => s.setSelectedNodeId);
   const { setEnvironmentMode } = useVisualEnvironmentStore();
-  const [selectedTargetNode, setSelectedTargetNode] = useState<string>('sup-001');
+  
+  const initialNode = searchParams.get('node') || contextNodeId || 'sup-001';
+  const [selectedTargetNode, setSelectedTargetNode] = useState<string>(initialNode);
 
   useEffect(() => {
     setEnvironmentMode('INTELLIGENCE');
-  }, [setEnvironmentMode]);
+    if (selectedTargetNode) {
+      setSelectedNodeInContext(selectedTargetNode);
+    }
+  }, [setEnvironmentMode, selectedTargetNode, setSelectedNodeInContext]);
 
   const { data: snapshot, isLoading: isSnapshotLoading } = useQuery({
     queryKey: ['graphSnapshot'],

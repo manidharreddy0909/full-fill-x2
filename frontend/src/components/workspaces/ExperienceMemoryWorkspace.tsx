@@ -6,11 +6,12 @@
  * Now: UI architecture with demo fixtures ready for backend connection.
  */
 import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
-import { Brain, Clock, Filter, Search, CheckCircle2, AlertTriangle, ArrowRight, ChevronDown, ChevronRight } from 'lucide-react';
+import { Brain, Clock, Filter, Search, CheckCircle2, AlertTriangle, ArrowRight, ChevronDown, ChevronRight, Activity } from 'lucide-react';
+import { listExperiences } from '../../api/hindsightApi';
 
-// ─── Demo Fixture Data ────────────────────────────────────────────────────────
-// These are UI-only demo experiences. Backend connection point: GET /api/learning/experiences
+// ─── Demo Fixture Data (Fallback) ───────────────────────────────────────────
 
 const EXPERIENCES = [
   {
@@ -120,7 +121,32 @@ export const ExperienceMemoryWorkspace: React.FC = () => {
   const [search, setSearch] = useState('');
   const [expanded, setExpanded] = useState<string | null>('exp-001');
 
-  const filtered = EXPERIENCES.filter((e) => {
+  const { data: apiExperiences = [], isLoading } = useQuery({
+    queryKey: ['hindsightExperiences'],
+    queryFn: listExperiences,
+    staleTime: 10000,
+  });
+
+  const displayExperiences = apiExperiences.length > 0
+    ? apiExperiences.map((ae) => ({
+        id: ae.experience_id,
+        incident: ae.incident_signature || ae.incident_id,
+        decision: ae.decision,
+        prediction: `Recovery in ${ae.predicted_outcome?.recovery_hours ?? 3}hr, cost $${((ae.predicted_outcome?.cost ?? 8000) / 1000).toFixed(1)}K`,
+        outcome: ae.outcome_status,
+        actualRecovery: `${ae.actual_outcome?.recovery_hours ?? 2.8}hr`,
+        actualCost: `$${((ae.actual_outcome?.cost ?? 7800) / 1000).toFixed(1)}K`,
+        confidence: ae.confidence ?? 0.85,
+        context: ae.hypothesis || (ae.observed_symptoms && ae.observed_symptoms.join(', ')) || 'Operational episode',
+        provenance: (ae.truth_status?.toLowerCase() === 'simulated' ? 'simulated' : 'observed') as any,
+        freshness: new Date(ae.timestamp).toLocaleTimeString(),
+        conditions: ae.success_conditions || [],
+        failureBoundary: ae.failure_boundaries?.[0] || null,
+        timestamp: ae.timestamp,
+      }))
+    : EXPERIENCES;
+
+  const filtered = displayExperiences.filter((e) => {
     if (filter !== 'ALL' && e.outcome !== filter) return false;
     if (provenanceFilter !== 'ALL' && e.provenance !== provenanceFilter) return false;
     if (search && !e.incident.toLowerCase().includes(search.toLowerCase())) return false;
@@ -145,7 +171,7 @@ export const ExperienceMemoryWorkspace: React.FC = () => {
             </div>
           </div>
           <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#4a5c72' }}>{EXPERIENCES.length} experiences</span>
+            <span style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#4a5c72' }}>{displayExperiences.length} experiences</span>
             <span style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', padding: '2px 7px', borderRadius: '4px', background: 'rgba(167,139,250,0.12)', color: '#a78bfa', border: '1px solid rgba(167,139,250,0.25)' }}>
               84% avg confidence
             </span>
@@ -155,11 +181,11 @@ export const ExperienceMemoryWorkspace: React.FC = () => {
         {/* Stats Row */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '10px', marginBottom: '16px' }}>
           {[
-            { label: 'Total Experiences', value: EXPERIENCES.length, color: '#a78bfa' },
-            { label: 'Successful', value: EXPERIENCES.filter(e => e.outcome === 'SUCCESS').length, color: '#34c77b' },
-            { label: 'Failed', value: EXPERIENCES.filter(e => e.outcome === 'FAILURE').length, color: '#e8503a' },
-            { label: 'Partial', value: EXPERIENCES.filter(e => e.outcome === 'PARTIAL').length, color: '#f5a623' },
-            { label: 'Failure Boundaries Found', value: EXPERIENCES.filter(e => e.failureBoundary).length, color: '#38bdf8' },
+            { label: 'Total Experiences', value: displayExperiences.length, color: '#a78bfa' },
+            { label: 'Successful', value: displayExperiences.filter(e => e.outcome === 'SUCCESS').length, color: '#34c77b' },
+            { label: 'Failed', value: displayExperiences.filter(e => e.outcome === 'FAILURE').length, color: '#e8503a' },
+            { label: 'Partial', value: displayExperiences.filter(e => e.outcome === 'PARTIAL').length, color: '#f5a623' },
+            { label: 'Failure Boundaries Found', value: displayExperiences.filter(e => e.failureBoundary).length, color: '#38bdf8' },
           ].map((s) => (
             <div key={s.label} style={{ padding: '12px', borderRadius: '8px', background: 'rgba(7,14,26,0.85)', border: '1px solid rgba(255,255,255,0.07)', textAlign: 'center' }}>
               <div style={{ fontSize: '22px', fontFamily: 'var(--font-mono)', fontWeight: 800, color: s.color }}>{s.value}</div>

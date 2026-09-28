@@ -43,6 +43,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { EventToastContainer } from '../common/EventToastContainer';
+import { ContextBar } from '../common/ContextBar';
 import { SignalInjectorModal } from '../risk/SignalInjectorModal';
 import { IdentityGateway } from '../auth/IdentityGateway';
 import { Global3DParticleCanvas } from '../../visual/environment/Global3DParticleCanvas';
@@ -734,6 +735,9 @@ export const ResilienceIntelligenceLayout: React.FC = () => {
           </button>
         </div>
       </header>
+
+      {/* ── GLOBAL RESILIENCE CONTEXT BAR (Phase 6C) ── */}
+      <ContextBar />
 
       {/* ── MAIN CONTENT ── */}
       <main className="ri-main-content">

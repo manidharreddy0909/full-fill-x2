@@ -15,18 +15,28 @@ import {
   CausalHypothesis,
   CounterfactualRun,
 } from '../../api/graphIntelligenceApi';
+import { useSearchParams } from 'react-router-dom';
+import { useIncidentContextStore } from '../../store/incidentContextStore';
 import { useVisualEnvironmentStore } from '../../store/visualEnvironmentStore';
 import { StatusPill } from '../../visual/telemetry/StatusPill';
 import { CausalDAGPrimitive } from '../../visual/intelligence/CausalDAGPrimitive';
 import { Activity, GitMerge, Zap, ShieldAlert, CheckCircle2, ArrowRight, HelpCircle, Play } from 'lucide-react';
 
 export const CausalWorkspace: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const contextNodeId = useIncidentContextStore((s) => s.selectedNodeId);
+  const setSelectedNodeInContext = useIncidentContextStore((s) => s.setSelectedNodeId);
   const { setEnvironmentMode } = useVisualEnvironmentStore();
-  const [selectedOriginNode, setSelectedOriginNode] = useState<string>('sup-001');
+
+  const initialNode = searchParams.get('node') || contextNodeId || 'sup-001';
+  const [selectedOriginNode, setSelectedOriginNode] = useState<string>(initialNode);
 
   useEffect(() => {
     setEnvironmentMode('INTELLIGENCE');
-  }, [setEnvironmentMode]);
+    if (selectedOriginNode) {
+      setSelectedNodeInContext(selectedOriginNode);
+    }
+  }, [setEnvironmentMode, selectedOriginNode, setSelectedNodeInContext]);
 
   const { data: hypotheses = [], isLoading } = useQuery<CausalHypothesis[]>({
     queryKey: ['causalHypotheses', selectedOriginNode],
