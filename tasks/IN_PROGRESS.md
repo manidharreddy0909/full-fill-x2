@@ -7,7 +7,7 @@
 
 ## Currently In Progress
 
-*(Empty — Phase 5 Hindsight Learning Evaluation & Measurable Improvement Complete)*
+*(Empty — Phase 5.5 Pass 2 Legacy Feature Restoration & Route Reconciliation Complete)*
 
 ---
 
@@ -19,4 +19,4 @@
 
 ---
 
-*Last updated: Phase 5 — Hindsight Learning Evaluation & Measurable Improvement Complete. 64/64 tests PASS. Frontend build PASS.*
+*Last updated: Phase 5.5 Pass 2 — Legacy Feature Restoration & Route Reconciliation Complete. 26/26 workspaces reachable. Full pytest pass. Frontend build pass.*

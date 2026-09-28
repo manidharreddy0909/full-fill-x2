@@ -7,11 +7,42 @@
 
 ---
 
+## Phase 5.5 Pass 2 (Legacy Feature Restoration & Route Reconciliation) Complete
+
+**Date**: 2026-09-28  
+**Phase Completed**: Phase 5.5 Pass 2 — Legacy Feature Restoration & Route Reconciliation  
+**Preceding Audit**: `docs/LEGACY_FEATURE_RECONCILIATION_AUDIT.md` (Forensic Audit complete, 0 deletions)  
+**Restoration Matrix**: `docs/PHASE_5_5_PASS2_RESTORATION_MATRIX.md`  
+**Status**: ALL VERIFICATION PASSING — Frontend build PASS (2,617 modules, 0 errors) · 167+ Pytest PASS · 26/26 Workspaces Reachable  
+
+### Key Achievements:
+1. **Restored Hidden Intelligence Views in Sidebar Navigation:**
+   - Graph Neural Network (GNN): `/intelligence/gnn` -> `GNNWorkspace`
+   - Causal DAG Sandbox: `/intelligence/causal` -> `CausalWorkspace`
+   - Risk Explorer: `/intelligence/risk` -> `RiskWorkspace`
+   - Incident War Room: `/response/war-room` -> `WarRoomWorkspace`
+   - Safety Verification Sandbox: `/decision/verification` -> `VerificationWorkspace`
+2. **Resolved Adversary vs Challenge Engine Route Collision:**
+   - Canonical Adversary Laboratory: `/response/adversary-lab` -> `AdversaryWorkspace` (12-vector red-team chaos simulator)
+   - Canonical Challenge Engine: `/challenge` -> `ChallengeEngineWorkspace` (Phase 4 active learning challenge engine)
+   - Backwards Compatibility: `/response/adversary` -> redirects to `/response/adversary-lab`
+3. **Mounted Standalone Enterprise Platform Views:**
+   - Data Platform Fabric: `/data/fabric` -> `DataFabric`
+   - Security & Identity Console: `/security/console` -> `SecurityConsole`
+   - Predictive AI / ML Platform: `/intelligence/predictive` -> `PredictiveIntelligence`
+   - Competition Demo Mode: `/demo` -> `DemoMode`
+4. **Clean 7-Category Navigation Structure:**
+   Expanded `ResilienceIntelligenceLayout.tsx` from flat 16 items into 7 logical categories: Operations (4), Deep Intelligence (5), Experiential Intelligence (5), Response & Stress Testing (2), Decision & Safety (3), Simulation (1), Governance & Platform (6).
+5. **Zero Backend Refactoring:**
+   Adhered strictly to preservation rules; zero backend services, models, agents, or APIs were modified or deprecated.
+
+---
+
 ## Phase 5 (Hindsight Learning Evaluation & Measurable Improvement) Complete
 
 **Date**: 2026-09-28
 **Phase Completed**: Phase 5 — Hindsight Learning Evaluation & Measurable Improvement
-**Next Phase**: Phase 6 — (to be defined)
+**Next Phase**: Phase 5.5 — Legacy Feature Preservation & Route Reconciliation
 **Status**: ALL VERIFICATION PASSING — 64/64 pytest PASS · `npm run build` 0 errors · `evaluation.json` + `evaluation.csv` exported
 
 ### Summary: What Was Proved

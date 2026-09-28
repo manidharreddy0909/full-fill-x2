@@ -34,6 +34,13 @@ import {
   WifiOff,
   RefreshCw,
   AlertTriangle,
+  ShieldAlert,
+  GitFork,
+  Bot,
+  ShieldCheck,
+  Lock,
+  Database,
+  Sparkles,
 } from 'lucide-react';
 import { EventToastContainer } from '../common/EventToastContainer';
 import { SignalInjectorModal } from '../risk/SignalInjectorModal';
@@ -63,7 +70,7 @@ interface NavSection {
 
 const NAV_STRUCTURE: NavSection[] = [
   {
-    label: 'Intelligence',
+    label: 'Operations',
     items: [
       {
         id: 'overview',
@@ -77,10 +84,57 @@ const NAV_STRUCTURE: NavSection[] = [
         icon: <Radio size={14} />,
         path: '/command',
       },
+      {
+        id: 'war-room',
+        label: 'Incident War Room',
+        icon: <Bot size={14} />,
+        path: '/response/war-room',
+      },
+      {
+        id: 'world',
+        label: 'Digital Twin 3D',
+        icon: <Activity size={14} />,
+        path: '/world',
+      },
     ],
   },
   {
-    label: 'Experience',
+    label: 'Deep Intelligence',
+    items: [
+      {
+        id: 'agents',
+        label: 'Agent Constellation',
+        icon: <Cpu size={14} />,
+        path: '/intelligence',
+      },
+      {
+        id: 'risk',
+        label: 'Risk Explorer',
+        icon: <ShieldAlert size={14} />,
+        path: '/intelligence/risk',
+      },
+      {
+        id: 'gnn',
+        label: 'Graph Neural Network',
+        icon: <GitFork size={14} />,
+        path: '/intelligence/gnn',
+      },
+      {
+        id: 'causal',
+        label: 'Causal DAG Sandbox',
+        icon: <GitBranch size={14} />,
+        path: '/intelligence/causal',
+      },
+      {
+        id: 'predictive',
+        label: 'Predictive AI / ML',
+        icon: <Brain size={14} />,
+        path: '/intelligence/predictive',
+      },
+    ],
+  },
+  {
+    label: 'Experiential Intelligence',
     items: [
       {
         id: 'memory',
@@ -103,10 +157,40 @@ const NAV_STRUCTURE: NavSection[] = [
         path: '/transfer',
         isNew: true,
       },
+      {
+        id: 'skills',
+        label: 'Skills & Evolution',
+        icon: <Zap size={14} />,
+        path: '/learning/deliberate',
+      },
+      {
+        id: 'learning',
+        label: 'Resilience OS Cycle',
+        icon: <BookOpen size={14} />,
+        path: '/governance/resilience',
+      },
     ],
   },
   {
-    label: 'Decision',
+    label: 'Response & Stress Testing',
+    items: [
+      {
+        id: 'adversary-lab',
+        label: 'Adversary Attack Lab',
+        icon: <Swords size={14} />,
+        path: '/response/adversary-lab',
+      },
+      {
+        id: 'challenge',
+        label: 'Challenge Engine',
+        icon: <Target size={14} />,
+        path: '/challenge',
+        isNew: true,
+      },
+    ],
+  },
+  {
+    label: 'Decision & Safety',
     items: [
       {
         id: 'arena',
@@ -116,75 +200,68 @@ const NAV_STRUCTURE: NavSection[] = [
         isNew: true,
       },
       {
-        id: 'simulation',
-        label: 'Simulation',
-        icon: <FlaskConical size={14} />,
-        path: '/simulation/twin',
-      },
-      {
-        id: 'challenge',
-        label: 'Challenge Engine',
-        icon: <Swords size={14} />,
-        path: '/challenge',
-        isNew: true,
-      },
-    ],
-  },
-  {
-    label: 'Operations',
-    items: [
-      {
-        id: 'skills',
-        label: 'Skills',
-        icon: <Zap size={14} />,
-        path: '/learning/deliberate',
-      },
-      {
-        id: 'governance',
-        label: 'Decision Governance',
-        icon: <Shield size={14} />,
-        path: '/governance/policies',
-      },
-      {
-        id: 'outcomes',
-        label: 'Outcomes',
+        id: 'cockpit',
+        label: 'Decision Cockpit',
         icon: <BarChart3 size={14} />,
         path: '/decision/cockpit',
       },
       {
-        id: 'learning',
-        label: 'Learning',
-        icon: <BookOpen size={14} />,
-        path: '/governance/resilience',
+        id: 'verification',
+        label: 'Safety Verification',
+        icon: <ShieldCheck size={14} />,
+        path: '/decision/verification',
       },
     ],
   },
   {
-    label: 'Platform',
+    label: 'Simulation',
     items: [
       {
-        id: 'agents',
-        label: 'Agent Constellation',
-        icon: <Cpu size={14} />,
-        path: '/intelligence',
+        id: 'simulation',
+        label: 'Monte Carlo Twin',
+        icon: <FlaskConical size={14} />,
+        path: '/simulation/twin',
+      },
+    ],
+  },
+  {
+    label: 'Governance & Platform',
+    items: [
+      {
+        id: 'governance',
+        label: 'Policy Engine',
+        icon: <Shield size={14} />,
+        path: '/governance/policies',
       },
       {
-        id: 'world',
-        label: 'Digital Twin',
-        icon: <Activity size={14} />,
-        path: '/world',
+        id: 'security',
+        label: 'Security & Identity',
+        icon: <Lock size={14} />,
+        path: '/security/console',
+      },
+      {
+        id: 'data-fabric',
+        label: 'Data Platform Fabric',
+        icon: <Database size={14} />,
+        path: '/data/fabric',
+      },
+      {
+        id: 'events',
+        label: 'Event Telemetry',
+        icon: <Settings size={14} />,
+        path: '/observability/events',
       },
       {
         id: 'evaluation',
-        label: 'Evaluation',
+        label: 'System Evaluation',
         icon: <BarChart3 size={14} />,
         path: '/evaluation',
       },
       {
-        id: 'settings',
-        label: 'Settings',
-        icon: <Settings size={14} />,
-        path: '/observability/events',
+        id: 'demo',
+        label: 'Competition Demo',
+        icon: <Sparkles size={14} />,
+        path: '/demo',
       },
     ],
   },
@@ -199,21 +276,27 @@ const PAGE_TITLES: Record<string, { title: string; subtitle: string }> = {
   '/genome':                  { title: 'Resilience Genome',          subtitle: 'Learned success conditions and failure boundaries' },
   '/transfer':                { title: 'Transfer Intelligence',      subtitle: 'Experience transferability assessment' },
   '/arena':                   { title: 'Strategy Arena',             subtitle: 'Candidate strategy evaluation and selection' },
-  '/simulation/twin':         { title: 'Simulation',                 subtitle: 'Counterfactual and scenario simulation engine' },
-  '/response/adversary':      { title: 'Challenge Engine',           subtitle: 'Adversarial challenge and robustness analysis' },
-  '/learning/deliberate':     { title: 'Skills',                     subtitle: 'Operational resilience skill evolution' },
+  '/simulation/twin':         { title: 'Monte Carlo Simulation',     subtitle: 'Stochastic 1,000-run parameter distribution engine' },
+  '/challenge':               { title: 'Challenge Engine',           subtitle: 'Adversarial counterfactual skill boundary challenge' },
+  '/response/adversary':      { title: 'Adversary Attack Lab',       subtitle: '12 controlled chaos attack vectors and stress testing' },
+  '/response/adversary-lab':  { title: 'Adversary Attack Lab',       subtitle: '12 controlled chaos attack vectors and stress testing' },
+  '/learning/deliberate':     { title: 'Skills & Evolution',         subtitle: 'Operational resilience skill evolution' },
   '/governance/policies':     { title: 'Decision Governance',        subtitle: 'Trust gates, policy controls, and decision authority' },
-  '/decision/cockpit':        { title: 'Outcomes',                   subtitle: 'Prediction vs actual outcome analysis' },
-  '/governance/resilience':   { title: 'Learning',                   subtitle: 'Continuous operational learning and adaptation' },
+  '/decision/cockpit':        { title: 'Outcomes (Decision Cockpit)', subtitle: 'Multi-agent plan reconciliation and decision cockpit' },
+  '/governance/resilience':   { title: 'Resilience OS Cycle',        subtitle: '15-stage continuous operational learning and adaptation' },
   '/intelligence':            { title: 'Agent Constellation',        subtitle: 'Specialized intelligence module status' },
-  '/world':                   { title: 'Digital Twin',               subtitle: '3D supply chain network topology' },
-  '/evaluation':              { title: 'Evaluation',                 subtitle: 'System performance benchmarks and evidence' },
-  '/intelligence/risk':       { title: 'Risk Intelligence',          subtitle: 'Risk heatmap and propagation analysis' },
-  '/intelligence/gnn':        { title: 'Graph Intelligence',         subtitle: 'GNN-based network propagation analysis' },
-  '/intelligence/causal':     { title: 'Causal Analysis',            subtitle: 'Causal reasoning and predictive modelling' },
-  '/response/war-room':       { title: 'War Room',                   subtitle: 'Autonomous resilience response orchestration' },
-  '/decision/verification':   { title: 'Verification',               subtitle: 'Decision verification and safety checks' },
-  '/observability/events':    { title: 'Observability',              subtitle: 'Live event stream and telemetry' },
+  '/world':                   { title: 'Digital Twin 3D',            subtitle: '3D spatial supply chain network topology' },
+  '/evaluation':              { title: 'System Evaluation',          subtitle: 'System performance benchmarks and A/B learning evaluation' },
+  '/intelligence/risk':       { title: 'Risk Explorer',              subtitle: 'Multi-dimensional risk scoring and propagation analysis' },
+  '/intelligence/gnn':        { title: 'Graph Neural Network (GNN)', subtitle: 'GraphSAGE embeddings and multi-hop risk propagation' },
+  '/intelligence/causal':     { title: 'Causal DAG Sandbox',         subtitle: 'Causal DAG structural equations and counterfactual simulation' },
+  '/intelligence/predictive': { title: 'Predictive Intelligence',    subtitle: 'Demand forecasting, disruption probability & anomaly detection' },
+  '/response/war-room':       { title: 'Incident War Room',          subtitle: 'Multi-agent incident command and response orchestration' },
+  '/decision/verification':   { title: 'Safety Verification Sandbox', subtitle: 'Deterministic multi-tier invariant and capacity safety gates' },
+  '/observability/events':    { title: 'Observability & Telemetry',  subtitle: 'Live real-time WebSocket event stream and telemetry' },
+  '/data/fabric':             { title: 'Data Platform Fabric',       subtitle: 'Canonical data ingestion, quality engine & provenance' },
+  '/security/console':        { title: 'Security & Identity Console', subtitle: 'Zero-trust RBAC policy matrix, multi-tenancy & audit boundaries' },
+  '/demo':                    { title: 'Competition Demo Mode',      subtitle: 'Deterministic 14-state demonstration runner & judge report' },
 };
 
 // ─── Main Layout Component ────────────────────────────────────────────────────

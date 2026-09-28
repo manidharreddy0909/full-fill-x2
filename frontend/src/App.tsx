@@ -34,6 +34,12 @@ import { GovernanceWorkspace } from './components/workspaces/GovernanceWorkspace
 import { EvaluationWorkspace } from './components/workspaces/EvaluationWorkspace';
 import { ChallengeEngineWorkspace } from './components/workspaces/ChallengeEngineWorkspace';
 
+// ─── Restored Enterprise Platform Workspaces (Phase 5.5 Pass 2) ─────────────
+import { DataFabric } from './components/data/DataFabric';
+import { SecurityConsole } from './components/security/SecurityConsole';
+import { PredictiveIntelligence } from './components/ml/PredictiveIntelligence';
+import { DemoMode } from './components/demo/DemoMode';
+
 export const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
@@ -64,36 +70,44 @@ export const App: React.FC = () => {
             <Route path="/intelligence/risk"           element={<RiskWorkspace />} />
             <Route path="/intelligence/gnn"            element={<GNNWorkspace />} />
             <Route path="/intelligence/causal"         element={<CausalWorkspace />} />
+            <Route path="/intelligence/predictive"     element={<PredictiveIntelligence />} />
 
             {/* ── Phase 4: Challenge Engine ── */}
-            <Route path="/challenge" element={<ChallengeEngineWorkspace />} />
+            <Route path="/challenge"                   element={<ChallengeEngineWorkspace />} />
 
-            {/* ── Preserved: Response / Challenge ── */}
-            <Route path="/response/war-room" element={<WarRoomWorkspace />} />
-            <Route path="/response/adversary" element={<ChallengeEngineWorkspace />} />
+            {/* ── Preserved: Response & Adversary Laboratory ── */}
+            <Route path="/response/war-room"           element={<WarRoomWorkspace />} />
+            <Route path="/response/adversary-lab"      element={<AdversaryWorkspace />} />
+            {/* Backwards compatibility redirect for historical links */}
+            <Route path="/response/adversary"          element={<Navigate to="/response/adversary-lab" replace />} />
 
             {/* ── Preserved: Decision ── */}
-            <Route path="/decision/cockpit"      element={<CockpitWorkspace />} />
-            <Route path="/decision/verification" element={<VerificationWorkspace />} />
+            <Route path="/decision/cockpit"            element={<CockpitWorkspace />} />
+            <Route path="/decision/verification"       element={<VerificationWorkspace />} />
 
             {/* ── Preserved: Simulation ── */}
-            <Route path="/simulation/twin" element={<DigitalTwinWorkspace />} />
+            <Route path="/simulation/twin"             element={<DigitalTwinWorkspace />} />
 
             {/* ── Preserved: Learning / Skills ── */}
-            <Route path="/learning/deliberate" element={<DeliberateWorkspace />} />
+            <Route path="/learning/deliberate"         element={<DeliberateWorkspace />} />
 
             {/* ── Preserved: Observability ── */}
-            <Route path="/observability/events" element={<EventsWorkspace />} />
+            <Route path="/observability/events"        element={<EventsWorkspace />} />
 
             {/* ── Preserved: Governance ── */}
-            <Route path="/governance/resilience" element={<ResilienceOSWorkspace />} />
-            <Route path="/governance/policies"   element={<GovernanceWorkspace />} />
+            <Route path="/governance/resilience"       element={<ResilienceOSWorkspace />} />
+            <Route path="/governance/policies"         element={<GovernanceWorkspace />} />
+
+            {/* ── Preserved: Platform Data, Security & Demo ── */}
+            <Route path="/data/fabric"                 element={<DataFabric />} />
+            <Route path="/security/console"            element={<SecurityConsole />} />
+            <Route path="/demo"                        element={<DemoMode />} />
 
             {/* ── Preserved: Evaluation ── */}
-            <Route path="/evaluation" element={<EvaluationWorkspace />} />
+            <Route path="/evaluation"                  element={<EvaluationWorkspace />} />
 
             {/* ── Catch-all → Primary Dashboard ── */}
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="*"                            element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
       </BrowserRouter>

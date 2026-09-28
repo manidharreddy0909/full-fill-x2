@@ -592,11 +592,27 @@
 | P05-EVL-011 | Full Automated Test Suite (`backend/tests/test_hindsight_eval.py`) | DONE | 9/9 Phase 5 tests PASS; 64/64 combined tests PASS | TBD |
 | P05-EVL-012 | Frontend Production Build Verification | DONE | `tsc && vite build` 2600 modules, 0 TypeScript errors PASS | TBD |
 | P05-EVL-013 | Specification Docs (`docs/EVALUATION_LEARNING_SPEC.md`, `ADR-042` in `docs/DECISION_LOG.md`) | DONE | Architecture decision recorded PASS | TBD |
-| P05-EVL-014 | Task Tracking Handoff (`DONE.md`, `IN_PROGRESS.md`, `TODO.md`, `CHANGELOG.md`, `HANDOFF.md`) | DONE | All governance files updated PASS | TBD |
+---
+
+## Phase 5.5 Pass 2 — Legacy Feature Restoration & Route Reconciliation [COMPLETED]
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P05.5-001 | Forensic Audit of All Historical Capabilities (`docs/LEGACY_FEATURE_RECONCILIATION_AUDIT.md`) | DONE | 0 code deletions verified, 29 routers, 20 services, 10 agents, 25 workspaces cataloged | TBD |
+| P05.5-002 | Restore Hidden Workspaces Navigation (`ResilienceIntelligenceLayout.tsx`) | DONE | GNN, Causal DAG, Risk Explorer, War Room, Verification added to sidebar | TBD |
+| P05.5-003 | Resolve Adversary vs Challenge Engine Route Collision (`App.tsx`, `ResilienceIntelligenceLayout.tsx`) | DONE | `/response/adversary-lab` canonical route for Adversary; `/challenge` for Challenge Engine; `/response/adversary` compatibility redirect | TBD |
+| P05.5-004 | Mount Standalone Enterprise Platform Workspaces (`App.tsx`) | DONE | `/data/fabric` -> DataFabric, `/security/console` -> SecurityConsole, `/intelligence/predictive` -> PredictiveIntelligence, `/demo` -> DemoMode | TBD |
+| P05.5-005 | Reorganize Navigation into 7 Intuitive Categories (`ResilienceIntelligenceLayout.tsx`) | DONE | Operations, Deep Intelligence, Experiential Intelligence, Response & Stress Testing, Decision & Safety, Simulation, Governance & Platform | TBD |
+| P05.5-006 | Update Page Titles and Subtitle Metadata (`ResilienceIntelligenceLayout.tsx`) | DONE | All 26 routes mapped with descriptive title and subtitles | TBD |
+| P05.5-007 | Restoration Matrix Specification (`docs/PHASE_5_5_PASS2_RESTORATION_MATRIX.md`) | DONE | Full 26-workspace matrix with status, paths, routes, and evidence | TBD |
+| P05.5-008 | Route Reachability & Connectivity Verification (`scratch/verify_restoration.py`) | DONE | 0 unmatched paths, all 26 workspaces verified reachable | TBD |
+| P05.5-009 | Frontend TypeScript & Production Build Verification | DONE | `tsc && vite build` built in 7.06s, 2617 modules, 0 errors | TBD |
+| P05.5-010 | Complete Pytest Regression Verification | DONE | 167+ tests passing across critical historical and experiential suites | TBD |
 
 ---
 
 *Commit hashes to be filled in after `git commit` completes.*
+
 
 
 
