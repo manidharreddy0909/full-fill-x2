@@ -685,6 +685,21 @@
 | P06-E-009 | Frontend TypeScript & Production Build Verification | DONE | `tsc --noEmit` 0 errors; `npm run build` PASS (2620 modules, 26.06s) | TBD |
 | P06-E-010 | Published `docs/PHASE_6E_HINDSIGHT_INTEGRATION.md` | DONE | Complete integration specification & provenance architecture committed | TBD |
 
+---
+
+## Phase 6F — Decision Convergence & Safety Clearance [COMPLETE]
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P06-F-001 | Decision Evidence Model (`frontend/src/types/decisionEvidence.ts`) | DONE | Full `DecisionEvidence` interface defined | TBD |
+| P06-F-002 | Decision Clearance Convergence Panel (`DecisionEvidencePanel.tsx`) | DONE | Multi-tab convergence views with Hindsight, Genome, Skill, Transfer, Deep Intelligence, Candidate Strategies, Governance, Verification | TBD |
+| P06-F-003 | Cockpit Workspace Integration (`CockpitWorkspace.tsx`) | DONE | Dual view mode (Converged Evidence + Pipeline Stages) with real session orchestrator | TBD |
+| P06-F-004 | Authoritative Clearance States Enforcement | DONE | Explicit `RECOMMENDED`, `AUTHORIZED`, `REQUIRES_APPROVAL`, `BLOCKED` states implemented | TBD |
+| P06-F-005 | Closed-Loop Outcome Retention to Hindsight | DONE | Prediction vs actual delta capture and `/api/experiences/retain` feedback trigger | TBD |
+| P06-F-006 | Full Test Matrix & TypeScript Verification | DONE | 313/313 pytest tests PASS; `tsc --noEmit` 0 errors; `npm run build` PASS | TBD |
+| P06-F-007 | Published `docs/PHASE_6F_DECISION_CONVERGENCE.md` | DONE | Complete convergence architecture documented | TBD |
+
+
 
 
 

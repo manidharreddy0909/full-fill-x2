@@ -2,8 +2,23 @@
  
  All significant changes to the project are documented here.
  Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
- 
-+## [2.1.0] — 2026-09-28 — Phase 6E: Hindsight End-to-End Integration
+ ## [2.2.0] — 2026-09-28 — Phase 6F: Decision Convergence & Safety Clearance
+
+### Added & Integrated
+- **Authoritative Decision Evidence Model**: Created `frontend/src/types/decisionEvidence.ts` synthesizing Incident context, Hindsight recalled memories, Resilience Genome invariants, Recovery Skill preconditions, Transferability evaluation, Deep Intelligence studio summaries, Strategy candidate matrices, Governance policies, Deterministic verification, and Outcome feedback.
+- **Decision Clearance Convergence Panel**: Created `frontend/src/components/cockpit/DecisionEvidencePanel.tsx` with multi-tab convergence views, authoritative clearance badges (`RECOMMENDED`, `AUTHORIZED`, `REQUIRES_APPROVAL`, `BLOCKED`), policy condition checks, and governed execution.
+- **Closed-Loop Outcome Retention**: Implemented direct feedback capture (Predicted vs Actual recovery time & cost deltas) and live retain API calls to `/api/experiences/retain` updating Hindsight memory.
+- **Cockpit Workspace Integration**: Enhanced `frontend/src/components/workspaces/CockpitWorkspace.tsx` to mount both the converged decision evidence clearance workspace and the autonomous 8-stage pipeline orchestrator.
+
+### Verified
+- `tsc --noEmit`: 0 errors.
+- `npm run build`: Production bundle built in 11.71s (2,621 modules, 0 errors).
+- `pytest`: 313/313 tests PASS.
+- Published `docs/PHASE_6F_DECISION_CONVERGENCE.md`.
+
+---
+
+
 +
 +### Added & Integrated
 +- **Hindsight Substrate Wiring**: Connected the complete closed loop: `Incident -> Retrieval -> Recall -> Reflect -> Genome -> Boundary -> Skill -> Challenge -> Transfer -> Strategy -> Governance -> Decision -> Outcome -> Retain -> Delta`.

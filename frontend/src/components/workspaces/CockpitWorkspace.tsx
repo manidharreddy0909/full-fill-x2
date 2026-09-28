@@ -1,9 +1,10 @@
 /**
- * CockpitWorkspace — Autonomous Pipeline Orchestrator & Decision Control
- * Phase 13C: Response & Decision Visualization
+ * CockpitWorkspace — Autonomous Pipeline Orchestrator & Decision Clearance Convergence (Phase 6F)
  *
- * Design: Command flight deck aesthetic, stage timeline rail with glowing status rings,
- * real-time stage execution timeline, PlanComparisonMatrix integration with REAL Approve/Reject actions.
+ * Unifies:
+ * - Autonomous Pipeline HUD (Observing -> Risk -> Specialists -> Coordinate -> Adversary -> Verify -> Approve)
+ * - Converged Decision Evidence & Safety Clearance (Hindsight, Genome, Skill, Transfer, Governance, Verification)
+ * - Closed-Loop Outcome Retention to Hindsight Memory
  */
 
 import React, { useEffect, useState } from 'react';
@@ -18,11 +19,13 @@ import {
   resetCockpitSession,
 } from '../../api/cockpitApi';
 import { useVisualEnvironmentStore } from '../../store/visualEnvironmentStore';
+import { useIncidentContextStore } from '../../store/incidentContextStore';
 import { StatusPill } from '../../visual/telemetry/StatusPill';
 import { PlanComparisonMatrix } from '../../visual/response/PlanComparisonMatrix';
+import { DecisionEvidencePanel } from '../cockpit/DecisionEvidencePanel';
 import {
   Activity, Cpu, Play, CheckCircle2, XCircle, ChevronRight,
-  RefreshCw, BarChart3, Clock, ShieldCheck, AlertTriangle, Gavel
+  RefreshCw, BarChart3, Clock, ShieldCheck, AlertTriangle, Gavel, Scale
 } from 'lucide-react';
 import { DecisionSession, DecisionStage, DecisionStageRecord } from '../../types/cockpit';
 
@@ -62,6 +65,9 @@ export const CockpitWorkspace: React.FC = () => {
   const { setEnvironmentMode } = useVisualEnvironmentStore();
   const qc = useQueryClient();
   const [activeSession, setActiveSession] = useState<DecisionSession | null>(null);
+  const [activeViewMode, setActiveViewMode] = useState<'CONVERGENCE' | 'PIPELINE_STAGES'>('CONVERGENCE');
+
+  const { activeIncident } = useIncidentContextStore();
 
   useEffect(() => {
     setEnvironmentMode('DECISION');
@@ -75,12 +81,18 @@ export const CockpitWorkspace: React.FC = () => {
   const createMutation = useMutation({
     mutationFn: ({ preset, seed }: { preset: string; seed: number }) =>
       createCockpitSession(preset, seed),
-    onSuccess: (session) => setActiveSession(session),
+    onSuccess: (session) => {
+      setActiveSession(session);
+      qc.invalidateQueries({ queryKey: ['cockpitStatus'] });
+    },
   });
 
   const runLoopMutation = useMutation({
     mutationFn: (sessionId: string) => runCockpitLoop(sessionId),
-    onSuccess: (session) => setActiveSession(session),
+    onSuccess: (session) => {
+      setActiveSession(session);
+      qc.invalidateQueries({ queryKey: ['cockpitStatus'] });
+    },
   });
 
   const approveMutation = useMutation({
@@ -134,7 +146,7 @@ export const CockpitWorkspace: React.FC = () => {
           <div>
             <div className="flex items-center gap-2">
               <h1 className="text-base font-bold text-white tracking-tight font-mono uppercase">
-                Decision Cockpit — Pipeline Orchestrator
+                Decision Cockpit — Convergence & Safety Clearance
               </h1>
               <StatusPill color="#38bdf8" label={`v${cockpitStatus?.version || '0.2.0'}`} />
             </div>
@@ -142,29 +154,46 @@ export const CockpitWorkspace: React.FC = () => {
               Sessions: {cockpitStatus?.active_sessions_count ?? 0} Active · Safety Plane:{' '}
               <span className="text-emerald-400 font-semibold">
                 {cockpitStatus?.state_mutation_safety ? 'ENFORCED' : 'OFF'}
-              </span>
+              </span>{' '}
+              · Active Incident: <span className="text-cyan-300 font-bold">{activeIncident?.id || 'INC-2026-SUP002'}</span>
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
+          {/* View mode toggle */}
+          <div className="flex items-center bg-slate-900 border border-slate-800 rounded-lg p-1 text-xs font-mono">
+            <button
+              onClick={() => setActiveViewMode('CONVERGENCE')}
+              className={`px-3 py-1 rounded transition-all ${
+                activeViewMode === 'CONVERGENCE'
+                  ? 'bg-cyan-950 text-cyan-300 border border-cyan-500/40 font-bold shadow'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              Converged Evidence
+            </button>
+            <button
+              onClick={() => setActiveViewMode('PIPELINE_STAGES')}
+              className={`px-3 py-1 rounded transition-all ${
+                activeViewMode === 'PIPELINE_STAGES'
+                  ? 'bg-cyan-950 text-cyan-300 border border-cyan-500/40 font-bold shadow'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              Pipeline Stages
+            </button>
+          </div>
+
           {!activeSession ? (
             <>
               <button
-                onClick={() => createMutation.mutate({ preset: 'healthy', seed: 42 })}
+                onClick={() => createMutation.mutate({ preset: 'double_punch', seed: 42 })}
                 disabled={isRunning}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 disabled:opacity-50 text-white text-xs font-mono font-bold transition-all shadow-md shadow-cyan-900/30"
               >
                 {createMutation.isPending ? <Activity className="w-3.5 h-3.5 animate-spin" /> : <Play className="w-3.5 h-3.5" />}
-                <span>NEW SESSION (HEALTHY)</span>
-              </button>
-              <button
-                onClick={() => createMutation.mutate({ preset: 'double_punch', seed: 42 })}
-                disabled={isRunning}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-amber-600 to-red-600 hover:from-amber-500 hover:to-red-500 disabled:opacity-50 text-white text-xs font-mono font-bold transition-all shadow-md shadow-amber-900/30"
-              >
-                <AlertTriangle className="w-3.5 h-3.5" />
-                <span>NEW SESSION (CRISIS)</span>
+                <span>LAUNCH ORCHESTRATOR</span>
               </button>
             </>
           ) : (
@@ -280,73 +309,44 @@ export const CockpitWorkspace: React.FC = () => {
         </motion.div>
       )}
 
-      {/* Main Execution & Plan Comparison View */}
-      {activeSession && (
-        <div className="flex flex-col gap-6">
-          {/* Multi-Objective Candidate Plan Comparison Matrix */}
-          <PlanComparisonMatrix
-            plans={candidatePlans}
-            onApprovePlan={(planId) => approveMutation.mutate({ sessionId: activeSession.session_id, planId })}
-            onRejectPlan={(planId) => rejectMutation.mutate({ sessionId: activeSession.session_id, planId })}
-            isPending={isRunning}
-          />
+      {/* Main View: Converged Decision Clearance (Default) or Pipeline Plan Matrix */}
+      {activeViewMode === 'CONVERGENCE' ? (
+        <DecisionEvidencePanel />
+      ) : (
+        activeSession && (
+          <div className="flex flex-col gap-6">
+            <PlanComparisonMatrix
+              plans={candidatePlans}
+              onApprovePlan={(planId) => approveMutation.mutate({ sessionId: activeSession.session_id, planId })}
+              onRejectPlan={(planId) => rejectMutation.mutate({ sessionId: activeSession.session_id, planId })}
+              isPending={isRunning}
+            />
 
-          {/* Approval Decision Card */}
-          {activeSession.approval_decision && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className={`p-4 rounded-xl border backdrop-blur-xl shadow-2xl ${
-                activeSession.approval_decision.status === 'APPROVED'
-                  ? 'bg-emerald-950/30 border-emerald-500/40'
-                  : 'bg-red-950/30 border-red-500/40'
-              }`}
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <Gavel className={`w-4 h-4 ${activeSession.approval_decision.status === 'APPROVED' ? 'text-emerald-400' : 'text-red-400'}`} />
-                <span className={`font-mono font-bold text-sm uppercase ${activeSession.approval_decision.status === 'APPROVED' ? 'text-emerald-300' : 'text-red-300'}`}>
-                  {activeSession.approval_decision.status}
-                </span>
-              </div>
-              <div className="font-mono text-[11px] text-slate-300 space-y-1">
-                <div>Plan: <strong className="text-white">{activeSession.approval_decision.plan_name}</strong></div>
-                <div>Approver: <strong className="text-cyan-300">{activeSession.approval_decision.approver}</strong></div>
-                <div className="text-slate-400 font-sans mt-1">{activeSession.approval_decision.rationale}</div>
-              </div>
-            </motion.div>
-          )}
-        </div>
-      )}
-
-      {/* Standby State */}
-      {!activeSession && !isRunning && (
-        <div className="flex flex-col items-center justify-center py-24 gap-5 text-slate-500 font-mono text-sm">
-          <div className="w-16 h-16 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shadow-xl shadow-cyan-950/50">
-            <Cpu className="w-8 h-8" />
-          </div>
-          <div className="text-center max-w-md">
-            <div className="text-base font-bold text-white mb-1">Decision Cockpit Ready</div>
-            <div className="text-xs text-slate-400 font-sans leading-relaxed mb-4">
-              Initiate a new pipeline session below to launch full multi-agent observation, risk analysis, adversarial stress testing, and plan reconciliation.
-            </div>
-            <div className="flex items-center justify-center gap-3">
-              <button
-                onClick={() => createMutation.mutate({ preset: 'healthy', seed: 42 })}
-                className="fx-btn-interactive px-4 py-2.5 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs font-mono font-bold transition-all shadow-lg shadow-cyan-900/30 flex items-center gap-2"
+            {activeSession.approval_decision && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className={`p-4 rounded-xl border backdrop-blur-xl shadow-2xl ${
+                  activeSession.approval_decision.status === 'APPROVED'
+                    ? 'bg-emerald-950/30 border-emerald-500/40'
+                    : 'bg-red-950/30 border-red-500/40'
+                }`}
               >
-                <Play className="w-3.5 h-3.5" />
-                <span>INITIALIZE BASELINE PIPELINE</span>
-              </button>
-              <button
-                onClick={() => createMutation.mutate({ preset: 'double_punch', seed: 42 })}
-                className="fx-btn-interactive px-4 py-2.5 rounded-lg bg-gradient-to-r from-amber-600 to-red-600 hover:from-amber-500 hover:to-red-500 text-white text-xs font-mono font-bold transition-all shadow-lg shadow-amber-900/30 flex items-center gap-2"
-              >
-                <AlertTriangle className="w-3.5 h-3.5" />
-                <span>INITIALIZE CRISIS PIPELINE</span>
-              </button>
-            </div>
+                <div className="flex items-center gap-2 mb-2">
+                  <Gavel className={`w-4 h-4 ${activeSession.approval_decision.status === 'APPROVED' ? 'text-emerald-400' : 'text-red-400'}`} />
+                  <span className={`font-mono font-bold text-sm uppercase ${activeSession.approval_decision.status === 'APPROVED' ? 'text-emerald-300' : 'text-red-300'}`}>
+                    {activeSession.approval_decision.status}
+                  </span>
+                </div>
+                <div className="font-mono text-[11px] text-slate-300 space-y-1">
+                  <div>Plan: <strong className="text-white">{activeSession.approval_decision.plan_name}</strong></div>
+                  <div>Approver: <strong className="text-cyan-300">{activeSession.approval_decision.approver}</strong></div>
+                  <div className="text-slate-400 font-sans mt-1">{activeSession.approval_decision.rationale}</div>
+                </div>
+              </motion.div>
+            )}
           </div>
-        </div>
+        )
       )}
     </motion.div>
   );
