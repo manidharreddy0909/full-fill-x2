@@ -11,6 +11,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Shuffle, CheckCircle2, AlertTriangle, ArrowDown, Clock, Brain, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useIncidentContextStore } from '../../store/incidentContextStore';
+import { TruthTag } from '../common/TruthTag';
 
 // ─── Demo Fixture ─────────────────────────────────────────────────────────────
 
@@ -231,8 +233,11 @@ export const TransferIntelligenceWorkspace: React.FC = () => {
                  <Shuffle size={18} color={tcfg.color} />}
               </div>
               <div>
-                <div style={{ fontSize: '16px', fontFamily: 'var(--font-mono)', fontWeight: 800, color: tcfg.color, letterSpacing: '0.05em' }}>
-                  {tcfg.label}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
+                  <span style={{ fontSize: '16px', fontFamily: 'var(--font-mono)', fontWeight: 800, color: tcfg.color, letterSpacing: '0.05em' }}>
+                    {tcfg.label}
+                  </span>
+                  <TruthTag mode="LEARNED" size="sm" />
                 </div>
                 <div style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#4a5c72' }}>{tcfg.description}</div>
               </div>

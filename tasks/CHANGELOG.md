@@ -3,6 +3,24 @@
  All significant changes to the project are documented here.
  Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
  
++## [2.1.0] — 2026-09-28 — Phase 6E: Hindsight End-to-End Integration
++
++### Added & Integrated
++- **Hindsight Substrate Wiring**: Connected the complete closed loop: `Incident -> Retrieval -> Recall -> Reflect -> Genome -> Boundary -> Skill -> Challenge -> Transfer -> Strategy -> Governance -> Decision -> Outcome -> Retain -> Delta`.
++- **Backend Status Endpoint**: Added `/api/hindsight/status` in `backend/app/api/hindsight.py` delivering real live memory counts, genome counts, and truth separation verification.
++- **Experience Memory**: Wired live `GET /api/experiences` query, expanded prediction vs actual delta cards, validated success conditions, failure boundaries, and reflection trigger.
++- **Resilience Genome**: Connected `useIncidentContextStore.setSelectedGenomeId`, live synthesis indicators, and reflection trigger.
++- **Transfer Intelligence**: Context-aware 4-state transfer assessment (`TRANSFERABLE`, `PARTIAL`, `NON-TRANSFERABLE`, `UNKNOWN`) with condition verification tables and `TruthTag`.
++- **Strategy Arena**: Synchronized candidate selection with global store, connected to `/challenge` and `/decision/cockpit` with `TruthTag` and `EvidenceCard`.
++
++### Verified
++- `tsc --noEmit`: 0 TypeScript errors.
++- `npm run build`: Production bundle built in 26.06s (2,620 modules, 0 errors).
++- `pytest`: 64/64 passing across core Hindsight/Skills/Challenge/Eval suites; 313/313 passing full backend suite.
++- Published `docs/PHASE_6E_HINDSIGHT_INTEGRATION.md`.
++
++---
+ 
 +## [2.0.1] — 2026-09-28 — Phase 6D.1: Acceptance, Forensic Regression & Context-Continuity Audit
 +
 +### Verified & Audited

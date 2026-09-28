@@ -17,6 +17,9 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { StrategyCandidate } from '../../types/intelligence';
+import { useIncidentContextStore } from '../../store/incidentContextStore';
+import { TruthTag } from '../common/TruthTag';
+import { EvidenceCard } from '../common/EvidenceCard';
 
 // ─── Demo Fixture ─────────────────────────────────────────────────────────────
 
@@ -98,10 +101,22 @@ const CHALLENGE_DIMENSIONS = [
 
 export const StrategyArenaWorkspace: React.FC = () => {
   const navigate = useNavigate();
+  const { setSelectedStrategy } = useIncidentContextStore();
   const [selected, setSelected] = useState('str-A');
   const [activeDimensions, setActiveDimensions] = useState<string[]>(['capacity_reduction', 'demand_spike']);
   const strategy = STRATEGIES.find((s) => s.id === selected) ?? STRATEGIES[0];
   const autonomyCfg = AUTONOMY_CONFIG[strategy.autonomyLevel];
+
+  const handleSelectStrategy = (s: StrategyCandidate) => {
+    setSelected(s.id);
+    setSelectedStrategy({
+      id: s.id,
+      name: s.name,
+      type: s.id,
+      expectedCost: s.cost,
+      expectedRecoveryHours: parseFloat(s.recoveryTime) || 3.0,
+    });
+  };
 
   const toggleDimension = (dim: string) => {
     setActiveDimensions((prev) => prev.includes(dim) ? prev.filter((d) => d !== dim) : [...prev, dim]);
@@ -144,7 +159,7 @@ export const StrategyArenaWorkspace: React.FC = () => {
                 <motion.div key={s.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.07, duration: 0.3 }}>
                   <div
                     className={`strategy-card ${s.recommended ? 'recommended' : ''}`}
-                    onClick={() => setSelected(s.id)}
+                    onClick={() => handleSelectStrategy(s)}
                     style={{
                       borderColor: isSelected ? 'rgba(91,147,246,0.5)' : s.recommended ? 'rgba(52,199,123,0.3)' : 'rgba(255,255,255,0.08)',
                       background: isSelected ? 'rgba(91,147,246,0.06)' : 'rgba(7,14,26,0.85)',
@@ -233,7 +248,7 @@ export const StrategyArenaWorkspace: React.FC = () => {
                     {activeDimensions.length} dimensions selected — ready to challenge
                   </span>
                   <button
-                    onClick={() => navigate('/response/adversary')}
+                    onClick={() => navigate('/challenge')}
                     style={{
                       display: 'flex', alignItems: 'center', gap: '5px',
                       padding: '6px 12px', borderRadius: '6px',
@@ -253,7 +268,10 @@ export const StrategyArenaWorkspace: React.FC = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {/* Strategy Detail */}
             <div style={{ padding: '16px', borderRadius: '10px', background: 'rgba(7,14,26,0.85)', border: '1px solid rgba(91,147,246,0.2)' }}>
-              <div style={{ fontSize: '14px', fontFamily: 'var(--font-mono)', fontWeight: 800, color: '#c8daea', marginBottom: '4px' }}>{strategy.name}</div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
+                <span style={{ fontSize: '14px', fontFamily: 'var(--font-mono)', fontWeight: 800, color: '#c8daea' }}>{strategy.name}</span>
+                <TruthTag mode="LEARNED" size="sm" />
+              </div>
               <div style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#4a5c72', marginBottom: '12px', lineHeight: 1.5 }}>{strategy.description}</div>
 
               <div style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#3d5168', textTransform: 'uppercase', marginBottom: '6px' }}>Rationale</div>
@@ -303,15 +321,17 @@ export const StrategyArenaWorkspace: React.FC = () => {
             {/* Action Buttons */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
               {strategy.autonomyLevel !== 'BLOCKED' && (
-                <button style={{
-                  width: '100%', padding: '11px', borderRadius: '8px',
-                  background: 'rgba(52,199,123,0.1)', border: '1px solid rgba(52,199,123,0.3)',
-                  color: '#34c77b', fontSize: '12px', fontFamily: 'var(--font-mono)',
-                  fontWeight: 700, cursor: 'pointer', display: 'flex',
-                  alignItems: 'center', justifyContent: 'center', gap: '6px',
-                }}>
+                <button
+                  onClick={() => navigate('/decision/cockpit')}
+                  style={{
+                    width: '100%', padding: '11px', borderRadius: '8px',
+                    background: 'rgba(52,199,123,0.1)', border: '1px solid rgba(52,199,123,0.3)',
+                    color: '#34c77b', fontSize: '12px', fontFamily: 'var(--font-mono)',
+                    fontWeight: 700, cursor: 'pointer', display: 'flex',
+                    alignItems: 'center', justifyContent: 'center', gap: '6px',
+                  }}>
                   <CheckCircle2 size={14} />
-                  {strategy.autonomyLevel === 'AUTO' ? 'Execute Strategy' : 'Approve Strategy'}
+                  {strategy.autonomyLevel === 'AUTO' ? 'Proceed to Governance & Execution' : 'Submit for Human Approval'}
                 </button>
               )}
               <button
@@ -323,7 +343,7 @@ export const StrategyArenaWorkspace: React.FC = () => {
                   fontWeight: 600, cursor: 'pointer', display: 'flex',
                   alignItems: 'center', justifyContent: 'center', gap: '6px',
                 }}>
-                <Eye size={12} /> View Verification <ChevronRight size={10} />
+                <Eye size={12} /> View Safety Verification <ChevronRight size={10} />
               </button>
             </div>
           </div>

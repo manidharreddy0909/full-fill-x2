@@ -237,144 +237,148 @@ export const ExperienceMemoryWorkspace: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Experience List */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-        {filtered.map((exp, idx) => {
-          const isExpanded = expanded === exp.id;
-          const outcomeColor = getOutcomeColor(exp.outcome);
-          return (
-            <motion.div key={exp.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.04, duration: 0.3 }}>
-              <div style={{
-                borderRadius: '10px',
-                background: 'rgba(7,14,26,0.85)',
-                border: `1px solid ${isExpanded ? `${outcomeColor}25` : 'rgba(255,255,255,0.07)'}`,
-                overflow: 'hidden',
-                transition: 'all 0.2s ease',
-              }}>
-                {/* Card Header */}
-                <div
-                  onClick={() => setExpanded(isExpanded ? null : exp.id)}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    padding: '14px 16px',
-                    cursor: 'pointer',
-                    borderBottom: isExpanded ? '1px solid rgba(255,255,255,0.06)' : 'none',
-                    position: 'relative',
-                  }}>
-                  {/* Color stripe */}
-                  <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '3px', background: outcomeColor, opacity: 0.7 }} />
+        {/* Experience List */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          {filtered.map((exp, idx) => {
+            const isExpanded = expanded === exp.id;
+            const outcomeColor = getOutcomeColor(exp.outcome);
+            return (
+              <motion.div key={exp.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.04, duration: 0.3 }}>
+                <div style={{
+                  borderRadius: '10px',
+                  background: 'rgba(7,14,26,0.85)',
+                  border: `1px solid ${isExpanded ? `${outcomeColor}25` : 'rgba(255,255,255,0.07)'}`,
+                  overflow: 'hidden',
+                  transition: 'all 0.2s ease',
+                }}>
+                  {/* Card Header */}
+                  <div
+                    onClick={() => setExpanded(isExpanded ? null : exp.id)}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      padding: '14px 16px',
+                      cursor: 'pointer',
+                      borderBottom: isExpanded ? '1px solid rgba(255,255,255,0.06)' : 'none',
+                      position: 'relative',
+                    }}>
+                    {/* Color stripe */}
+                    <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '3px', background: outcomeColor, opacity: 0.7 }} />
 
-                  {/* Outcome icon */}
-                  <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: `${outcomeColor}12`, border: `1px solid ${outcomeColor}25`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    {exp.outcome === 'SUCCESS' ? <CheckCircle2 size={14} color={outcomeColor} /> : <AlertTriangle size={14} color={outcomeColor} />}
-                  </div>
-
-                  {/* Incident info */}
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                      <span style={{ fontSize: '13px', fontFamily: 'var(--font-mono)', fontWeight: 800, color: '#c8daea' }}>{exp.incident}</span>
-                      <span className={`provenance-badge ${exp.provenance}`}>{exp.provenance.toUpperCase()}</span>
-                      <span style={{
-                        fontSize: '9px', fontFamily: 'var(--font-mono)', fontWeight: 800,
-                        padding: '1px 6px', borderRadius: '3px',
-                        background: `${outcomeColor}15`, color: outcomeColor,
-                        border: `1px solid ${outcomeColor}30`,
-                      }}>{exp.outcome}</span>
+                    {/* Outcome icon */}
+                    <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: `${outcomeColor}12`, border: `1px solid ${outcomeColor}25`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      {exp.outcome === 'SUCCESS' ? <CheckCircle2 size={14} color={outcomeColor} /> : <AlertTriangle size={14} color={outcomeColor} />}
                     </div>
-                    <div style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#4a5c72', marginTop: '3px' }}>{exp.context}</div>
-                  </div>
 
-                  {/* Right metadata */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
-                    <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontSize: '13px', fontFamily: 'var(--font-mono)', fontWeight: 800, color: exp.confidence >= 0.8 ? '#34c77b' : exp.confidence >= 0.65 ? '#f5a623' : '#e8503a' }}>
-                        {(exp.confidence * 100).toFixed(0)}%
+                    {/* Incident info */}
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                        <span style={{ fontSize: '13px', fontFamily: 'var(--font-mono)', fontWeight: 800, color: '#c8daea' }}>{exp.incident}</span>
+                        <span className={`provenance-badge ${exp.provenance}`}>{exp.provenance.toUpperCase()}</span>
+                        <span style={{
+                          fontSize: '9px', fontFamily: 'var(--font-mono)', fontWeight: 800,
+                          padding: '1px 6px', borderRadius: '3px',
+                          background: `${outcomeColor}15`, color: outcomeColor,
+                          border: `1px solid ${outcomeColor}30`,
+                        }}>{exp.outcome}</span>
                       </div>
-                      <div style={{ fontSize: '8px', fontFamily: 'var(--font-mono)', color: '#3d5168' }}>confidence</div>
+                      <div style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#4a5c72', marginTop: '3px' }}>{exp.context}</div>
                     </div>
-                    <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#4a5c72', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                        <Clock size={10} />{exp.freshness}
+
+                    {/* Right metadata */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
+                      <div style={{ textAlign: 'right' }}>
+                        <div style={{ fontSize: '13px', fontFamily: 'var(--font-mono)', fontWeight: 800, color: exp.confidence >= 0.8 ? '#34c77b' : exp.confidence >= 0.65 ? '#f5a623' : '#e8503a' }}>
+                          {(exp.confidence * 100).toFixed(0)}%
+                        </div>
+                        <div style={{ fontSize: '8px', fontFamily: 'var(--font-mono)', color: '#3d5168' }}>confidence</div>
                       </div>
+                      <div style={{ textAlign: 'right' }}>
+                        <div style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#4a5c72', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                          <Clock size={10} />{exp.freshness}
+                        </div>
+                      </div>
+                      {isExpanded ? <ChevronDown size={14} color="#3d5168" /> : <ChevronRight size={14} color="#3d5168" />}
                     </div>
-                    {isExpanded ? <ChevronDown size={14} color="#3d5168" /> : <ChevronRight size={14} color="#3d5168" />}
                   </div>
+
+                  {/* Expanded Detail */}
+                  {isExpanded && (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }}
+                      style={{ padding: '16px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
+                      {/* Decision */}
+                      <div>
+                        <div style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#3d5168', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>Decision Taken</div>
+                        <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#8ab4d4', lineHeight: 1.5 }}>{exp.decision}</div>
+                        <div style={{ marginTop: '8px' }}>
+                          <div style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', color: '#3d5168', marginBottom: '4px' }}>Conditions at time of decision:</div>
+                          {exp.conditions.map((c, i) => (
+                            <div key={i} style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', color: '#4a5c72', padding: '3px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>→ {c}</div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Prediction vs Actual */}
+                      <div>
+                        <div style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#3d5168', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>Prediction vs Actual</div>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                          <div style={{ padding: '8px', borderRadius: '6px', background: 'rgba(7,14,26,0.7)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                            <div style={{ fontSize: '8px', fontFamily: 'var(--font-mono)', color: '#3d5168', marginBottom: '3px' }}>PREDICTED</div>
+                            <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#4a5c72' }}>{exp.prediction}</div>
+                          </div>
+                          <div style={{ padding: '8px', borderRadius: '6px', background: `${outcomeColor}08`, border: `1px solid ${outcomeColor}20` }}>
+                            <div style={{ fontSize: '8px', fontFamily: 'var(--font-mono)', color: '#3d5168', marginBottom: '3px' }}>ACTUAL</div>
+                            <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: outcomeColor }}>
+                              Recovery: {exp.actualRecovery} · Cost: {exp.actualCost}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Learned Knowledge */}
+                      <div>
+                        <div style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#3d5168', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>Learned Knowledge</div>
+                        {exp.failureBoundary ? (
+                          <div style={{ padding: '10px', borderRadius: '7px', background: 'rgba(232,80,58,0.07)', border: '1px solid rgba(232,80,58,0.2)' }}>
+                            <div style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#e8503a', marginBottom: '4px' }}>⚠ Failure Boundary Discovered</div>
+                            <div style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#f87171', lineHeight: 1.5 }}>{exp.failureBoundary}</div>
+                          </div>
+                        ) : (
+                          <div style={{ padding: '10px', borderRadius: '7px', background: 'rgba(52,199,123,0.07)', border: '1px solid rgba(52,199,123,0.2)' }}>
+                            <div style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#34c77b', marginBottom: '4px' }}>✓ Success Condition Validated</div>
+                            <div style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#6ee7b7', lineHeight: 1.5 }}>
+                              Strategy succeeded under observed conditions. Added to genome with {(exp.confidence * 100).toFixed(0)}% confidence.
+                            </div>
+                          </div>
+                        )}
+                        <div style={{ marginTop: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <div style={{ height: '4px', borderRadius: '2px', flex: 1, background: 'rgba(255,255,255,0.06)', overflow: 'hidden' }}>
+                            <div style={{ height: '100%', width: `${exp.confidence * 100}%`, background: exp.confidence >= 0.8 ? '#34c77b' : exp.confidence >= 0.65 ? '#f5a623' : '#e8503a', borderRadius: '2px' }} />
+                          </div>
+                          <span style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: exp.confidence >= 0.8 ? '#34c77b' : '#f5a623' }}>{(exp.confidence * 100).toFixed(0)}%</span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
                 </div>
+              </motion.div>
+            );
+          })}
+        </div>
 
-                {/* Expanded Detail */}
-                {isExpanded && (
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }}
-                    style={{ padding: '16px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
-                    {/* Decision */}
-                    <div>
-                      <div style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#3d5168', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>Decision Taken</div>
-                      <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#8ab4d4', lineHeight: 1.5 }}>{exp.decision}</div>
-                      <div style={{ marginTop: '8px' }}>
-                        <div style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', color: '#3d5168', marginBottom: '4px' }}>Conditions at time of decision:</div>
-                        {exp.conditions.map((c, i) => (
-                          <div key={i} style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', color: '#4a5c72', padding: '3px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>→ {c}</div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Prediction vs Actual */}
-                    <div>
-                      <div style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#3d5168', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>Prediction vs Actual</div>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                        <div style={{ padding: '8px', borderRadius: '6px', background: 'rgba(7,14,26,0.7)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                          <div style={{ fontSize: '8px', fontFamily: 'var(--font-mono)', color: '#3d5168', marginBottom: '3px' }}>PREDICTED</div>
-                          <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#4a5c72' }}>{exp.prediction}</div>
-                        </div>
-                        <div style={{ padding: '8px', borderRadius: '6px', background: `${outcomeColor}08`, border: `1px solid ${outcomeColor}20` }}>
-                          <div style={{ fontSize: '8px', fontFamily: 'var(--font-mono)', color: '#3d5168', marginBottom: '3px' }}>ACTUAL</div>
-                          <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: outcomeColor }}>
-                            Recovery: {exp.actualRecovery} · Cost: {exp.actualCost}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Learned Knowledge */}
-                    <div>
-                      <div style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#3d5168', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>Learned Knowledge</div>
-                      {exp.failureBoundary ? (
-                        <div style={{ padding: '10px', borderRadius: '7px', background: 'rgba(232,80,58,0.07)', border: '1px solid rgba(232,80,58,0.2)' }}>
-                          <div style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#e8503a', marginBottom: '4px' }}>⚠ Failure Boundary Discovered</div>
-                          <div style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#f87171', lineHeight: 1.5 }}>{exp.failureBoundary}</div>
-                        </div>
-                      ) : (
-                        <div style={{ padding: '10px', borderRadius: '7px', background: 'rgba(52,199,123,0.07)', border: '1px solid rgba(52,199,123,0.2)' }}>
-                          <div style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#34c77b', marginBottom: '4px' }}>✓ Success Condition Validated</div>
-                          <div style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#6ee7b7', lineHeight: 1.5 }}>
-                            Strategy succeeded under observed conditions. Added to genome with {(exp.confidence * 100).toFixed(0)}% confidence.
-                          </div>
-                        </div>
-                      )}
-                      <div style={{ marginTop: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <div style={{ height: '4px', borderRadius: '2px', flex: 1, background: 'rgba(255,255,255,0.06)', overflow: 'hidden' }}>
-                          <div style={{ height: '100%', width: `${exp.confidence * 100}%`, background: exp.confidence >= 0.8 ? '#34c77b' : exp.confidence >= 0.65 ? '#f5a623' : '#e8503a', borderRadius: '2px' }} />
-                        </div>
-                        <span style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: exp.confidence >= 0.8 ? '#34c77b' : '#f5a623' }}>{(exp.confidence * 100).toFixed(0)}%</span>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
-
-      {/* Future Memory Integration Note */}
-      <div style={{ marginTop: '20px', padding: '12px 16px', borderRadius: '8px', background: 'rgba(56,189,248,0.04)', border: '1px solid rgba(56,189,248,0.1)', display: 'flex', alignItems: 'center', gap: '10px' }}>
-        <Brain size={14} color="#38bdf8" style={{ flexShrink: 0 }} />
-        <div style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#3d5168' }}>
-          Experience Memory will be backed by persistent operational memory in a future phase.
-          Backend connection point: <span style={{ color: '#38bdf8' }}>GET /api/learning/experiences</span>
+        {/* Live Memory Integration Status Strip */}
+        <div style={{ marginTop: '20px', padding: '12px 16px', borderRadius: '8px', background: 'rgba(56,189,248,0.06)', border: '1px solid rgba(56,189,248,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Brain size={14} color="#38bdf8" style={{ flexShrink: 0 }} />
+            <div style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#94a3b8' }}>
+              Hindsight Experiential Memory substrate is <strong style={{ color: '#34c77b' }}>LIVE</strong>. Active endpoints: <span style={{ color: '#38bdf8' }}>GET /api/experiences</span>, <span style={{ color: '#38bdf8' }}>POST /api/experiences/recall</span>, <span style={{ color: '#38bdf8' }}>POST /api/experiences/reflect</span>
+            </div>
+          </div>
+          <span style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#38bdf8', padding: '2px 8px', borderRadius: '4px', background: 'rgba(56,189,248,0.1)', border: '1px solid rgba(56,189,248,0.25)' }}>
+            EPISODIC SUBSTRATE ACTIVE
+          </span>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };

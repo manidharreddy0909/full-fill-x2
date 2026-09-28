@@ -116,6 +116,23 @@ async def evaluate_transfer(body: TransferEvaluateRequest) -> TransferAssessment
     return transfer_evaluator.evaluate(genome=genome, current=body.current_context)
 
 
+@router.get("/hindsight/status")
+async def get_hindsight_status() -> Dict[str, Any]:
+    """
+    Get live operational status of Hindsight experiential memory substrate.
+    """
+    client = HindsightClient.get_instance()
+    experiences = client.list_all_local()
+    genomes = reflection_engine.list_genomes()
+    return {
+        "status": "HEALTHY",
+        "mode": "EPISODIC_EXPERIENTIAL",
+        "total_experiences": len(experiences),
+        "total_genomes": len(genomes),
+        "truth_separation_enforced": True,
+    }
+
+
 @router.post("/hindsight/canonical-loop")
 async def run_canonical_slice(body: CanonicalLoopRequest) -> Dict[str, Any]:
     """

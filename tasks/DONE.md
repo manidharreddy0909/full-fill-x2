@@ -668,6 +668,24 @@
 | P06-D1-007 | Frontend TypeScript & Production Build Verification | DONE | `tsc --noEmit` 0 errors; `npm run build` PASS (11.85s, 2620 modules) | TBD |
 | P06-D1-008 | Author Acceptance & Forensic Audit Report (`docs/PHASE_6D1_ACCEPTANCE_AUDIT.md`) | DONE | Comprehensive audit specification published | TBD |
 
+---
+
+## Phase 6E — Hindsight End-to-End Integration [COMPLETE]
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P06-E-001 | Hindsight Lifecycle Audit & REST Endpoints Mapping | DONE | `/api/experiences`, `/api/genomes`, `/api/transfer/evaluate`, `/api/hindsight/status` verified | TBD |
+| P06-E-002 | Added `/api/hindsight/status` endpoint in `backend/app/api/hindsight.py` | DONE | Returns live total experiences, total genomes, mode, and truth separation status | TBD |
+| P06-E-003 | Full Hindsight Experiential Chain Wiring in Workspaces | DONE | Connected Memory $\rightarrow$ Recall $\rightarrow$ Reflect $\rightarrow$ Genome $\rightarrow$ Skill $\rightarrow$ Challenge $\rightarrow$ Transfer $\rightarrow$ Strategy $\rightarrow$ Governance | TBD |
+| P06-E-004 | `ExperienceMemoryWorkspace.tsx` End-to-End Updates | DONE | Live `/api/experiences` query, reflection trigger, detailed prediction vs actual, failure boundaries | TBD |
+| P06-E-005 | `ResilienceGenomeWorkspace.tsx` Live Synthesis Updates | DONE | Live `/api/genomes` query, store synchronization, invariant & boundary evidence weights | TBD |
+| P06-E-006 | `TransferIntelligenceWorkspace.tsx` Provenance & Context Integration | DONE | Context store synchronization, 4-state transfer assessment (`TRANSFERABLE`, `PARTIAL`, `NON-TRANSFERABLE`, `UNKNOWN`), `TruthTag` | TBD |
+| P06-E-007 | `StrategyArenaWorkspace.tsx` Context & Governance Integration | DONE | Synchronizes candidate selection with store, connects to `/challenge` and `/decision/cockpit` | TBD |
+| P06-E-008 | Hindsight Core & Evaluation Test Suite Verification | DONE | 64/64 pytest PASS (hindsight, skills, challenge, eval) | TBD |
+| P06-E-009 | Frontend TypeScript & Production Build Verification | DONE | `tsc --noEmit` 0 errors; `npm run build` PASS (2620 modules, 26.06s) | TBD |
+| P06-E-010 | Published `docs/PHASE_6E_HINDSIGHT_INTEGRATION.md` | DONE | Complete integration specification & provenance architecture committed | TBD |
+
+
 
 
 

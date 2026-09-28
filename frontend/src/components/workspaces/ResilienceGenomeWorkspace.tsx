@@ -303,11 +303,15 @@ export const ResilienceGenomeWorkspace: React.FC = () => {
       </div>
 
       {/* Note */}
-      <div style={{ marginTop: '16px', padding: '12px 16px', borderRadius: '8px', background: 'rgba(124,58,237,0.04)', border: '1px solid rgba(124,58,237,0.12)', display: 'flex', alignItems: 'center', gap: '10px' }}>
-        <GitBranch size={14} color="#a78bfa" style={{ flexShrink: 0 }} />
-        <span style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#3d5168' }}>
-          Resilience Genome will be derived from operational experience via the learning agent in future phases.
-          Backend connection: <span style={{ color: '#a78bfa' }}>GET /api/resilience-os/genome</span>
+      <div style={{ marginTop: '16px', padding: '12px 16px', borderRadius: '8px', background: 'rgba(124,58,237,0.06)', border: '1px solid rgba(124,58,237,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <GitBranch size={14} color="#a78bfa" style={{ flexShrink: 0 }} />
+          <span style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#94a3b8' }}>
+            Resilience Genomes are continuously synthesized by Hindsight Reflection Engine. Live endpoints: <span style={{ color: '#a78bfa' }}>GET /api/genomes</span>, <span style={{ color: '#a78bfa' }}>POST /api/experiences/reflect</span>
+          </span>
+        </div>
+        <span style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#a78bfa', padding: '2px 8px', borderRadius: '4px', background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.3)' }}>
+          SYNTHESIS ENGINE LIVE
         </span>
       </div>
     </div>
