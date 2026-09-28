@@ -1,0 +1,61 @@
+episode_index,agent_mode,scenario_id,scenario_type,decision,selected_skill,memory_recalled,evidence_used,transfer_status,boundary_avoided,predicted_recovery_hours,simulated_recovery_hours,success,unsafe_action,repeated_mistake,unknown_detected,prediction_error_hours
+1,MEMORYLESS,eval-sc-01,BASELINE,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,3.2,True,False,False,False,0.0
+2,MEMORYLESS,eval-sc-02,DEGRADATION,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,False,False,3.6
+3,MEMORYLESS,eval-sc-03,BOUNDARY,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,3.2,True,False,False,False,0.0
+4,MEMORYLESS,eval-sc-04,RELATED,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,True,False,3.6
+5,MEMORYLESS,eval-sc-05,DEGRADATION,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,True,False,3.6
+6,MEMORYLESS,eval-sc-06,DEPENDENCY_FAILURE,Production Rescheduling & Alternate Dispatch,None,False,False,None,False,4.5,4.2,True,False,False,False,-0.3
+7,MEMORYLESS,eval-sc-07,DEMAND_SURGE,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,False,False,3.6
+8,MEMORYLESS,eval-sc-08,TOPOLOGY_CHANGE,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,3.2,True,False,False,False,0.0
+9,MEMORYLESS,eval-sc-09,STALE,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,3.2,True,False,False,False,0.0
+10,MEMORYLESS,eval-sc-10,NOVEL,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,True,False,3.6
+11,MEMORYLESS,eval-sc-11,TRANSFER,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,True,False,3.6
+12,MEMORYLESS,eval-sc-12,DEGRADATION,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,True,False,3.6
+13,MEMORYLESS,eval-sc-13,BOUNDARY,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,True,False,3.6
+14,MEMORYLESS,eval-sc-14,CONTRADICTORY,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,3.2,True,False,False,False,0.0
+15,MEMORYLESS,eval-sc-15,RELATED,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,True,False,3.6
+16,MEMORYLESS,eval-sc-16,DEPENDENCY_FAILURE,Production Rescheduling & Alternate Dispatch,None,False,False,None,False,4.5,4.2,True,False,False,False,-0.3
+17,MEMORYLESS,eval-sc-17,DEMAND_SURGE,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,False,False,3.6
+18,MEMORYLESS,eval-sc-18,DEGRADATION,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,True,False,3.6
+19,MEMORYLESS,eval-sc-19,TOPOLOGY_CHANGE,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,3.2,True,False,False,False,0.0
+20,MEMORYLESS,eval-sc-20,TRANSFER,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,True,False,3.6
+21,MEMORYLESS,eval-sc-21,BOUNDARY,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,3.2,True,False,False,False,0.0
+22,MEMORYLESS,eval-sc-22,STALE,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,3.2,True,False,False,False,0.0
+23,MEMORYLESS,eval-sc-23,DEPENDENCY_FAILURE,Production Rescheduling & Alternate Dispatch,None,False,False,None,False,4.5,4.2,True,False,False,False,-0.3
+24,MEMORYLESS,eval-sc-24,DEGRADATION,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,True,False,3.6
+25,MEMORYLESS,eval-sc-25,DEMAND_SURGE,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,False,False,3.6
+26,MEMORYLESS,eval-sc-26,BOUNDARY,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,True,False,3.6
+27,MEMORYLESS,eval-sc-27,TOPOLOGY_CHANGE,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,3.2,True,False,False,False,0.0
+28,MEMORYLESS,eval-sc-28,NOVEL,Baseline (No Action),None,False,False,None,False,4.5,12.0,False,False,False,False,7.5
+29,MEMORYLESS,eval-sc-29,DEGRADATION,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,True,False,3.6
+30,MEMORYLESS,eval-sc-30,TRANSFER,Supplier Substitution (Secondary Sourcing),None,False,False,None,False,3.2,6.8,False,True,True,False,3.6
+1,HINDSIGHT,eval-sc-01,BASELINE,Supplier Substitution (Secondary Sourcing),Conditional Supplier Substitution,False,False,TRANSFERABLE,False,3.2,3.2,True,False,False,False,0.0
+2,HINDSIGHT,eval-sc-02,DEGRADATION,Supplier Substitution (Secondary Sourcing),Conditional Supplier Substitution,True,True,TRANSFERABLE,False,3.2,6.8,False,True,False,False,3.6
+3,HINDSIGHT,eval-sc-03,BOUNDARY,Supplier Substitution (Secondary Sourcing),Conditional Supplier Substitution,True,True,TRANSFERABLE,False,3.2,3.2,True,False,False,False,0.0
+4,HINDSIGHT,eval-sc-04,RELATED,Emergency Inventory Draw (Warehouse C Reserves),Emergency Inventory Draw,True,True,PARTIAL,True,1.8,1.8,True,False,False,False,0.0
+5,HINDSIGHT,eval-sc-05,DEGRADATION,Emergency Inventory Draw (Warehouse C Reserves),Emergency Inventory Draw,True,True,NON_TRANSFERABLE,True,1.8,1.8,True,False,False,False,0.0
+6,HINDSIGHT,eval-sc-06,DEPENDENCY_FAILURE,Production Rescheduling & Alternate Dispatch,Emergency Inventory Draw,True,True,TRANSFERABLE,False,4.2,4.2,True,False,False,False,0.0
+7,HINDSIGHT,eval-sc-07,DEMAND_SURGE,Supplier Substitution (Secondary Sourcing),Conditional Supplier Substitution,True,True,TRANSFERABLE,False,3.2,6.8,False,False,False,False,3.6
+8,HINDSIGHT,eval-sc-08,TOPOLOGY_CHANGE,Supplier Substitution (Secondary Sourcing),Conditional Supplier Substitution,True,True,TRANSFERABLE,False,3.2,3.2,True,False,False,False,0.0
+9,HINDSIGHT,eval-sc-09,STALE,Supplier Substitution (Secondary Sourcing),Conditional Supplier Substitution,True,True,TRANSFERABLE,False,3.2,3.2,True,False,False,False,0.0
+10,HINDSIGHT,eval-sc-10,NOVEL,UNKNOWN (Hold for Simulation / Human Governance),Emergency Inventory Draw,True,True,UNKNOWN,False,4.2,2.0,True,False,False,True,-2.2
+11,HINDSIGHT,eval-sc-11,TRANSFER,Emergency Inventory Draw (Warehouse C Reserves),Emergency Inventory Draw,True,True,PARTIAL,True,1.8,1.8,True,False,False,False,0.0
+12,HINDSIGHT,eval-sc-12,DEGRADATION,Emergency Inventory Draw (Warehouse C Reserves),Emergency Inventory Draw,True,True,NON_TRANSFERABLE,True,1.8,1.8,True,False,False,False,0.0
+13,HINDSIGHT,eval-sc-13,BOUNDARY,Emergency Inventory Draw (Warehouse C Reserves),Emergency Inventory Draw,True,True,NON_TRANSFERABLE,True,1.8,1.8,True,False,False,False,0.0
+14,HINDSIGHT,eval-sc-14,CONTRADICTORY,Supplier Substitution (Secondary Sourcing),Conditional Supplier Substitution,True,True,TRANSFERABLE,False,3.2,3.2,True,False,False,False,0.0
+15,HINDSIGHT,eval-sc-15,RELATED,Emergency Inventory Draw (Warehouse C Reserves),Emergency Inventory Draw,True,True,PARTIAL,True,1.8,1.8,True,False,False,False,0.0
+16,HINDSIGHT,eval-sc-16,DEPENDENCY_FAILURE,Production Rescheduling & Alternate Dispatch,Emergency Inventory Draw,True,True,TRANSFERABLE,False,4.2,4.2,True,False,False,False,0.0
+17,HINDSIGHT,eval-sc-17,DEMAND_SURGE,Emergency Inventory Draw (Warehouse C Reserves),Emergency Inventory Draw,True,True,PARTIAL,True,1.8,1.8,True,False,False,False,0.0
+18,HINDSIGHT,eval-sc-18,DEGRADATION,Emergency Inventory Draw (Warehouse C Reserves),Emergency Inventory Draw,True,True,NON_TRANSFERABLE,True,1.8,1.8,True,False,False,False,0.0
+19,HINDSIGHT,eval-sc-19,TOPOLOGY_CHANGE,Supplier Substitution (Secondary Sourcing),Conditional Supplier Substitution,True,True,TRANSFERABLE,False,3.2,3.2,True,False,False,False,0.0
+20,HINDSIGHT,eval-sc-20,TRANSFER,Emergency Inventory Draw (Warehouse C Reserves),Emergency Inventory Draw,True,True,PARTIAL,True,1.8,1.8,True,False,False,False,0.0
+21,HINDSIGHT,eval-sc-21,BOUNDARY,Supplier Substitution (Secondary Sourcing),Conditional Supplier Substitution,True,True,TRANSFERABLE,False,3.2,3.2,True,False,False,False,0.0
+22,HINDSIGHT,eval-sc-22,STALE,Supplier Substitution (Secondary Sourcing),Conditional Supplier Substitution,True,True,TRANSFERABLE,False,3.2,3.2,True,False,False,False,0.0
+23,HINDSIGHT,eval-sc-23,DEPENDENCY_FAILURE,Production Rescheduling & Alternate Dispatch,Emergency Inventory Draw,True,True,TRANSFERABLE,False,4.2,4.2,True,False,False,False,0.0
+24,HINDSIGHT,eval-sc-24,DEGRADATION,Emergency Inventory Draw (Warehouse C Reserves),Emergency Inventory Draw,True,True,NON_TRANSFERABLE,True,1.8,1.8,True,False,False,False,0.0
+25,HINDSIGHT,eval-sc-25,DEMAND_SURGE,Emergency Inventory Draw (Warehouse C Reserves),Emergency Inventory Draw,True,True,PARTIAL,True,1.8,1.8,True,False,False,False,0.0
+26,HINDSIGHT,eval-sc-26,BOUNDARY,Emergency Inventory Draw (Warehouse C Reserves),Emergency Inventory Draw,True,True,NON_TRANSFERABLE,True,1.8,1.8,True,False,False,False,0.0
+27,HINDSIGHT,eval-sc-27,TOPOLOGY_CHANGE,Supplier Substitution (Secondary Sourcing),Conditional Supplier Substitution,True,True,TRANSFERABLE,False,3.2,3.2,True,False,False,False,0.0
+28,HINDSIGHT,eval-sc-28,NOVEL,UNKNOWN (Hold for Simulation / Human Governance),Emergency Inventory Draw,True,True,UNKNOWN,False,4.2,2.0,True,False,False,True,-2.2
+29,HINDSIGHT,eval-sc-29,DEGRADATION,Emergency Inventory Draw (Warehouse C Reserves),Emergency Inventory Draw,True,True,NON_TRANSFERABLE,True,1.8,1.8,True,False,False,False,0.0
+30,HINDSIGHT,eval-sc-30,TRANSFER,Emergency Inventory Draw (Warehouse C Reserves),Emergency Inventory Draw,True,True,PARTIAL,True,1.8,1.8,True,False,False,False,0.0

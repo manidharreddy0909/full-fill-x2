@@ -27,6 +27,9 @@ from app.api.learning import router as learning_router
 from app.api.resilience_os import router as resilience_os_router
 from app.api.governance import router as governance_router
 from app.api.hindsight import router as hindsight_router
+from app.api.skills import router as skills_router
+from app.api.challenge import router as challenge_router
+from app.api.hindsight_eval import router as hindsight_eval_router
 from app.core.metrics import metrics_registry
 from app.schemas.world import ApiResponse
 
@@ -34,6 +37,9 @@ api_router = APIRouter()
 api_router.include_router(auth_router)
 api_router.include_router(health_router)
 api_router.include_router(hindsight_router)
+api_router.include_router(skills_router)
+api_router.include_router(challenge_router)
+api_router.include_router(hindsight_eval_router)
 api_router.include_router(resilience_os_router)
 api_router.include_router(governance_router)
 api_router.include_router(learning_router)

@@ -975,7 +975,74 @@ Every LLM proposal passes through: Pydantic Schema Validation → Constraint Eng
 
 ---
 
-*Last updated: Phase 10 — Multi-Tenant Enterprise + Production + Resilience OS Complete*
+## ADR-041: Challenge Engine, Counterfactual Simulation & Adaptive Autonomy
+
+**Date**: 2026-09-28  
+**Status**: ACCEPTED  
+**Phase**: Phase 4 — Experiential Resilience Intelligence Platform
+
+**Context**:
+Following Phase 2A (Hindsight Experiential Memory) and Phase 3 (Resilience Skills & Evolution), the platform required an Active Learning mechanism. Rather than waiting for passive production disruptions, the system needed to deliberately test the assumptions, failure boundaries, and uncertainty limits of learned skills via controlled simulation.
+
+**Decision**:
+1. **Hypothesis-Driven Challenge Scenarios**: Implemented `ChallengeScenarioGenerator` producing 8+ structured scenario families (`BOUNDARY_TEST`, `CAPACITY_DEGRADATION`, `DEPENDENCY_FAILURE`, `TOPOLOGY_CHANGE`, `DEMAND_SURGE`, `STALE_EVIDENCE`, `CONFLICTING_EVIDENCE`, `NOVEL_CONDITION`).
+2. **Controlled Gradient Boundary Probing**: Implemented parameter sweeping along bounded deterministic sequences (e.g. `[0.45, 0.42, 0.41, 0.40, 0.39, 0.37, 0.35]`) to empirically discover the transition point where a skill transitions from applicable to unsafe.
+3. **Counterfactual Simulation Engine**: Implemented `CounterfactualEngine` executing dual branches ("What if we used Skill A?" vs "What if we used Alternative Strategy B / Baseline?") under identical perturbations, calculating delta service levels, recovery hours, and costs.
+4. **Strict Truth Status Separation**: All challenge and counterfactual outcomes are strictly tagged with `TruthStatus.SIMULATED` and `is_simulation=True`. They are NEVER promoted to `OBSERVED`.
+5. **Hindsight Memory Recall & Retention**: Prior to challenge generation, the engine recalls past episodes to reuse evidence and prevent redundant testing (`challenge_reuse`). Outcomes are retained into Hindsight memory.
+6. **Unknown Zone Discovery**: Novel scenarios with zero empirical coverage are explicitly flagged as `UNKNOWN` without hallucinating confidence.
+7. **Skill Immutability & Safe Evolution**: Challenges discovering failure boundaries trigger `SkillEvolutionProposal` without mutating existing skills. Historical skill versions ($v_1$, $v_2$) remain 100% immutable.
+8. **Adaptive Autonomy Governance**: Implemented `AdaptiveAutonomyEngine` calibrating execution autonomy (`AUTO` -> `MONITOR` -> `APPROVAL` -> `BLOCK`) based on track record, while respecting that *Confidence != Authorization*.
+9. **UI Workspace**: Built `ChallengeEngineWorkspace.tsx` and updated `ResilienceIntelligenceLayout.tsx` for visual boundary probing, counterfactual arena, and the canonical Phase 4 demonstration.
+
+**Rationale**:
+Enables active learning and stress-testing of learned recovery skills within deterministic safety bounds.
+
+**Consequences**:
+Phase 4 is complete, verified with 22/22 unit and integration tests passing, frontend production build passing with 0 errors, and canonical 4-step demonstration operational.
+
+---
+
+*Last updated: Phase 4 — Challenge Engine, Counterfactual Simulation & Adaptive Autonomy Complete*
+
+---
+
+## ADR-042: Deterministic A/B Evaluation Framework for Proving Experiential Learning (Phase 5)
+
+**Date**: 2026-09-28
+**Status**: ACCEPTED
+**Phase**: 5
+
+**Context**: To validate the Phase 5 claim "The system learns," we need an empirical, reproducible experiment that measures whether persistent Hindsight memory causes observable behavioral improvement on operational incidents. The result must be derived from actual simulation runs, not manufactured benchmarks.
+
+**Options Considered**:
+1. **External LLM Judge Evaluation**: Use an LLM to score decisions. Rejected — introduces non-determinism and hallucination risk.
+2. **Human Annotation / Ground Truth Comparison**: Manually annotated "correct" decisions. Rejected — expensive and subjective.
+3. **Deterministic A/B Controlled Experiment**: Two identical agents (Memoryless vs Hindsight-Enabled) run over identical deterministic 30-incident sequence with simulated outcomes. **CHOSEN.**
+4. **Online Reinforcement Learning Benchmark**: Continuous environmental reward signal. Rejected — requires external environment that conflicts with existing deterministic simulator.
+
+**Decision**: Implement a deterministic A/B evaluation framework:
+- `MemorylessAgent`: Static rules, discards all experience.
+- `HindsightAgent`: Full Hindsight recall pipeline, accumulates experience.
+- Identical canonical 30-incident sequence with known ground truth (not exposed to agents).
+- `CausalAttribution` record per episode proving memory caused decision changes.
+- `learning_gain` metric (late vs early episode success rate differential).
+- `hindsight_dependency_verified` flag requiring ≥4 attributable divergent decisions.
+
+**Rationale**:
+- Provenance-clean: All simulated outcomes tagged `TruthStatus.SIMULATED`, never `OBSERVED`.
+- Reproducible: Seeded deterministic sequence ensures identical runs.
+- Attribution-complete: `CausalAttribution` links memory recall to specific behavioral changes.
+- Machine-readable artifacts: `evaluation.json` and `evaluation.csv` for independent audit.
+
+**Consequences**:
+- ✅ Empirically demonstrates learning without fabricating benchmarks.
+- ✅ Preserves strict TruthStatus boundaries (simulated ≠ observed).
+- ✅ 9/9 automated tests and 64/64 combined tests verified.
+- ⚠ A/B results depend on the quality of the mock Hindsight recall implementation (substring matching). Production deployment should substitute a vector-similarity retrieval engine.
+
+*Last updated: Phase 5 — Hindsight Learning Evaluation & Measurable Improvement Complete*
+
 
 
 

@@ -125,7 +125,7 @@ const NAV_STRUCTURE: NavSection[] = [
         id: 'challenge',
         label: 'Challenge Engine',
         icon: <Swords size={14} />,
-        path: '/response/adversary',
+        path: '/challenge',
         isNew: true,
       },
     ],

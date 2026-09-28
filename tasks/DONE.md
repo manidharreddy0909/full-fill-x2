@@ -533,12 +533,70 @@
 
 **Full test run result:** `10 passed in 2.19s`
 
+## Phase 3 — Resilience Skills & Evolution
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P03-SKL-001 | ResilienceSkill & Lifecycle Data Models (`backend/app/skills/models.py`) | DONE | Typed Pydantic schemas PASS | TBD |
+| P03-SKL-002 | SkillGenerator from ResilienceGenomes (`backend/app/skills/generator.py`) | DONE | Deterministic synthesis PASS | TBD |
+| P03-SKL-003 | SkillApplicabilityEvaluator & Preconditions (`backend/app/skills/evaluator.py`) | DONE | Precondition checking PASS | TBD |
+| P03-SKL-004 | SkillValidationEngine & Simulation Sandbox (`backend/app/skills/validator.py`) | DONE | Simulation verification PASS | TBD |
+| P03-SKL-005 | SkillOutcomeCalibrator & Prediction Error (`backend/app/skills/evolution.py`) | DONE | Error & calibration PASS | TBD |
+| P03-SKL-006 | SkillEvolutionEngine & Proposal Triggering | DONE | Immutable v1 -> v2 proposals PASS | TBD |
+| P03-SKL-007 | In-Memory SkillRegistry (`backend/app/skills/registry.py`) | DONE | Multi-version store PASS | TBD |
+| P03-SKL-008 | SkillOrchestrationService & Canonical Loop (`backend/app/skills/service.py`) | DONE | Canonical v1 -> v2 demo PASS | TBD |
+| P03-SKL-009 | Skill REST API Router (`backend/app/api/skills.py`) | DONE | `/api/skills/*` endpoints PASS | TBD |
+| P03-SKL-010 | Full Unit & Integration Test Suite (`backend/tests/test_skills.py`) | DONE | 23/23 pytest tests PASS | TBD |
+
+---
+
+## Phase 4 — Challenge Engine, Counterfactual Learning & Adaptive Autonomy
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P04-CHL-001 | Challenge Engine Pydantic Models (`backend/app/challenge/models.py`) | DONE | ChallengeScenario, ChallengeResult, CounterfactualComparison, GradientProbeResult PASS | TBD |
+| P04-CHL-002 | ChallengeScenarioGenerator (8+ scenario families) (`backend/app/challenge/generator.py`) | DONE | Boundary test, capacity, dependency, topology, demand surge, stale, conflicting, novel condition PASS | TBD |
+| P04-CHL-003 | Controlled Gradient Boundary Probing | DONE | Sweep sequence discovers exact transition point where skill fails PASS | TBD |
+| P04-CHL-004 | Counterfactual Simulation Engine (`backend/app/challenge/counterfactual.py`) | DONE | Dual-branch evaluation (Skill vs Alternative) with deltas PASS | TBD |
+| P04-CHL-005 | Active Learning & Uncertainty Prioritizer (`backend/app/challenge/prioritizer.py`) | DONE | KNOWN, PROBABLE, UNCERTAIN, UNKNOWN classification & recall deduplication PASS | TBD |
+| P04-CHL-006 | Adaptive Autonomy Governance Engine (`backend/app/challenge/governance.py`) | DONE | AUTO -> MONITOR -> APPROVAL -> BLOCK calibration without bypassing policies PASS | TBD |
+| P04-CHL-007 | ChallengeEngineService Orchestrator (`backend/app/challenge/service.py`) | DONE | Master service wiring active learning, Hindsight retain/recall, evolution proposal trigger PASS | TBD |
+| P04-CHL-008 | Challenge REST API Router (`backend/app/api/challenge.py`) | DONE | `/api/challenge/status`, `/metrics`, `/history`, `/run`, `/gradient-probe`, `/counterfactual`, `/canonical-demo` PASS | TBD |
+| P04-CHL-009 | Frontend TypeScript Types & API Client (`types/challenge.ts`, `api/challengeApi.ts`) | DONE | Strictly typed async client PASS | TBD |
+| P04-CHL-010 | Challenge Engine Workspace UI (`ChallengeEngineWorkspace.tsx`) | DONE | Interactive boundary probing, counterfactual arena, prediction error, canonical demo runner PASS | TBD |
+| P04-CHL-011 | App Navigation & Layout Integration (`App.tsx`, `ResilienceIntelligenceLayout.tsx`) | DONE | `/challenge` route and sidebar item integrated PASS | TBD |
+| P04-CHL-012 | Full Automated Test Suite (`backend/tests/test_challenge.py`) | DONE | 22/22 pytest tests PASS (55/55 with skills & hindsight) | TBD |
+| P04-CHL-013 | Frontend Production Build Verification | DONE | `tsc && vite build` built in 12.50s with 0 errors PASS | TBD |
+| P04-CHL-014 | Specification & ADR Updates (`docs/CHALLENGE_ENGINE_SPEC.md`, `ADR-041`) | DONE | Master architecture documentation committed PASS | TBD |
+
 ---
 
 *Commit hashes to be filled in after `git commit` completes.*
 
+---
 
+## Phase 5 — Hindsight Learning Evaluation & Measurable Improvement [COMPLETED]
 
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P05-EVL-001 | Hindsight Eval Package Init (`backend/app/hindsight_eval/__init__.py`) | DONE | Package exports all 9 public symbols PASS | TBD |
+| P05-EVL-002 | Pydantic Models (`backend/app/hindsight_eval/models.py`) | DONE | AgentMode, EvaluationScenarioType (+TOPOLOGY_CHANGE), EpisodeTrace, ExperimentMetrics, EvaluationExperimentReport PASS | TBD |
+| P05-EVL-003 | Canonical 30-Scenario Generator (`backend/app/hindsight_eval/scenarios.py`) | DONE | 30 incidents (6 repeated patterns, 6 related, 4 boundary, 4 dependency, 3 demand, 3 topology, 2 stale, 2 novel) PASS | TBD |
+| P05-EVL-004 | Memoryless Agent (`backend/app/hindsight_eval/agents.py`) | DONE | Discards memory, repeats mistakes at cap<40%, retained_episodes=[] PASS | TBD |
+| P05-EVL-005 | Hindsight Agent (`backend/app/hindsight_eval/agents.py`) | DONE | Recalls failure, avoids boundary breach, PARTIAL transfer, UNKNOWN detection, retained_episodes accumulates PASS | TBD |
+| P05-EVL-006 | Experiment Runner (`backend/app/hindsight_eval/runner.py`) | DONE | A/B comparison, metric calculation, learning curves, dependency verification, evaluation.json + evaluation.csv export PASS | TBD |
+| P05-EVL-007 | HindsightEvaluationService (`backend/app/hindsight_eval/service.py`) | DONE | Singleton, canonical run, caching, export path helpers PASS | TBD |
+| P05-EVL-008 | REST API Router (`backend/app/api/hindsight_eval.py`, mounted in `router.py`) | DONE | /api/evaluation/learning/status, /canonical-run, /report, /traces, /export/json, /export/csv PASS | TBD |
+| P05-EVL-009 | Frontend Types & API Client (`types/hindsightEval.ts`, `api/hindsightEvalApi.ts`) | DONE | Full TypeScript type definitions and async fetch client PASS | TBD |
+| P05-EVL-010 | EvaluationWorkspace Phase 5 Dashboard (`EvaluationWorkspace.tsx`) | DONE | Tabbed UI: Hindsight Learning tab + Benchmark tab; Comparative metrics, learning curves, episode explorer, causal trace panel PASS | TBD |
+| P05-EVL-011 | Full Automated Test Suite (`backend/tests/test_hindsight_eval.py`) | DONE | 9/9 Phase 5 tests PASS; 64/64 combined tests PASS | TBD |
+| P05-EVL-012 | Frontend Production Build Verification | DONE | `tsc && vite build` 2600 modules, 0 TypeScript errors PASS | TBD |
+| P05-EVL-013 | Specification Docs (`docs/EVALUATION_LEARNING_SPEC.md`, `ADR-042` in `docs/DECISION_LOG.md`) | DONE | Architecture decision recorded PASS | TBD |
+| P05-EVL-014 | Task Tracking Handoff (`DONE.md`, `IN_PROGRESS.md`, `TODO.md`, `CHANGELOG.md`, `HANDOFF.md`) | DONE | All governance files updated PASS | TBD |
+
+---
+
+*Commit hashes to be filled in after `git commit` completes.*
 
 
 

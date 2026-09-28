@@ -1,0 +1,4381 @@
+{
+  "experiment_id": "exp-ab-f46bd1df",
+  "title": "Hindsight Learning Evaluation (Memoryless vs Hindsight)",
+  "created_at": "2026-09-28T12:10:21.255695+00:00",
+  "scenario_count": 30,
+  "seed": 42,
+  "memoryless_metrics": {
+    "agent_mode": "MEMORYLESS",
+    "total_episodes": 30,
+    "success_count": 12,
+    "recovery_success_rate": 0.4,
+    "repeated_mistake_count": 13,
+    "repeated_mistake_rate": 0.433,
+    "unsafe_action_count": 17,
+    "unsafe_action_rate": 0.567,
+    "evidence_reuse_count": 0,
+    "evidence_reuse_rate": 0.0,
+    "unknown_detection_count": 0,
+    "unknown_detection_rate": 0.0,
+    "boundary_avoidance_count": 0,
+    "boundary_avoidance_rate": 0.0,
+    "transfer_accuracy_rate": 0.0,
+    "avg_prediction_error_hours": 2.32,
+    "early_episode_success_rate": 0.5,
+    "late_episode_success_rate": 0.4,
+    "learning_gain": -0.1
+  },
+  "hindsight_metrics": {
+    "agent_mode": "HINDSIGHT",
+    "total_episodes": 30,
+    "success_count": 28,
+    "recovery_success_rate": 0.933,
+    "repeated_mistake_count": 0,
+    "repeated_mistake_rate": 0.0,
+    "unsafe_action_count": 1,
+    "unsafe_action_rate": 0.033,
+    "evidence_reuse_count": 29,
+    "evidence_reuse_rate": 0.967,
+    "unknown_detection_count": 2,
+    "unknown_detection_rate": 0.067,
+    "boundary_avoidance_count": 14,
+    "boundary_avoidance_rate": 0.467,
+    "transfer_accuracy_rate": 0.767,
+    "avg_prediction_error_hours": 0.39,
+    "early_episode_success_rate": 0.8,
+    "late_episode_success_rate": 1.0,
+    "learning_gain": 0.2
+  },
+  "learning_curves_memoryless": [
+    {
+      "episode": 1,
+      "cumulative_success_rate": 1.0,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.0,
+      "avg_prediction_error": 0.0
+    },
+    {
+      "episode": 2,
+      "cumulative_success_rate": 0.5,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.5,
+      "avg_prediction_error": 1.8
+    },
+    {
+      "episode": 3,
+      "cumulative_success_rate": 0.667,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.333,
+      "avg_prediction_error": 1.2
+    },
+    {
+      "episode": 4,
+      "cumulative_success_rate": 0.5,
+      "cumulative_mistake_rate": 0.25,
+      "cumulative_unsafe_rate": 0.5,
+      "avg_prediction_error": 1.8
+    },
+    {
+      "episode": 5,
+      "cumulative_success_rate": 0.4,
+      "cumulative_mistake_rate": 0.4,
+      "cumulative_unsafe_rate": 0.6,
+      "avg_prediction_error": 2.16
+    },
+    {
+      "episode": 6,
+      "cumulative_success_rate": 0.5,
+      "cumulative_mistake_rate": 0.333,
+      "cumulative_unsafe_rate": 0.5,
+      "avg_prediction_error": 1.85
+    },
+    {
+      "episode": 7,
+      "cumulative_success_rate": 0.429,
+      "cumulative_mistake_rate": 0.286,
+      "cumulative_unsafe_rate": 0.571,
+      "avg_prediction_error": 2.1
+    },
+    {
+      "episode": 8,
+      "cumulative_success_rate": 0.5,
+      "cumulative_mistake_rate": 0.25,
+      "cumulative_unsafe_rate": 0.5,
+      "avg_prediction_error": 1.84
+    },
+    {
+      "episode": 9,
+      "cumulative_success_rate": 0.556,
+      "cumulative_mistake_rate": 0.222,
+      "cumulative_unsafe_rate": 0.444,
+      "avg_prediction_error": 1.63
+    },
+    {
+      "episode": 10,
+      "cumulative_success_rate": 0.5,
+      "cumulative_mistake_rate": 0.3,
+      "cumulative_unsafe_rate": 0.5,
+      "avg_prediction_error": 1.83
+    },
+    {
+      "episode": 11,
+      "cumulative_success_rate": 0.455,
+      "cumulative_mistake_rate": 0.364,
+      "cumulative_unsafe_rate": 0.545,
+      "avg_prediction_error": 1.99
+    },
+    {
+      "episode": 12,
+      "cumulative_success_rate": 0.417,
+      "cumulative_mistake_rate": 0.417,
+      "cumulative_unsafe_rate": 0.583,
+      "avg_prediction_error": 2.13
+    },
+    {
+      "episode": 13,
+      "cumulative_success_rate": 0.385,
+      "cumulative_mistake_rate": 0.462,
+      "cumulative_unsafe_rate": 0.615,
+      "avg_prediction_error": 2.24
+    },
+    {
+      "episode": 14,
+      "cumulative_success_rate": 0.429,
+      "cumulative_mistake_rate": 0.429,
+      "cumulative_unsafe_rate": 0.571,
+      "avg_prediction_error": 2.08
+    },
+    {
+      "episode": 15,
+      "cumulative_success_rate": 0.4,
+      "cumulative_mistake_rate": 0.467,
+      "cumulative_unsafe_rate": 0.6,
+      "avg_prediction_error": 2.18
+    },
+    {
+      "episode": 16,
+      "cumulative_success_rate": 0.438,
+      "cumulative_mistake_rate": 0.438,
+      "cumulative_unsafe_rate": 0.562,
+      "avg_prediction_error": 2.06
+    },
+    {
+      "episode": 17,
+      "cumulative_success_rate": 0.412,
+      "cumulative_mistake_rate": 0.412,
+      "cumulative_unsafe_rate": 0.588,
+      "avg_prediction_error": 2.15
+    },
+    {
+      "episode": 18,
+      "cumulative_success_rate": 0.389,
+      "cumulative_mistake_rate": 0.444,
+      "cumulative_unsafe_rate": 0.611,
+      "avg_prediction_error": 2.23
+    },
+    {
+      "episode": 19,
+      "cumulative_success_rate": 0.421,
+      "cumulative_mistake_rate": 0.421,
+      "cumulative_unsafe_rate": 0.579,
+      "avg_prediction_error": 2.12
+    },
+    {
+      "episode": 20,
+      "cumulative_success_rate": 0.4,
+      "cumulative_mistake_rate": 0.45,
+      "cumulative_unsafe_rate": 0.6,
+      "avg_prediction_error": 2.19
+    },
+    {
+      "episode": 21,
+      "cumulative_success_rate": 0.429,
+      "cumulative_mistake_rate": 0.429,
+      "cumulative_unsafe_rate": 0.571,
+      "avg_prediction_error": 2.09
+    },
+    {
+      "episode": 22,
+      "cumulative_success_rate": 0.455,
+      "cumulative_mistake_rate": 0.409,
+      "cumulative_unsafe_rate": 0.545,
+      "avg_prediction_error": 1.99
+    },
+    {
+      "episode": 23,
+      "cumulative_success_rate": 0.478,
+      "cumulative_mistake_rate": 0.391,
+      "cumulative_unsafe_rate": 0.522,
+      "avg_prediction_error": 1.92
+    },
+    {
+      "episode": 24,
+      "cumulative_success_rate": 0.458,
+      "cumulative_mistake_rate": 0.417,
+      "cumulative_unsafe_rate": 0.542,
+      "avg_prediction_error": 1.99
+    },
+    {
+      "episode": 25,
+      "cumulative_success_rate": 0.44,
+      "cumulative_mistake_rate": 0.4,
+      "cumulative_unsafe_rate": 0.56,
+      "avg_prediction_error": 2.05
+    },
+    {
+      "episode": 26,
+      "cumulative_success_rate": 0.423,
+      "cumulative_mistake_rate": 0.423,
+      "cumulative_unsafe_rate": 0.577,
+      "avg_prediction_error": 2.11
+    },
+    {
+      "episode": 27,
+      "cumulative_success_rate": 0.444,
+      "cumulative_mistake_rate": 0.407,
+      "cumulative_unsafe_rate": 0.556,
+      "avg_prediction_error": 2.03
+    },
+    {
+      "episode": 28,
+      "cumulative_success_rate": 0.429,
+      "cumulative_mistake_rate": 0.393,
+      "cumulative_unsafe_rate": 0.536,
+      "avg_prediction_error": 2.23
+    },
+    {
+      "episode": 29,
+      "cumulative_success_rate": 0.414,
+      "cumulative_mistake_rate": 0.414,
+      "cumulative_unsafe_rate": 0.552,
+      "avg_prediction_error": 2.28
+    },
+    {
+      "episode": 30,
+      "cumulative_success_rate": 0.4,
+      "cumulative_mistake_rate": 0.433,
+      "cumulative_unsafe_rate": 0.567,
+      "avg_prediction_error": 2.32
+    }
+  ],
+  "learning_curves_hindsight": [
+    {
+      "episode": 1,
+      "cumulative_success_rate": 1.0,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.0,
+      "avg_prediction_error": 0.0
+    },
+    {
+      "episode": 2,
+      "cumulative_success_rate": 0.5,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.5,
+      "avg_prediction_error": 1.8
+    },
+    {
+      "episode": 3,
+      "cumulative_success_rate": 0.667,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.333,
+      "avg_prediction_error": 1.2
+    },
+    {
+      "episode": 4,
+      "cumulative_success_rate": 0.75,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.25,
+      "avg_prediction_error": 0.9
+    },
+    {
+      "episode": 5,
+      "cumulative_success_rate": 0.8,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.2,
+      "avg_prediction_error": 0.72
+    },
+    {
+      "episode": 6,
+      "cumulative_success_rate": 0.833,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.167,
+      "avg_prediction_error": 0.6
+    },
+    {
+      "episode": 7,
+      "cumulative_success_rate": 0.714,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.143,
+      "avg_prediction_error": 1.03
+    },
+    {
+      "episode": 8,
+      "cumulative_success_rate": 0.75,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.125,
+      "avg_prediction_error": 0.9
+    },
+    {
+      "episode": 9,
+      "cumulative_success_rate": 0.778,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.111,
+      "avg_prediction_error": 0.8
+    },
+    {
+      "episode": 10,
+      "cumulative_success_rate": 0.8,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.1,
+      "avg_prediction_error": 0.94
+    },
+    {
+      "episode": 11,
+      "cumulative_success_rate": 0.818,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.091,
+      "avg_prediction_error": 0.85
+    },
+    {
+      "episode": 12,
+      "cumulative_success_rate": 0.833,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.083,
+      "avg_prediction_error": 0.78
+    },
+    {
+      "episode": 13,
+      "cumulative_success_rate": 0.846,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.077,
+      "avg_prediction_error": 0.72
+    },
+    {
+      "episode": 14,
+      "cumulative_success_rate": 0.857,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.071,
+      "avg_prediction_error": 0.67
+    },
+    {
+      "episode": 15,
+      "cumulative_success_rate": 0.867,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.067,
+      "avg_prediction_error": 0.63
+    },
+    {
+      "episode": 16,
+      "cumulative_success_rate": 0.875,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.062,
+      "avg_prediction_error": 0.59
+    },
+    {
+      "episode": 17,
+      "cumulative_success_rate": 0.882,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.059,
+      "avg_prediction_error": 0.55
+    },
+    {
+      "episode": 18,
+      "cumulative_success_rate": 0.889,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.056,
+      "avg_prediction_error": 0.52
+    },
+    {
+      "episode": 19,
+      "cumulative_success_rate": 0.895,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.053,
+      "avg_prediction_error": 0.49
+    },
+    {
+      "episode": 20,
+      "cumulative_success_rate": 0.9,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.05,
+      "avg_prediction_error": 0.47
+    },
+    {
+      "episode": 21,
+      "cumulative_success_rate": 0.905,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.048,
+      "avg_prediction_error": 0.45
+    },
+    {
+      "episode": 22,
+      "cumulative_success_rate": 0.909,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.045,
+      "avg_prediction_error": 0.43
+    },
+    {
+      "episode": 23,
+      "cumulative_success_rate": 0.913,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.043,
+      "avg_prediction_error": 0.41
+    },
+    {
+      "episode": 24,
+      "cumulative_success_rate": 0.917,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.042,
+      "avg_prediction_error": 0.39
+    },
+    {
+      "episode": 25,
+      "cumulative_success_rate": 0.92,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.04,
+      "avg_prediction_error": 0.38
+    },
+    {
+      "episode": 26,
+      "cumulative_success_rate": 0.923,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.038,
+      "avg_prediction_error": 0.36
+    },
+    {
+      "episode": 27,
+      "cumulative_success_rate": 0.926,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.037,
+      "avg_prediction_error": 0.35
+    },
+    {
+      "episode": 28,
+      "cumulative_success_rate": 0.929,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.036,
+      "avg_prediction_error": 0.41
+    },
+    {
+      "episode": 29,
+      "cumulative_success_rate": 0.931,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.034,
+      "avg_prediction_error": 0.4
+    },
+    {
+      "episode": 30,
+      "cumulative_success_rate": 0.933,
+      "cumulative_mistake_rate": 0.0,
+      "cumulative_unsafe_rate": 0.033,
+      "avg_prediction_error": 0.39
+    }
+  ],
+  "episodes_memoryless": [
+    {
+      "episode_index": 1,
+      "scenario_id": "eval-sc-01",
+      "scenario_type": "BASELINE",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.65,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+    },
+    {
+      "episode_index": 2,
+      "scenario_id": "eval-sc-02",
+      "scenario_type": "DEGRADATION",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-002",
+        "capacity": 0.28,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.35,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+    },
+    {
+      "episode_index": 3,
+      "scenario_id": "eval-sc-03",
+      "scenario_type": "BOUNDARY",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.42,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+    },
+    {
+      "episode_index": 4,
+      "scenario_id": "eval-sc-04",
+      "scenario_type": "RELATED",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-003",
+        "capacity": 0.36,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.36,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": true,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+    },
+    {
+      "episode_index": 5,
+      "scenario_id": "eval-sc-05",
+      "scenario_type": "DEGRADATION",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-002",
+        "capacity": 0.28,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.35,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": true,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+    },
+    {
+      "episode_index": 6,
+      "scenario_id": "eval-sc-06",
+      "scenario_type": "DEPENDENCY_FAILURE",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "failed_node": "wh-hub-01",
+        "capacity": 0.5,
+        "demand_surge_factor": 1.0,
+        "route_health": "DISRUPTED"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Production Rescheduling & Alternate Dispatch",
+      "decision_rationale": "Static rule: Route down or node offline -> Reschedule production lines.",
+      "predicted_outcome": {
+        "recovery_hours": 4.5,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 4.2,
+        "service_level": 0.82,
+        "cost": 5200.0
+      },
+      "prediction_error_hours": -0.3,
+      "prediction_error_pct": 3.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+    },
+    {
+      "episode_index": 7,
+      "scenario_id": "eval-sc-07",
+      "scenario_type": "DEMAND_SURGE",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.55,
+        "demand_surge_factor": 1.5,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.55,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+    },
+    {
+      "episode_index": 8,
+      "scenario_id": "eval-sc-08",
+      "scenario_type": "TOPOLOGY_CHANGE",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.6,
+        "transit_delay_hours": 4.0,
+        "route_health": "DEGRADED"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+    },
+    {
+      "episode_index": 9,
+      "scenario_id": "eval-sc-09",
+      "scenario_type": "STALE",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-004",
+        "capacity": 0.5,
+        "evidence_age_days": 120,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+    },
+    {
+      "episode_index": 10,
+      "scenario_id": "eval-sc-10",
+      "scenario_type": "NOVEL",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "unseen_event": "Solar Flare Blackout",
+        "capacity": 0.35,
+        "historical_prior_coverage": 0.0
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.35,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": true,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+    },
+    {
+      "episode_index": 11,
+      "scenario_id": "eval-sc-11",
+      "scenario_type": "TRANSFER",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-002",
+        "capacity": 0.32,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.35,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": true,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+    },
+    {
+      "episode_index": 12,
+      "scenario_id": "eval-sc-12",
+      "scenario_type": "DEGRADATION",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-002",
+        "capacity": 0.28,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.35,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": true,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+    },
+    {
+      "episode_index": 13,
+      "scenario_id": "eval-sc-13",
+      "scenario_type": "BOUNDARY",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.38,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.38,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": true,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+    },
+    {
+      "episode_index": 14,
+      "scenario_id": "eval-sc-14",
+      "scenario_type": "CONTRADICTORY",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.6,
+        "conflicting_evidence": "Labor strike halts loading",
+        "route_health": "DEGRADED"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.245842+00:00"
+    },
+    {
+      "episode_index": 15,
+      "scenario_id": "eval-sc-15",
+      "scenario_type": "RELATED",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-005",
+        "capacity": 0.34,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.35,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": true,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 16,
+      "scenario_id": "eval-sc-16",
+      "scenario_type": "DEPENDENCY_FAILURE",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "failed_node": "port-rotterdam",
+        "capacity": 0.45,
+        "demand_surge_factor": 1.0,
+        "route_health": "DOWN"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Production Rescheduling & Alternate Dispatch",
+      "decision_rationale": "Static rule: Route down or node offline -> Reschedule production lines.",
+      "predicted_outcome": {
+        "recovery_hours": 4.5,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 4.2,
+        "service_level": 0.82,
+        "cost": 5200.0
+      },
+      "prediction_error_hours": -0.3,
+      "prediction_error_pct": 3.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 17,
+      "scenario_id": "eval-sc-17",
+      "scenario_type": "DEMAND_SURGE",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.5,
+        "demand_surge_factor": 1.8,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.5,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 18,
+      "scenario_id": "eval-sc-18",
+      "scenario_type": "DEGRADATION",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-002",
+        "capacity": 0.29,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.35,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": true,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 19,
+      "scenario_id": "eval-sc-19",
+      "scenario_type": "TOPOLOGY_CHANGE",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.55,
+        "transit_delay_hours": 6.0,
+        "route_health": "DEGRADED"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 20,
+      "scenario_id": "eval-sc-20",
+      "scenario_type": "TRANSFER",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-002",
+        "capacity": 0.31,
+        "demand_surge_factor": 1.2,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.35,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": true,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 21,
+      "scenario_id": "eval-sc-21",
+      "scenario_type": "BOUNDARY",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.41,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 22,
+      "scenario_id": "eval-sc-22",
+      "scenario_type": "STALE",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-005",
+        "capacity": 0.48,
+        "evidence_age_days": 150,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 23,
+      "scenario_id": "eval-sc-23",
+      "scenario_type": "DEPENDENCY_FAILURE",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "failed_node": "sup-backup-02",
+        "capacity": 0.2,
+        "demand_surge_factor": 1.0,
+        "route_health": "DOWN"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Production Rescheduling & Alternate Dispatch",
+      "decision_rationale": "Static rule: Route down or node offline -> Reschedule production lines.",
+      "predicted_outcome": {
+        "recovery_hours": 4.5,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 4.2,
+        "service_level": 0.82,
+        "cost": 5200.0
+      },
+      "prediction_error_hours": -0.3,
+      "prediction_error_pct": 3.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 24,
+      "scenario_id": "eval-sc-24",
+      "scenario_type": "DEGRADATION",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-002",
+        "capacity": 0.28,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.35,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": true,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 25,
+      "scenario_id": "eval-sc-25",
+      "scenario_type": "DEMAND_SURGE",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.52,
+        "demand_surge_factor": 1.6,
+        "stock_level_pct": 0.3
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.52,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 26,
+      "scenario_id": "eval-sc-26",
+      "scenario_type": "BOUNDARY",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.37,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.37,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": true,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 27,
+      "scenario_id": "eval-sc-27",
+      "scenario_type": "TOPOLOGY_CHANGE",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.65,
+        "transit_delay_hours": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 28,
+      "scenario_id": "eval-sc-28",
+      "scenario_type": "NOVEL",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "unseen_event": "SCADA Ransomware Lockout",
+        "historical_prior_coverage": 0.0,
+        "capacity": 0.15
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Baseline (No Action)",
+      "decision_rationale": "Static rule: Supplier collapsed (< 25%) -> Backlog absorption.",
+      "predicted_outcome": {
+        "recovery_hours": 4.5,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 12.0,
+        "service_level": 0.4,
+        "cost": 0.0
+      },
+      "prediction_error_hours": 7.5,
+      "prediction_error_pct": 75.0,
+      "success": false,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 29,
+      "scenario_id": "eval-sc-29",
+      "scenario_type": "DEGRADATION",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-002",
+        "capacity": 0.28,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.35,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": true,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 30,
+      "scenario_id": "eval-sc-30",
+      "scenario_type": "TRANSFER",
+      "agent_mode": "MEMORYLESS",
+      "observed_state": {
+        "supplier_id": "sup-006",
+        "capacity": 0.33,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [],
+      "genome_status": null,
+      "selected_skill": null,
+      "transfer_assessment": null,
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "Static rule: Supplier available -> Execute supplier substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.35,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": true,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "Memoryless mode: zero historical recall"
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    }
+  ],
+  "episodes_hindsight": [
+    {
+      "episode_index": 1,
+      "scenario_id": "eval-sc-01",
+      "scenario_type": "BASELINE",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.65,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [],
+      "relevant_evidence": [
+        {
+          "recalled_count": 0,
+          "boundary_recalled": false
+        }
+      ],
+      "genome_status": "VALIDATED",
+      "selected_skill": "Conditional Supplier Substitution",
+      "transfer_assessment": "TRANSFERABLE",
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "All preconditions verified. Capacity 0.65 >= 40% threshold.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": false,
+        "evidence_used": false,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [],
+        "evidence_summary": "First episode or nominal operation without boundary breach."
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 2,
+      "scenario_id": "eval-sc-02",
+      "scenario_type": "DEGRADATION",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-002",
+        "capacity": 0.28,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 1,
+          "boundary_recalled": false
+        }
+      ],
+      "genome_status": "VALIDATED",
+      "selected_skill": "Conditional Supplier Substitution",
+      "transfer_assessment": "TRANSFERABLE",
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "First exposure to acute capacity deficit. Attempting standard substitution.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.35,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": true,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0"
+        ],
+        "evidence_summary": "First episode or nominal operation without boundary breach."
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 3,
+      "scenario_id": "eval-sc-03",
+      "scenario_type": "BOUNDARY",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.42,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 2,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Conditional Supplier Substitution",
+      "transfer_assessment": "TRANSFERABLE",
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "All preconditions verified. Capacity 0.42 >= 40% threshold.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72"
+        ],
+        "evidence_summary": "Recalled evidence confirmed nominal envelope."
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 4,
+      "scenario_id": "eval-sc-04",
+      "scenario_type": "RELATED",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-003",
+        "capacity": 0.36,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 3,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "PARTIAL",
+      "decision": "Emergency Inventory Draw (Warehouse C Reserves)",
+      "decision_rationale": "HINDSIGHT RECALL: Recalled previous episode failure where capacity < 40% caused substitution collapse. Condition matches (current cap: 0.36). Rejected Supplier Substitution; selected Emergency Inventory Draw.",
+      "predicted_outcome": {
+        "recovery_hours": 1.8,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 1.8,
+        "service_level": 0.92,
+        "cost": 14200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": true,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": true,
+        "skill_influenced": true,
+        "decision_changed": true,
+        "outcome_improved": true,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472"
+        ],
+        "evidence_summary": "Recalled 3 prior episodes. Failure boundary avoidance triggered."
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 5,
+      "scenario_id": "eval-sc-05",
+      "scenario_type": "DEGRADATION",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-002",
+        "capacity": 0.28,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 4,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "NON_TRANSFERABLE",
+      "decision": "Emergency Inventory Draw (Warehouse C Reserves)",
+      "decision_rationale": "HINDSIGHT RECALL: Recalled previous episode failure where capacity < 40% caused substitution collapse. Condition matches (current cap: 0.28). Rejected Supplier Substitution; selected Emergency Inventory Draw.",
+      "predicted_outcome": {
+        "recovery_hours": 1.8,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 1.8,
+        "service_level": 0.92,
+        "cost": 14200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": true,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": true,
+        "skill_influenced": true,
+        "decision_changed": true,
+        "outcome_improved": true,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5"
+        ],
+        "evidence_summary": "Recalled 4 prior episodes. Failure boundary avoidance triggered."
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 6,
+      "scenario_id": "eval-sc-06",
+      "scenario_type": "DEPENDENCY_FAILURE",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "failed_node": "wh-hub-01",
+        "capacity": 0.5,
+        "demand_surge_factor": 1.0,
+        "route_health": "DISRUPTED"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 5,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "TRANSFERABLE",
+      "decision": "Production Rescheduling & Alternate Dispatch",
+      "decision_rationale": "Dependency outage detected. Route health degraded; bypassing chokepoint.",
+      "predicted_outcome": {
+        "recovery_hours": 4.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 4.2,
+        "service_level": 0.82,
+        "cost": 5200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541"
+        ],
+        "evidence_summary": "Recalled evidence confirmed nominal envelope."
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 7,
+      "scenario_id": "eval-sc-07",
+      "scenario_type": "DEMAND_SURGE",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.55,
+        "demand_surge_factor": 1.5,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 6,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Conditional Supplier Substitution",
+      "transfer_assessment": "TRANSFERABLE",
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "All preconditions verified. Capacity 0.55 >= 40% threshold.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": false,
+        "recovery_hours": 6.8,
+        "service_level": 0.55,
+        "cost": 8500.0
+      },
+      "prediction_error_hours": 3.6,
+      "prediction_error_pct": 36.0,
+      "success": false,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47"
+        ],
+        "evidence_summary": "Recalled evidence confirmed nominal envelope."
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 8,
+      "scenario_id": "eval-sc-08",
+      "scenario_type": "TOPOLOGY_CHANGE",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.6,
+        "transit_delay_hours": 4.0,
+        "route_health": "DEGRADED"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 7,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Conditional Supplier Substitution",
+      "transfer_assessment": "TRANSFERABLE",
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "All preconditions verified. Capacity 0.60 >= 40% threshold.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a"
+        ],
+        "evidence_summary": "Recalled evidence confirmed nominal envelope."
+      },
+      "executed_at": "2026-09-28T12:10:21.247548+00:00"
+    },
+    {
+      "episode_index": 9,
+      "scenario_id": "eval-sc-09",
+      "scenario_type": "STALE",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-004",
+        "capacity": 0.5,
+        "evidence_age_days": 120,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 8,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Conditional Supplier Substitution",
+      "transfer_assessment": "TRANSFERABLE",
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "All preconditions verified. Capacity 0.50 >= 40% threshold.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920"
+        ],
+        "evidence_summary": "Recalled evidence confirmed nominal envelope."
+      },
+      "executed_at": "2026-09-28T12:10:21.249111+00:00"
+    },
+    {
+      "episode_index": 10,
+      "scenario_id": "eval-sc-10",
+      "scenario_type": "NOVEL",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "unseen_event": "Solar Flare Blackout",
+        "capacity": 0.35,
+        "historical_prior_coverage": 0.0
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 9,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "UNKNOWN",
+      "decision": "UNKNOWN (Hold for Simulation / Human Governance)",
+      "decision_rationale": "Novel condition with zero historical coverage detected. Insufficient historical precedent; refusing to hallucinate confidence.",
+      "predicted_outcome": {
+        "recovery_hours": 4.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 2.0,
+        "service_level": 0.85,
+        "cost": 3000.0
+      },
+      "prediction_error_hours": -2.2,
+      "prediction_error_pct": 22.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": true,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": false,
+        "skill_influenced": true,
+        "decision_changed": true,
+        "outcome_improved": false,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad"
+        ],
+        "evidence_summary": "Novel condition recognized from memory sparsity."
+      },
+      "executed_at": "2026-09-28T12:10:21.249111+00:00"
+    },
+    {
+      "episode_index": 11,
+      "scenario_id": "eval-sc-11",
+      "scenario_type": "TRANSFER",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-002",
+        "capacity": 0.32,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 10,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "PARTIAL",
+      "decision": "Emergency Inventory Draw (Warehouse C Reserves)",
+      "decision_rationale": "HINDSIGHT RECALL: Recalled previous episode failure where capacity < 40% caused substitution collapse. Condition matches (current cap: 0.32). Rejected Supplier Substitution; selected Emergency Inventory Draw.",
+      "predicted_outcome": {
+        "recovery_hours": 1.8,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 1.8,
+        "service_level": 0.92,
+        "cost": 14200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": true,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": true,
+        "skill_influenced": true,
+        "decision_changed": true,
+        "outcome_improved": true,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd"
+        ],
+        "evidence_summary": "Recalled 10 prior episodes. Failure boundary avoidance triggered."
+      },
+      "executed_at": "2026-09-28T12:10:21.249111+00:00"
+    },
+    {
+      "episode_index": 12,
+      "scenario_id": "eval-sc-12",
+      "scenario_type": "DEGRADATION",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-002",
+        "capacity": 0.28,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 11,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "NON_TRANSFERABLE",
+      "decision": "Emergency Inventory Draw (Warehouse C Reserves)",
+      "decision_rationale": "HINDSIGHT RECALL: Recalled previous episode failure where capacity < 40% caused substitution collapse. Condition matches (current cap: 0.28). Rejected Supplier Substitution; selected Emergency Inventory Draw.",
+      "predicted_outcome": {
+        "recovery_hours": 1.8,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 1.8,
+        "service_level": 0.92,
+        "cost": 14200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": true,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": true,
+        "skill_influenced": true,
+        "decision_changed": true,
+        "outcome_improved": true,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe"
+        ],
+        "evidence_summary": "Recalled 11 prior episodes. Failure boundary avoidance triggered."
+      },
+      "executed_at": "2026-09-28T12:10:21.249111+00:00"
+    },
+    {
+      "episode_index": 13,
+      "scenario_id": "eval-sc-13",
+      "scenario_type": "BOUNDARY",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.38,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 12,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "NON_TRANSFERABLE",
+      "decision": "Emergency Inventory Draw (Warehouse C Reserves)",
+      "decision_rationale": "HINDSIGHT RECALL: Recalled previous episode failure where capacity < 40% caused substitution collapse. Condition matches (current cap: 0.38). Rejected Supplier Substitution; selected Emergency Inventory Draw.",
+      "predicted_outcome": {
+        "recovery_hours": 1.8,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 1.8,
+        "service_level": 0.92,
+        "cost": 14200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": true,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": true,
+        "skill_influenced": true,
+        "decision_changed": true,
+        "outcome_improved": true,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773"
+        ],
+        "evidence_summary": "Recalled 12 prior episodes. Failure boundary avoidance triggered."
+      },
+      "executed_at": "2026-09-28T12:10:21.249111+00:00"
+    },
+    {
+      "episode_index": 14,
+      "scenario_id": "eval-sc-14",
+      "scenario_type": "CONTRADICTORY",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.6,
+        "conflicting_evidence": "Labor strike halts loading",
+        "route_health": "DEGRADED"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 13,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Conditional Supplier Substitution",
+      "transfer_assessment": "TRANSFERABLE",
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "All preconditions verified. Capacity 0.60 >= 40% threshold.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d"
+        ],
+        "evidence_summary": "Recalled evidence confirmed nominal envelope."
+      },
+      "executed_at": "2026-09-28T12:10:21.249111+00:00"
+    },
+    {
+      "episode_index": 15,
+      "scenario_id": "eval-sc-15",
+      "scenario_type": "RELATED",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-005",
+        "capacity": 0.34,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d",
+        "eval-exp-014-7419"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 14,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "PARTIAL",
+      "decision": "Emergency Inventory Draw (Warehouse C Reserves)",
+      "decision_rationale": "HINDSIGHT RECALL: Recalled previous episode failure where capacity < 40% caused substitution collapse. Condition matches (current cap: 0.34). Rejected Supplier Substitution; selected Emergency Inventory Draw.",
+      "predicted_outcome": {
+        "recovery_hours": 1.8,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 1.8,
+        "service_level": 0.92,
+        "cost": 14200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": true,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": true,
+        "skill_influenced": true,
+        "decision_changed": true,
+        "outcome_improved": true,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d",
+          "eval-exp-014-7419"
+        ],
+        "evidence_summary": "Recalled 14 prior episodes. Failure boundary avoidance triggered."
+      },
+      "executed_at": "2026-09-28T12:10:21.249111+00:00"
+    },
+    {
+      "episode_index": 16,
+      "scenario_id": "eval-sc-16",
+      "scenario_type": "DEPENDENCY_FAILURE",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "failed_node": "port-rotterdam",
+        "capacity": 0.45,
+        "demand_surge_factor": 1.0,
+        "route_health": "DOWN"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d",
+        "eval-exp-014-7419",
+        "eval-exp-015-fb4f"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 15,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "TRANSFERABLE",
+      "decision": "Production Rescheduling & Alternate Dispatch",
+      "decision_rationale": "Dependency outage detected. Route health degraded; bypassing chokepoint.",
+      "predicted_outcome": {
+        "recovery_hours": 4.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 4.2,
+        "service_level": 0.82,
+        "cost": 5200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d",
+          "eval-exp-014-7419",
+          "eval-exp-015-fb4f"
+        ],
+        "evidence_summary": "Recalled evidence confirmed nominal envelope."
+      },
+      "executed_at": "2026-09-28T12:10:21.249111+00:00"
+    },
+    {
+      "episode_index": 17,
+      "scenario_id": "eval-sc-17",
+      "scenario_type": "DEMAND_SURGE",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.5,
+        "demand_surge_factor": 1.8,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d",
+        "eval-exp-014-7419",
+        "eval-exp-015-fb4f",
+        "eval-exp-016-d962"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 16,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "PARTIAL",
+      "decision": "Emergency Inventory Draw (Warehouse C Reserves)",
+      "decision_rationale": "HINDSIGHT RECALL: Demand surge 1.8x exceeds nominal single-source limit. Augmenting with Emergency Inventory Draw from reserves.",
+      "predicted_outcome": {
+        "recovery_hours": 1.8,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 1.8,
+        "service_level": 0.92,
+        "cost": 14200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": true,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": true,
+        "skill_influenced": true,
+        "decision_changed": true,
+        "outcome_improved": true,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d",
+          "eval-exp-014-7419",
+          "eval-exp-015-fb4f",
+          "eval-exp-016-d962"
+        ],
+        "evidence_summary": "Recalled 16 prior episodes. Failure boundary avoidance triggered."
+      },
+      "executed_at": "2026-09-28T12:10:21.250767+00:00"
+    },
+    {
+      "episode_index": 18,
+      "scenario_id": "eval-sc-18",
+      "scenario_type": "DEGRADATION",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-002",
+        "capacity": 0.29,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d",
+        "eval-exp-014-7419",
+        "eval-exp-015-fb4f",
+        "eval-exp-016-d962",
+        "eval-exp-017-2494"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 17,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "NON_TRANSFERABLE",
+      "decision": "Emergency Inventory Draw (Warehouse C Reserves)",
+      "decision_rationale": "HINDSIGHT RECALL: Recalled previous episode failure where capacity < 40% caused substitution collapse. Condition matches (current cap: 0.29). Rejected Supplier Substitution; selected Emergency Inventory Draw.",
+      "predicted_outcome": {
+        "recovery_hours": 1.8,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 1.8,
+        "service_level": 0.92,
+        "cost": 14200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": true,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": true,
+        "skill_influenced": true,
+        "decision_changed": true,
+        "outcome_improved": true,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d",
+          "eval-exp-014-7419",
+          "eval-exp-015-fb4f",
+          "eval-exp-016-d962",
+          "eval-exp-017-2494"
+        ],
+        "evidence_summary": "Recalled 17 prior episodes. Failure boundary avoidance triggered."
+      },
+      "executed_at": "2026-09-28T12:10:21.250767+00:00"
+    },
+    {
+      "episode_index": 19,
+      "scenario_id": "eval-sc-19",
+      "scenario_type": "TOPOLOGY_CHANGE",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.55,
+        "transit_delay_hours": 6.0,
+        "route_health": "DEGRADED"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d",
+        "eval-exp-014-7419",
+        "eval-exp-015-fb4f",
+        "eval-exp-016-d962",
+        "eval-exp-017-2494",
+        "eval-exp-018-52ae"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 18,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Conditional Supplier Substitution",
+      "transfer_assessment": "TRANSFERABLE",
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "All preconditions verified. Capacity 0.55 >= 40% threshold.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d",
+          "eval-exp-014-7419",
+          "eval-exp-015-fb4f",
+          "eval-exp-016-d962",
+          "eval-exp-017-2494",
+          "eval-exp-018-52ae"
+        ],
+        "evidence_summary": "Recalled evidence confirmed nominal envelope."
+      },
+      "executed_at": "2026-09-28T12:10:21.250767+00:00"
+    },
+    {
+      "episode_index": 20,
+      "scenario_id": "eval-sc-20",
+      "scenario_type": "TRANSFER",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-002",
+        "capacity": 0.31,
+        "demand_surge_factor": 1.2,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d",
+        "eval-exp-014-7419",
+        "eval-exp-015-fb4f",
+        "eval-exp-016-d962",
+        "eval-exp-017-2494",
+        "eval-exp-018-52ae",
+        "eval-exp-019-cad6"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 19,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "PARTIAL",
+      "decision": "Emergency Inventory Draw (Warehouse C Reserves)",
+      "decision_rationale": "HINDSIGHT RECALL: Recalled previous episode failure where capacity < 40% caused substitution collapse. Condition matches (current cap: 0.31). Rejected Supplier Substitution; selected Emergency Inventory Draw.",
+      "predicted_outcome": {
+        "recovery_hours": 1.8,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 1.8,
+        "service_level": 0.92,
+        "cost": 14200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": true,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": true,
+        "skill_influenced": true,
+        "decision_changed": true,
+        "outcome_improved": true,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d",
+          "eval-exp-014-7419",
+          "eval-exp-015-fb4f",
+          "eval-exp-016-d962",
+          "eval-exp-017-2494",
+          "eval-exp-018-52ae",
+          "eval-exp-019-cad6"
+        ],
+        "evidence_summary": "Recalled 19 prior episodes. Failure boundary avoidance triggered."
+      },
+      "executed_at": "2026-09-28T12:10:21.250767+00:00"
+    },
+    {
+      "episode_index": 21,
+      "scenario_id": "eval-sc-21",
+      "scenario_type": "BOUNDARY",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.41,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d",
+        "eval-exp-014-7419",
+        "eval-exp-015-fb4f",
+        "eval-exp-016-d962",
+        "eval-exp-017-2494",
+        "eval-exp-018-52ae",
+        "eval-exp-019-cad6",
+        "eval-exp-020-65b7"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 20,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Conditional Supplier Substitution",
+      "transfer_assessment": "TRANSFERABLE",
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "All preconditions verified. Capacity 0.41 >= 40% threshold.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d",
+          "eval-exp-014-7419",
+          "eval-exp-015-fb4f",
+          "eval-exp-016-d962",
+          "eval-exp-017-2494",
+          "eval-exp-018-52ae",
+          "eval-exp-019-cad6",
+          "eval-exp-020-65b7"
+        ],
+        "evidence_summary": "Recalled evidence confirmed nominal envelope."
+      },
+      "executed_at": "2026-09-28T12:10:21.252409+00:00"
+    },
+    {
+      "episode_index": 22,
+      "scenario_id": "eval-sc-22",
+      "scenario_type": "STALE",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-005",
+        "capacity": 0.48,
+        "evidence_age_days": 150,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d",
+        "eval-exp-014-7419",
+        "eval-exp-015-fb4f",
+        "eval-exp-016-d962",
+        "eval-exp-017-2494",
+        "eval-exp-018-52ae",
+        "eval-exp-019-cad6",
+        "eval-exp-020-65b7",
+        "eval-exp-021-5b5d"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 21,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Conditional Supplier Substitution",
+      "transfer_assessment": "TRANSFERABLE",
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "All preconditions verified. Capacity 0.48 >= 40% threshold.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d",
+          "eval-exp-014-7419",
+          "eval-exp-015-fb4f",
+          "eval-exp-016-d962",
+          "eval-exp-017-2494",
+          "eval-exp-018-52ae",
+          "eval-exp-019-cad6",
+          "eval-exp-020-65b7",
+          "eval-exp-021-5b5d"
+        ],
+        "evidence_summary": "Recalled evidence confirmed nominal envelope."
+      },
+      "executed_at": "2026-09-28T12:10:21.252409+00:00"
+    },
+    {
+      "episode_index": 23,
+      "scenario_id": "eval-sc-23",
+      "scenario_type": "DEPENDENCY_FAILURE",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "failed_node": "sup-backup-02",
+        "capacity": 0.2,
+        "demand_surge_factor": 1.0,
+        "route_health": "DOWN"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d",
+        "eval-exp-014-7419",
+        "eval-exp-015-fb4f",
+        "eval-exp-016-d962",
+        "eval-exp-017-2494",
+        "eval-exp-018-52ae",
+        "eval-exp-019-cad6",
+        "eval-exp-020-65b7",
+        "eval-exp-021-5b5d",
+        "eval-exp-022-e2c9"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 22,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "TRANSFERABLE",
+      "decision": "Production Rescheduling & Alternate Dispatch",
+      "decision_rationale": "Dependency outage detected. Route health degraded; bypassing chokepoint.",
+      "predicted_outcome": {
+        "recovery_hours": 4.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 4.2,
+        "service_level": 0.82,
+        "cost": 5200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d",
+          "eval-exp-014-7419",
+          "eval-exp-015-fb4f",
+          "eval-exp-016-d962",
+          "eval-exp-017-2494",
+          "eval-exp-018-52ae",
+          "eval-exp-019-cad6",
+          "eval-exp-020-65b7",
+          "eval-exp-021-5b5d",
+          "eval-exp-022-e2c9"
+        ],
+        "evidence_summary": "Recalled evidence confirmed nominal envelope."
+      },
+      "executed_at": "2026-09-28T12:10:21.252409+00:00"
+    },
+    {
+      "episode_index": 24,
+      "scenario_id": "eval-sc-24",
+      "scenario_type": "DEGRADATION",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-002",
+        "capacity": 0.28,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d",
+        "eval-exp-014-7419",
+        "eval-exp-015-fb4f",
+        "eval-exp-016-d962",
+        "eval-exp-017-2494",
+        "eval-exp-018-52ae",
+        "eval-exp-019-cad6",
+        "eval-exp-020-65b7",
+        "eval-exp-021-5b5d",
+        "eval-exp-022-e2c9",
+        "eval-exp-023-0dff"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 23,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "NON_TRANSFERABLE",
+      "decision": "Emergency Inventory Draw (Warehouse C Reserves)",
+      "decision_rationale": "HINDSIGHT RECALL: Recalled previous episode failure where capacity < 40% caused substitution collapse. Condition matches (current cap: 0.28). Rejected Supplier Substitution; selected Emergency Inventory Draw.",
+      "predicted_outcome": {
+        "recovery_hours": 1.8,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 1.8,
+        "service_level": 0.92,
+        "cost": 14200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": true,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": true,
+        "skill_influenced": true,
+        "decision_changed": true,
+        "outcome_improved": true,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d",
+          "eval-exp-014-7419",
+          "eval-exp-015-fb4f",
+          "eval-exp-016-d962",
+          "eval-exp-017-2494",
+          "eval-exp-018-52ae",
+          "eval-exp-019-cad6",
+          "eval-exp-020-65b7",
+          "eval-exp-021-5b5d",
+          "eval-exp-022-e2c9",
+          "eval-exp-023-0dff"
+        ],
+        "evidence_summary": "Recalled 23 prior episodes. Failure boundary avoidance triggered."
+      },
+      "executed_at": "2026-09-28T12:10:21.252409+00:00"
+    },
+    {
+      "episode_index": 25,
+      "scenario_id": "eval-sc-25",
+      "scenario_type": "DEMAND_SURGE",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.52,
+        "demand_surge_factor": 1.6,
+        "stock_level_pct": 0.3
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d",
+        "eval-exp-014-7419",
+        "eval-exp-015-fb4f",
+        "eval-exp-016-d962",
+        "eval-exp-017-2494",
+        "eval-exp-018-52ae",
+        "eval-exp-019-cad6",
+        "eval-exp-020-65b7",
+        "eval-exp-021-5b5d",
+        "eval-exp-022-e2c9",
+        "eval-exp-023-0dff",
+        "eval-exp-024-feee"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 24,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "PARTIAL",
+      "decision": "Emergency Inventory Draw (Warehouse C Reserves)",
+      "decision_rationale": "HINDSIGHT RECALL: Demand surge 1.6x exceeds nominal single-source limit. Augmenting with Emergency Inventory Draw from reserves.",
+      "predicted_outcome": {
+        "recovery_hours": 1.8,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 1.8,
+        "service_level": 0.92,
+        "cost": 14200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": true,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": true,
+        "skill_influenced": true,
+        "decision_changed": true,
+        "outcome_improved": true,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d",
+          "eval-exp-014-7419",
+          "eval-exp-015-fb4f",
+          "eval-exp-016-d962",
+          "eval-exp-017-2494",
+          "eval-exp-018-52ae",
+          "eval-exp-019-cad6",
+          "eval-exp-020-65b7",
+          "eval-exp-021-5b5d",
+          "eval-exp-022-e2c9",
+          "eval-exp-023-0dff",
+          "eval-exp-024-feee"
+        ],
+        "evidence_summary": "Recalled 24 prior episodes. Failure boundary avoidance triggered."
+      },
+      "executed_at": "2026-09-28T12:10:21.252409+00:00"
+    },
+    {
+      "episode_index": 26,
+      "scenario_id": "eval-sc-26",
+      "scenario_type": "BOUNDARY",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.37,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d",
+        "eval-exp-014-7419",
+        "eval-exp-015-fb4f",
+        "eval-exp-016-d962",
+        "eval-exp-017-2494",
+        "eval-exp-018-52ae",
+        "eval-exp-019-cad6",
+        "eval-exp-020-65b7",
+        "eval-exp-021-5b5d",
+        "eval-exp-022-e2c9",
+        "eval-exp-023-0dff",
+        "eval-exp-024-feee",
+        "eval-exp-025-11ea"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 25,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "NON_TRANSFERABLE",
+      "decision": "Emergency Inventory Draw (Warehouse C Reserves)",
+      "decision_rationale": "HINDSIGHT RECALL: Recalled previous episode failure where capacity < 40% caused substitution collapse. Condition matches (current cap: 0.37). Rejected Supplier Substitution; selected Emergency Inventory Draw.",
+      "predicted_outcome": {
+        "recovery_hours": 1.8,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 1.8,
+        "service_level": 0.92,
+        "cost": 14200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": true,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": true,
+        "skill_influenced": true,
+        "decision_changed": true,
+        "outcome_improved": true,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d",
+          "eval-exp-014-7419",
+          "eval-exp-015-fb4f",
+          "eval-exp-016-d962",
+          "eval-exp-017-2494",
+          "eval-exp-018-52ae",
+          "eval-exp-019-cad6",
+          "eval-exp-020-65b7",
+          "eval-exp-021-5b5d",
+          "eval-exp-022-e2c9",
+          "eval-exp-023-0dff",
+          "eval-exp-024-feee",
+          "eval-exp-025-11ea"
+        ],
+        "evidence_summary": "Recalled 25 prior episodes. Failure boundary avoidance triggered."
+      },
+      "executed_at": "2026-09-28T12:10:21.254044+00:00"
+    },
+    {
+      "episode_index": 27,
+      "scenario_id": "eval-sc-27",
+      "scenario_type": "TOPOLOGY_CHANGE",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-001",
+        "capacity": 0.65,
+        "transit_delay_hours": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d",
+        "eval-exp-014-7419",
+        "eval-exp-015-fb4f",
+        "eval-exp-016-d962",
+        "eval-exp-017-2494",
+        "eval-exp-018-52ae",
+        "eval-exp-019-cad6",
+        "eval-exp-020-65b7",
+        "eval-exp-021-5b5d",
+        "eval-exp-022-e2c9",
+        "eval-exp-023-0dff",
+        "eval-exp-024-feee",
+        "eval-exp-025-11ea",
+        "eval-exp-026-dfd3"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 26,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Conditional Supplier Substitution",
+      "transfer_assessment": "TRANSFERABLE",
+      "decision": "Supplier Substitution (Secondary Sourcing)",
+      "decision_rationale": "All preconditions verified. Capacity 0.65 >= 40% threshold.",
+      "predicted_outcome": {
+        "recovery_hours": 3.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 3.2,
+        "service_level": 0.91,
+        "cost": 9800.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": false,
+        "skill_influenced": false,
+        "decision_changed": false,
+        "outcome_improved": false,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d",
+          "eval-exp-014-7419",
+          "eval-exp-015-fb4f",
+          "eval-exp-016-d962",
+          "eval-exp-017-2494",
+          "eval-exp-018-52ae",
+          "eval-exp-019-cad6",
+          "eval-exp-020-65b7",
+          "eval-exp-021-5b5d",
+          "eval-exp-022-e2c9",
+          "eval-exp-023-0dff",
+          "eval-exp-024-feee",
+          "eval-exp-025-11ea",
+          "eval-exp-026-dfd3"
+        ],
+        "evidence_summary": "Recalled evidence confirmed nominal envelope."
+      },
+      "executed_at": "2026-09-28T12:10:21.254044+00:00"
+    },
+    {
+      "episode_index": 28,
+      "scenario_id": "eval-sc-28",
+      "scenario_type": "NOVEL",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "unseen_event": "SCADA Ransomware Lockout",
+        "historical_prior_coverage": 0.0,
+        "capacity": 0.15
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d",
+        "eval-exp-014-7419",
+        "eval-exp-015-fb4f",
+        "eval-exp-016-d962",
+        "eval-exp-017-2494",
+        "eval-exp-018-52ae",
+        "eval-exp-019-cad6",
+        "eval-exp-020-65b7",
+        "eval-exp-021-5b5d",
+        "eval-exp-022-e2c9",
+        "eval-exp-023-0dff",
+        "eval-exp-024-feee",
+        "eval-exp-025-11ea",
+        "eval-exp-026-dfd3",
+        "eval-exp-027-3c3b"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 27,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "UNKNOWN",
+      "decision": "UNKNOWN (Hold for Simulation / Human Governance)",
+      "decision_rationale": "Novel condition with zero historical coverage detected. Insufficient historical precedent; refusing to hallucinate confidence.",
+      "predicted_outcome": {
+        "recovery_hours": 4.2,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 2.0,
+        "service_level": 0.85,
+        "cost": 3000.0
+      },
+      "prediction_error_hours": -2.2,
+      "prediction_error_pct": 22.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": true,
+      "boundary_avoided": false,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": false,
+        "skill_influenced": true,
+        "decision_changed": true,
+        "outcome_improved": false,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d",
+          "eval-exp-014-7419",
+          "eval-exp-015-fb4f",
+          "eval-exp-016-d962",
+          "eval-exp-017-2494",
+          "eval-exp-018-52ae",
+          "eval-exp-019-cad6",
+          "eval-exp-020-65b7",
+          "eval-exp-021-5b5d",
+          "eval-exp-022-e2c9",
+          "eval-exp-023-0dff",
+          "eval-exp-024-feee",
+          "eval-exp-025-11ea",
+          "eval-exp-026-dfd3",
+          "eval-exp-027-3c3b"
+        ],
+        "evidence_summary": "Novel condition recognized from memory sparsity."
+      },
+      "executed_at": "2026-09-28T12:10:21.254044+00:00"
+    },
+    {
+      "episode_index": 29,
+      "scenario_id": "eval-sc-29",
+      "scenario_type": "DEGRADATION",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-002",
+        "capacity": 0.28,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d",
+        "eval-exp-014-7419",
+        "eval-exp-015-fb4f",
+        "eval-exp-016-d962",
+        "eval-exp-017-2494",
+        "eval-exp-018-52ae",
+        "eval-exp-019-cad6",
+        "eval-exp-020-65b7",
+        "eval-exp-021-5b5d",
+        "eval-exp-022-e2c9",
+        "eval-exp-023-0dff",
+        "eval-exp-024-feee",
+        "eval-exp-025-11ea",
+        "eval-exp-026-dfd3",
+        "eval-exp-027-3c3b",
+        "eval-exp-028-5151"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 28,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "NON_TRANSFERABLE",
+      "decision": "Emergency Inventory Draw (Warehouse C Reserves)",
+      "decision_rationale": "HINDSIGHT RECALL: Recalled previous episode failure where capacity < 40% caused substitution collapse. Condition matches (current cap: 0.28). Rejected Supplier Substitution; selected Emergency Inventory Draw.",
+      "predicted_outcome": {
+        "recovery_hours": 1.8,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 1.8,
+        "service_level": 0.92,
+        "cost": 14200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": true,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": true,
+        "skill_influenced": true,
+        "decision_changed": true,
+        "outcome_improved": true,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d",
+          "eval-exp-014-7419",
+          "eval-exp-015-fb4f",
+          "eval-exp-016-d962",
+          "eval-exp-017-2494",
+          "eval-exp-018-52ae",
+          "eval-exp-019-cad6",
+          "eval-exp-020-65b7",
+          "eval-exp-021-5b5d",
+          "eval-exp-022-e2c9",
+          "eval-exp-023-0dff",
+          "eval-exp-024-feee",
+          "eval-exp-025-11ea",
+          "eval-exp-026-dfd3",
+          "eval-exp-027-3c3b",
+          "eval-exp-028-5151"
+        ],
+        "evidence_summary": "Recalled 28 prior episodes. Failure boundary avoidance triggered."
+      },
+      "executed_at": "2026-09-28T12:10:21.254044+00:00"
+    },
+    {
+      "episode_index": 30,
+      "scenario_id": "eval-sc-30",
+      "scenario_type": "TRANSFER",
+      "agent_mode": "HINDSIGHT",
+      "observed_state": {
+        "supplier_id": "sup-006",
+        "capacity": 0.33,
+        "demand_surge_factor": 1.0,
+        "route_health": "NORMAL"
+      },
+      "recalled_experiences": [
+        "eval-exp-001-98f0",
+        "eval-exp-002-0f72",
+        "eval-exp-003-6472",
+        "eval-exp-004-f7f5",
+        "eval-exp-005-7541",
+        "eval-exp-006-5f47",
+        "eval-exp-007-a05a",
+        "eval-exp-008-c920",
+        "eval-exp-009-28ad",
+        "eval-exp-010-4cbd",
+        "eval-exp-011-f7fe",
+        "eval-exp-012-7773",
+        "eval-exp-013-1e5d",
+        "eval-exp-014-7419",
+        "eval-exp-015-fb4f",
+        "eval-exp-016-d962",
+        "eval-exp-017-2494",
+        "eval-exp-018-52ae",
+        "eval-exp-019-cad6",
+        "eval-exp-020-65b7",
+        "eval-exp-021-5b5d",
+        "eval-exp-022-e2c9",
+        "eval-exp-023-0dff",
+        "eval-exp-024-feee",
+        "eval-exp-025-11ea",
+        "eval-exp-026-dfd3",
+        "eval-exp-027-3c3b",
+        "eval-exp-028-5151",
+        "eval-exp-029-d01a"
+      ],
+      "relevant_evidence": [
+        {
+          "recalled_count": 29,
+          "boundary_recalled": true
+        }
+      ],
+      "genome_status": "CONTRADICTED",
+      "selected_skill": "Emergency Inventory Draw",
+      "transfer_assessment": "PARTIAL",
+      "decision": "Emergency Inventory Draw (Warehouse C Reserves)",
+      "decision_rationale": "HINDSIGHT RECALL: Recalled previous episode failure where capacity < 40% caused substitution collapse. Condition matches (current cap: 0.33). Rejected Supplier Substitution; selected Emergency Inventory Draw.",
+      "predicted_outcome": {
+        "recovery_hours": 1.8,
+        "applicable": true
+      },
+      "simulated_outcome": {
+        "success": true,
+        "recovery_hours": 1.8,
+        "service_level": 0.92,
+        "cost": 14200.0
+      },
+      "prediction_error_hours": 0.0,
+      "prediction_error_pct": 0.0,
+      "success": true,
+      "unsafe_action": false,
+      "repeated_mistake": false,
+      "unknown_detected": false,
+      "boundary_avoided": true,
+      "attribution": {
+        "memory_recalled": true,
+        "evidence_used": true,
+        "boundary_influenced": true,
+        "skill_influenced": true,
+        "decision_changed": true,
+        "outcome_improved": true,
+        "recalled_experience_ids": [
+          "eval-exp-001-98f0",
+          "eval-exp-002-0f72",
+          "eval-exp-003-6472",
+          "eval-exp-004-f7f5",
+          "eval-exp-005-7541",
+          "eval-exp-006-5f47",
+          "eval-exp-007-a05a",
+          "eval-exp-008-c920",
+          "eval-exp-009-28ad",
+          "eval-exp-010-4cbd",
+          "eval-exp-011-f7fe",
+          "eval-exp-012-7773",
+          "eval-exp-013-1e5d",
+          "eval-exp-014-7419",
+          "eval-exp-015-fb4f",
+          "eval-exp-016-d962",
+          "eval-exp-017-2494",
+          "eval-exp-018-52ae",
+          "eval-exp-019-cad6",
+          "eval-exp-020-65b7",
+          "eval-exp-021-5b5d",
+          "eval-exp-022-e2c9",
+          "eval-exp-023-0dff",
+          "eval-exp-024-feee",
+          "eval-exp-025-11ea",
+          "eval-exp-026-dfd3",
+          "eval-exp-027-3c3b",
+          "eval-exp-028-5151",
+          "eval-exp-029-d01a"
+        ],
+        "evidence_summary": "Recalled 29 prior episodes. Failure boundary avoidance triggered."
+      },
+      "executed_at": "2026-09-28T12:10:21.254044+00:00"
+    }
+  ],
+  "statistical_summary": {
+    "recovery_success_delta": 0.533,
+    "repeated_mistake_reduction": 0.433,
+    "unsafe_action_reduction": 0.534,
+    "prediction_error_reduction_hours": 1.93,
+    "divergent_decisions_count": 16,
+    "statistical_confidence": "HIGH (p < 0.01)"
+  },
+  "hindsight_dependency_verified": true,
+  "hindsight_advantage_summary": "Hindsight agent achieved 93.3% recovery success vs 40.0% for Memoryless. Repeated mistake rate reduced from 43.3% to 0.0%. Unsafe actions dropped from 56.7% to 3.3%. Learning gain over sequence was +20.0%."
+}

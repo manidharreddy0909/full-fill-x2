@@ -32,6 +32,7 @@ import { EventsWorkspace } from './components/workspaces/EventsWorkspace';
 import { ResilienceOSWorkspace } from './components/workspaces/ResilienceOSWorkspace';
 import { GovernanceWorkspace } from './components/workspaces/GovernanceWorkspace';
 import { EvaluationWorkspace } from './components/workspaces/EvaluationWorkspace';
+import { ChallengeEngineWorkspace } from './components/workspaces/ChallengeEngineWorkspace';
 
 export const App: React.FC = () => {
   return (
@@ -64,9 +65,12 @@ export const App: React.FC = () => {
             <Route path="/intelligence/gnn"            element={<GNNWorkspace />} />
             <Route path="/intelligence/causal"         element={<CausalWorkspace />} />
 
+            {/* ── Phase 4: Challenge Engine ── */}
+            <Route path="/challenge" element={<ChallengeEngineWorkspace />} />
+
             {/* ── Preserved: Response / Challenge ── */}
             <Route path="/response/war-room" element={<WarRoomWorkspace />} />
-            <Route path="/response/adversary" element={<AdversaryWorkspace />} />
+            <Route path="/response/adversary" element={<ChallengeEngineWorkspace />} />
 
             {/* ── Preserved: Decision ── */}
             <Route path="/decision/cockpit"      element={<CockpitWorkspace />} />

@@ -1,6 +1,6 @@
 # FULFILL-X Competition Demo Report — DEMO-05
-**Session ID:** `demo-session-ea241cb6` | **Mode:** `STEP` | **Seed:** `42` | **Status:** `COMPLETED`
-**Generated At:** 2026-09-20 13:28:57 UTC | **Total Execution Time:** 13.02 ms
+**Session ID:** `demo-session-7b9669a9` | **Mode:** `STEP` | **Seed:** `42` | **Status:** `COMPLETED`
+**Generated At:** 2026-09-28 11:30:14 UTC | **Total Execution Time:** 16.56 ms
 
 ---
 
@@ -27,12 +27,12 @@ No human decision recorded.
 | Step | Stage | Title | Status | Duration (ms) | Summary |
 | --- | --- | --- | --- | --- | --- |
 | 0 | `OBSERVING` | 1. Baseline Network Observation | `COMPLETED` | 0.0 | Initialized |
-| 1 | `ANALYZING_RISK` | 2. Weak Signal Intelligence Ingest | `COMPLETED` | 0.9 | Executed 2. Weak Signal Intelligence Ingest successfully |
-| 2 | `RUNNING_SPECIALISTS` | 3. Multi-Dimensional Risk Propagation | `COMPLETED` | 1.4 | Executed 3. Multi-Dimensional Risk Propagation successfully |
-| 3 | `COORDINATING` | 4. Compound Scenario Composition | `COMPLETED` | 1.5 | Executed 4. Compound Scenario Composition successfully |
-| 4 | `ADVERSARIAL_TESTING` | 5. 6 Specialist Agents Dispatch | `COMPLETED` | 5.2 | Executed 5. 6 Specialist Agents Dispatch successfully |
-| 5 | `OPTIMIZING` | 6. Coordinator Conflict Reconciliation | `COMPLETED` | 0.6 | Executed 6. Coordinator Conflict Reconciliation successfully |
-| 6 | `VERIFYING` | 7. Candidate Plans A / B / C Synthesized | `COMPLETED` | 3.2 | Executed 7. Candidate Plans A / B / C Synthesized successfully |
+| 1 | `ANALYZING_RISK` | 2. Weak Signal Intelligence Ingest | `COMPLETED` | 1.0 | Executed 2. Weak Signal Intelligence Ingest successfully |
+| 2 | `RUNNING_SPECIALISTS` | 3. Multi-Dimensional Risk Propagation | `COMPLETED` | 1.8 | Executed 3. Multi-Dimensional Risk Propagation successfully |
+| 3 | `COORDINATING` | 4. Compound Scenario Composition | `COMPLETED` | 2.0 | Executed 4. Compound Scenario Composition successfully |
+| 4 | `ADVERSARIAL_TESTING` | 5. 6 Specialist Agents Dispatch | `COMPLETED` | 6.4 | Executed 5. 6 Specialist Agents Dispatch successfully |
+| 5 | `OPTIMIZING` | 6. Coordinator Conflict Reconciliation | `COMPLETED` | 0.7 | Executed 6. Coordinator Conflict Reconciliation successfully |
+| 6 | `VERIFYING` | 7. Candidate Plans A / B / C Synthesized | `COMPLETED` | 4.3 | Executed 7. Candidate Plans A / B / C Synthesized successfully |
 | 7 | `READY_FOR_APPROVAL` | 8. Adversary Red-Team Stress Test | `COMPLETED` | 0.3 | Executed 8. Adversary Red-Team Stress Test successfully |
 | 8 | `READY_FOR_APPROVAL` | 9. Multi-Objective Pareto Optimization | `PENDING` | 0.0 | Waiting for step execution |
 | 9 | `READY_FOR_APPROVAL` | 10. Sandbox Plan Verification | `PENDING` | 0.0 | Waiting for step execution |

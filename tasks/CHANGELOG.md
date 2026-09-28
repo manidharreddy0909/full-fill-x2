@@ -3,6 +3,89 @@
 All significant changes to the project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.9.0] — 2026-09-28 — Phase 5: Hindsight Learning Evaluation & Measurable Improvement
+
+### Added
+
+**Hindsight Learning Evaluation Package (`backend/app/hindsight_eval/`)**
+- `ScenarioSequenceGenerator`: Canonical 30-incident deterministic benchmark sequence with 8 scenario families (BASELINE, DEGRADATION, RELATED, TRANSFER, BOUNDARY, NOVEL, DEPENDENCY_FAILURE, DEMAND_SURGE, TOPOLOGY_CHANGE, STALE). Ground truth strictly isolated from agent observation.
+- `MemorylessAgent`: Operates without accumulated memory. Discards all experience between episodes. Repeated mistakes on identical failure conditions (28% capacity). `retained_episodes` always returns empty list.
+- `HindsightAgent`: Operated with persistent Hindsight memory. Recalls prior failure boundaries via `ExperienceRetriever.recall()`. Avoids repeated mistakes, evaluates PARTIAL transferability on related conditions, reports UNKNOWN on novel zero-coverage events, accumulates `retained_episodes`.
+- `EvaluationExperimentRunner`: Full A/B experiment orchestrator producing metrics, learning curves, hindsight dependency verification, artifact export to `evaluation.json` and `evaluation.csv`.
+- `HindsightEvaluationService`: Singleton managing canonical runs, caching, and export paths.
+
+**REST API (`backend/app/api/hindsight_eval.py`, mounted in `router.py`)**
+- `GET /api/evaluation/learning/status`: Service status and export paths.
+- `POST /api/evaluation/learning/canonical-run`: Execute canonical 30-episode A/B experiment.
+- `GET /api/evaluation/learning/report`: Latest report with full episode traces.
+- `GET /api/evaluation/learning/traces?episode_index=N`: Side-by-side episode comparison and causal attribution.
+- `GET /api/evaluation/learning/export/json`: Download machine-readable `evaluation.json`.
+- `GET /api/evaluation/learning/export/csv`: Download `evaluation.csv` (17 features per episode).
+
+**Frontend Integration**
+- `frontend/src/types/hindsightEval.ts`: Full TypeScript types for all Phase 5 models.
+- `frontend/src/api/hindsightEvalApi.ts`: Typed async REST client.
+- `frontend/src/components/workspaces/EvaluationWorkspace.tsx`: Redesigned with dual-tab architecture:
+  - **Tab 1 (Hindsight Learning Evaluation)**: 6 comparative KPI cards, SVG learning curve visualizer, full comparison table (7 metrics × 4 columns), episode explorer with behavioral divergence highlighting, side-by-side decision trace panel with causal attribution tags, artifact download buttons.
+  - **Tab 2 (Benchmark Suite)**: Original Phase 12 benchmark scenario registry and run history (preserved).
+
+**Testing (`backend/tests/test_hindsight_eval.py`)**
+- 9 new deterministic tests covering: scenario integrity, Memoryless isolation, Hindsight persistence & avoidance, related transfer reasoning, UNKNOWN detection, causal attribution, 30-episode runner metrics, Hindsight dependency proof, and service lifecycle.
+
+**Documentation**
+- `docs/EVALUATION_LEARNING_SPEC.md`: Full Phase 5 evaluation architecture, benchmark dataset, metrics table, decision attribution schema, and artifact exports.
+- `ADR-042` in `docs/DECISION_LOG.md`: Architecture decision for A/B deterministic experiment approach.
+
+### Verified Test Results
+
+| Test Suite | Count | Status |
+|---|---|---|
+| Phase 2A — Hindsight (`test_hindsight.py`) | 10/10 | ✅ PASS |
+| Phase 3 — Skills (`test_skills.py`) | 23/23 | ✅ PASS |
+| Phase 4 — Challenge (`test_challenge.py`) | 22/22 | ✅ PASS |
+| **Phase 5 — Evaluation (`test_hindsight_eval.py`)** | **9/9** | ✅ PASS |
+| **Combined** | **64/64** | ✅ PASS |
+| Frontend TypeScript Build | 2600 modules | ✅ PASS |
+
+### Empirical Learning Results
+
+| Metric | Memoryless | Hindsight | Δ |
+|---|---|---|---|
+| Recovery Success Rate | 43.3% | 93.3% | **+50.0%** |
+| Repeated Mistake Rate | 36.7% | 0.0% | **−36.7%** |
+| Unsafe Action Rate | 36.7% | 3.3% | **−33.3%** |
+| Boundary Avoidance Rate | 0.0% | 40.0% | **+40.0%** |
+| Unknown Detection Rate | 0.0% | 3.3% | **+3.3%** |
+| Average Prediction Error | 2.50h | 0.40h | **−2.10h** |
+| Transfer Accuracy | 0.0% | 76.7% | **+76.7%** |
+
+---
+
+## [1.8.0] — 2026-09-28 — Phase 4: Challenge Engine, Counterfactual Learning & Adaptive Autonomy
+
+### Added
+
+**Challenge Scenario Generation & Gradient Probing (`backend/app/challenge/`)**
+- `ChallengeScenarioGenerator` implementing 8+ hypothesis-driven challenge families: `BOUNDARY_TEST`, `CAPACITY_DEGRADATION`, `DEPENDENCY_FAILURE`, `TOPOLOGY_CHANGE`, `DEMAND_SURGE`, `STALE_EVIDENCE`, `CONFLICTING_EVIDENCE`, and `NOVEL_CONDITION`.
+- Controlled gradient boundary probing evaluating parameter sequences (e.g. 45%, 42%, 41%, 40%, 39%, 37%, 35%) to empirically discover exact failure transition points.
+
+**Counterfactual Simulation Engine (`backend/app/challenge/counterfactual.py`)**
+- Reuses deterministic simulation engine to compare Skill A vs Alternative Strategy B (e.g. Emergency Inventory Draw) and Baseline (no action) under identical perturbations.
+- Computes delta service level, delta recovery hours, delta cost, and trade-off recommendations with strict `TruthStatus.SIMULATED` guarantees.
+
+**Active Learning, Hindsight Recall & Adaptive Autonomy (`backend/app/challenge/prioritizer.py`, `governance.py`)**
+- Active learning prioritizer with uncertainty zone classification (`KNOWN`, `PROBABLE`, `UNCERTAIN`, `UNKNOWN`).
+- Hindsight recall queries past challenges to reuse evidence and avoid redundant testing (`challenge_reuse`).
+- Adaptive autonomy engine calibrating execution authorization (`AUTO` -> `MONITOR` -> `APPROVAL` -> `BLOCK`) based on empirical outcomes without bypassing authoritative governance policies.
+
+**Skill Immutability & Safe Evolution Triggering (`backend/app/challenge/service.py`)**
+- Challenges discovering failure boundaries trigger `SkillEvolutionProposal` through `SkillEvolutionEngine`. Old skill versions ($v_1$, $v_2$) remain 100% immutable.
+- Canonical 4-step Phase 4 active learning demonstration workflow.
+
+**REST API & Challenge Engine UI (`backend/app/api/challenge.py`, `frontend/src/components/workspaces/ChallengeEngineWorkspace.tsx`)**
+- REST endpoints under `/api/challenge/*`.
+- Interactive frontend workspace featuring skill envelope, boundary configuration, gradient probe visualizer, counterfactual arena, prediction error telemetry, and canonical demo runner.
+
 ## [1.7.0] — 2026-09-20 — Phase 7: Graph Neural Networks & Causal Intelligence Platform
 
 ### Added
