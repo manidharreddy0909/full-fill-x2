@@ -3,6 +3,20 @@
  All significant changes to the project are documented here.
  Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
  
++## [2.0.1] — 2026-09-28 — Phase 6D.1: Acceptance, Forensic Regression & Context-Continuity Audit
++
++### Verified & Audited
++- Forensic source inspection of Phase 6B, 6C, and 6D components (`TruthTag`, `EvidenceCard`, tokens, `incidentContextStore`, `ContextBar`, `hindsightApi`, `CommandWorkspace`).
++- Cross-workspace context continuity verified across Command $\rightarrow$ Risk $\rightarrow$ GNN $\rightarrow$ Causal $\rightarrow$ ML $\rightarrow$ War Room $\rightarrow$ Adversary $\rightarrow$ Verification $\rightarrow$ Cockpit.
++- Deterministic context invalidation enforced in `useIncidentContextStore.setActiveIncident()` (resets strategy, genome, memory, challenge, boundary, and feedback on incident transition).
++- Epistemic truth audit completed: all demo fixtures strictly tagged with `DEMO / SIMULATED / INFERRED / LEARNED` labels.
++- 31 active routes and 26 workspaces verified without regression.
++- Full backend regression suite: **313/313 pytest tests PASS** (85.30s).
++- Frontend verification: `tsc --noEmit` **0 errors**, `npm run build` **PASS (11.85s, 2,620 modules)**.
++- Published `docs/PHASE_6D1_ACCEPTANCE_AUDIT.md`.
++
++---
+ 
 +## [2.0.0] — 2026-09-28 — Phase 6B + 6C + 6D: Shared Design System, Global Resilience Context & Unified Command Center
 +
 +### Added

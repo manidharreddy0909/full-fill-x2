@@ -160,7 +160,7 @@ export const useIncidentContextStore = create<IncidentContextState>((set) => ({
 
   setActiveIncident: (incident) =>
     set((state) => {
-      // If incident changed to a different one or cleared, clear dependent strategy / boundary selections
+      // If incident changed to a different one or cleared, clear dependent strategy / genome / boundary selections
       const isDifferent = state.activeIncident?.id !== incident?.id;
       return {
         activeIncident: incident,
@@ -168,10 +168,13 @@ export const useIncidentContextStore = create<IncidentContextState>((set) => ({
         selectedStrategy: isDifferent ? null : state.selectedStrategy,
         selectedSkillId: isDifferent ? null : state.selectedSkillId,
         recalledExperienceIds: isDifferent ? [] : state.recalledExperienceIds,
+        selectedGenomeId: isDifferent ? null : state.selectedGenomeId,
         boundaryAlert: isDifferent ? null : state.boundaryAlert,
+        activeChallengeId: isDifferent ? null : state.activeChallengeId,
         adversaryStatus: isDifferent ? null : state.adversaryStatus,
         verificationStatus: isDifferent ? null : state.verificationStatus,
         governanceDecision: isDifferent ? null : state.governanceDecision,
+        lastOutcomeLearning: isDifferent ? null : state.lastOutcomeLearning,
         lastUpdated: new Date().toISOString(),
       };
     }),

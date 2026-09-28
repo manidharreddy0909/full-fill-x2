@@ -653,6 +653,22 @@
 | P06-D-011 | Phase 6B+6C+6D production build: `npm run build` — 2620 modules, 0 errors, 7.15s | DONE | ✓ built in 7.15s PASS | TBD |
 | P06-D-012 | Backend regression verification: 64/64 pytest PASS (hindsight, hindsight_eval, challenge, skills) | DONE | 64/64 PASS | TBD |
 
+---
+
+## Phase 6D.1 — Acceptance, Forensic Regression & Context-Continuity Audit [COMPLETE]
+
+| ID | Description | Status | Verification | Commit |
+|----|-------------|--------|-------------|--------|
+| P06-D1-001 | Forensic Source Inspection of Phase 6B+6C+6D deliverables | DONE | TruthTag, EvidenceCard, tokens, incidentContextStore, ContextBar, hindsightApi, CommandWorkspace verified | TBD |
+| P06-D1-002 | Cross-Workspace Context Continuity & Deep-Link Audit | DONE | Continuity verified across Command -> Risk -> GNN -> Causal -> ML -> War Room -> Adversary -> Verification -> Cockpit | TBD |
+| P06-D1-003 | Deterministic Context Invalidation Enforcement | DONE | `setActiveIncident` resets strategy, genome, memory, challenge, boundary, and feedback on incident change | TBD |
+| P06-D1-004 | Hindsight Truth & Fixture Provenance Audit | DONE | All demo fixtures labeled with epistemic provenance tags (DEMO/SIMULATED/INFERRED/LEARNED) | TBD |
+| P06-D1-005 | Full Historical Route & Workspace Matrix Audit | DONE | All 31 active routes and 26 workspaces verified loaded, 0 removed | TBD |
+| P06-D1-006 | Full Backend Pytest Regression Suite | DONE | 313/313 pytest tests PASS across 37 test modules (85.30s) | TBD |
+| P06-D1-007 | Frontend TypeScript & Production Build Verification | DONE | `tsc --noEmit` 0 errors; `npm run build` PASS (11.85s, 2620 modules) | TBD |
+| P06-D1-008 | Author Acceptance & Forensic Audit Report (`docs/PHASE_6D1_ACCEPTANCE_AUDIT.md`) | DONE | Comprehensive audit specification published | TBD |
+
+
 
 
 
